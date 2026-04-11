@@ -5,7 +5,7 @@ import { prisma } from "../lib/prisma.js";
 // CREATE
 export const createDepartment = async (req: Request, res: Response) => {
   try {
-    const data = await prisma  .department.create({
+    const data = await prisma.department.create({
       data: {
         title: req.body.title,
         statusId: BigInt(req.body.statusId),
@@ -36,7 +36,7 @@ export const getDepartments = async (req: Request, res: Response) => {
 // UPDATE
 export const updateDepartment = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
 
     const data = await prisma.department.update({
       where: { id: BigInt(id) },
@@ -54,7 +54,7 @@ export const updateDepartment = async (req: Request, res: Response) => {
 // DELETE (SOFT DELETE 🔥)
 export const deleteDepartment = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
 
     await prisma.department.update({
       where: { id: BigInt(id) },
