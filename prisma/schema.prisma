@@ -26,3 +26,16 @@ model Department {
 
   @@map("departments")
 }
+
+model Designation {
+  id         BigInt   @id @default(autoincrement())
+  title      String   @db.VarChar(100)
+  status_id  BigInt
+  created_at DateTime? @db.Timestamp(6)
+  updated_at DateTime? @db.Timestamp(6)
+  deleted_at DateTime? @db.Timestamp(6)
+  company_id BigInt?  @default(1)
+  branch_id  BigInt?  @default(1)
+
+  @@map("designations")
+}
