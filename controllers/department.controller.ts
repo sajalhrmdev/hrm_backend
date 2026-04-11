@@ -1,70 +1,189 @@
 import { Request, Response } from "express";
 import { prisma } from "../lib/prisma.js";
-// import prisma from "../config/prisma.js";
+
+// 🔹 helper: safe error message
+const getErrorMessage = (error: unknown) => {
+  if (error instanceof Error) return error.message;
+  return "Something went wrong";
+};
+
+// 🔹 helper: validate number
+const toNumber = (value: any) => {
+  const num = Number(value);
+  return isNaN(num) ? null : num;
+};
 
 // CREATE
 export const createDepartment = async (req: Request, res: Response) => {
   try {
+    const { title, statusId } = req.body;
+
+    if (!title || statusId === undefined) {
+      return res.status(400).json({
+        success: false,
+        message: "title and statusId required",
+      });
+    }
+
+    const status = toNumber(statusId);
+    if (status === null) {
+      return res.status(400).json({
+        success: false,
+        message: "statusId must be a number",
+      });
+    }
+
     const data = await prisma.department.create({
       data: {
-        title: req.body.title,
-        statusId: BigInt(req.body.statusId),
+        title,
+        statusId: status,
       },
     });
 
-    res.json(data);
-  } catch (error) {
-    res.status(500).json({ error: "Create failed" });
+    return res.status(201).json({
+      success: true,
+      data,
+    });
+  } catch (error: unknown) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: getErrorMessage(error),
+    });
   }
 };
 
 // GET ALL
-export const getDepartments = async (req: Request, res: Response) => {
+export const getDepartments = async (_req: Request, res: Response) => {
   try {
     const data = await prisma.department.findMany({
       where: {
-        deletedAt: null, // soft delete handle
-      },
+        deletedAt: null,
+      }
+    //   orderBy: {
+    //     id: "desc",
+    //   },
     });
 
-    res.json(data);
-  } catch (error) {
-    res.status(500).json({ error: "Fetch failed" });
+    return res.json({
+      success: true,
+      data,
+    });
+  } catch (error: unknown) {
+    return res.status(500).json({
+      success: false,
+      message: getErrorMessage(error),
+    });
+  }
+};
+
+// GET SINGLE
+export const getDepartmentById = async (req: Request, res: Response) => {
+  try {
+    const id = toNumber(req.params.id);
+
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid ID",
+      });
+    }
+
+    const data = await prisma.department.findUnique({
+      where: { id },
+    });
+
+    if (!data || data.deletedAt) {
+      return res.status(404).json({
+        success: false,
+        message: "Department not found",
+      });
+    }
+
+    return res.json({
+      success: true,
+      data,
+    });
+  } catch (error: unknown) {
+    return res.status(500).json({
+      success: false,
+      message: getErrorMessage(error),
+    });
   }
 };
 
 // UPDATE
 export const updateDepartment = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params as { id: string };
+    const id = toNumber(req.params.id);
+    const { title, statusId } = req.body;
+
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid ID",
+      });
+    }
+
+    const updateData: any = {};
+
+    if (title) updateData.title = title;
+
+    if (statusId !== undefined) {
+      const status = toNumber(statusId);
+      if (status === null) {
+        return res.status(400).json({
+          success: false,
+          message: "statusId must be a number",
+        });
+      }
+      updateData.statusId = status;
+    }
 
     const data = await prisma.department.update({
-      where: { id: BigInt(id) },
-      data: {
-        title: req.body.title,
-      },
+      where: { id },
+      data: updateData,
     });
 
-    res.json(data);
-  } catch (error) {
-    res.status(500).json({ error: "Update failed" });
+    return res.json({
+      success: true,
+      data,
+    });
+  } catch (error: unknown) {
+    return res.status(500).json({
+      success: false,
+      message: getErrorMessage(error),
+    });
   }
 };
 
-// DELETE (SOFT DELETE 🔥)
+// DELETE (SOFT DELETE)
 export const deleteDepartment = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params as { id: string };
+    const id = toNumber(req.params.id);
+
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid ID",
+      });
+    }
 
     await prisma.department.update({
-      where: { id: BigInt(id) },
+      where: { id },
       data: {
         deletedAt: new Date(),
       },
     });
 
-    res.json({ message: "Deleted successfully" });
-  } catch (error) {
-    res.status(500).json({ error: "Delete failed" });
+    return res.json({
+      success: true,
+      message: "Deleted successfully",
+    });
+  } catch (error: unknown) {
+    return res.status(500).json({
+      success: false,
+      message: getErrorMessage(error),
+    });
   }
 };
