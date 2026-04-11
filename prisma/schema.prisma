@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
@@ -13,47 +8,27 @@ datasource db {
 }
 
 model Department {
-  id         BigInt   @id @default(autoincrement())
-  title      String
-  statusId   BigInt
-
-  createdAt  DateTime @default(now()) @map("created_at")
-  updatedAt  DateTime @updatedAt @map("updated_at")
-  deletedAt  DateTime? @map("deleted_at")
-
-  companyId  BigInt   @default(1) @map("company_id")
-  branchId   BigInt   @default(1) @map("branch_id")
+  id        Int       @id @default(autoincrement())
+  title     String
+  statusId  Int
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+  // companyId Int    @default(1) @map("company_id")
+  // branchId  Int    @default(1) @map("branch_id")
 
   @@map("departments")
 }
 
 model Designation {
-  id         BigInt   @id @default(autoincrement())
-  title      String   @db.VarChar(100)
-  status_id  BigInt
+  id         Int       @id @default(autoincrement())
+  title      String    @db.VarChar(100)
+  status_id  Int
   created_at DateTime? @db.Timestamp(6)
   updated_at DateTime? @db.Timestamp(6)
   deleted_at DateTime? @db.Timestamp(6)
-  company_id BigInt?  @default(1)
-  branch_id  BigInt?  @default(1)
+  company_id Int?      @default(1)
+  branch_id  Int?      @default(1)
 
   @@map("designations")
-}
-
-model Role {
-  id           BigInt    @id @default(autoincrement())
-  name         String?   @db.VarChar(255)
-  slug         String?   @db.VarChar(255)
-  permissions  String?   @db.Text
-  upper_roles  String?   @db.VarChar(255)
-  status_id    BigInt
-  company_id   BigInt?   @default(1)
-  branch_id    BigInt?   @default(1)
-  app_login    Boolean?  @default(true)
-  web_login    Boolean?  @default(true)
-  created_at   DateTime? @db.Timestamp(6)
-  updated_at   DateTime? @db.Timestamp(6)
-  deleted_at   DateTime? @db.Timestamp(6)
-
-  @@map("roles")
 }

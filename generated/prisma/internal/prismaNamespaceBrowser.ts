@@ -52,8 +52,7 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Department: 'Department',
-  Designation: 'Designation',
-  Role: 'Role'
+  Designation: 'Designation'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -78,9 +77,7 @@ export const DepartmentScalarFieldEnum = {
   statusId: 'statusId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt',
-  companyId: 'companyId',
-  branchId: 'branchId'
+  deletedAt: 'deletedAt'
 } as const
 
 export type DepartmentScalarFieldEnum = (typeof DepartmentScalarFieldEnum)[keyof typeof DepartmentScalarFieldEnum]
@@ -98,25 +95,6 @@ export const DesignationScalarFieldEnum = {
 } as const
 
 export type DesignationScalarFieldEnum = (typeof DesignationScalarFieldEnum)[keyof typeof DesignationScalarFieldEnum]
-
-
-export const RoleScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  slug: 'slug',
-  permissions: 'permissions',
-  upper_roles: 'upper_roles',
-  status_id: 'status_id',
-  company_id: 'company_id',
-  branch_id: 'branch_id',
-  app_login: 'app_login',
-  web_login: 'web_login',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  deleted_at: 'deleted_at'
-} as const
-
-export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum]
 
 
 export const SortOrder = {

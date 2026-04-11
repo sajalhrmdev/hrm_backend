@@ -10,5 +10,4 @@
  */
 export type * from './models/Department.js'
 export type * from './models/Designation.js'
-export type * from './models/Role.js'
 export type * from './commonInputTypes.js'

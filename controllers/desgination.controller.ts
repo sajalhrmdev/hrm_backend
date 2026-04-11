@@ -1,23 +1,17 @@
 import { Request, Response } from "express";
 import { prisma } from "../lib/prisma.js";
 
-// ✅ helper
-const toBigInt = (value: any): bigint | undefined => {
-  if (value === undefined || value === null || value === "") return undefined;
-  return BigInt(value);
-};
-
 // ➤ Create
 export const createDesignation = async (req: Request, res: Response) => {
   try {
     const { title, status_id, company_id, branch_id } = req.body as {
       title?: string;
-      status_id?: string | number | bigint;
-      company_id?: string | number | bigint;
-      branch_id?: string | number | bigint;
+      status_id?: number;
+      company_id?: number;
+      branch_id?: number;
     };
 
-    if (!title || !status_id) {
+    if (!title || status_id === undefined) {
       return res.status(400).json({
         success: false,
         message: "Title and status_id are required",
@@ -27,9 +21,9 @@ export const createDesignation = async (req: Request, res: Response) => {
     const designation = await prisma.designation.create({
       data: {
         title,
-        status_id: BigInt(status_id),
-        company_id: toBigInt(company_id) ?? 1n,
-        branch_id: toBigInt(branch_id) ?? 1n,
+        status_id: Number(status_id),
+        company_id: company_id ?? 1,
+        branch_id: branch_id ?? 1,
         created_at: new Date(),
       },
     });
@@ -69,7 +63,7 @@ export const getDesignationById = async (
   res: Response,
 ) => {
   try {
-    const id = BigInt(req.params.id);
+    const id = Number(req.params.id);
 
     const designation = await prisma.designation.findUnique({
       where: { id },
@@ -98,13 +92,13 @@ export const updateDesignation = async (
   res: Response,
 ) => {
   try {
-    const id = BigInt(req.params.id);
+    const id = Number(req.params.id);
 
     const { title, status_id, company_id, branch_id } = req.body as {
       title?: string;
-      status_id?: string | number | bigint;
-      company_id?: string | number | bigint;
-      branch_id?: string | number | bigint;
+      status_id?: number;
+      company_id?: number;
+      branch_id?: number;
     };
 
     const existing = await prisma.designation.findUnique({
@@ -122,9 +116,9 @@ export const updateDesignation = async (
       where: { id },
       data: {
         ...(title !== undefined && { title }),
-        ...(status_id !== undefined && { status_id: BigInt(status_id) }),
-        ...(company_id !== undefined && { company_id: toBigInt(company_id) }),
-        ...(branch_id !== undefined && { branch_id: toBigInt(branch_id) }),
+        ...(status_id !== undefined && { status_id: Number(status_id) }),
+        ...(company_id !== undefined && { company_id }),
+        ...(branch_id !== undefined && { branch_id }),
         updated_at: new Date(),
       },
     });
@@ -146,7 +140,7 @@ export const deleteDesignation = async (
   res: Response,
 ) => {
   try {
-    const id = BigInt(req.params.id);
+    const id = Number(req.params.id);
 
     const existing = await prisma.designation.findUnique({
       where: { id },

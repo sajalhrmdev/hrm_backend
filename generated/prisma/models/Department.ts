@@ -29,37 +29,29 @@ export type AggregateDepartment = {
 export type DepartmentAvgAggregateOutputType = {
   id: number | null
   statusId: number | null
-  companyId: number | null
-  branchId: number | null
 }
 
 export type DepartmentSumAggregateOutputType = {
-  id: bigint | null
-  statusId: bigint | null
-  companyId: bigint | null
-  branchId: bigint | null
+  id: number | null
+  statusId: number | null
 }
 
 export type DepartmentMinAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   title: string | null
-  statusId: bigint | null
+  statusId: number | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
-  companyId: bigint | null
-  branchId: bigint | null
 }
 
 export type DepartmentMaxAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   title: string | null
-  statusId: bigint | null
+  statusId: number | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
-  companyId: bigint | null
-  branchId: bigint | null
 }
 
 export type DepartmentCountAggregateOutputType = {
@@ -69,8 +61,6 @@ export type DepartmentCountAggregateOutputType = {
   createdAt: number
   updatedAt: number
   deletedAt: number
-  companyId: number
-  branchId: number
   _all: number
 }
 
@@ -78,15 +68,11 @@ export type DepartmentCountAggregateOutputType = {
 export type DepartmentAvgAggregateInputType = {
   id?: true
   statusId?: true
-  companyId?: true
-  branchId?: true
 }
 
 export type DepartmentSumAggregateInputType = {
   id?: true
   statusId?: true
-  companyId?: true
-  branchId?: true
 }
 
 export type DepartmentMinAggregateInputType = {
@@ -96,8 +82,6 @@ export type DepartmentMinAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
-  companyId?: true
-  branchId?: true
 }
 
 export type DepartmentMaxAggregateInputType = {
@@ -107,8 +91,6 @@ export type DepartmentMaxAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
-  companyId?: true
-  branchId?: true
 }
 
 export type DepartmentCountAggregateInputType = {
@@ -118,8 +100,6 @@ export type DepartmentCountAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
-  companyId?: true
-  branchId?: true
   _all?: true
 }
 
@@ -210,14 +190,12 @@ export type DepartmentGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 export type DepartmentGroupByOutputType = {
-  id: bigint
+  id: number
   title: string
-  statusId: bigint
+  statusId: number
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
-  companyId: bigint
-  branchId: bigint
   _count: DepartmentCountAggregateOutputType | null
   _avg: DepartmentAvgAggregateOutputType | null
   _sum: DepartmentSumAggregateOutputType | null
@@ -244,14 +222,12 @@ export type DepartmentWhereInput = {
   AND?: Prisma.DepartmentWhereInput | Prisma.DepartmentWhereInput[]
   OR?: Prisma.DepartmentWhereInput[]
   NOT?: Prisma.DepartmentWhereInput | Prisma.DepartmentWhereInput[]
-  id?: Prisma.BigIntFilter<"Department"> | bigint | number
+  id?: Prisma.IntFilter<"Department"> | number
   title?: Prisma.StringFilter<"Department"> | string
-  statusId?: Prisma.BigIntFilter<"Department"> | bigint | number
+  statusId?: Prisma.IntFilter<"Department"> | number
   createdAt?: Prisma.DateTimeFilter<"Department"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Department"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Department"> | Date | string | null
-  companyId?: Prisma.BigIntFilter<"Department"> | bigint | number
-  branchId?: Prisma.BigIntFilter<"Department"> | bigint | number
 }
 
 export type DepartmentOrderByWithRelationInput = {
@@ -261,22 +237,18 @@ export type DepartmentOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  companyId?: Prisma.SortOrder
-  branchId?: Prisma.SortOrder
 }
 
 export type DepartmentWhereUniqueInput = Prisma.AtLeast<{
-  id?: bigint | number
+  id?: number
   AND?: Prisma.DepartmentWhereInput | Prisma.DepartmentWhereInput[]
   OR?: Prisma.DepartmentWhereInput[]
   NOT?: Prisma.DepartmentWhereInput | Prisma.DepartmentWhereInput[]
   title?: Prisma.StringFilter<"Department"> | string
-  statusId?: Prisma.BigIntFilter<"Department"> | bigint | number
+  statusId?: Prisma.IntFilter<"Department"> | number
   createdAt?: Prisma.DateTimeFilter<"Department"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Department"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Department"> | Date | string | null
-  companyId?: Prisma.BigIntFilter<"Department"> | bigint | number
-  branchId?: Prisma.BigIntFilter<"Department"> | bigint | number
 }, "id">
 
 export type DepartmentOrderByWithAggregationInput = {
@@ -286,8 +258,6 @@ export type DepartmentOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  companyId?: Prisma.SortOrder
-  branchId?: Prisma.SortOrder
   _count?: Prisma.DepartmentCountOrderByAggregateInput
   _avg?: Prisma.DepartmentAvgOrderByAggregateInput
   _max?: Prisma.DepartmentMaxOrderByAggregateInput
@@ -299,91 +269,72 @@ export type DepartmentScalarWhereWithAggregatesInput = {
   AND?: Prisma.DepartmentScalarWhereWithAggregatesInput | Prisma.DepartmentScalarWhereWithAggregatesInput[]
   OR?: Prisma.DepartmentScalarWhereWithAggregatesInput[]
   NOT?: Prisma.DepartmentScalarWhereWithAggregatesInput | Prisma.DepartmentScalarWhereWithAggregatesInput[]
-  id?: Prisma.BigIntWithAggregatesFilter<"Department"> | bigint | number
+  id?: Prisma.IntWithAggregatesFilter<"Department"> | number
   title?: Prisma.StringWithAggregatesFilter<"Department"> | string
-  statusId?: Prisma.BigIntWithAggregatesFilter<"Department"> | bigint | number
+  statusId?: Prisma.IntWithAggregatesFilter<"Department"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Department"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Department"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Department"> | Date | string | null
-  companyId?: Prisma.BigIntWithAggregatesFilter<"Department"> | bigint | number
-  branchId?: Prisma.BigIntWithAggregatesFilter<"Department"> | bigint | number
 }
 
 export type DepartmentCreateInput = {
-  id?: bigint | number
   title: string
-  statusId: bigint | number
+  statusId: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  companyId?: bigint | number
-  branchId?: bigint | number
 }
 
 export type DepartmentUncheckedCreateInput = {
-  id?: bigint | number
+  id?: number
   title: string
-  statusId: bigint | number
+  statusId: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  companyId?: bigint | number
-  branchId?: bigint | number
 }
 
 export type DepartmentUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  statusId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  statusId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  companyId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  branchId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
 }
 
 export type DepartmentUncheckedUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  statusId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  statusId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  companyId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  branchId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
 }
 
 export type DepartmentCreateManyInput = {
-  id?: bigint | number
+  id?: number
   title: string
-  statusId: bigint | number
+  statusId: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  companyId?: bigint | number
-  branchId?: bigint | number
 }
 
 export type DepartmentUpdateManyMutationInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  statusId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  statusId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  companyId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  branchId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
 }
 
 export type DepartmentUncheckedUpdateManyInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  statusId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  statusId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  companyId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  branchId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
 }
 
 export type DepartmentCountOrderByAggregateInput = {
@@ -393,15 +344,11 @@ export type DepartmentCountOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
-  companyId?: Prisma.SortOrder
-  branchId?: Prisma.SortOrder
 }
 
 export type DepartmentAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   statusId?: Prisma.SortOrder
-  companyId?: Prisma.SortOrder
-  branchId?: Prisma.SortOrder
 }
 
 export type DepartmentMaxOrderByAggregateInput = {
@@ -411,8 +358,6 @@ export type DepartmentMaxOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
-  companyId?: Prisma.SortOrder
-  branchId?: Prisma.SortOrder
 }
 
 export type DepartmentMinOrderByAggregateInput = {
@@ -422,27 +367,23 @@ export type DepartmentMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
-  companyId?: Prisma.SortOrder
-  branchId?: Prisma.SortOrder
 }
 
 export type DepartmentSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   statusId?: Prisma.SortOrder
-  companyId?: Prisma.SortOrder
-  branchId?: Prisma.SortOrder
-}
-
-export type BigIntFieldUpdateOperationsInput = {
-  set?: bigint | number
-  increment?: bigint | number
-  decrement?: bigint | number
-  multiply?: bigint | number
-  divide?: bigint | number
 }
 
 export type StringFieldUpdateOperationsInput = {
   set?: string
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -462,8 +403,6 @@ export type DepartmentSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
-  companyId?: boolean
-  branchId?: boolean
 }, ExtArgs["result"]["department"]>
 
 export type DepartmentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -473,8 +412,6 @@ export type DepartmentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
-  companyId?: boolean
-  branchId?: boolean
 }, ExtArgs["result"]["department"]>
 
 export type DepartmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -484,8 +421,6 @@ export type DepartmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
-  companyId?: boolean
-  branchId?: boolean
 }, ExtArgs["result"]["department"]>
 
 export type DepartmentSelectScalar = {
@@ -495,24 +430,20 @@ export type DepartmentSelectScalar = {
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
-  companyId?: boolean
-  branchId?: boolean
 }
 
-export type DepartmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "statusId" | "createdAt" | "updatedAt" | "deletedAt" | "companyId" | "branchId", ExtArgs["result"]["department"]>
+export type DepartmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "statusId" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["department"]>
 
 export type $DepartmentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Department"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: bigint
+    id: number
     title: string
-    statusId: bigint
+    statusId: number
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
-    companyId: bigint
-    branchId: bigint
   }, ExtArgs["result"]["department"]>
   composites: {}
 }
@@ -936,14 +867,12 @@ export interface Prisma__DepartmentClient<T, Null = never, ExtArgs extends runti
  * Fields of the Department model
  */
 export interface DepartmentFieldRefs {
-  readonly id: Prisma.FieldRef<"Department", 'BigInt'>
+  readonly id: Prisma.FieldRef<"Department", 'Int'>
   readonly title: Prisma.FieldRef<"Department", 'String'>
-  readonly statusId: Prisma.FieldRef<"Department", 'BigInt'>
+  readonly statusId: Prisma.FieldRef<"Department", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Department", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Department", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"Department", 'DateTime'>
-  readonly companyId: Prisma.FieldRef<"Department", 'BigInt'>
-  readonly branchId: Prisma.FieldRef<"Department", 'BigInt'>
 }
     
 

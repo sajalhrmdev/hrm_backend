@@ -34,32 +34,32 @@ export type DesignationAvgAggregateOutputType = {
 }
 
 export type DesignationSumAggregateOutputType = {
-  id: bigint | null
-  status_id: bigint | null
-  company_id: bigint | null
-  branch_id: bigint | null
+  id: number | null
+  status_id: number | null
+  company_id: number | null
+  branch_id: number | null
 }
 
 export type DesignationMinAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   title: string | null
-  status_id: bigint | null
+  status_id: number | null
   created_at: Date | null
   updated_at: Date | null
   deleted_at: Date | null
-  company_id: bigint | null
-  branch_id: bigint | null
+  company_id: number | null
+  branch_id: number | null
 }
 
 export type DesignationMaxAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   title: string | null
-  status_id: bigint | null
+  status_id: number | null
   created_at: Date | null
   updated_at: Date | null
   deleted_at: Date | null
-  company_id: bigint | null
-  branch_id: bigint | null
+  company_id: number | null
+  branch_id: number | null
 }
 
 export type DesignationCountAggregateOutputType = {
@@ -210,14 +210,14 @@ export type DesignationGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 export type DesignationGroupByOutputType = {
-  id: bigint
+  id: number
   title: string
-  status_id: bigint
+  status_id: number
   created_at: Date | null
   updated_at: Date | null
   deleted_at: Date | null
-  company_id: bigint | null
-  branch_id: bigint | null
+  company_id: number | null
+  branch_id: number | null
   _count: DesignationCountAggregateOutputType | null
   _avg: DesignationAvgAggregateOutputType | null
   _sum: DesignationSumAggregateOutputType | null
@@ -244,14 +244,14 @@ export type DesignationWhereInput = {
   AND?: Prisma.DesignationWhereInput | Prisma.DesignationWhereInput[]
   OR?: Prisma.DesignationWhereInput[]
   NOT?: Prisma.DesignationWhereInput | Prisma.DesignationWhereInput[]
-  id?: Prisma.BigIntFilter<"Designation"> | bigint | number
+  id?: Prisma.IntFilter<"Designation"> | number
   title?: Prisma.StringFilter<"Designation"> | string
-  status_id?: Prisma.BigIntFilter<"Designation"> | bigint | number
+  status_id?: Prisma.IntFilter<"Designation"> | number
   created_at?: Prisma.DateTimeNullableFilter<"Designation"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableFilter<"Designation"> | Date | string | null
   deleted_at?: Prisma.DateTimeNullableFilter<"Designation"> | Date | string | null
-  company_id?: Prisma.BigIntNullableFilter<"Designation"> | bigint | number | null
-  branch_id?: Prisma.BigIntNullableFilter<"Designation"> | bigint | number | null
+  company_id?: Prisma.IntNullableFilter<"Designation"> | number | null
+  branch_id?: Prisma.IntNullableFilter<"Designation"> | number | null
 }
 
 export type DesignationOrderByWithRelationInput = {
@@ -266,17 +266,17 @@ export type DesignationOrderByWithRelationInput = {
 }
 
 export type DesignationWhereUniqueInput = Prisma.AtLeast<{
-  id?: bigint | number
+  id?: number
   AND?: Prisma.DesignationWhereInput | Prisma.DesignationWhereInput[]
   OR?: Prisma.DesignationWhereInput[]
   NOT?: Prisma.DesignationWhereInput | Prisma.DesignationWhereInput[]
   title?: Prisma.StringFilter<"Designation"> | string
-  status_id?: Prisma.BigIntFilter<"Designation"> | bigint | number
+  status_id?: Prisma.IntFilter<"Designation"> | number
   created_at?: Prisma.DateTimeNullableFilter<"Designation"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableFilter<"Designation"> | Date | string | null
   deleted_at?: Prisma.DateTimeNullableFilter<"Designation"> | Date | string | null
-  company_id?: Prisma.BigIntNullableFilter<"Designation"> | bigint | number | null
-  branch_id?: Prisma.BigIntNullableFilter<"Designation"> | bigint | number | null
+  company_id?: Prisma.IntNullableFilter<"Designation"> | number | null
+  branch_id?: Prisma.IntNullableFilter<"Designation"> | number | null
 }, "id">
 
 export type DesignationOrderByWithAggregationInput = {
@@ -299,91 +299,88 @@ export type DesignationScalarWhereWithAggregatesInput = {
   AND?: Prisma.DesignationScalarWhereWithAggregatesInput | Prisma.DesignationScalarWhereWithAggregatesInput[]
   OR?: Prisma.DesignationScalarWhereWithAggregatesInput[]
   NOT?: Prisma.DesignationScalarWhereWithAggregatesInput | Prisma.DesignationScalarWhereWithAggregatesInput[]
-  id?: Prisma.BigIntWithAggregatesFilter<"Designation"> | bigint | number
+  id?: Prisma.IntWithAggregatesFilter<"Designation"> | number
   title?: Prisma.StringWithAggregatesFilter<"Designation"> | string
-  status_id?: Prisma.BigIntWithAggregatesFilter<"Designation"> | bigint | number
+  status_id?: Prisma.IntWithAggregatesFilter<"Designation"> | number
   created_at?: Prisma.DateTimeNullableWithAggregatesFilter<"Designation"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableWithAggregatesFilter<"Designation"> | Date | string | null
   deleted_at?: Prisma.DateTimeNullableWithAggregatesFilter<"Designation"> | Date | string | null
-  company_id?: Prisma.BigIntNullableWithAggregatesFilter<"Designation"> | bigint | number | null
-  branch_id?: Prisma.BigIntNullableWithAggregatesFilter<"Designation"> | bigint | number | null
+  company_id?: Prisma.IntNullableWithAggregatesFilter<"Designation"> | number | null
+  branch_id?: Prisma.IntNullableWithAggregatesFilter<"Designation"> | number | null
 }
 
 export type DesignationCreateInput = {
-  id?: bigint | number
   title: string
-  status_id: bigint | number
+  status_id: number
   created_at?: Date | string | null
   updated_at?: Date | string | null
   deleted_at?: Date | string | null
-  company_id?: bigint | number | null
-  branch_id?: bigint | number | null
+  company_id?: number | null
+  branch_id?: number | null
 }
 
 export type DesignationUncheckedCreateInput = {
-  id?: bigint | number
+  id?: number
   title: string
-  status_id: bigint | number
+  status_id: number
   created_at?: Date | string | null
   updated_at?: Date | string | null
   deleted_at?: Date | string | null
-  company_id?: bigint | number | null
-  branch_id?: bigint | number | null
+  company_id?: number | null
+  branch_id?: number | null
 }
 
 export type DesignationUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  status_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  status_id?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  company_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  branch_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  company_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  branch_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type DesignationUncheckedUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  status_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  status_id?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  company_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  branch_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  company_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  branch_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type DesignationCreateManyInput = {
-  id?: bigint | number
+  id?: number
   title: string
-  status_id: bigint | number
+  status_id: number
   created_at?: Date | string | null
   updated_at?: Date | string | null
   deleted_at?: Date | string | null
-  company_id?: bigint | number | null
-  branch_id?: bigint | number | null
+  company_id?: number | null
+  branch_id?: number | null
 }
 
 export type DesignationUpdateManyMutationInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  status_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  status_id?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  company_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  branch_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  company_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  branch_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type DesignationUncheckedUpdateManyInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  status_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  status_id?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  company_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  branch_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  company_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  branch_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type DesignationCountOrderByAggregateInput = {
@@ -433,12 +430,12 @@ export type DesignationSumOrderByAggregateInput = {
   branch_id?: Prisma.SortOrder
 }
 
-export type NullableBigIntFieldUpdateOperationsInput = {
-  set?: bigint | number | null
-  increment?: bigint | number
-  decrement?: bigint | number
-  multiply?: bigint | number
-  divide?: bigint | number
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 
@@ -493,14 +490,14 @@ export type $DesignationPayload<ExtArgs extends runtime.Types.Extensions.Interna
   name: "Designation"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: bigint
+    id: number
     title: string
-    status_id: bigint
+    status_id: number
     created_at: Date | null
     updated_at: Date | null
     deleted_at: Date | null
-    company_id: bigint | null
-    branch_id: bigint | null
+    company_id: number | null
+    branch_id: number | null
   }, ExtArgs["result"]["designation"]>
   composites: {}
 }
@@ -924,14 +921,14 @@ export interface Prisma__DesignationClient<T, Null = never, ExtArgs extends runt
  * Fields of the Designation model
  */
 export interface DesignationFieldRefs {
-  readonly id: Prisma.FieldRef<"Designation", 'BigInt'>
+  readonly id: Prisma.FieldRef<"Designation", 'Int'>
   readonly title: Prisma.FieldRef<"Designation", 'String'>
-  readonly status_id: Prisma.FieldRef<"Designation", 'BigInt'>
+  readonly status_id: Prisma.FieldRef<"Designation", 'Int'>
   readonly created_at: Prisma.FieldRef<"Designation", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"Designation", 'DateTime'>
   readonly deleted_at: Prisma.FieldRef<"Designation", 'DateTime'>
-  readonly company_id: Prisma.FieldRef<"Designation", 'BigInt'>
-  readonly branch_id: Prisma.FieldRef<"Designation", 'BigInt'>
+  readonly company_id: Prisma.FieldRef<"Designation", 'Int'>
+  readonly branch_id: Prisma.FieldRef<"Designation", 'Int'>
 }
     
 
