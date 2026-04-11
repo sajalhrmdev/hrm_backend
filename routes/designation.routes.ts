@@ -1,11 +1,14 @@
 import { Router } from "express";
-import { createDesignation, deleteDesignation, getAllDesignations, getDesignationById, updateDesignation } from "../controllers/desgination.controller.js";
+import { createDesignation, createManyDesignations, deleteDesignation, getAllDesignations, getDesignationById, updateDesignation } from "../controllers/desgination.controller.js";
 
 
 const router = Router();
 
 // ➤ Create
 router.post("/", createDesignation);
+
+// ➤ Create Multiple
+router.post("/bulk", createManyDesignations);
 
 // ➤ Get All
 router.get("/", getAllDesignations);

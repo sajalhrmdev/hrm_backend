@@ -39,12 +39,50 @@ export const createDesignation = async (req: Request, res: Response) => {
   }
 };
 
+// ➤ Create multiple
+export const createManyDesignations = async (req: Request, res: Response) => {
+  try {
+    const data = req.body as {
+      title: string;
+      status_id: number;
+      company_id?: number;
+      branch_id?: number;
+    }[];
+
+    if (!Array.isArray(data) || data.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Array of designations required",
+      });
+    }
+
+    const result = await prisma.designation.createMany({
+      data: data.map((item) => ({
+        title: item.title,
+        status_id: item.status_id,
+        company_id: item.company_id ?? 1,
+        branch_id: item.branch_id ?? 1,
+        created_at: new Date(),
+      })),
+    });
+
+    return res.status(201).json({
+      success: true,
+      message: "Bulk insert successful",
+      count: result.count,
+    });
+  } catch (error) {
+    console.error("Bulk Error:", error);
+    return res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
+
 // ➤ Get All
 export const getAllDesignations = async (_req: Request, res: Response) => {
   try {
     const designations = await prisma.designation.findMany({
       where: { deleted_at: null },
-      orderBy: { id: "desc" },
+      // orderBy: { id: "desc" },
     });
 
     return res.status(200).json({
@@ -136,7 +174,7 @@ export const updateDesignation = async (
 
 // ➤ Delete (Soft)
 export const deleteDesignation = async (
-  req: Request<{ id: string }>,
+  req: Request<{ id: string|number }>,
   res: Response,
 ) => {
   try {
