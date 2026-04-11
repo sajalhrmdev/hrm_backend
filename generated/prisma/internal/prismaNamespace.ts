@@ -598,7 +598,9 @@ export const DepartmentScalarFieldEnum = {
   statusId: 'statusId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt'
+  deletedAt: 'deletedAt',
+  companyId: 'companyId',
+  branchId: 'branchId'
 } as const
 
 export type DepartmentScalarFieldEnum = (typeof DepartmentScalarFieldEnum)[keyof typeof DepartmentScalarFieldEnum]
