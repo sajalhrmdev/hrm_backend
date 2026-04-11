@@ -11,3 +11,18 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model Department {
+  id         BigInt   @id @default(autoincrement())
+  title      String
+  statusId   BigInt
+
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+  deletedAt  DateTime? @map("deleted_at")
+
+  companyId  BigInt   @default(1) @map("company_id")
+  branchId   BigInt   @default(1) @map("branch_id")
+
+  @@map("departments")
+}
