@@ -27,3 +27,13 @@ export type Department = Prisma.DepartmentModel
  * 
  */
 export type Designation = Prisma.DesignationModel
+/**
+ * Model User
+ * 
+ */
+export type User = Prisma.UserModel
+/**
+ * Model Employee
+ * 
+ */
+export type Employee = Prisma.EmployeeModel
