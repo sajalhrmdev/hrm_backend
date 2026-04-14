@@ -14,8 +14,9 @@ model Department {
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
   deletedAt DateTime? @map("deleted_at")
-  companyId Int    @default(1) @map("company_id")
-  branchId  Int    @default(1) @map("branch_id")
+  companyId Int       @default(1) @map("company_id")
+  branchId  Int       @default(1) @map("branch_id")
+  employees Employee[]
 
   @@map("departments")
 }
@@ -29,42 +30,75 @@ model Designation {
   deleted_at DateTime? @db.Timestamp(6)
   company_id Int?      @default(1)
   branch_id  Int?      @default(1)
+  employees Employee[]
 
   @@map("designations")
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  phone     String?
-  password  String
+  id       Int     @id @default(autoincrement())
+  name     String
+  email    String  @unique
+  phone    String?
+  password String
 
-  roleId    Int?
-  isAdmin   Boolean  @default(false)
+  roleId  Int @default(3)
+  role  Role @relation(fields:[roleId],references: [id])
+  isAdmin Boolean @default(false)
 
-  statusId  Int      @default(1)
+  statusId Int @default(1)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  employee  Employee?
+  employee    Employee?
+  attendances Attendance[]
+}
+
+model Role {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique  // Admin, HR, Employee
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users     User[]   //  relation
 }
 
 model Employee {
-  id             Int      @id @default(autoincrement())
-  userId         Int      @unique
+  id     Int @id @default(autoincrement())
+  userId Int @unique
 
-  employeeCode   String?
-  departmentId   Int?
-  designationId  Int?
-  managerId      Int?
+  employeeCode  String?
+  departmentId  Int?
+  department  Department? @relation(fields: [departmentId], references: [id])
+  designationId Int?
+  designation Designation? @relation(fields: [designationId], references: [id])
+  managerId     Int?
 
   joiningDate    DateTime?
   employmentType String? // Permanent, Contractual
   status         String? // active, resigned
 
-  user        User        @relation(fields: [userId], references: [id])
-  // department  Department? @relation(fields: [departmentId], references: [id])
-  // designation Designation? @relation(fields: [designationId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+  
+  
+}
+
+model Attendance {
+  id     Int      @id @default(autoincrement())
+  userId Int
+  date   DateTime
+
+  checkIn  DateTime?
+  checkOut DateTime?
+
+  status String? // Present, Late
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([userId, date]) // 🔥 important
 }

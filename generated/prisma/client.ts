@@ -57,7 +57,17 @@ export type Designation = Prisma.DesignationModel
  */
 export type User = Prisma.UserModel
 /**
+ * Model Role
+ * 
+ */
+export type Role = Prisma.RoleModel
+/**
  * Model Employee
  * 
  */
 export type Employee = Prisma.EmployeeModel
+/**
+ * Model Attendance
+ * 
+ */
+export type Attendance = Prisma.AttendanceModel
