@@ -3,6 +3,10 @@ import deparmentRoutes from "./routes/department.routes.js";
 import designationRoutes from "./routes/designation.routes.js";
 import employeeRoutes from "./routes/employee.routes.js";
 import attendanceRoutes from "./routes/attendance.routes.js";
+import globalRoleRoutes from "./routes/globalRole.routes.js";
+import userRoutes from "./routes/user.routes.js";
+import roleRoutes from "./routes/role.routes.js";
+
 
 
 
@@ -20,6 +24,11 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Server is Live!");
 });
 app.use(express.json())
+app.use("/api/v1/global-roles", globalRoleRoutes);
+app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/roles", roleRoutes);
+
+
 app.use("/api/v1/designations", designationRoutes);
 app.use("/api/v1/department",deparmentRoutes)
 app.use("/api/v1/employee",employeeRoutes)

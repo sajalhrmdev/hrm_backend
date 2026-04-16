@@ -387,6 +387,7 @@ export const ModelName = {
   Department: 'Department',
   Designation: 'Designation',
   User: 'User',
+  GlobalRole: 'GlobalRole',
   Role: 'Role',
   Employee: 'Employee',
   Attendance: 'Attendance'
@@ -405,7 +406,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "department" | "designation" | "user" | "role" | "employee" | "attendance"
+    modelProps: "department" | "designation" | "user" | "globalRole" | "role" | "employee" | "attendance"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -628,6 +629,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.UserCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.UserCountAggregateOutputType> | number
+        }
+      }
+    }
+    GlobalRole: {
+      payload: Prisma.$GlobalRolePayload<ExtArgs>
+      fields: Prisma.GlobalRoleFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GlobalRoleFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GlobalRolePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GlobalRoleFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GlobalRolePayload>
+        }
+        findFirst: {
+          args: Prisma.GlobalRoleFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GlobalRolePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GlobalRoleFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GlobalRolePayload>
+        }
+        findMany: {
+          args: Prisma.GlobalRoleFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GlobalRolePayload>[]
+        }
+        create: {
+          args: Prisma.GlobalRoleCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GlobalRolePayload>
+        }
+        createMany: {
+          args: Prisma.GlobalRoleCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GlobalRoleCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GlobalRolePayload>[]
+        }
+        delete: {
+          args: Prisma.GlobalRoleDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GlobalRolePayload>
+        }
+        update: {
+          args: Prisma.GlobalRoleUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GlobalRolePayload>
+        }
+        deleteMany: {
+          args: Prisma.GlobalRoleDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GlobalRoleUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GlobalRoleUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GlobalRolePayload>[]
+        }
+        upsert: {
+          args: Prisma.GlobalRoleUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GlobalRolePayload>
+        }
+        aggregate: {
+          args: Prisma.GlobalRoleAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGlobalRole>
+        }
+        groupBy: {
+          args: Prisma.GlobalRoleGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GlobalRoleGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GlobalRoleCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GlobalRoleCountAggregateOutputType> | number
         }
       }
     }
@@ -926,19 +1001,31 @@ export const UserScalarFieldEnum = {
   email: 'email',
   phone: 'phone',
   password: 'password',
-  roleId: 'roleId',
-  isAdmin: 'isAdmin',
-  statusId: 'statusId',
+  globalRoleId: 'globalRoleId',
+  status: 'status',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  lastLoginAt: 'lastLoginAt',
+  deletedAt: 'deletedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-export const RoleScalarFieldEnum = {
+export const GlobalRoleScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  description: 'description'
+} as const
+
+export type GlobalRoleScalarFieldEnum = (typeof GlobalRoleScalarFieldEnum)[keyof typeof GlobalRoleScalarFieldEnum]
+
+
+export const RoleScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  name: 'name',
+  description: 'description',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -949,13 +1036,18 @@ export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof Role
 export const EmployeeScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  companyId: 'companyId',
+  name: 'name',
+  phone: 'phone',
+  email: 'email',
+  roleId: 'roleId',
+  status: 'status',
   employeeCode: 'employeeCode',
   departmentId: 'departmentId',
   designationId: 'designationId',
-  managerId: 'managerId',
   joiningDate: 'joiningDate',
-  employmentType: 'employmentType',
-  status: 'status'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type EmployeeScalarFieldEnum = (typeof EmployeeScalarFieldEnum)[keyof typeof EmployeeScalarFieldEnum]
@@ -1048,9 +1140,30 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
- * Reference to a field of type 'Boolean'
+ * Reference to a field of type 'UserStatus'
  */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+export type EnumUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'UserStatus[]'
+ */
+export type ListEnumUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'EmployeeStatus'
+ */
+export type EnumEmployeeStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EmployeeStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'EmployeeStatus[]'
+ */
+export type ListEnumEmployeeStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EmployeeStatus[]'>
     
 
 
@@ -1165,6 +1278,7 @@ export type GlobalOmitConfig = {
   department?: Prisma.DepartmentOmit
   designation?: Prisma.DesignationOmit
   user?: Prisma.UserOmit
+  globalRole?: Prisma.GlobalRoleOmit
   role?: Prisma.RoleOmit
   employee?: Prisma.EmployeeOmit
   attendance?: Prisma.AttendanceOmit

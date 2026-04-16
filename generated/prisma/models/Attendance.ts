@@ -244,7 +244,6 @@ export type AttendanceWhereInput = {
   status?: Prisma.StringNullableFilter<"Attendance"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Attendance"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Attendance"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type AttendanceOrderByWithRelationInput = {
@@ -256,7 +255,6 @@ export type AttendanceOrderByWithRelationInput = {
   status?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type AttendanceWhereUniqueInput = Prisma.AtLeast<{
@@ -272,7 +270,6 @@ export type AttendanceWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.StringNullableFilter<"Attendance"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Attendance"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Attendance"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "userId_date">
 
 export type AttendanceOrderByWithAggregationInput = {
@@ -306,13 +303,13 @@ export type AttendanceScalarWhereWithAggregatesInput = {
 }
 
 export type AttendanceCreateInput = {
+  userId: number
   date: Date | string
   checkIn?: Date | string | null
   checkOut?: Date | string | null
   status?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutAttendancesInput
 }
 
 export type AttendanceUncheckedCreateInput = {
@@ -327,13 +324,13 @@ export type AttendanceUncheckedCreateInput = {
 }
 
 export type AttendanceUpdateInput = {
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkIn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   checkOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutAttendancesNestedInput
 }
 
 export type AttendanceUncheckedUpdateInput = {
@@ -359,6 +356,7 @@ export type AttendanceCreateManyInput = {
 }
 
 export type AttendanceUpdateManyMutationInput = {
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkIn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   checkOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -376,16 +374,6 @@ export type AttendanceUncheckedUpdateManyInput = {
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type AttendanceListRelationFilter = {
-  every?: Prisma.AttendanceWhereInput
-  some?: Prisma.AttendanceWhereInput
-  none?: Prisma.AttendanceWhereInput
-}
-
-export type AttendanceOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
 }
 
 export type AttendanceUserIdDateCompoundUniqueInput = {
@@ -436,146 +424,6 @@ export type AttendanceSumOrderByAggregateInput = {
   userId?: Prisma.SortOrder
 }
 
-export type AttendanceCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.AttendanceCreateWithoutUserInput, Prisma.AttendanceUncheckedCreateWithoutUserInput> | Prisma.AttendanceCreateWithoutUserInput[] | Prisma.AttendanceUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.AttendanceCreateOrConnectWithoutUserInput | Prisma.AttendanceCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.AttendanceCreateManyUserInputEnvelope
-  connect?: Prisma.AttendanceWhereUniqueInput | Prisma.AttendanceWhereUniqueInput[]
-}
-
-export type AttendanceUncheckedCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.AttendanceCreateWithoutUserInput, Prisma.AttendanceUncheckedCreateWithoutUserInput> | Prisma.AttendanceCreateWithoutUserInput[] | Prisma.AttendanceUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.AttendanceCreateOrConnectWithoutUserInput | Prisma.AttendanceCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.AttendanceCreateManyUserInputEnvelope
-  connect?: Prisma.AttendanceWhereUniqueInput | Prisma.AttendanceWhereUniqueInput[]
-}
-
-export type AttendanceUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.AttendanceCreateWithoutUserInput, Prisma.AttendanceUncheckedCreateWithoutUserInput> | Prisma.AttendanceCreateWithoutUserInput[] | Prisma.AttendanceUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.AttendanceCreateOrConnectWithoutUserInput | Prisma.AttendanceCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.AttendanceUpsertWithWhereUniqueWithoutUserInput | Prisma.AttendanceUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.AttendanceCreateManyUserInputEnvelope
-  set?: Prisma.AttendanceWhereUniqueInput | Prisma.AttendanceWhereUniqueInput[]
-  disconnect?: Prisma.AttendanceWhereUniqueInput | Prisma.AttendanceWhereUniqueInput[]
-  delete?: Prisma.AttendanceWhereUniqueInput | Prisma.AttendanceWhereUniqueInput[]
-  connect?: Prisma.AttendanceWhereUniqueInput | Prisma.AttendanceWhereUniqueInput[]
-  update?: Prisma.AttendanceUpdateWithWhereUniqueWithoutUserInput | Prisma.AttendanceUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.AttendanceUpdateManyWithWhereWithoutUserInput | Prisma.AttendanceUpdateManyWithWhereWithoutUserInput[]
-  deleteMany?: Prisma.AttendanceScalarWhereInput | Prisma.AttendanceScalarWhereInput[]
-}
-
-export type AttendanceUncheckedUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.AttendanceCreateWithoutUserInput, Prisma.AttendanceUncheckedCreateWithoutUserInput> | Prisma.AttendanceCreateWithoutUserInput[] | Prisma.AttendanceUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.AttendanceCreateOrConnectWithoutUserInput | Prisma.AttendanceCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.AttendanceUpsertWithWhereUniqueWithoutUserInput | Prisma.AttendanceUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.AttendanceCreateManyUserInputEnvelope
-  set?: Prisma.AttendanceWhereUniqueInput | Prisma.AttendanceWhereUniqueInput[]
-  disconnect?: Prisma.AttendanceWhereUniqueInput | Prisma.AttendanceWhereUniqueInput[]
-  delete?: Prisma.AttendanceWhereUniqueInput | Prisma.AttendanceWhereUniqueInput[]
-  connect?: Prisma.AttendanceWhereUniqueInput | Prisma.AttendanceWhereUniqueInput[]
-  update?: Prisma.AttendanceUpdateWithWhereUniqueWithoutUserInput | Prisma.AttendanceUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.AttendanceUpdateManyWithWhereWithoutUserInput | Prisma.AttendanceUpdateManyWithWhereWithoutUserInput[]
-  deleteMany?: Prisma.AttendanceScalarWhereInput | Prisma.AttendanceScalarWhereInput[]
-}
-
-export type AttendanceCreateWithoutUserInput = {
-  date: Date | string
-  checkIn?: Date | string | null
-  checkOut?: Date | string | null
-  status?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type AttendanceUncheckedCreateWithoutUserInput = {
-  id?: number
-  date: Date | string
-  checkIn?: Date | string | null
-  checkOut?: Date | string | null
-  status?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type AttendanceCreateOrConnectWithoutUserInput = {
-  where: Prisma.AttendanceWhereUniqueInput
-  create: Prisma.XOR<Prisma.AttendanceCreateWithoutUserInput, Prisma.AttendanceUncheckedCreateWithoutUserInput>
-}
-
-export type AttendanceCreateManyUserInputEnvelope = {
-  data: Prisma.AttendanceCreateManyUserInput | Prisma.AttendanceCreateManyUserInput[]
-  skipDuplicates?: boolean
-}
-
-export type AttendanceUpsertWithWhereUniqueWithoutUserInput = {
-  where: Prisma.AttendanceWhereUniqueInput
-  update: Prisma.XOR<Prisma.AttendanceUpdateWithoutUserInput, Prisma.AttendanceUncheckedUpdateWithoutUserInput>
-  create: Prisma.XOR<Prisma.AttendanceCreateWithoutUserInput, Prisma.AttendanceUncheckedCreateWithoutUserInput>
-}
-
-export type AttendanceUpdateWithWhereUniqueWithoutUserInput = {
-  where: Prisma.AttendanceWhereUniqueInput
-  data: Prisma.XOR<Prisma.AttendanceUpdateWithoutUserInput, Prisma.AttendanceUncheckedUpdateWithoutUserInput>
-}
-
-export type AttendanceUpdateManyWithWhereWithoutUserInput = {
-  where: Prisma.AttendanceScalarWhereInput
-  data: Prisma.XOR<Prisma.AttendanceUpdateManyMutationInput, Prisma.AttendanceUncheckedUpdateManyWithoutUserInput>
-}
-
-export type AttendanceScalarWhereInput = {
-  AND?: Prisma.AttendanceScalarWhereInput | Prisma.AttendanceScalarWhereInput[]
-  OR?: Prisma.AttendanceScalarWhereInput[]
-  NOT?: Prisma.AttendanceScalarWhereInput | Prisma.AttendanceScalarWhereInput[]
-  id?: Prisma.IntFilter<"Attendance"> | number
-  userId?: Prisma.IntFilter<"Attendance"> | number
-  date?: Prisma.DateTimeFilter<"Attendance"> | Date | string
-  checkIn?: Prisma.DateTimeNullableFilter<"Attendance"> | Date | string | null
-  checkOut?: Prisma.DateTimeNullableFilter<"Attendance"> | Date | string | null
-  status?: Prisma.StringNullableFilter<"Attendance"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"Attendance"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Attendance"> | Date | string
-}
-
-export type AttendanceCreateManyUserInput = {
-  id?: number
-  date: Date | string
-  checkIn?: Date | string | null
-  checkOut?: Date | string | null
-  status?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type AttendanceUpdateWithoutUserInput = {
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  checkIn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  checkOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type AttendanceUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  checkIn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  checkOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type AttendanceUncheckedUpdateManyWithoutUserInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  checkIn?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  checkOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
 
 
 export type AttendanceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -587,7 +435,6 @@ export type AttendanceSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["attendance"]>
 
 export type AttendanceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -599,7 +446,6 @@ export type AttendanceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["attendance"]>
 
 export type AttendanceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -611,7 +457,6 @@ export type AttendanceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["attendance"]>
 
 export type AttendanceSelectScalar = {
@@ -626,21 +471,10 @@ export type AttendanceSelectScalar = {
 }
 
 export type AttendanceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "date" | "checkIn" | "checkOut" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["attendance"]>
-export type AttendanceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}
-export type AttendanceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}
-export type AttendanceIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}
 
 export type $AttendancePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Attendance"
-  objects: {
-    user: Prisma.$UserPayload<ExtArgs>
-  }
+  objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     userId: number
@@ -1044,7 +878,6 @@ readonly fields: AttendanceFieldRefs;
  */
 export interface Prisma__AttendanceClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1099,10 +932,6 @@ export type AttendanceFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.AttendanceOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AttendanceInclude<ExtArgs> | null
-  /**
    * Filter, which Attendance to fetch.
    */
   where: Prisma.AttendanceWhereUniqueInput
@@ -1121,10 +950,6 @@ export type AttendanceFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extens
    */
   omit?: Prisma.AttendanceOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AttendanceInclude<ExtArgs> | null
-  /**
    * Filter, which Attendance to fetch.
    */
   where: Prisma.AttendanceWhereUniqueInput
@@ -1142,10 +967,6 @@ export type AttendanceFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the Attendance
    */
   omit?: Prisma.AttendanceOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AttendanceInclude<ExtArgs> | null
   /**
    * Filter, which Attendance to fetch.
    */
@@ -1195,10 +1016,6 @@ export type AttendanceFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensi
    */
   omit?: Prisma.AttendanceOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AttendanceInclude<ExtArgs> | null
-  /**
    * Filter, which Attendance to fetch.
    */
   where?: Prisma.AttendanceWhereInput
@@ -1246,10 +1063,6 @@ export type AttendanceFindManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Omit specific fields from the Attendance
    */
   omit?: Prisma.AttendanceOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AttendanceInclude<ExtArgs> | null
   /**
    * Filter, which Attendances to fetch.
    */
@@ -1299,10 +1112,6 @@ export type AttendanceCreateArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   omit?: Prisma.AttendanceOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AttendanceInclude<ExtArgs> | null
-  /**
    * The data needed to create a Attendance.
    */
   data: Prisma.XOR<Prisma.AttendanceCreateInput, Prisma.AttendanceUncheckedCreateInput>
@@ -1336,10 +1145,6 @@ export type AttendanceCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Exte
    */
   data: Prisma.AttendanceCreateManyInput | Prisma.AttendanceCreateManyInput[]
   skipDuplicates?: boolean
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AttendanceIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1354,10 +1159,6 @@ export type AttendanceUpdateArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Omit specific fields from the Attendance
    */
   omit?: Prisma.AttendanceOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AttendanceInclude<ExtArgs> | null
   /**
    * The data needed to update a Attendance.
    */
@@ -1410,10 +1211,6 @@ export type AttendanceUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Exte
    * Limit how many Attendances to update.
    */
   limit?: number
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AttendanceIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1428,10 +1225,6 @@ export type AttendanceUpsertArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Omit specific fields from the Attendance
    */
   omit?: Prisma.AttendanceOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AttendanceInclude<ExtArgs> | null
   /**
    * The filter to search for the Attendance to update in case it exists.
    */
@@ -1458,10 +1251,6 @@ export type AttendanceDeleteArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Omit specific fields from the Attendance
    */
   omit?: Prisma.AttendanceOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AttendanceInclude<ExtArgs> | null
   /**
    * Filter which Attendance to delete.
    */
@@ -1494,8 +1283,4 @@ export type AttendanceDefaultArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Omit specific fields from the Attendance
    */
   omit?: Prisma.AttendanceOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AttendanceInclude<ExtArgs> | null
 }

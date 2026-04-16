@@ -33,6 +33,11 @@ export type Designation = Prisma.DesignationModel
  */
 export type User = Prisma.UserModel
 /**
+ * Model GlobalRole
+ * 
+ */
+export type GlobalRole = Prisma.GlobalRoleModel
+/**
  * Model Role
  * 
  */

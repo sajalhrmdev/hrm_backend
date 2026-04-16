@@ -7,6 +7,13 @@ datasource db {
   provider = "postgresql"
 }
 
+
+// User
+// Role
+// Employee
+// Department
+// Designation
+
 model Department {
   id        Int       @id @default(autoincrement())
   title     String
@@ -35,6 +42,12 @@ model Designation {
   @@map("designations")
 }
 
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+
 model User {
   id       Int     @id @default(autoincrement())
   name     String
@@ -42,45 +55,75 @@ model User {
   phone    String?
   password String
 
-  roleId  Int @default(3)
-  role  Role @relation(fields:[roleId],references: [id])
-  isAdmin Boolean @default(false)
+  // roleId  Int @default(3)
+  // role  Role @relation(fields:[roleId],references: [id])
+  // isAdmin Boolean @default(false)
+  globalRoleId Int?
+  globalRole  GlobalRole? @relation(fields: [globalRoleId], references: [id])
 
-  statusId Int @default(1)
+
+  status   UserStatus @default(ACTIVE)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
+  lastLoginAt   DateTime?
+  deletedAt     DateTime?
   employee    Employee?
-  attendances Attendance[]
+  // attendances Attendance[]
 }
 
+model GlobalRole{
+  id       Int       @id @default(autoincrement())
+  name     String @unique
+  description String?
+   users      User[]
+}
+
+// model UserGlobalRole{
+
+// }
 model Role {
   id        Int      @id @default(autoincrement())
-  name      String   @unique  // Admin, HR, Employee
+  companyId Int 
 
+  name      String   @unique  // Admin, HR, Employee
+  description String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  employees Employee[]
 
-  users     User[]   //  relation
+  
 }
-
+enum EmployeeStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
 model Employee {
   id     Int @id @default(autoincrement())
-  userId Int @unique
-
+  userId Int? @unique
+ user User? @relation(fields: [userId], references: [id])
+ companyId Int 
+ name String 
+ phone String?
+ email String? @unique
+ roleId Int @default(1)
+ role Role @relation(fields:[roleId], references: [id])
+ status EmployeeStatus @default(ACTIVE)
   employeeCode  String?
   departmentId  Int?
   department  Department? @relation(fields: [departmentId], references: [id])
   designationId Int?
   designation Designation? @relation(fields: [designationId], references: [id])
-  managerId     Int?
+  // managerId     Int?
 
   joiningDate    DateTime?
-  employmentType String? // Permanent, Contractual
-  status         String? // active, resigned
-
-  user User @relation(fields: [userId], references: [id])
+  // employmentType String? // Permanent, Contractual
+  // status         String? // active, resigned
+    createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+@@index([companyId])
+  
   
   
 }
@@ -98,7 +141,7 @@ model Attendance {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  user User @relation(fields: [userId], references: [id])
+  // user User @relation(fields: [userId], references: [id])npx prisma migrate dev --name add_role
 
   @@unique([userId, date]) // 🔥 important
 }

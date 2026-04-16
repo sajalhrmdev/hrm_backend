@@ -54,6 +54,7 @@ export const ModelName = {
   Department: 'Department',
   Designation: 'Designation',
   User: 'User',
+  GlobalRole: 'GlobalRole',
   Role: 'Role',
   Employee: 'Employee',
   Attendance: 'Attendance'
@@ -109,19 +110,31 @@ export const UserScalarFieldEnum = {
   email: 'email',
   phone: 'phone',
   password: 'password',
-  roleId: 'roleId',
-  isAdmin: 'isAdmin',
-  statusId: 'statusId',
+  globalRoleId: 'globalRoleId',
+  status: 'status',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  lastLoginAt: 'lastLoginAt',
+  deletedAt: 'deletedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-export const RoleScalarFieldEnum = {
+export const GlobalRoleScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  description: 'description'
+} as const
+
+export type GlobalRoleScalarFieldEnum = (typeof GlobalRoleScalarFieldEnum)[keyof typeof GlobalRoleScalarFieldEnum]
+
+
+export const RoleScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  name: 'name',
+  description: 'description',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -132,13 +145,18 @@ export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof Role
 export const EmployeeScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  companyId: 'companyId',
+  name: 'name',
+  phone: 'phone',
+  email: 'email',
+  roleId: 'roleId',
+  status: 'status',
   employeeCode: 'employeeCode',
   departmentId: 'departmentId',
   designationId: 'designationId',
-  managerId: 'managerId',
   joiningDate: 'joiningDate',
-  employmentType: 'employmentType',
-  status: 'status'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type EmployeeScalarFieldEnum = (typeof EmployeeScalarFieldEnum)[keyof typeof EmployeeScalarFieldEnum]
