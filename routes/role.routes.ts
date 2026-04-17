@@ -5,9 +5,11 @@ import {
   createRole,
   getAllRoles,
   getRoleById,
-  updateRole,
-  deleteRole,
+  // updateRole,
+  // deleteRole,
   getRoleByCompanyAndId,
+  updateRoleByCompany,
+  deleteRoleByCompany,
 } from "../controllers/role.controller.js";
 
 const router = express.Router();
@@ -16,7 +18,10 @@ router.post("/", createRole);
 router.get("/", getAllRoles);
 router.get("/by-company-role", getRoleByCompanyAndId);
 router.get("/:id", getRoleById);
-router.put("/:id", updateRole);
-router.delete("/:id", deleteRole);
+router.put("/update", updateRoleByCompany);
+// router.delete("/:id", deleteRole);
+router.delete("/delete", deleteRoleByCompany);
 
 export default router;
+
+// PUT /roles/:roleId?companyId=1

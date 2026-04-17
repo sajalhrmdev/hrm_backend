@@ -157,13 +157,62 @@ export const getRoleByCompanyAndId = async (req: Request, res: Response) => {
 };
 
 // ================= UPDATE ROLE =================
-export const updateRole = async (req: Request, res: Response) => {
+// export const updateRole = async (req: Request, res: Response) => {
+//   try {
+//     const id = Number(req.params.id);
+//     const { name, description } = req.body;
+
+//     const role = await prisma.role.update({
+//       where: { id },
+//       data: {
+//         name,
+//         description,
+//       },
+//     });
+
+//     return res.json({
+//       success: true,
+//       data: role,
+//     });
+
+//   } catch (error: any) {
+//     return res.status(500).json({
+//       success: false,
+//       message: error.message,
+//     });
+//   }
+// };
+
+export const updateRoleByCompany = async (req: Request, res: Response) => {
   try {
-    const id = Number(req.params.id);
+    const { companyId, roleId } = req.query;
     const { name, description } = req.body;
 
-    const role = await prisma.role.update({
-      where: { id },
+    if (!companyId || !roleId) {
+      return res.status(400).json({
+        success: false,
+        message: "companyId and roleId are required",
+      });
+    }
+
+    // 🔥 first check role exists
+    const existing = await prisma.role.findFirst({
+      where: {
+        id: Number(roleId),
+        companyId: Number(companyId),
+      },
+    });
+
+    if (!existing) {
+      return res.status(404).json({
+        success: false,
+        message: "Role not found for this company",
+      });
+    }
+
+    // 🔥 update
+    const updated = await prisma.role.update({
+      where: { id: existing.id }, // 🔥 safe
       data: {
         name,
         description,
@@ -172,7 +221,7 @@ export const updateRole = async (req: Request, res: Response) => {
 
     return res.json({
       success: true,
-      data: role,
+      data: updated,
     });
 
   } catch (error: any) {
@@ -186,13 +235,68 @@ export const updateRole = async (req: Request, res: Response) => {
 
 
 // ================= DELETE ROLE =================
-export const deleteRole = async (req: Request, res: Response) => {
+// export const deleteRole = async (req: Request, res: Response) => {
+//   try {
+//     const id = Number(req.params.id);
+
+//     // 🔥 check if used
+//     const used = await prisma.employee.findFirst({
+//       where: { roleId: id },
+//     });
+
+//     if (used) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Role is assigned to employees, cannot delete",
+//       });
+//     }
+
+//     await prisma.role.delete({
+//       where: { id },
+//     });
+
+//     return res.json({
+//       success: true,
+//       message: "Role deleted successfully",
+//     });
+
+//   } catch (error: any) {
+//     return res.status(500).json({
+//       success: false,
+//       message: error.message,
+//     });
+//   }
+// };
+
+export const deleteRoleByCompany = async (req: Request, res: Response) => {
   try {
-    const id = Number(req.params.id);
+    const { companyId, roleId } = req.query;
+
+    if (!companyId || !roleId) {
+      return res.status(400).json({
+        success: false,
+        message: "companyId and roleId are required",
+      });
+    }
+
+    // 🔥 check role exists
+    const role = await prisma.role.findFirst({
+      where: {
+        id: Number(roleId),
+        companyId: Number(companyId),
+      },
+    });
+
+    if (!role) {
+      return res.status(404).json({
+        success: false,
+        message: "Role not found for this company",
+      });
+    }
 
     // 🔥 check if used
     const used = await prisma.employee.findFirst({
-      where: { roleId: id },
+      where: { roleId: role.id },
     });
 
     if (used) {
@@ -202,8 +306,9 @@ export const deleteRole = async (req: Request, res: Response) => {
       });
     }
 
+    // 🔥 delete
     await prisma.role.delete({
-      where: { id },
+      where: { id: role.id },
     });
 
     return res.json({
