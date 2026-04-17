@@ -82,9 +82,34 @@ model GlobalRole{
 // model UserGlobalRole{
 
 // }
+
+// ===================================COMPANY======================================
+enum CompanyStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+model Company{
+  id     Int  @id @default(autoincrement())
+  name   String
+  slug   String @unique
+  email  String
+  phone  String
+  address String
+  status CompanyStatus @default(ACTIVE)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  employees Employee[]
+  roles     Role[]
+
+
+
+}
+// ============================================================================================
 model Role {
   id        Int      @id @default(autoincrement())
   companyId Int 
+  company Company @relation(fields: [companyId],references: [id])
 
   name      String   @unique  // Admin, HR, Employee
   description String?
@@ -104,9 +129,10 @@ model Employee {
   userId Int? @unique
  user User? @relation(fields: [userId], references: [id])
  companyId Int 
+ company Company @relation(fields: [companyId],references: [id])
  name String 
- phone String?
- email String? @unique
+ phone String
+ email String @unique 
  roleId Int @default(1)
  role Role @relation(fields:[roleId], references: [id])
  status EmployeeStatus @default(ACTIVE)
@@ -128,20 +154,4 @@ model Employee {
   
 }
 
-model Attendance {
-  id     Int      @id @default(autoincrement())
-  userId Int
-  date   DateTime
 
-  checkIn  DateTime?
-  checkOut DateTime?
-
-  status String? // Present, Late
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // user User @relation(fields: [userId], references: [id])npx prisma migrate dev --name add_role
-
-  @@unique([userId, date]) // 🔥 important
-}

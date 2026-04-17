@@ -62,6 +62,11 @@ export type User = Prisma.UserModel
  */
 export type GlobalRole = Prisma.GlobalRoleModel
 /**
+ * Model Company
+ * 
+ */
+export type Company = Prisma.CompanyModel
+/**
  * Model Role
  * 
  */
@@ -71,8 +76,3 @@ export type Role = Prisma.RoleModel
  * 
  */
 export type Employee = Prisma.EmployeeModel
-/**
- * Model Attendance
- * 
- */
-export type Attendance = Prisma.AttendanceModel
