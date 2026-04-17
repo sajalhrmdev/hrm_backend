@@ -7,6 +7,8 @@ import globalRoleRoutes from "./routes/globalRole.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import roleRoutes from "./routes/role.routes.js";
 import companyRoutes from "./routes/company.routes.js";
+import attendanceRoutes from "./routes/attendance.routes.js";
+
 
 
 
@@ -36,6 +38,7 @@ app.use("/api/v1/roles", roleRoutes);
 app.use("/api/v1/designations", designationRoutes);
 app.use("/api/v1/department",deparmentRoutes)
 app.use("/api/v1/employee",employeeRoutes)
+app.use("/api/v1/attendance", attendanceRoutes);
 // app.use("/api/v1/attendance",attendanceRoutes)
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

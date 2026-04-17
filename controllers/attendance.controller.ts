@@ -1,53 +1,45 @@
+// controllers/attendance.controller.ts
+import { Request, Response } from "express";
+import { getTodayAttendance, handleAttendance } from "../services/handleAttendance/attendance.service.js";
+// import { getTodayAttendance, handleAttendance } from "../services/attendance.service.js";
 
-
-
-// ================================checkout api==============================
-export const checkOut = async (req: Request, res: Response) => {
+export const checkIn = async (req: Request, res: Response) => {
   try {
-    const { userId } = req.body;
+    const { employeeId } = req.body;
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const data = await handleAttendance(employeeId, "IN");
 
-    const attendance = await prisma.attendance.findFirst({
-      where: {
-        userId,
-        date: today,
-      },
-    });
-
-    if (!attendance) {
-      return res.status(400).json({
-        message: "Check-in first",
-      });
-    }
-
-    const updated = await prisma.attendance.update({
-      where: { id: attendance.id },
-      data: {
-        checkOut: new Date(),
-      },
-    });
-
-    res.json(updated);
+    res.json({ success: true, data });
   } catch (err: any) {
-    res.status(500).json({ message: err.message });
+    res.status(400).json({ message: err.message });
   }
 };
 
+export const checkOut = async (req: Request, res: Response) => {
+  try {
+    const { employeeId } = req.body;
 
-// ====================================get attendace Api===================================
-export const getAttendance = async (req: Request, res: Response) => {
-  const data = await prisma.attendance.findMany({
-    include: {
-      user: {
-        select: {
-          name: true,
-          email: true,
-        },
-      },
-    },
-  });
+    const data = await handleAttendance(employeeId, "OUT");
 
-  res.json(data);
+    res.json({ success: true, data });
+  } catch (err: any) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
+export const getToday = async (req: Request, res: Response) => {
+  try {
+    const employeeId = Number(req.params.employeeId);
+
+    const data = await getTodayAttendance(employeeId);
+
+    res.json({
+      success: true,
+      data
+    });
+  } catch (err: any) {
+    res.status(400).json({
+      message: err.message
+    });
+  }
 };

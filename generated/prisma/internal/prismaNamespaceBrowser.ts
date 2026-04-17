@@ -57,7 +57,12 @@ export const ModelName = {
   GlobalRole: 'GlobalRole',
   Company: 'Company',
   Role: 'Role',
-  Employee: 'Employee'
+  Employee: 'Employee',
+  Attendance: 'Attendance',
+  AttendanceLog: 'AttendanceLog',
+  WorkPolicy: 'WorkPolicy',
+  CompanySetting: 'CompanySetting',
+  Shift: 'Shift'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -177,12 +182,85 @@ export const EmployeeScalarFieldEnum = {
 export type EmployeeScalarFieldEnum = (typeof EmployeeScalarFieldEnum)[keyof typeof EmployeeScalarFieldEnum]
 
 
+export const AttendanceScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  companyId: 'companyId',
+  date: 'date',
+  status: 'status',
+  total_work_minutes: 'total_work_minutes',
+  overtime_minutes: 'overtime_minutes',
+  late_minutes: 'late_minutes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AttendanceScalarFieldEnum = (typeof AttendanceScalarFieldEnum)[keyof typeof AttendanceScalarFieldEnum]
+
+
+export const AttendanceLogScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  companyId: 'companyId',
+  type: 'type',
+  time: 'time',
+  source: 'source',
+  createdAt: 'createdAt'
+} as const
+
+export type AttendanceLogScalarFieldEnum = (typeof AttendanceLogScalarFieldEnum)[keyof typeof AttendanceLogScalarFieldEnum]
+
+
+export const WorkPolicyScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  std_work_minutes: 'std_work_minutes',
+  overtime_minutes: 'overtime_minutes',
+  late_minutes: 'late_minutes',
+  half_day_threshold: 'half_day_threshold',
+  attendance_mode: 'attendance_mode',
+  createdAt: 'createdAt'
+} as const
+
+export type WorkPolicyScalarFieldEnum = (typeof WorkPolicyScalarFieldEnum)[keyof typeof WorkPolicyScalarFieldEnum]
+
+
+export const CompanySettingScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  config: 'config',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CompanySettingScalarFieldEnum = (typeof CompanySettingScalarFieldEnum)[keyof typeof CompanySettingScalarFieldEnum]
+
+
+export const ShiftScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  name: 'name',
+  start_time: 'start_time',
+  end_time: 'end_time',
+  grace_minutes: 'grace_minutes'
+} as const
+
+export type ShiftScalarFieldEnum = (typeof ShiftScalarFieldEnum)[keyof typeof ShiftScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -199,4 +277,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

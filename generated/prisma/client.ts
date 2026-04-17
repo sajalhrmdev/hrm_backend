@@ -76,3 +76,28 @@ export type Role = Prisma.RoleModel
  * 
  */
 export type Employee = Prisma.EmployeeModel
+/**
+ * Model Attendance
+ * 
+ */
+export type Attendance = Prisma.AttendanceModel
+/**
+ * Model AttendanceLog
+ * 
+ */
+export type AttendanceLog = Prisma.AttendanceLogModel
+/**
+ * Model WorkPolicy
+ * 
+ */
+export type WorkPolicy = Prisma.WorkPolicyModel
+/**
+ * Model CompanySetting
+ * 
+ */
+export type CompanySetting = Prisma.CompanySettingModel
+/**
+ * Model Shift
+ * 
+ */
+export type Shift = Prisma.ShiftModel

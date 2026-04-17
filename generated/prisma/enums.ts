@@ -34,3 +34,11 @@ export const EmployeeStatus = {
 } as const
 
 export type EmployeeStatus = (typeof EmployeeStatus)[keyof typeof EmployeeStatus]
+
+
+export const AttendanceMode = {
+  SINGLE: 'SINGLE',
+  MULTI: 'MULTI'
+} as const
+
+export type AttendanceMode = (typeof AttendanceMode)[keyof typeof AttendanceMode]
