@@ -176,3 +176,50 @@ export const getTodayAttendance = async (employeeId: number) => {
     logs
   };
 };
+
+// export const getCompanyDayAttendance = async (companyId: number, date: Date) => {
+//   const start = new Date(date);
+//   start.setHours(0, 0, 0, 0);
+
+//   const end = new Date(date);
+//   end.setHours(23, 59, 59, 999);
+
+//   const data = await prisma.attendance.findMany({
+//     where: {
+//       companyId,
+//       date: {
+//         gte: start,
+//         lte: end,
+//       },
+//     },
+//     include: {
+//       employee: true, // optional 🔥
+//     },
+//   });
+
+//   return data;
+// };
+
+
+// export const getAttendanceByRange = async (
+//   companyId: number,
+//   employeeId: number,
+//   startDate: Date,
+//   endDate: Date
+// ) => {
+//   const data = await prisma.attendance.findMany({
+//     where: {
+//       companyId,
+//       employeeId,
+//       date: {
+//         gte: startDate,
+//         lte: endDate,
+//       },
+//     },
+//     orderBy: {
+//       date: "asc",
+//     },
+//   });
+
+//   return data;
+// };

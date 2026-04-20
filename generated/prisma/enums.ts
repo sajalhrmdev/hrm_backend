@@ -42,3 +42,11 @@ export const AttendanceMode = {
 } as const
 
 export type AttendanceMode = (typeof AttendanceMode)[keyof typeof AttendanceMode]
+
+
+export const PayrollRunStatus = {
+  DRAFT: 'DRAFT',
+  FINAL: 'FINAL'
+} as const
+
+export type PayrollRunStatus = (typeof PayrollRunStatus)[keyof typeof PayrollRunStatus]

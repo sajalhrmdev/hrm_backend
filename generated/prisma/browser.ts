@@ -77,3 +77,18 @@ export type CompanySetting = Prisma.CompanySettingModel
  * 
  */
 export type Shift = Prisma.ShiftModel
+/**
+ * Model SalaryStracture
+ * 
+ */
+export type SalaryStracture = Prisma.SalaryStractureModel
+/**
+ * Model PayRoll
+ * 
+ */
+export type PayRoll = Prisma.PayRollModel
+/**
+ * Model PayRollRun
+ * 
+ */
+export type PayRollRun = Prisma.PayRollRunModel

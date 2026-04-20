@@ -106,6 +106,8 @@ model Company{
   workPolicies WorkPolicy[]
   CompanySettings CompanySetting[]
   Shifts Shift[]
+  SalaryStractures SalaryStracture[]
+  payRollRuns PayRollRun[]
 
 
 
@@ -155,6 +157,8 @@ model Employee {
   updatedAt DateTime @updatedAt
   attendances Attendance[]
   attendanceLogs AttendanceLog[]
+  SalaryStracture SalaryStracture[]
+  payRolls PayRoll[]
 @@index([companyId])
   
   
@@ -177,6 +181,7 @@ model Attendance{
   late_minutes Int @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  attendanceLogs AttendanceLog[]
   @@unique([employeeId,date])
 }
 // =======================================================================================
@@ -188,8 +193,13 @@ model AttendanceLog{
   employee Employee @relation(fields: [employeeId],references: [id])
   companyId Int
   company Company @relation(fields: [companyId],references: [id])
+  // ***** pore ? hatate hobe
+    attendanceId Int?  // 🔥 foreign key
+  attendance Attendance? @relation(fields: [attendanceId], references: [id])
 // in/out--
   type String  
+   latitude  Float?
+  longitude Float?
   time DateTime
   source String?
   createdAt DateTime @default(now())
@@ -236,3 +246,57 @@ model Shift{
   grace_minutes Int
 }
 // ===================================================================================================================
+
+// ===================================================EMPLOYEE SALARY=================================================
+model SalaryStracture{
+id     Int @id @default(autoincrement())
+
+ companyId Int
+  company Company @relation(fields: [companyId],references: [id])
+  employeeId Int @unique
+  employee Employee @relation(fields: [employeeId],references: [id])
+
+  monthly_salary Float
+  effective_from DateTime
+   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+// ====================================================================================================================
+
+// ===================================================PAYROLL============================================================
+model PayRoll{
+  id     Int @id @default(autoincrement())
+  payroll_run_id Int
+ payrollRun PayRollRun @relation(fields: [payroll_run_id], references: [id])
+ 
+  employeeId Int 
+  employee Employee @relation(fields: [employeeId],references: [id])
+  total_days Int
+  present_days Int
+  paid_leave_days Int
+  lop_days Int
+  payble_days Int
+  gross_salary Float
+  base_salary Float
+  deduction Float
+  net_salary Float
+   createdAt DateTime @default(now())
+   
+}
+// =====================================================================================================================
+
+// ===================================================PAY ROLE RUN=====================================================
+enum PayrollRunStatus {
+  DRAFT
+  FINAL
+}
+model PayRollRun{
+   id     Int @id @default(autoincrement())
+   companyId Int
+  company Company @relation(fields: [companyId],references: [id])
+  month Int
+  year Int
+  status PayrollRunStatus @default(DRAFT)
+  payrolls PayRoll[]
+  @@unique([companyId, month, year])
+}

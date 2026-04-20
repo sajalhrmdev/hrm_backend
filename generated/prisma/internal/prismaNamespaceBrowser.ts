@@ -62,7 +62,10 @@ export const ModelName = {
   AttendanceLog: 'AttendanceLog',
   WorkPolicy: 'WorkPolicy',
   CompanySetting: 'CompanySetting',
-  Shift: 'Shift'
+  Shift: 'Shift',
+  SalaryStracture: 'SalaryStracture',
+  PayRoll: 'PayRoll',
+  PayRollRun: 'PayRollRun'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -202,7 +205,10 @@ export const AttendanceLogScalarFieldEnum = {
   id: 'id',
   employeeId: 'employeeId',
   companyId: 'companyId',
+  attendanceId: 'attendanceId',
   type: 'type',
+  latitude: 'latitude',
+  longitude: 'longitude',
   time: 'time',
   source: 'source',
   createdAt: 'createdAt'
@@ -246,6 +252,49 @@ export const ShiftScalarFieldEnum = {
 } as const
 
 export type ShiftScalarFieldEnum = (typeof ShiftScalarFieldEnum)[keyof typeof ShiftScalarFieldEnum]
+
+
+export const SalaryStractureScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  employeeId: 'employeeId',
+  monthly_salary: 'monthly_salary',
+  effective_from: 'effective_from',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SalaryStractureScalarFieldEnum = (typeof SalaryStractureScalarFieldEnum)[keyof typeof SalaryStractureScalarFieldEnum]
+
+
+export const PayRollScalarFieldEnum = {
+  id: 'id',
+  payroll_run_id: 'payroll_run_id',
+  employeeId: 'employeeId',
+  total_days: 'total_days',
+  present_days: 'present_days',
+  paid_leave_days: 'paid_leave_days',
+  lop_days: 'lop_days',
+  payble_days: 'payble_days',
+  gross_salary: 'gross_salary',
+  base_salary: 'base_salary',
+  deduction: 'deduction',
+  net_salary: 'net_salary',
+  createdAt: 'createdAt'
+} as const
+
+export type PayRollScalarFieldEnum = (typeof PayRollScalarFieldEnum)[keyof typeof PayRollScalarFieldEnum]
+
+
+export const PayRollRunScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  month: 'month',
+  year: 'year',
+  status: 'status'
+} as const
+
+export type PayRollRunScalarFieldEnum = (typeof PayRollRunScalarFieldEnum)[keyof typeof PayRollRunScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -255,6 +255,8 @@ export type CompanyWhereInput = {
   workPolicies?: Prisma.WorkPolicyListRelationFilter
   CompanySettings?: Prisma.CompanySettingListRelationFilter
   Shifts?: Prisma.ShiftListRelationFilter
+  SalaryStractures?: Prisma.SalaryStractureListRelationFilter
+  payRollRuns?: Prisma.PayRollRunListRelationFilter
 }
 
 export type CompanyOrderByWithRelationInput = {
@@ -274,6 +276,8 @@ export type CompanyOrderByWithRelationInput = {
   workPolicies?: Prisma.WorkPolicyOrderByRelationAggregateInput
   CompanySettings?: Prisma.CompanySettingOrderByRelationAggregateInput
   Shifts?: Prisma.ShiftOrderByRelationAggregateInput
+  SalaryStractures?: Prisma.SalaryStractureOrderByRelationAggregateInput
+  payRollRuns?: Prisma.PayRollRunOrderByRelationAggregateInput
 }
 
 export type CompanyWhereUniqueInput = Prisma.AtLeast<{
@@ -296,6 +300,8 @@ export type CompanyWhereUniqueInput = Prisma.AtLeast<{
   workPolicies?: Prisma.WorkPolicyListRelationFilter
   CompanySettings?: Prisma.CompanySettingListRelationFilter
   Shifts?: Prisma.ShiftListRelationFilter
+  SalaryStractures?: Prisma.SalaryStractureListRelationFilter
+  payRollRuns?: Prisma.PayRollRunListRelationFilter
 }, "id" | "slug">
 
 export type CompanyOrderByWithAggregationInput = {
@@ -346,6 +352,8 @@ export type CompanyCreateInput = {
   workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  SalaryStractures?: Prisma.SalaryStractureCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateInput = {
@@ -365,6 +373,8 @@ export type CompanyUncheckedCreateInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  SalaryStractures?: Prisma.SalaryStractureUncheckedCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUpdateInput = {
@@ -383,6 +393,8 @@ export type CompanyUpdateInput = {
   workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  SalaryStractures?: Prisma.SalaryStractureUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateInput = {
@@ -402,6 +414,8 @@ export type CompanyUncheckedUpdateInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  SalaryStractures?: Prisma.SalaryStractureUncheckedUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateManyInput = {
@@ -590,6 +604,34 @@ export type CompanyUpdateOneRequiredWithoutShiftsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutShiftsInput, Prisma.CompanyUpdateWithoutShiftsInput>, Prisma.CompanyUncheckedUpdateWithoutShiftsInput>
 }
 
+export type CompanyCreateNestedOneWithoutSalaryStracturesInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutSalaryStracturesInput, Prisma.CompanyUncheckedCreateWithoutSalaryStracturesInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutSalaryStracturesInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutSalaryStracturesNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutSalaryStracturesInput, Prisma.CompanyUncheckedCreateWithoutSalaryStracturesInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutSalaryStracturesInput
+  upsert?: Prisma.CompanyUpsertWithoutSalaryStracturesInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutSalaryStracturesInput, Prisma.CompanyUpdateWithoutSalaryStracturesInput>, Prisma.CompanyUncheckedUpdateWithoutSalaryStracturesInput>
+}
+
+export type CompanyCreateNestedOneWithoutPayRollRunsInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutPayRollRunsInput, Prisma.CompanyUncheckedCreateWithoutPayRollRunsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutPayRollRunsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutPayRollRunsNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutPayRollRunsInput, Prisma.CompanyUncheckedCreateWithoutPayRollRunsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutPayRollRunsInput
+  upsert?: Prisma.CompanyUpsertWithoutPayRollRunsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutPayRollRunsInput, Prisma.CompanyUpdateWithoutPayRollRunsInput>, Prisma.CompanyUncheckedUpdateWithoutPayRollRunsInput>
+}
+
 export type CompanyCreateWithoutRolesInput = {
   name: string
   slug: string
@@ -605,6 +647,8 @@ export type CompanyCreateWithoutRolesInput = {
   workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  SalaryStractures?: Prisma.SalaryStractureCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutRolesInput = {
@@ -623,6 +667,8 @@ export type CompanyUncheckedCreateWithoutRolesInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  SalaryStractures?: Prisma.SalaryStractureUncheckedCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutRolesInput = {
@@ -656,6 +702,8 @@ export type CompanyUpdateWithoutRolesInput = {
   workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  SalaryStractures?: Prisma.SalaryStractureUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutRolesInput = {
@@ -674,6 +722,8 @@ export type CompanyUncheckedUpdateWithoutRolesInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  SalaryStractures?: Prisma.SalaryStractureUncheckedUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmployeesInput = {
@@ -691,6 +741,8 @@ export type CompanyCreateWithoutEmployeesInput = {
   workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  SalaryStractures?: Prisma.SalaryStractureCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmployeesInput = {
@@ -709,6 +761,8 @@ export type CompanyUncheckedCreateWithoutEmployeesInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  SalaryStractures?: Prisma.SalaryStractureUncheckedCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmployeesInput = {
@@ -742,6 +796,8 @@ export type CompanyUpdateWithoutEmployeesInput = {
   workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  SalaryStractures?: Prisma.SalaryStractureUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmployeesInput = {
@@ -760,6 +816,8 @@ export type CompanyUncheckedUpdateWithoutEmployeesInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  SalaryStractures?: Prisma.SalaryStractureUncheckedUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutAttendancesInput = {
@@ -777,6 +835,8 @@ export type CompanyCreateWithoutAttendancesInput = {
   workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  SalaryStractures?: Prisma.SalaryStractureCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutAttendancesInput = {
@@ -795,6 +855,8 @@ export type CompanyUncheckedCreateWithoutAttendancesInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  SalaryStractures?: Prisma.SalaryStractureUncheckedCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutAttendancesInput = {
@@ -828,6 +890,8 @@ export type CompanyUpdateWithoutAttendancesInput = {
   workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  SalaryStractures?: Prisma.SalaryStractureUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutAttendancesInput = {
@@ -846,6 +910,8 @@ export type CompanyUncheckedUpdateWithoutAttendancesInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  SalaryStractures?: Prisma.SalaryStractureUncheckedUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutAttendanceLogsInput = {
@@ -863,6 +929,8 @@ export type CompanyCreateWithoutAttendanceLogsInput = {
   workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  SalaryStractures?: Prisma.SalaryStractureCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutAttendanceLogsInput = {
@@ -881,6 +949,8 @@ export type CompanyUncheckedCreateWithoutAttendanceLogsInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  SalaryStractures?: Prisma.SalaryStractureUncheckedCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutAttendanceLogsInput = {
@@ -914,6 +984,8 @@ export type CompanyUpdateWithoutAttendanceLogsInput = {
   workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  SalaryStractures?: Prisma.SalaryStractureUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutAttendanceLogsInput = {
@@ -932,6 +1004,8 @@ export type CompanyUncheckedUpdateWithoutAttendanceLogsInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  SalaryStractures?: Prisma.SalaryStractureUncheckedUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutWorkPoliciesInput = {
@@ -949,6 +1023,8 @@ export type CompanyCreateWithoutWorkPoliciesInput = {
   attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  SalaryStractures?: Prisma.SalaryStractureCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutWorkPoliciesInput = {
@@ -967,6 +1043,8 @@ export type CompanyUncheckedCreateWithoutWorkPoliciesInput = {
   attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  SalaryStractures?: Prisma.SalaryStractureUncheckedCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutWorkPoliciesInput = {
@@ -1000,6 +1078,8 @@ export type CompanyUpdateWithoutWorkPoliciesInput = {
   attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  SalaryStractures?: Prisma.SalaryStractureUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutWorkPoliciesInput = {
@@ -1018,6 +1098,8 @@ export type CompanyUncheckedUpdateWithoutWorkPoliciesInput = {
   attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  SalaryStractures?: Prisma.SalaryStractureUncheckedUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutCompanySettingsInput = {
@@ -1035,6 +1117,8 @@ export type CompanyCreateWithoutCompanySettingsInput = {
   attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutCompanyInput
   workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  SalaryStractures?: Prisma.SalaryStractureCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutCompanySettingsInput = {
@@ -1053,6 +1137,8 @@ export type CompanyUncheckedCreateWithoutCompanySettingsInput = {
   attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutCompanyInput
   workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  SalaryStractures?: Prisma.SalaryStractureUncheckedCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutCompanySettingsInput = {
@@ -1086,6 +1172,8 @@ export type CompanyUpdateWithoutCompanySettingsInput = {
   attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutCompanyNestedInput
   workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  SalaryStractures?: Prisma.SalaryStractureUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutCompanySettingsInput = {
@@ -1104,6 +1192,8 @@ export type CompanyUncheckedUpdateWithoutCompanySettingsInput = {
   attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutCompanyNestedInput
   workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  SalaryStractures?: Prisma.SalaryStractureUncheckedUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutShiftsInput = {
@@ -1121,6 +1211,8 @@ export type CompanyCreateWithoutShiftsInput = {
   attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutCompanyInput
   workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
+  SalaryStractures?: Prisma.SalaryStractureCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutShiftsInput = {
@@ -1139,6 +1231,8 @@ export type CompanyUncheckedCreateWithoutShiftsInput = {
   attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutCompanyInput
   workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
+  SalaryStractures?: Prisma.SalaryStractureUncheckedCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutShiftsInput = {
@@ -1172,6 +1266,8 @@ export type CompanyUpdateWithoutShiftsInput = {
   attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutCompanyNestedInput
   workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
+  SalaryStractures?: Prisma.SalaryStractureUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutShiftsInput = {
@@ -1190,6 +1286,196 @@ export type CompanyUncheckedUpdateWithoutShiftsInput = {
   attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutCompanyNestedInput
   workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
+  SalaryStractures?: Prisma.SalaryStractureUncheckedUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutSalaryStracturesInput = {
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutSalaryStracturesInput = {
+  id?: number
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutSalaryStracturesInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutSalaryStracturesInput, Prisma.CompanyUncheckedCreateWithoutSalaryStracturesInput>
+}
+
+export type CompanyUpsertWithoutSalaryStracturesInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutSalaryStracturesInput, Prisma.CompanyUncheckedUpdateWithoutSalaryStracturesInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutSalaryStracturesInput, Prisma.CompanyUncheckedCreateWithoutSalaryStracturesInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutSalaryStracturesInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutSalaryStracturesInput, Prisma.CompanyUncheckedUpdateWithoutSalaryStracturesInput>
+}
+
+export type CompanyUpdateWithoutSalaryStracturesInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutSalaryStracturesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutPayRollRunsInput = {
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  SalaryStractures?: Prisma.SalaryStractureCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutPayRollRunsInput = {
+  id?: number
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  SalaryStractures?: Prisma.SalaryStractureUncheckedCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutPayRollRunsInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutPayRollRunsInput, Prisma.CompanyUncheckedCreateWithoutPayRollRunsInput>
+}
+
+export type CompanyUpsertWithoutPayRollRunsInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutPayRollRunsInput, Prisma.CompanyUncheckedUpdateWithoutPayRollRunsInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutPayRollRunsInput, Prisma.CompanyUncheckedCreateWithoutPayRollRunsInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutPayRollRunsInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutPayRollRunsInput, Prisma.CompanyUncheckedUpdateWithoutPayRollRunsInput>
+}
+
+export type CompanyUpdateWithoutPayRollRunsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  SalaryStractures?: Prisma.SalaryStractureUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutPayRollRunsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  SalaryStractures?: Prisma.SalaryStractureUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 
@@ -1205,6 +1491,8 @@ export type CompanyCountOutputType = {
   workPolicies: number
   CompanySettings: number
   Shifts: number
+  SalaryStractures: number
+  payRollRuns: number
 }
 
 export type CompanyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1215,6 +1503,8 @@ export type CompanyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   workPolicies?: boolean | CompanyCountOutputTypeCountWorkPoliciesArgs
   CompanySettings?: boolean | CompanyCountOutputTypeCountCompanySettingsArgs
   Shifts?: boolean | CompanyCountOutputTypeCountShiftsArgs
+  SalaryStractures?: boolean | CompanyCountOutputTypeCountSalaryStracturesArgs
+  payRollRuns?: boolean | CompanyCountOutputTypeCountPayRollRunsArgs
 }
 
 /**
@@ -1276,6 +1566,20 @@ export type CompanyCountOutputTypeCountShiftsArgs<ExtArgs extends runtime.Types.
   where?: Prisma.ShiftWhereInput
 }
 
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountSalaryStracturesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SalaryStractureWhereInput
+}
+
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountPayRollRunsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PayRollRunWhereInput
+}
+
 
 export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1294,6 +1598,8 @@ export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   workPolicies?: boolean | Prisma.Company$workPoliciesArgs<ExtArgs>
   CompanySettings?: boolean | Prisma.Company$CompanySettingsArgs<ExtArgs>
   Shifts?: boolean | Prisma.Company$ShiftsArgs<ExtArgs>
+  SalaryStractures?: boolean | Prisma.Company$SalaryStracturesArgs<ExtArgs>
+  payRollRuns?: boolean | Prisma.Company$payRollRunsArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["company"]>
 
@@ -1342,6 +1648,8 @@ export type CompanyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   workPolicies?: boolean | Prisma.Company$workPoliciesArgs<ExtArgs>
   CompanySettings?: boolean | Prisma.Company$CompanySettingsArgs<ExtArgs>
   Shifts?: boolean | Prisma.Company$ShiftsArgs<ExtArgs>
+  SalaryStractures?: boolean | Prisma.Company$SalaryStracturesArgs<ExtArgs>
+  payRollRuns?: boolean | Prisma.Company$payRollRunsArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CompanyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1357,6 +1665,8 @@ export type $CompanyPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     workPolicies: Prisma.$WorkPolicyPayload<ExtArgs>[]
     CompanySettings: Prisma.$CompanySettingPayload<ExtArgs>[]
     Shifts: Prisma.$ShiftPayload<ExtArgs>[]
+    SalaryStractures: Prisma.$SalaryStracturePayload<ExtArgs>[]
+    payRollRuns: Prisma.$PayRollRunPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1769,6 +2079,8 @@ export interface Prisma__CompanyClient<T, Null = never, ExtArgs extends runtime.
   workPolicies<T extends Prisma.Company$workPoliciesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$workPoliciesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkPolicyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   CompanySettings<T extends Prisma.Company$CompanySettingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$CompanySettingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompanySettingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   Shifts<T extends Prisma.Company$ShiftsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$ShiftsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShiftPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  SalaryStractures<T extends Prisma.Company$SalaryStracturesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$SalaryStracturesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SalaryStracturePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  payRollRuns<T extends Prisma.Company$payRollRunsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$payRollRunsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PayRollRunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2365,6 +2677,54 @@ export type Company$ShiftsArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.ShiftScalarFieldEnum | Prisma.ShiftScalarFieldEnum[]
+}
+
+/**
+ * Company.SalaryStractures
+ */
+export type Company$SalaryStracturesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SalaryStracture
+   */
+  select?: Prisma.SalaryStractureSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SalaryStracture
+   */
+  omit?: Prisma.SalaryStractureOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SalaryStractureInclude<ExtArgs> | null
+  where?: Prisma.SalaryStractureWhereInput
+  orderBy?: Prisma.SalaryStractureOrderByWithRelationInput | Prisma.SalaryStractureOrderByWithRelationInput[]
+  cursor?: Prisma.SalaryStractureWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SalaryStractureScalarFieldEnum | Prisma.SalaryStractureScalarFieldEnum[]
+}
+
+/**
+ * Company.payRollRuns
+ */
+export type Company$payRollRunsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PayRollRun
+   */
+  select?: Prisma.PayRollRunSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PayRollRun
+   */
+  omit?: Prisma.PayRollRunOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PayRollRunInclude<ExtArgs> | null
+  where?: Prisma.PayRollRunWhereInput
+  orderBy?: Prisma.PayRollRunOrderByWithRelationInput | Prisma.PayRollRunOrderByWithRelationInput[]
+  cursor?: Prisma.PayRollRunWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PayRollRunScalarFieldEnum | Prisma.PayRollRunScalarFieldEnum[]
 }
 
 /**
