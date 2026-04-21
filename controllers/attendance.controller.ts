@@ -2,14 +2,20 @@
 import { Request, Response } from "express";
 import { getAttendanceByRange, getCompanyDayAttendance, getTodayAttendance, handleAttendance } from "../services/handleAttendance/attendance.service.js";
 import { prisma } from "../lib/prisma.js";
+import { getEmployeeFromRequest } from "../utils/getEmployeeFromRequest.js";
 // import { getAttendanceByRange, getCompanyDayAttendance } from "../services/attendance.service.js";
 // import { getTodayAttendance, handleAttendance } from "../services/attendance.service.js";
 
+interface AuthRequest extends Request {
+  user?: any;
+  companyId?: number;
+}
+
 export const checkIn = async (req: Request, res: Response) => {
   try {
-    const { employeeId } = req.body;
-
-    const data = await handleAttendance(employeeId, "IN");
+    // const { employeeId } = req.body;
+const employee = await getEmployeeFromRequest(req);
+    const data = await handleAttendance(employee.id, "IN");
 
     res.json({ success: true, data });
   } catch (err: any) {
@@ -19,9 +25,10 @@ export const checkIn = async (req: Request, res: Response) => {
 
 export const checkOut = async (req: Request, res: Response) => {
   try {
-    const { employeeId } = req.body;
+    // const { employeeId } = req.body;
+    const employee = await getEmployeeFromRequest(req);
 
-    const data = await handleAttendance(employeeId, "OUT");
+    const data = await handleAttendance(employee.id, "OUT");
 
     res.json({ success: true, data });
   } catch (err: any) {
@@ -31,9 +38,8 @@ export const checkOut = async (req: Request, res: Response) => {
 
 export const getToday = async (req: Request, res: Response) => {
   try {
-    const employeeId = Number(req.params.employeeId);
-
-    const data = await getTodayAttendance(employeeId);
+const employee = await getEmployeeFromRequest(req);
+    const data = await getTodayAttendance(employee.id);
 
     res.json({
       success: true,
@@ -48,10 +54,12 @@ export const getToday = async (req: Request, res: Response) => {
 
 export const getCompanyDay = async (req: Request, res: Response) => {
   try {
+    const employee = await getEmployeeFromRequest(req);
+
     const { companyId, date } = req.query;
 
     const data = await getCompanyDayAttendance(
-      Number(companyId),
+      Number(req.companyId),
       new Date(date as string)
     );
 
@@ -90,8 +98,8 @@ export const getByRange = async (req: Request, res: Response) => {
 
 export const getTodayAttendanceByEmployee = async (req: Request, res: Response) => {
   try {
-    const { companyId, employeeId } = req.query;
-
+    // const { companyId, employeeId } = req.query;
+const employee = await getEmployeeFromRequest(req);
     const today = new Date();
     const start = new Date(today);
     start.setHours(0, 0, 0, 0);
@@ -101,11 +109,11 @@ export const getTodayAttendanceByEmployee = async (req: Request, res: Response) 
 
     const data = await prisma.attendance.findMany({
       where: {
-        companyId: Number(companyId),
-        employeeId: Number(employeeId),
+        companyId: req.companyId,
+        employeeId: employee.id,
         date: {
           gte: start,
-          lte: end,
+          lte: end, 
         },
       },
       include: {

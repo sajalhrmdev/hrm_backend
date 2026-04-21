@@ -48,6 +48,11 @@ export type Company = Prisma.CompanyModel
  */
 export type Role = Prisma.RoleModel
 /**
+ * Model Membership
+ * 
+ */
+export type Membership = Prisma.MembershipModel
+/**
  * Model Employee
  * 
  */

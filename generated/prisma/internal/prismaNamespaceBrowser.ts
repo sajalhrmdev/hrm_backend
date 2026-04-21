@@ -57,6 +57,7 @@ export const ModelName = {
   GlobalRole: 'GlobalRole',
   Company: 'Company',
   Role: 'Role',
+  Membership: 'Membership',
   Employee: 'Employee',
   Attendance: 'Attendance',
   AttendanceLog: 'AttendanceLog',
@@ -163,6 +164,18 @@ export const RoleScalarFieldEnum = {
 } as const
 
 export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum]
+
+
+export const MembershipScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  companyId: 'companyId',
+  roleId: 'roleId',
+  status: 'status',
+  joinedAt: 'joinedAt'
+} as const
+
+export type MembershipScalarFieldEnum = (typeof MembershipScalarFieldEnum)[keyof typeof MembershipScalarFieldEnum]
 
 
 export const EmployeeScalarFieldEnum = {

@@ -68,8 +68,9 @@ model User {
   updatedAt DateTime @updatedAt
   lastLoginAt   DateTime?
   deletedAt     DateTime?
-  employee    Employee?
+  employees    Employee[]
   // attendances Attendance[]
+  memberships Membership[]
 }
 
 model GlobalRole{
@@ -108,6 +109,7 @@ model Company{
   Shifts Shift[]
   SalaryStractures SalaryStracture[]
   payRollRuns PayRollRun[]
+  memberships Membership[]
 
 
 
@@ -123,8 +125,34 @@ model Role {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   employees Employee[]
+  memberships Membership[]
 
   
+}
+
+// ======================================================================================================
+
+// ===============================================MEMBERSHIP================================================
+enum MembershipStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+model Membership{
+  id   Int @id @default(autoincrement())
+ userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  companyId Int
+  company   Company  @relation(fields: [companyId], references: [id])
+
+  roleId    Int
+  role      Role     @relation(fields: [roleId], references: [id])
+
+  status    MembershipStatus @default(ACTIVE)
+
+  joinedAt  DateTime @default(now())
+   @@unique([userId, companyId])
+ 
 }
 enum EmployeeStatus {
   ACTIVE
@@ -133,7 +161,7 @@ enum EmployeeStatus {
 }
 model Employee {
   id     Int @id @default(autoincrement())
-  userId Int? @unique
+  userId Int? 
  user User? @relation(fields: [userId], references: [id])
  companyId Int 
  company Company @relation(fields: [companyId],references: [id])
