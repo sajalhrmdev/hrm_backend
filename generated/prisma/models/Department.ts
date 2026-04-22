@@ -252,6 +252,7 @@ export type DepartmentWhereInput = {
   deletedAt?: Prisma.DateTimeNullableFilter<"Department"> | Date | string | null
   companyId?: Prisma.IntFilter<"Department"> | number
   branchId?: Prisma.IntFilter<"Department"> | number
+  employees?: Prisma.EmployeeListRelationFilter
 }
 
 export type DepartmentOrderByWithRelationInput = {
@@ -263,6 +264,7 @@ export type DepartmentOrderByWithRelationInput = {
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   companyId?: Prisma.SortOrder
   branchId?: Prisma.SortOrder
+  employees?: Prisma.EmployeeOrderByRelationAggregateInput
 }
 
 export type DepartmentWhereUniqueInput = Prisma.AtLeast<{
@@ -277,6 +279,7 @@ export type DepartmentWhereUniqueInput = Prisma.AtLeast<{
   deletedAt?: Prisma.DateTimeNullableFilter<"Department"> | Date | string | null
   companyId?: Prisma.IntFilter<"Department"> | number
   branchId?: Prisma.IntFilter<"Department"> | number
+  employees?: Prisma.EmployeeListRelationFilter
 }, "id">
 
 export type DepartmentOrderByWithAggregationInput = {
@@ -317,6 +320,7 @@ export type DepartmentCreateInput = {
   deletedAt?: Date | string | null
   companyId?: number
   branchId?: number
+  employees?: Prisma.EmployeeCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentUncheckedCreateInput = {
@@ -328,6 +332,7 @@ export type DepartmentUncheckedCreateInput = {
   deletedAt?: Date | string | null
   companyId?: number
   branchId?: number
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutDepartmentInput
 }
 
 export type DepartmentUpdateInput = {
@@ -338,6 +343,7 @@ export type DepartmentUpdateInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   companyId?: Prisma.IntFieldUpdateOperationsInput | number
   branchId?: Prisma.IntFieldUpdateOperationsInput | number
+  employees?: Prisma.EmployeeUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentUncheckedUpdateInput = {
@@ -349,6 +355,7 @@ export type DepartmentUncheckedUpdateInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   companyId?: Prisma.IntFieldUpdateOperationsInput | number
   branchId?: Prisma.IntFieldUpdateOperationsInput | number
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutDepartmentNestedInput
 }
 
 export type DepartmentCreateManyInput = {
@@ -430,6 +437,11 @@ export type DepartmentSumOrderByAggregateInput = {
   branchId?: Prisma.SortOrder
 }
 
+export type DepartmentNullableScalarRelationFilter = {
+  is?: Prisma.DepartmentWhereInput | null
+  isNot?: Prisma.DepartmentWhereInput | null
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -450,6 +462,109 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
 
+export type DepartmentCreateNestedOneWithoutEmployeesInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutEmployeesInput, Prisma.DepartmentUncheckedCreateWithoutEmployeesInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutEmployeesInput
+  connect?: Prisma.DepartmentWhereUniqueInput
+}
+
+export type DepartmentUpdateOneWithoutEmployeesNestedInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutEmployeesInput, Prisma.DepartmentUncheckedCreateWithoutEmployeesInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutEmployeesInput
+  upsert?: Prisma.DepartmentUpsertWithoutEmployeesInput
+  disconnect?: Prisma.DepartmentWhereInput | boolean
+  delete?: Prisma.DepartmentWhereInput | boolean
+  connect?: Prisma.DepartmentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentUpdateToOneWithWhereWithoutEmployeesInput, Prisma.DepartmentUpdateWithoutEmployeesInput>, Prisma.DepartmentUncheckedUpdateWithoutEmployeesInput>
+}
+
+export type DepartmentCreateWithoutEmployeesInput = {
+  title: string
+  statusId: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  companyId?: number
+  branchId?: number
+}
+
+export type DepartmentUncheckedCreateWithoutEmployeesInput = {
+  id?: number
+  title: string
+  statusId: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  companyId?: number
+  branchId?: number
+}
+
+export type DepartmentCreateOrConnectWithoutEmployeesInput = {
+  where: Prisma.DepartmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutEmployeesInput, Prisma.DepartmentUncheckedCreateWithoutEmployeesInput>
+}
+
+export type DepartmentUpsertWithoutEmployeesInput = {
+  update: Prisma.XOR<Prisma.DepartmentUpdateWithoutEmployeesInput, Prisma.DepartmentUncheckedUpdateWithoutEmployeesInput>
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutEmployeesInput, Prisma.DepartmentUncheckedCreateWithoutEmployeesInput>
+  where?: Prisma.DepartmentWhereInput
+}
+
+export type DepartmentUpdateToOneWithWhereWithoutEmployeesInput = {
+  where?: Prisma.DepartmentWhereInput
+  data: Prisma.XOR<Prisma.DepartmentUpdateWithoutEmployeesInput, Prisma.DepartmentUncheckedUpdateWithoutEmployeesInput>
+}
+
+export type DepartmentUpdateWithoutEmployeesInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  statusId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  companyId?: Prisma.IntFieldUpdateOperationsInput | number
+  branchId?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type DepartmentUncheckedUpdateWithoutEmployeesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  statusId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  companyId?: Prisma.IntFieldUpdateOperationsInput | number
+  branchId?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+
+/**
+ * Count Type DepartmentCountOutputType
+ */
+
+export type DepartmentCountOutputType = {
+  employees: number
+}
+
+export type DepartmentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  employees?: boolean | DepartmentCountOutputTypeCountEmployeesArgs
+}
+
+/**
+ * DepartmentCountOutputType without action
+ */
+export type DepartmentCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DepartmentCountOutputType
+   */
+  select?: Prisma.DepartmentCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * DepartmentCountOutputType without action
+ */
+export type DepartmentCountOutputTypeCountEmployeesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EmployeeWhereInput
+}
 
 
 export type DepartmentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -461,6 +576,8 @@ export type DepartmentSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   deletedAt?: boolean
   companyId?: boolean
   branchId?: boolean
+  employees?: boolean | Prisma.Department$employeesArgs<ExtArgs>
+  _count?: boolean | Prisma.DepartmentCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["department"]>
 
 export type DepartmentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -497,10 +614,18 @@ export type DepartmentSelectScalar = {
 }
 
 export type DepartmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "statusId" | "createdAt" | "updatedAt" | "deletedAt" | "companyId" | "branchId", ExtArgs["result"]["department"]>
+export type DepartmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  employees?: boolean | Prisma.Department$employeesArgs<ExtArgs>
+  _count?: boolean | Prisma.DepartmentCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type DepartmentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type DepartmentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $DepartmentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Department"
-  objects: {}
+  objects: {
+    employees: Prisma.$EmployeePayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     title: string
@@ -904,6 +1029,7 @@ readonly fields: DepartmentFieldRefs;
  */
 export interface Prisma__DepartmentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  employees<T extends Prisma.Department$employeesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$employeesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -958,6 +1084,10 @@ export type DepartmentFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.DepartmentOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentInclude<ExtArgs> | null
+  /**
    * Filter, which Department to fetch.
    */
   where: Prisma.DepartmentWhereUniqueInput
@@ -976,6 +1106,10 @@ export type DepartmentFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extens
    */
   omit?: Prisma.DepartmentOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentInclude<ExtArgs> | null
+  /**
    * Filter, which Department to fetch.
    */
   where: Prisma.DepartmentWhereUniqueInput
@@ -993,6 +1127,10 @@ export type DepartmentFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the Department
    */
   omit?: Prisma.DepartmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentInclude<ExtArgs> | null
   /**
    * Filter, which Department to fetch.
    */
@@ -1042,6 +1180,10 @@ export type DepartmentFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensi
    */
   omit?: Prisma.DepartmentOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentInclude<ExtArgs> | null
+  /**
    * Filter, which Department to fetch.
    */
   where?: Prisma.DepartmentWhereInput
@@ -1089,6 +1231,10 @@ export type DepartmentFindManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Omit specific fields from the Department
    */
   omit?: Prisma.DepartmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentInclude<ExtArgs> | null
   /**
    * Filter, which Departments to fetch.
    */
@@ -1138,6 +1284,10 @@ export type DepartmentCreateArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   omit?: Prisma.DepartmentOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentInclude<ExtArgs> | null
+  /**
    * The data needed to create a Department.
    */
   data: Prisma.XOR<Prisma.DepartmentCreateInput, Prisma.DepartmentUncheckedCreateInput>
@@ -1185,6 +1335,10 @@ export type DepartmentUpdateArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Omit specific fields from the Department
    */
   omit?: Prisma.DepartmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentInclude<ExtArgs> | null
   /**
    * The data needed to update a Department.
    */
@@ -1252,6 +1406,10 @@ export type DepartmentUpsertArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   omit?: Prisma.DepartmentOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentInclude<ExtArgs> | null
+  /**
    * The filter to search for the Department to update in case it exists.
    */
   where: Prisma.DepartmentWhereUniqueInput
@@ -1278,6 +1436,10 @@ export type DepartmentDeleteArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   omit?: Prisma.DepartmentOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentInclude<ExtArgs> | null
+  /**
    * Filter which Department to delete.
    */
   where: Prisma.DepartmentWhereUniqueInput
@@ -1298,6 +1460,30 @@ export type DepartmentDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
+ * Department.employees
+ */
+export type Department$employeesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Employee
+   */
+  select?: Prisma.EmployeeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Employee
+   */
+  omit?: Prisma.EmployeeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmployeeInclude<ExtArgs> | null
+  where?: Prisma.EmployeeWhereInput
+  orderBy?: Prisma.EmployeeOrderByWithRelationInput | Prisma.EmployeeOrderByWithRelationInput[]
+  cursor?: Prisma.EmployeeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EmployeeScalarFieldEnum | Prisma.EmployeeScalarFieldEnum[]
+}
+
+/**
  * Department without action
  */
 export type DepartmentDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1309,4 +1495,8 @@ export type DepartmentDefaultArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Omit specific fields from the Department
    */
   omit?: Prisma.DepartmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentInclude<ExtArgs> | null
 }

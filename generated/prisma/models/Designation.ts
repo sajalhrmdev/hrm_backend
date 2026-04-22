@@ -252,6 +252,7 @@ export type DesignationWhereInput = {
   deleted_at?: Prisma.DateTimeNullableFilter<"Designation"> | Date | string | null
   company_id?: Prisma.IntNullableFilter<"Designation"> | number | null
   branch_id?: Prisma.IntNullableFilter<"Designation"> | number | null
+  employees?: Prisma.EmployeeListRelationFilter
 }
 
 export type DesignationOrderByWithRelationInput = {
@@ -263,6 +264,7 @@ export type DesignationOrderByWithRelationInput = {
   deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
   company_id?: Prisma.SortOrderInput | Prisma.SortOrder
   branch_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  employees?: Prisma.EmployeeOrderByRelationAggregateInput
 }
 
 export type DesignationWhereUniqueInput = Prisma.AtLeast<{
@@ -277,6 +279,7 @@ export type DesignationWhereUniqueInput = Prisma.AtLeast<{
   deleted_at?: Prisma.DateTimeNullableFilter<"Designation"> | Date | string | null
   company_id?: Prisma.IntNullableFilter<"Designation"> | number | null
   branch_id?: Prisma.IntNullableFilter<"Designation"> | number | null
+  employees?: Prisma.EmployeeListRelationFilter
 }, "id">
 
 export type DesignationOrderByWithAggregationInput = {
@@ -317,6 +320,7 @@ export type DesignationCreateInput = {
   deleted_at?: Date | string | null
   company_id?: number | null
   branch_id?: number | null
+  employees?: Prisma.EmployeeCreateNestedManyWithoutDesignationInput
 }
 
 export type DesignationUncheckedCreateInput = {
@@ -328,6 +332,7 @@ export type DesignationUncheckedCreateInput = {
   deleted_at?: Date | string | null
   company_id?: number | null
   branch_id?: number | null
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutDesignationInput
 }
 
 export type DesignationUpdateInput = {
@@ -338,6 +343,7 @@ export type DesignationUpdateInput = {
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   company_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   branch_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employees?: Prisma.EmployeeUpdateManyWithoutDesignationNestedInput
 }
 
 export type DesignationUncheckedUpdateInput = {
@@ -349,6 +355,7 @@ export type DesignationUncheckedUpdateInput = {
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   company_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   branch_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutDesignationNestedInput
 }
 
 export type DesignationCreateManyInput = {
@@ -430,6 +437,11 @@ export type DesignationSumOrderByAggregateInput = {
   branch_id?: Prisma.SortOrder
 }
 
+export type DesignationNullableScalarRelationFilter = {
+  is?: Prisma.DesignationWhereInput | null
+  isNot?: Prisma.DesignationWhereInput | null
+}
+
 export type NullableIntFieldUpdateOperationsInput = {
   set?: number | null
   increment?: number
@@ -438,6 +450,109 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type DesignationCreateNestedOneWithoutEmployeesInput = {
+  create?: Prisma.XOR<Prisma.DesignationCreateWithoutEmployeesInput, Prisma.DesignationUncheckedCreateWithoutEmployeesInput>
+  connectOrCreate?: Prisma.DesignationCreateOrConnectWithoutEmployeesInput
+  connect?: Prisma.DesignationWhereUniqueInput
+}
+
+export type DesignationUpdateOneWithoutEmployeesNestedInput = {
+  create?: Prisma.XOR<Prisma.DesignationCreateWithoutEmployeesInput, Prisma.DesignationUncheckedCreateWithoutEmployeesInput>
+  connectOrCreate?: Prisma.DesignationCreateOrConnectWithoutEmployeesInput
+  upsert?: Prisma.DesignationUpsertWithoutEmployeesInput
+  disconnect?: Prisma.DesignationWhereInput | boolean
+  delete?: Prisma.DesignationWhereInput | boolean
+  connect?: Prisma.DesignationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DesignationUpdateToOneWithWhereWithoutEmployeesInput, Prisma.DesignationUpdateWithoutEmployeesInput>, Prisma.DesignationUncheckedUpdateWithoutEmployeesInput>
+}
+
+export type DesignationCreateWithoutEmployeesInput = {
+  title: string
+  status_id: number
+  created_at?: Date | string | null
+  updated_at?: Date | string | null
+  deleted_at?: Date | string | null
+  company_id?: number | null
+  branch_id?: number | null
+}
+
+export type DesignationUncheckedCreateWithoutEmployeesInput = {
+  id?: number
+  title: string
+  status_id: number
+  created_at?: Date | string | null
+  updated_at?: Date | string | null
+  deleted_at?: Date | string | null
+  company_id?: number | null
+  branch_id?: number | null
+}
+
+export type DesignationCreateOrConnectWithoutEmployeesInput = {
+  where: Prisma.DesignationWhereUniqueInput
+  create: Prisma.XOR<Prisma.DesignationCreateWithoutEmployeesInput, Prisma.DesignationUncheckedCreateWithoutEmployeesInput>
+}
+
+export type DesignationUpsertWithoutEmployeesInput = {
+  update: Prisma.XOR<Prisma.DesignationUpdateWithoutEmployeesInput, Prisma.DesignationUncheckedUpdateWithoutEmployeesInput>
+  create: Prisma.XOR<Prisma.DesignationCreateWithoutEmployeesInput, Prisma.DesignationUncheckedCreateWithoutEmployeesInput>
+  where?: Prisma.DesignationWhereInput
+}
+
+export type DesignationUpdateToOneWithWhereWithoutEmployeesInput = {
+  where?: Prisma.DesignationWhereInput
+  data: Prisma.XOR<Prisma.DesignationUpdateWithoutEmployeesInput, Prisma.DesignationUncheckedUpdateWithoutEmployeesInput>
+}
+
+export type DesignationUpdateWithoutEmployeesInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status_id?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  company_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  branch_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+}
+
+export type DesignationUncheckedUpdateWithoutEmployeesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status_id?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  company_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  branch_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+}
+
+
+/**
+ * Count Type DesignationCountOutputType
+ */
+
+export type DesignationCountOutputType = {
+  employees: number
+}
+
+export type DesignationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  employees?: boolean | DesignationCountOutputTypeCountEmployeesArgs
+}
+
+/**
+ * DesignationCountOutputType without action
+ */
+export type DesignationCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DesignationCountOutputType
+   */
+  select?: Prisma.DesignationCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * DesignationCountOutputType without action
+ */
+export type DesignationCountOutputTypeCountEmployeesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EmployeeWhereInput
+}
 
 
 export type DesignationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -449,6 +564,8 @@ export type DesignationSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   deleted_at?: boolean
   company_id?: boolean
   branch_id?: boolean
+  employees?: boolean | Prisma.Designation$employeesArgs<ExtArgs>
+  _count?: boolean | Prisma.DesignationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["designation"]>
 
 export type DesignationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -485,10 +602,18 @@ export type DesignationSelectScalar = {
 }
 
 export type DesignationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "status_id" | "created_at" | "updated_at" | "deleted_at" | "company_id" | "branch_id", ExtArgs["result"]["designation"]>
+export type DesignationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  employees?: boolean | Prisma.Designation$employeesArgs<ExtArgs>
+  _count?: boolean | Prisma.DesignationCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type DesignationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type DesignationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $DesignationPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Designation"
-  objects: {}
+  objects: {
+    employees: Prisma.$EmployeePayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     title: string
@@ -892,6 +1017,7 @@ readonly fields: DesignationFieldRefs;
  */
 export interface Prisma__DesignationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  employees<T extends Prisma.Designation$employeesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Designation$employeesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -946,6 +1072,10 @@ export type DesignationFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   omit?: Prisma.DesignationOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DesignationInclude<ExtArgs> | null
+  /**
    * Filter, which Designation to fetch.
    */
   where: Prisma.DesignationWhereUniqueInput
@@ -964,6 +1094,10 @@ export type DesignationFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Exten
    */
   omit?: Prisma.DesignationOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DesignationInclude<ExtArgs> | null
+  /**
    * Filter, which Designation to fetch.
    */
   where: Prisma.DesignationWhereUniqueInput
@@ -981,6 +1115,10 @@ export type DesignationFindFirstArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the Designation
    */
   omit?: Prisma.DesignationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DesignationInclude<ExtArgs> | null
   /**
    * Filter, which Designation to fetch.
    */
@@ -1030,6 +1168,10 @@ export type DesignationFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extens
    */
   omit?: Prisma.DesignationOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DesignationInclude<ExtArgs> | null
+  /**
    * Filter, which Designation to fetch.
    */
   where?: Prisma.DesignationWhereInput
@@ -1077,6 +1219,10 @@ export type DesignationFindManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the Designation
    */
   omit?: Prisma.DesignationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DesignationInclude<ExtArgs> | null
   /**
    * Filter, which Designations to fetch.
    */
@@ -1126,6 +1272,10 @@ export type DesignationCreateArgs<ExtArgs extends runtime.Types.Extensions.Inter
    */
   omit?: Prisma.DesignationOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DesignationInclude<ExtArgs> | null
+  /**
    * The data needed to create a Designation.
    */
   data: Prisma.XOR<Prisma.DesignationCreateInput, Prisma.DesignationUncheckedCreateInput>
@@ -1173,6 +1323,10 @@ export type DesignationUpdateArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Omit specific fields from the Designation
    */
   omit?: Prisma.DesignationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DesignationInclude<ExtArgs> | null
   /**
    * The data needed to update a Designation.
    */
@@ -1240,6 +1394,10 @@ export type DesignationUpsertArgs<ExtArgs extends runtime.Types.Extensions.Inter
    */
   omit?: Prisma.DesignationOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DesignationInclude<ExtArgs> | null
+  /**
    * The filter to search for the Designation to update in case it exists.
    */
   where: Prisma.DesignationWhereUniqueInput
@@ -1266,6 +1424,10 @@ export type DesignationDeleteArgs<ExtArgs extends runtime.Types.Extensions.Inter
    */
   omit?: Prisma.DesignationOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DesignationInclude<ExtArgs> | null
+  /**
    * Filter which Designation to delete.
    */
   where: Prisma.DesignationWhereUniqueInput
@@ -1286,6 +1448,30 @@ export type DesignationDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
+ * Designation.employees
+ */
+export type Designation$employeesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Employee
+   */
+  select?: Prisma.EmployeeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Employee
+   */
+  omit?: Prisma.EmployeeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmployeeInclude<ExtArgs> | null
+  where?: Prisma.EmployeeWhereInput
+  orderBy?: Prisma.EmployeeOrderByWithRelationInput | Prisma.EmployeeOrderByWithRelationInput[]
+  cursor?: Prisma.EmployeeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EmployeeScalarFieldEnum | Prisma.EmployeeScalarFieldEnum[]
+}
+
+/**
  * Designation without action
  */
 export type DesignationDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1297,4 +1483,8 @@ export type DesignationDefaultArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Omit specific fields from the Designation
    */
   omit?: Prisma.DesignationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DesignationInclude<ExtArgs> | null
 }

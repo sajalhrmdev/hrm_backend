@@ -51,3 +51,73 @@ export type Department = Prisma.DepartmentModel
  * 
  */
 export type Designation = Prisma.DesignationModel
+/**
+ * Model User
+ * 
+ */
+export type User = Prisma.UserModel
+/**
+ * Model GlobalRole
+ * 
+ */
+export type GlobalRole = Prisma.GlobalRoleModel
+/**
+ * Model Company
+ * 
+ */
+export type Company = Prisma.CompanyModel
+/**
+ * Model Role
+ * 
+ */
+export type Role = Prisma.RoleModel
+/**
+ * Model Membership
+ * 
+ */
+export type Membership = Prisma.MembershipModel
+/**
+ * Model Employee
+ * 
+ */
+export type Employee = Prisma.EmployeeModel
+/**
+ * Model Attendance
+ * 
+ */
+export type Attendance = Prisma.AttendanceModel
+/**
+ * Model AttendanceLog
+ * 
+ */
+export type AttendanceLog = Prisma.AttendanceLogModel
+/**
+ * Model WorkPolicy
+ * 
+ */
+export type WorkPolicy = Prisma.WorkPolicyModel
+/**
+ * Model CompanySetting
+ * 
+ */
+export type CompanySetting = Prisma.CompanySettingModel
+/**
+ * Model Shift
+ * 
+ */
+export type Shift = Prisma.ShiftModel
+/**
+ * Model SalaryStracture
+ * 
+ */
+export type SalaryStracture = Prisma.SalaryStractureModel
+/**
+ * Model PayRoll
+ * 
+ */
+export type PayRoll = Prisma.PayRollModel
+/**
+ * Model PayRollRun
+ * 
+ */
+export type PayRollRun = Prisma.PayRollRunModel
