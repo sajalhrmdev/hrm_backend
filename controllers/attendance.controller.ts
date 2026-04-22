@@ -14,8 +14,11 @@ interface AuthRequest extends Request {
 export const checkIn = async (req: Request, res: Response) => {
   try {
     // const { employeeId } = req.body;
+    const { latitude, longitude, accuracy } = req.body;
 const employee = await getEmployeeFromRequest(req);
-    const data = await handleAttendance(employee.id, "IN");
+    const data = await handleAttendance(employee.id, "IN", latitude,
+  longitude,
+  accuracy);
 
     res.json({ success: true, data });
   } catch (err: any) {
@@ -26,9 +29,12 @@ const employee = await getEmployeeFromRequest(req);
 export const checkOut = async (req: Request, res: Response) => {
   try {
     // const { employeeId } = req.body;
+    const { latitude, longitude, accuracy } = req.body;
     const employee = await getEmployeeFromRequest(req);
 
-    const data = await handleAttendance(employee.id, "OUT");
+    const data = await handleAttendance(employee.id, "OUT", latitude,
+  longitude,
+  accuracy);
 
     res.json({ success: true, data });
   } catch (err: any) {
@@ -120,6 +126,8 @@ const employee = await getEmployeeFromRequest(req);
         attendanceLogs: {
           orderBy: { time: "asc" },
         },
+        employee:true,
+        company:true,
       },
     });
 

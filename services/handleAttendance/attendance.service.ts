@@ -3,6 +3,7 @@ import {
   calculateAttendance,
   applyPolicy,
   validateAttendance,
+  getDistance,
 } from "./attendance.helper.js";
 
 const getStartEndOfDay = () => {
@@ -15,9 +16,16 @@ const getStartEndOfDay = () => {
   return { start, end };
 };
 
+const OFFICE_LAT = 22.582792;
+const OFFICE_LNG = 88.338482;
+const MAX_DISTANCE_KM = 0.2; // 200 meter
+
 export const handleAttendance = async (
-  employeeId: number,
+    employeeId: number,
   type: "IN" | "OUT",
+  latitude?: number,
+  longitude?: number,
+  accuracy?: number
 ) => {
   const now = new Date();
   const { start, end } = getStartEndOfDay();
@@ -49,6 +57,22 @@ export const handleAttendance = async (
   let attendance: any;
   const today = new Date();
   today.setHours(0, 0, 0, 0);
+
+if (!latitude || !longitude) {
+  throw new Error("Location required");
+}
+
+const distance = getDistance(latitude, longitude, OFFICE_LAT, OFFICE_LNG);
+
+if (distance > MAX_DISTANCE_KM) {
+  throw new Error("You are outside office location");
+}
+
+// accuracy check
+// if (accuracy && accuracy > 100) {
+//   throw new Error("Location not accurate");
+// }
+
   if (type === "IN") {
     attendance = await prisma.attendance.upsert({
       where: {
@@ -91,6 +115,8 @@ export const handleAttendance = async (
       attendanceId: attendance.id,
       type,
       time: now,
+      latitude,     
+    longitude, 
     },
   });
 
