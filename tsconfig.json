@@ -5,11 +5,10 @@
     "moduleResolution": "nodenext",
     "outDir": "./dist",
     "rootDir": "./",
-    "strict": false,
+    "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-     "noEmitOnError": false
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["./**/*.ts"],
   "exclude": ["node_modules"]
