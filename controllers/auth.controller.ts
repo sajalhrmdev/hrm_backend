@@ -33,20 +33,21 @@ export const login = async (req: Request, res: Response) => {
   });
 
   // 🍪 SET COOKIE
-  res.cookie("token", token, {
-    httpOnly: true,
-    secure: false, // true in production (HTTPS)
-    sameSite: "lax",
-  });
+  // res.cookie("token", token, {
+  //   httpOnly: true,
+  //   secure: false, // true in production (HTTPS)
+  //   sameSite: "lax",
+  // });
 
   return res.json({
     message: "Login successful",
     user,
+    token
   });
 };
 
 
 export const logout = (req: Request, res: Response) => {
-  res.clearCookie("token");
+  // res.clearCookie("token");
   res.json({ message: "Logged out" });
 };

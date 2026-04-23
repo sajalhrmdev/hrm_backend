@@ -18,10 +18,10 @@ import cors from "cors";
 import { authMiddleware } from "./middlewares/auth.middleware.js";
 import { companyAccessMiddleware } from "./middlewares/companyAccess.middleware.js";
 
-const app = express();
+const app = express(); 
 app.use(
   cors({
-    origin: "http://localhost:3001", // frontend URL
+    origin: "http://localhost:3000", // frontend URL
     credentials: true,
   }),
 );
