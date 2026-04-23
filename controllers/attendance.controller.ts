@@ -6,11 +6,6 @@ import { getEmployeeFromRequest } from "../utils/getEmployeeFromRequest.js";
 // import { getAttendanceByRange, getCompanyDayAttendance } from "../services/attendance.service.js";
 // import { getTodayAttendance, handleAttendance } from "../services/attendance.service.js";
 
-interface AuthRequest extends Request {
-  user?: any;
-  companyId?: number;
-}
-
 export const checkIn = async (req: Request, res: Response) => {
   try {
     // const { employeeId } = req.body;
