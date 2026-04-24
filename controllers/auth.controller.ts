@@ -5,6 +5,46 @@ import { generateToken } from "../utils/jwt.js";
 // import { prisma } from "../lib/prisma";
 // import { generateToken } from "../utils/jwt";
 
+// export const login = async (req: Request, res: Response) => {
+//   const { email, password } = req.body;
+
+//   const user = await prisma.user.findUnique({
+//     where: { email },
+//     include: {
+//       memberships: {
+//         where: { status: "ACTIVE" },
+//         include: {
+//           company: true,
+//           role: true,
+//         },
+//       },
+//     },
+//   });
+
+//   if (!user) return res.status(404).json({ message: "User not found" });
+
+//   const isMatch = await bcrypt.compare(password, user.password);
+//   if (!isMatch) return res.status(401).json({ message: "Invalid password" });
+
+//   // 🔥 TOKEN PAYLOAD
+//   const token = generateToken({
+//     userId: user.id,
+//     email: user.email,
+//   });
+
+//   // 🍪 SET COOKIE
+//   // res.cookie("token", token, {
+//   //   httpOnly: true,
+//   //   secure: false, // true in production (HTTPS)
+//   //   sameSite: "lax",
+//   // });
+
+//   return res.json({
+//     message: "Login successful",
+//     user,
+//     token
+//   });
+// };
 export const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
@@ -26,26 +66,27 @@ export const login = async (req: Request, res: Response) => {
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) return res.status(401).json({ message: "Invalid password" });
 
-  // 🔥 TOKEN PAYLOAD
+  const activeCompanyId = user.memberships[0]?.companyId;
+
+  if (!activeCompanyId) {
+    return res.status(400).json({ message: "No active company found" });
+  }
+
   const token = generateToken({
     userId: user.id,
-    email: user.email,
+    activeCompanyId,
   });
-
-  // 🍪 SET COOKIE
-  // res.cookie("token", token, {
-  //   httpOnly: true,
-  //   secure: false, // true in production (HTTPS)
-  //   sameSite: "lax",
-  // });
 
   return res.json({
     message: "Login successful",
-    user,
-    token
+    token,
+    user: {
+      id: user.id,
+      email: user.email,
+      memberships: user.memberships, // 🔥 dropdown এর জন্য
+    },
   });
 };
-
 
 export const logout = (req: Request, res: Response) => {
   // res.clearCookie("token");

@@ -21,7 +21,10 @@ import { companyAccessMiddleware } from "./middlewares/companyAccess.middleware.
 const app = express(); 
 app.use(
   cors({
-    origin: "http://localhost:3000", // frontend URL
+    origin: [
+      "http://localhost:3000",
+      "https://hrm-frontend-ashy.vercel.app",
+    ],
     credentials: true,
   }),
 );
