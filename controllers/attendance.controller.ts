@@ -1,8 +1,9 @@
 // controllers/attendance.controller.ts
 import { Request, Response } from "express";
-import { getAttendanceByRange, getCompanyDayAttendance, getTodayAttendance, handleAttendance } from "../services/handleAttendance/attendance.service.js";
+import { getAttendanceByRange, getCompanyDayAttendance, getMonthlyAttendance, getTodayAttendance, handleAttendance } from "../services/handleAttendance/attendance.service.js";
 import { prisma } from "../lib/prisma.js";
 import { getEmployeeFromRequest } from "../utils/getEmployeeFromRequest.js";
+import getStartEndOfMonth from "../utils/monthlyDate.js";
 // import { getAttendanceByRange, getCompanyDayAttendance } from "../services/attendance.service.js";
 // import { getTodayAttendance, handleAttendance } from "../services/attendance.service.js";
 
@@ -188,7 +189,7 @@ export const getEmployeeMonthlyAttendances = async (
 ) => {
   try {
     const employee = await getEmployeeFromRequest(req);
-
+const companyId=req.companyId
     const { year, month } = req.query;
 
     if (!year || !month) {
@@ -197,9 +198,14 @@ export const getEmployeeMonthlyAttendances = async (
         message: "year and month required",
       });
     }
-
-    const start = new Date(Number(year), Number(month) - 1, 1);
-    const end = new Date(Number(year), Number(month), 0, 23, 59, 59);
+const { start, end } = getStartEndOfMonth(
+  "Asia/Kolkata",
+  Number(year),
+  Number(month)
+);
+const datas=getAttendanceByRange(companyId,employee.id,start, end)
+    // const start = new Date(Number(year), Number(month) - 1, 1);
+    // const end = new Date(Number(year), Number(month), 0, 23, 59, 59);
 
     const data = await prisma.employee.findUnique({
       where: {
@@ -233,3 +239,37 @@ export const getEmployeeMonthlyAttendances = async (
   }
 };
 
+
+export const getMonthlyAttendanceController = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const employee = await getEmployeeFromRequest(req);
+    const { year, month } = req.query;
+
+    if (!year || !month) {
+      return res.status(400).json({
+        success: false,
+        message: "year and month required",
+      });
+    }
+
+    const data = await getMonthlyAttendance(
+      Number(req.companyId),
+      employee.id,
+      Number(year),
+      Number(month)
+    );
+
+    res.json({
+      success: true,
+      data,
+    });
+  } catch (err: any) {
+    res.status(400).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};

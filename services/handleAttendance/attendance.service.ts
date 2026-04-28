@@ -1,4 +1,6 @@
 import { prisma } from "../../lib/prisma.js";
+import getStartEndOfDay from "../../utils/getStartEndOfDay.js";
+import getStartEndOfMonth from "../../utils/monthlyDate.js";
 import {
   calculateAttendance,
   applyPolicy,
@@ -6,30 +8,31 @@ import {
   getDistance,
 } from "./attendance.helper.js";
 
-const getStartEndOfDay = () => {
-  const start = new Date();
-  start.setHours(0, 0, 0, 0);
+// const getStartEndOfDay = () => {
+//   const start = new Date();
+//   start.setHours(0, 0, 0, 0);
 
-  const end = new Date();
-  end.setHours(23, 59, 59, 999);
+//   const end = new Date();
+//   end.setHours(23, 59, 59, 999);
 
-  return { start, end };
-};
+//   return { start, end };
+// };
 
 const OFFICE_LAT = 22.582792;
 const OFFICE_LNG = 88.338482;
 const MAX_DISTANCE_KM = 0.2; // 200 meter
 
 export const handleAttendance = async (
-    employeeId: number,
+  employeeId: number,
   type: "IN" | "OUT",
   latitude?: number,
   longitude?: number,
-  accuracy?: number
+  accuracy?: number,
 ) => {
   const now = new Date();
-  const { start, end } = getStartEndOfDay();
-
+  const timezone = "Asia/Kolkata";
+  const { start, end } = getStartEndOfDay(timezone);
+  const today = start;
   const employee = await prisma.employee.findUnique({
     where: { id: employeeId },
   });
@@ -55,23 +58,21 @@ export const handleAttendance = async (
   // 🔥 validation  function
   validateAttendance(logs, type, mode);
   let attendance: any;
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
 
-if (!latitude || !longitude) {
-  throw new Error("Location required");
-}
+  if (!latitude || !longitude) {
+    throw new Error("Location required");
+  }
 
-const distance = getDistance(latitude, longitude, OFFICE_LAT, OFFICE_LNG);
+  const distance = getDistance(latitude, longitude, OFFICE_LAT, OFFICE_LNG);
 
-if (distance > MAX_DISTANCE_KM) {
-  throw new Error("You are outside office location");
-}
+  if (distance > MAX_DISTANCE_KM) {
+    throw new Error("You are outside office location");
+  }
 
-// accuracy check
-// if (accuracy && accuracy > 100) {
-//   throw new Error("Location not accurate");
-// }
+  // accuracy check
+  // if (accuracy && accuracy > 100) {
+  //   throw new Error("Location not accurate");
+  // }
 
   if (type === "IN") {
     attendance = await prisma.attendance.upsert({
@@ -115,8 +116,8 @@ if (distance > MAX_DISTANCE_KM) {
       attendanceId: attendance.id,
       type,
       time: now,
-      latitude,     
-    longitude, 
+      latitude,
+      longitude,
     },
   });
 
@@ -127,9 +128,6 @@ if (distance > MAX_DISTANCE_KM) {
     const totalMinutes = calculateAttendance(allLogs);
 
     const { overtime, status } = applyPolicy(totalMinutes, policy);
-
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
 
     await prisma.attendance.update({
       where: {
@@ -167,8 +165,8 @@ if (distance > MAX_DISTANCE_KM) {
 };
 
 export const getTodayAttendance = async (employeeId: number) => {
-  const { start, end } = getStartEndOfDay();
-
+  const timezone = "Asia/Kolkata";
+  const { start, end } = getStartEndOfDay(timezone);
   // attendance summary
   const attendance = await prisma.attendance.findFirst({
     where: {
@@ -204,11 +202,7 @@ export const getCompanyDayAttendance = async (
   companyId: number,
   date: Date,
 ) => {
-  const start = new Date(date);
-  start.setHours(0, 0, 0, 0);
-
-  const end = new Date(date);
-  end.setHours(23, 59, 59, 999);
+  const { start, end } = getStartEndOfDay("Asia/Kolkata", date);
 
   const data = await prisma.attendance.findMany({
     where: {
@@ -219,8 +213,8 @@ export const getCompanyDayAttendance = async (
       },
     },
     include: {
-      employee: true, 
-      attendanceLogs:true// optional 🔥
+      employee: true,
+      attendanceLogs: true, // optional 🔥
     },
   });
 
@@ -228,18 +222,20 @@ export const getCompanyDayAttendance = async (
 };
 
 export const getAttendanceByRange = async (
-  companyId: number,
+  companyId: any,
   employeeId: number,
   startDate: Date,
   endDate: Date,
 ) => {
+  const from = getStartEndOfDay("Asia/Kolkata", startDate).start;
+  const to = getStartEndOfDay("Asia/Kolkata", endDate).end;
   const data = await prisma.attendance.findMany({
     where: {
       companyId,
       employeeId,
       date: {
-        gte: startDate,
-        lte: endDate,
+        gte: from,
+        lte: to,
       },
     },
     orderBy: {
@@ -249,3 +245,35 @@ export const getAttendanceByRange = async (
 
   return data;
 };
+
+
+// ===========================
+export const getMonthlyAttendance = async (
+  companyId: number,
+  employeeId: number,
+  year: number,
+  month: number
+) => {
+  const { start, end } = getStartEndOfMonth(
+    "Asia/Kolkata", // 🔥 change if needed
+    year,
+    month
+  );
+
+  const data = await prisma.attendance.findMany({
+    where: {
+      companyId,
+      employeeId,
+      date: {
+        gte: start,
+        lte: end,
+      },
+    },
+    orderBy: {
+      date: "asc",
+    },
+  });
+
+  return data;
+};
+
