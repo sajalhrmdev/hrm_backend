@@ -121,3 +121,18 @@ export type PayRoll = Prisma.PayRollModel
  * 
  */
 export type PayRollRun = Prisma.PayRollRunModel
+/**
+ * Model LeaveType
+ * 
+ */
+export type LeaveType = Prisma.LeaveTypeModel
+/**
+ * Model LeaveBalance
+ * 
+ */
+export type LeaveBalance = Prisma.LeaveBalanceModel
+/**
+ * Model LeaveApplication
+ * 
+ */
+export type LeaveApplication = Prisma.LeaveApplicationModel

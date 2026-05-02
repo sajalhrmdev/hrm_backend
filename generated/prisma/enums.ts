@@ -59,3 +59,12 @@ export const PayrollRunStatus = {
 } as const
 
 export type PayrollRunStatus = (typeof PayrollRunStatus)[keyof typeof PayrollRunStatus]
+
+
+export const LeaveStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type LeaveStatus = (typeof LeaveStatus)[keyof typeof LeaveStatus]

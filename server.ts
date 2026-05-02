@@ -12,19 +12,17 @@ import salaryStructureRoutes from "./routes/salaryStructure.routes.js";
 import payrollRoutes from "./routes/payroll.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import membershipRoutes from "./routes/membership.routes.js";
+import leaveRoutes from "./routes/leave.route.js";
 import { verifyToken } from "./controllers/middlewares/auth.middleware.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { authMiddleware } from "./middlewares/auth.middleware.js";
 import { companyAccessMiddleware } from "./middlewares/companyAccess.middleware.js";
 
-const app = express(); 
+const app = express();
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "https://hrm-frontend-ashy.vercel.app",
-    ],
+    origin: ["http://localhost:3000", "https://hrm-frontend-ashy.vercel.app"],
     credentials: true,
   }),
 );
@@ -35,7 +33,7 @@ app.get("/", (req: Request, res: Response) => {
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/membership",membershipRoutes)
+app.use("/api/v1/membership", membershipRoutes);
 app.use("/api/v1/global-roles", globalRoleRoutes);
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/companies", companyRoutes);
@@ -51,6 +49,7 @@ app.use(
   companyAccessMiddleware,
   attendanceRoutes,
 );
+app.use("/api/v1/leave", authMiddleware, companyAccessMiddleware, leaveRoutes);
 app.use("/api/v1/salary-structure", salaryStructureRoutes);
 app.use("/api/v1/payroll", payrollRoutes);
 

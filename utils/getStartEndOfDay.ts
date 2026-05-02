@@ -29,7 +29,7 @@
 // };
 
 
-const getStartEndOfDay = (timeZone = "UTC", inputDate?: Date) => {
+const getStartEndOfDay = (timeZone = "Asia/Kolkata", inputDate?: Date) => {
   const base = inputDate ? new Date(inputDate) : new Date();
 
   // 1️⃣ Get date parts in target timezone (safe way)

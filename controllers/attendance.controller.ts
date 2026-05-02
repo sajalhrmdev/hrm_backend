@@ -246,6 +246,8 @@ export const getMonthlyAttendanceController = async (
 ) => {
   try {
     const employee = await getEmployeeFromRequest(req);
+    console.log("request:", req.companyId, employee.id);
+    
     const { year, month } = req.query;
 
     if (!year || !month) {

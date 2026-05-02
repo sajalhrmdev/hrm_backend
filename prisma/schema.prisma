@@ -110,6 +110,9 @@ model Company{
   SalaryStractures SalaryStracture[]
   payRollRuns PayRollRun[]
   memberships Membership[]
+  leaveTypes LeaveType[]
+  leaveBalances LeaveBalance[]
+  leaveApplications LeaveApplication[]
 
 
 
@@ -187,6 +190,8 @@ model Employee {
   attendanceLogs AttendanceLog[]
   SalaryStracture SalaryStracture[]
   payRolls PayRoll[]
+  leaveApplications LeaveApplication[]
+  leaveBalances LeaveBalance[]
 @@index([companyId])
   
   
@@ -327,4 +332,84 @@ model PayRollRun{
   status PayrollRunStatus @default(DRAFT)
   payrolls PayRoll[]
   @@unique([companyId, month, year])
+}
+// =====================================================================================================================
+
+// ========================================================LEAVE MANAGEMENT=====================
+// =======================================================LEAVETYPE==================================================
+model LeaveType{
+   id     Int @id @default(autoincrement())
+  companyId Int
+ 
+  name  String
+  code   String 
+  is_paid Boolean @default(true)
+  is_active Boolean @default(true)
+  carryForward  Boolean  @default(false)
+  maxDays       Int?
+  config Json?
+   createdAt DateTime @default(now())
+     updatedAt     DateTime @updatedAt
+     leaveApplications LeaveApplication[]
+     leaveBalances LeaveBalance[]
+     company Company @relation(fields: [companyId],references: [id])
+     @@unique([companyId, code])
+
+}
+// ==========================================================================================================
+
+model LeaveBalance{
+  id     Int @id @default(autoincrement())
+  employeeId Int
+companyId Int
+  leaveTypeId Int
+
+  total_allocated Float
+  used  Float    @default(0)
+ 
+  year Int
+  leaveType   LeaveType @relation(fields: [leaveTypeId], references: [id])
+  employee    Employee @relation(fields: [employeeId], references: [id])
+company Company @relation(fields: [companyId],references: [id])
+
+   @@unique([employeeId, leaveTypeId, year, companyId])
+}
+
+// =================================================================================================================
+
+// ============================================LEAVE APPLICATION================================================
+enum LeaveStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+model LeaveApplication {
+  id          Int      @id @default(autoincrement())
+  employeeId  Int
+  companyId   Int
+  leaveTypeId Int
+  
+  fromDate   DateTime
+  toDate     DateTime
+  totalDays   Float
+ 
+leaveMode String? // FULL, HALF
+
+  paidDays Float
+  unpaidDays Float
+
+  reason      String?
+  attachment String?
+
+  status      LeaveStatus @default(PENDING) // PENDING, APPROVED, REJECTED
+
+  approvedBy  Int? // manager/admin id
+  approvedAt  DateTime?
+
+  applied_at   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  employee    Employee @relation(fields: [employeeId], references: [id])
+  leaveType   LeaveType @relation(fields: [leaveTypeId], references: [id])
+  company     Company @relation(fields: [companyId], references: [id])
 }
