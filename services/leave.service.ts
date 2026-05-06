@@ -38,7 +38,7 @@ export const calculateDays = (from: Date, to: Date, mode?: "FULL" | "HALF") => {
 
   return diff + 1; // inclusive
 };
-
+// 1====================apply leave========================
 export const applyLeave = async (input: ApplyLeaveInput) => {
   const {
     employeeId,
@@ -146,9 +146,60 @@ export const applyLeave = async (input: ApplyLeaveInput) => {
       status: true,
       paidDays: true,
       unpaidDays: true,
-      createdAt: true,
+      applied_at: true,
     },
   });
 
   return leave;
+};
+
+// 2============================get all applied leave===========================
+
+type GetAllLeavesInput = {
+  companyId: number;
+  status?: "PENDING" | "APPROVED" | "REJECTED";
+};
+
+export const getAllLeaves = async (
+  input: GetAllLeavesInput
+) => {
+  const { companyId, status } = input;
+
+  const where: any = {
+    companyId,
+  };
+
+  // 🔥 optional filter
+  if (status) {
+    where.status = status;
+  }
+
+  const leaves =
+    await prisma.leaveApplication.findMany({
+      where,
+
+      orderBy: {
+        applied_at: "desc",
+      },
+
+      include: {
+        employee: {
+          select: {
+            id: true,
+            name: true,
+            employeeCode: true,
+          },
+        },
+
+        leaveType: {
+          select: {
+            id: true,
+            name: true,
+            code: true,
+          },
+        },
+      },
+    });
+
+  return leaves;
 };

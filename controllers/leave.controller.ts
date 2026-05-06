@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { applyLeave } from "../services/leave.service.js";
+import { applyLeave, getAllLeaves } from "../services/leave.service.js";
 import { getEmployeeFromRequest } from "../utils/getEmployeeFromRequest.js";
 import { approveLeave, rejectLeave } from "../services/leaveApproval.service.js";
 // 1======================apply leave========================
@@ -85,5 +85,41 @@ export const rejectLeaveController = async (
     res.json({ success: true, data });
   } catch (err: any) {
     res.status(400).json({ success: false, message: err.message });
+  }
+};
+
+// 4============================get all applied leave========================
+
+interface AuthRequest extends Request {
+  companyId?: number;
+}
+
+export const getAllLeavesController = async (
+  req: AuthRequest,
+  res: Response
+) => {
+  try {
+    const companyId = req.companyId;
+
+    if (!companyId) {
+      throw new Error("Company not found");
+    }
+
+    const { status } = req.query;
+
+    const data = await getAllLeaves({
+      companyId,
+      status: status as any,
+    });
+
+    res.json({
+      success: true,
+      data,
+    });
+  } catch (err: any) {
+    res.status(400).json({
+      success: false,
+      message: err.message,
+    });
   }
 };

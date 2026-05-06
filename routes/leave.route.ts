@@ -1,7 +1,8 @@
 import express from "express";
 import { createLeaveTypeController, getLeaveTypesController, toggleLeaveTypeController, updateLeaveTypeController } from "../controllers/leaveType.controller.js";
 import { get } from "node:http";
-import { applyLeaveController, approveLeaveController, rejectLeaveController } from "../controllers/leave.controller.js";
+import { applyLeaveController, approveLeaveController, getAllLeavesController, rejectLeaveController } from "../controllers/leave.controller.js";
+import { allocateAllEmployeesController, allocateLeaveBalanceController, bulkAllocateLeaveBalanceController } from "../controllers/leaveBalance.controller.js";
 
 
 
@@ -15,7 +16,12 @@ router.put("/type/:id", updateLeaveTypeController);
 router.patch("/type/:id/toggle", toggleLeaveTypeController);
 
 router.post("/apply", applyLeaveController);
+router.get("/all", getAllLeavesController);
 router.patch("/approve/:id", approveLeaveController);
 router.patch("/reject/:id", rejectLeaveController);
+
+router.post("/allocate", allocateLeaveBalanceController);
+router.post("/allocate/bulk", bulkAllocateLeaveBalanceController);
+router.post("/allocate/all", allocateAllEmployeesController);
 
 export default router;
