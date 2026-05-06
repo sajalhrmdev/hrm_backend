@@ -7,6 +7,11 @@ declare global {
       };
       companyId?: number;
       membership?: unknown;
+      employee?: {
+        id: number;
+        companyId: number;
+        [key: string]: unknown;
+      };
     }
   }
 }

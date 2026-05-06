@@ -13,11 +13,13 @@ import payrollRoutes from "./routes/payroll.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import membershipRoutes from "./routes/membership.routes.js";
 import leaveRoutes from "./routes/leave.route.js";
+
 import { verifyToken } from "./controllers/middlewares/auth.middleware.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { authMiddleware } from "./middlewares/auth.middleware.js";
 import { companyAccessMiddleware } from "./middlewares/companyAccess.middleware.js";
+import { employeeMiddleware } from "./middlewares/employee.middlewear.js";
 
 const app = express();
 app.use(
@@ -49,7 +51,8 @@ app.use(
   companyAccessMiddleware,
   attendanceRoutes,
 );
-app.use("/api/v1/leave", authMiddleware, companyAccessMiddleware, leaveRoutes);
+app.use("/api/v1/leave", authMiddleware, companyAccessMiddleware,employeeMiddleware ,leaveRoutes);
+
 app.use("/api/v1/salary-structure", salaryStructureRoutes);
 app.use("/api/v1/payroll", payrollRoutes);
 
