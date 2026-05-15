@@ -258,6 +258,13 @@ export const bulkCreateEmployees = async (req: Request, res: Response) => {
 
 export const getAllEmployees = async (req: Request, res: Response) => {
   try {
+     const companyId = req.companyId;
+       if (!companyId) {
+      return res.status(400).json({
+        success: false,
+        message: "Company not found",
+      });
+    }
     const { page = "1", limit = "10", search = "" } = req.query;
 
     const pageNumber = Number(page);
@@ -266,7 +273,7 @@ export const getAllEmployees = async (req: Request, res: Response) => {
 
     const searchText = String(search).trim();
 
-    const where: Prisma.EmployeeWhereInput = searchText
+    const where: Prisma.EmployeeWhereInput = {companyId, ...(searchText
       ? {
           OR: [
             { name: { contains: searchText, mode: "insensitive" } },
@@ -283,7 +290,7 @@ export const getAllEmployees = async (req: Request, res: Response) => {
             },
           ],
         }
-      : {};
+      : {})};
 
     const total = await prisma.employee.count({ where });
 

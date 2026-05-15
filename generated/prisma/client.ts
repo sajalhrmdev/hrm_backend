@@ -31,8 +31,8 @@ export * from "./enums.js"
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Departments
- * const departments = await prisma.department.findMany()
+ * // Fetch zero or more Companies
+ * const companies = await prisma.company.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -41,6 +41,11 @@ export const PrismaClient = $Class.getPrismaClientClass()
 export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts extends Prisma.PrismaClientOptions["omit"] = Prisma.PrismaClientOptions["omit"], ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = $Class.PrismaClient<LogOpts, OmitOpts, ExtArgs>
 export { Prisma }
 
+/**
+ * Model Company
+ * 
+ */
+export type Company = Prisma.CompanyModel
 /**
  * Model Department
  * 
@@ -62,11 +67,6 @@ export type User = Prisma.UserModel
  */
 export type GlobalRole = Prisma.GlobalRoleModel
 /**
- * Model Company
- * 
- */
-export type Company = Prisma.CompanyModel
-/**
  * Model Role
  * 
  */
@@ -81,6 +81,21 @@ export type Membership = Prisma.MembershipModel
  * 
  */
 export type Employee = Prisma.EmployeeModel
+/**
+ * Model EmployeePersonalInfo
+ * 
+ */
+export type EmployeePersonalInfo = Prisma.EmployeePersonalInfoModel
+/**
+ * Model EmployeeAddress
+ * 
+ */
+export type EmployeeAddress = Prisma.EmployeeAddressModel
+/**
+ * Model EmployeeDocument
+ * 
+ */
+export type EmployeeDocument = Prisma.EmployeeDocumentModel
 /**
  * Model Attendance
  * 
@@ -107,15 +122,25 @@ export type CompanySetting = Prisma.CompanySettingModel
  */
 export type Shift = Prisma.ShiftModel
 /**
- * Model SalaryStracture
+ * Model SalaryComponent
  * 
  */
-export type SalaryStracture = Prisma.SalaryStractureModel
+export type SalaryComponent = Prisma.SalaryComponentModel
+/**
+ * Model EmployeeSalaryComponent
+ * 
+ */
+export type EmployeeSalaryComponent = Prisma.EmployeeSalaryComponentModel
 /**
  * Model PayRoll
  * 
  */
 export type PayRoll = Prisma.PayRollModel
+/**
+ * Model PayrollSnapComponent
+ * 
+ */
+export type PayrollSnapComponent = Prisma.PayrollSnapComponentModel
 /**
  * Model PayRollRun
  * 
@@ -136,3 +161,13 @@ export type LeaveBalance = Prisma.LeaveBalanceModel
  * 
  */
 export type LeaveApplication = Prisma.LeaveApplicationModel
+/**
+ * Model Holiday
+ * 
+ */
+export type Holiday = Prisma.HolidayModel
+/**
+ * Model WeeklyOffConfig
+ * 
+ */
+export type WeeklyOffConfig = Prisma.WeeklyOffConfigModel

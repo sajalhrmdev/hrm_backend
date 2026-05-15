@@ -34,10 +34,10 @@ export type PayRollAvgAggregateOutputType = {
   present_days: number | null
   paid_leave_days: number | null
   lop_days: number | null
-  payble_days: number | null
+  payable_days: number | null
   gross_salary: number | null
-  base_salary: number | null
-  deduction: number | null
+  overtime_amount: number | null
+  total_deduction: number | null
   net_salary: number | null
 }
 
@@ -49,10 +49,10 @@ export type PayRollSumAggregateOutputType = {
   present_days: number | null
   paid_leave_days: number | null
   lop_days: number | null
-  payble_days: number | null
+  payable_days: number | null
   gross_salary: number | null
-  base_salary: number | null
-  deduction: number | null
+  overtime_amount: number | null
+  total_deduction: number | null
   net_salary: number | null
 }
 
@@ -64,11 +64,12 @@ export type PayRollMinAggregateOutputType = {
   present_days: number | null
   paid_leave_days: number | null
   lop_days: number | null
-  payble_days: number | null
+  payable_days: number | null
   gross_salary: number | null
-  base_salary: number | null
-  deduction: number | null
+  overtime_amount: number | null
+  total_deduction: number | null
   net_salary: number | null
+  status: $Enums.PayrollStatus | null
   createdAt: Date | null
 }
 
@@ -80,11 +81,12 @@ export type PayRollMaxAggregateOutputType = {
   present_days: number | null
   paid_leave_days: number | null
   lop_days: number | null
-  payble_days: number | null
+  payable_days: number | null
   gross_salary: number | null
-  base_salary: number | null
-  deduction: number | null
+  overtime_amount: number | null
+  total_deduction: number | null
   net_salary: number | null
+  status: $Enums.PayrollStatus | null
   createdAt: Date | null
 }
 
@@ -96,11 +98,12 @@ export type PayRollCountAggregateOutputType = {
   present_days: number
   paid_leave_days: number
   lop_days: number
-  payble_days: number
+  payable_days: number
   gross_salary: number
-  base_salary: number
-  deduction: number
+  overtime_amount: number
+  total_deduction: number
   net_salary: number
+  status: number
   createdAt: number
   _all: number
 }
@@ -114,10 +117,10 @@ export type PayRollAvgAggregateInputType = {
   present_days?: true
   paid_leave_days?: true
   lop_days?: true
-  payble_days?: true
+  payable_days?: true
   gross_salary?: true
-  base_salary?: true
-  deduction?: true
+  overtime_amount?: true
+  total_deduction?: true
   net_salary?: true
 }
 
@@ -129,10 +132,10 @@ export type PayRollSumAggregateInputType = {
   present_days?: true
   paid_leave_days?: true
   lop_days?: true
-  payble_days?: true
+  payable_days?: true
   gross_salary?: true
-  base_salary?: true
-  deduction?: true
+  overtime_amount?: true
+  total_deduction?: true
   net_salary?: true
 }
 
@@ -144,11 +147,12 @@ export type PayRollMinAggregateInputType = {
   present_days?: true
   paid_leave_days?: true
   lop_days?: true
-  payble_days?: true
+  payable_days?: true
   gross_salary?: true
-  base_salary?: true
-  deduction?: true
+  overtime_amount?: true
+  total_deduction?: true
   net_salary?: true
+  status?: true
   createdAt?: true
 }
 
@@ -160,11 +164,12 @@ export type PayRollMaxAggregateInputType = {
   present_days?: true
   paid_leave_days?: true
   lop_days?: true
-  payble_days?: true
+  payable_days?: true
   gross_salary?: true
-  base_salary?: true
-  deduction?: true
+  overtime_amount?: true
+  total_deduction?: true
   net_salary?: true
+  status?: true
   createdAt?: true
 }
 
@@ -176,11 +181,12 @@ export type PayRollCountAggregateInputType = {
   present_days?: true
   paid_leave_days?: true
   lop_days?: true
-  payble_days?: true
+  payable_days?: true
   gross_salary?: true
-  base_salary?: true
-  deduction?: true
+  overtime_amount?: true
+  total_deduction?: true
   net_salary?: true
+  status?: true
   createdAt?: true
   _all?: true
 }
@@ -279,11 +285,12 @@ export type PayRollGroupByOutputType = {
   present_days: number
   paid_leave_days: number
   lop_days: number
-  payble_days: number
+  payable_days: number
   gross_salary: number
-  base_salary: number
-  deduction: number
+  overtime_amount: number
+  total_deduction: number
   net_salary: number
+  status: $Enums.PayrollStatus
   createdAt: Date
   _count: PayRollCountAggregateOutputType | null
   _avg: PayRollAvgAggregateOutputType | null
@@ -318,14 +325,16 @@ export type PayRollWhereInput = {
   present_days?: Prisma.IntFilter<"PayRoll"> | number
   paid_leave_days?: Prisma.IntFilter<"PayRoll"> | number
   lop_days?: Prisma.IntFilter<"PayRoll"> | number
-  payble_days?: Prisma.IntFilter<"PayRoll"> | number
+  payable_days?: Prisma.IntFilter<"PayRoll"> | number
   gross_salary?: Prisma.FloatFilter<"PayRoll"> | number
-  base_salary?: Prisma.FloatFilter<"PayRoll"> | number
-  deduction?: Prisma.FloatFilter<"PayRoll"> | number
+  overtime_amount?: Prisma.FloatFilter<"PayRoll"> | number
+  total_deduction?: Prisma.FloatFilter<"PayRoll"> | number
   net_salary?: Prisma.FloatFilter<"PayRoll"> | number
+  status?: Prisma.EnumPayrollStatusFilter<"PayRoll"> | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFilter<"PayRoll"> | Date | string
   payrollRun?: Prisma.XOR<Prisma.PayRollRunScalarRelationFilter, Prisma.PayRollRunWhereInput>
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
+  payrollSnapComponents?: Prisma.PayrollSnapComponentListRelationFilter
 }
 
 export type PayRollOrderByWithRelationInput = {
@@ -336,18 +345,21 @@ export type PayRollOrderByWithRelationInput = {
   present_days?: Prisma.SortOrder
   paid_leave_days?: Prisma.SortOrder
   lop_days?: Prisma.SortOrder
-  payble_days?: Prisma.SortOrder
+  payable_days?: Prisma.SortOrder
   gross_salary?: Prisma.SortOrder
-  base_salary?: Prisma.SortOrder
-  deduction?: Prisma.SortOrder
+  overtime_amount?: Prisma.SortOrder
+  total_deduction?: Prisma.SortOrder
   net_salary?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   payrollRun?: Prisma.PayRollRunOrderByWithRelationInput
   employee?: Prisma.EmployeeOrderByWithRelationInput
+  payrollSnapComponents?: Prisma.PayrollSnapComponentOrderByRelationAggregateInput
 }
 
 export type PayRollWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  payroll_run_id_employeeId?: Prisma.PayRollPayroll_run_idEmployeeIdCompoundUniqueInput
   AND?: Prisma.PayRollWhereInput | Prisma.PayRollWhereInput[]
   OR?: Prisma.PayRollWhereInput[]
   NOT?: Prisma.PayRollWhereInput | Prisma.PayRollWhereInput[]
@@ -357,15 +369,17 @@ export type PayRollWhereUniqueInput = Prisma.AtLeast<{
   present_days?: Prisma.IntFilter<"PayRoll"> | number
   paid_leave_days?: Prisma.IntFilter<"PayRoll"> | number
   lop_days?: Prisma.IntFilter<"PayRoll"> | number
-  payble_days?: Prisma.IntFilter<"PayRoll"> | number
+  payable_days?: Prisma.IntFilter<"PayRoll"> | number
   gross_salary?: Prisma.FloatFilter<"PayRoll"> | number
-  base_salary?: Prisma.FloatFilter<"PayRoll"> | number
-  deduction?: Prisma.FloatFilter<"PayRoll"> | number
+  overtime_amount?: Prisma.FloatFilter<"PayRoll"> | number
+  total_deduction?: Prisma.FloatFilter<"PayRoll"> | number
   net_salary?: Prisma.FloatFilter<"PayRoll"> | number
+  status?: Prisma.EnumPayrollStatusFilter<"PayRoll"> | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFilter<"PayRoll"> | Date | string
   payrollRun?: Prisma.XOR<Prisma.PayRollRunScalarRelationFilter, Prisma.PayRollRunWhereInput>
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
-}, "id">
+  payrollSnapComponents?: Prisma.PayrollSnapComponentListRelationFilter
+}, "id" | "payroll_run_id_employeeId">
 
 export type PayRollOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -375,11 +389,12 @@ export type PayRollOrderByWithAggregationInput = {
   present_days?: Prisma.SortOrder
   paid_leave_days?: Prisma.SortOrder
   lop_days?: Prisma.SortOrder
-  payble_days?: Prisma.SortOrder
+  payable_days?: Prisma.SortOrder
   gross_salary?: Prisma.SortOrder
-  base_salary?: Prisma.SortOrder
-  deduction?: Prisma.SortOrder
+  overtime_amount?: Prisma.SortOrder
+  total_deduction?: Prisma.SortOrder
   net_salary?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.PayRollCountOrderByAggregateInput
   _avg?: Prisma.PayRollAvgOrderByAggregateInput
@@ -399,11 +414,12 @@ export type PayRollScalarWhereWithAggregatesInput = {
   present_days?: Prisma.IntWithAggregatesFilter<"PayRoll"> | number
   paid_leave_days?: Prisma.IntWithAggregatesFilter<"PayRoll"> | number
   lop_days?: Prisma.IntWithAggregatesFilter<"PayRoll"> | number
-  payble_days?: Prisma.IntWithAggregatesFilter<"PayRoll"> | number
+  payable_days?: Prisma.IntWithAggregatesFilter<"PayRoll"> | number
   gross_salary?: Prisma.FloatWithAggregatesFilter<"PayRoll"> | number
-  base_salary?: Prisma.FloatWithAggregatesFilter<"PayRoll"> | number
-  deduction?: Prisma.FloatWithAggregatesFilter<"PayRoll"> | number
+  overtime_amount?: Prisma.FloatWithAggregatesFilter<"PayRoll"> | number
+  total_deduction?: Prisma.FloatWithAggregatesFilter<"PayRoll"> | number
   net_salary?: Prisma.FloatWithAggregatesFilter<"PayRoll"> | number
+  status?: Prisma.EnumPayrollStatusWithAggregatesFilter<"PayRoll"> | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"PayRoll"> | Date | string
 }
 
@@ -412,14 +428,16 @@ export type PayRollCreateInput = {
   present_days: number
   paid_leave_days: number
   lop_days: number
-  payble_days: number
+  payable_days: number
   gross_salary: number
-  base_salary: number
-  deduction: number
+  overtime_amount?: number
+  total_deduction: number
   net_salary: number
+  status?: $Enums.PayrollStatus
   createdAt?: Date | string
   payrollRun: Prisma.PayRollRunCreateNestedOneWithoutPayrollsInput
   employee: Prisma.EmployeeCreateNestedOneWithoutPayRollsInput
+  payrollSnapComponents?: Prisma.PayrollSnapComponentCreateNestedManyWithoutPayrollInput
 }
 
 export type PayRollUncheckedCreateInput = {
@@ -430,12 +448,14 @@ export type PayRollUncheckedCreateInput = {
   present_days: number
   paid_leave_days: number
   lop_days: number
-  payble_days: number
+  payable_days: number
   gross_salary: number
-  base_salary: number
-  deduction: number
+  overtime_amount?: number
+  total_deduction: number
   net_salary: number
+  status?: $Enums.PayrollStatus
   createdAt?: Date | string
+  payrollSnapComponents?: Prisma.PayrollSnapComponentUncheckedCreateNestedManyWithoutPayrollInput
 }
 
 export type PayRollUpdateInput = {
@@ -443,14 +463,16 @@ export type PayRollUpdateInput = {
   present_days?: Prisma.IntFieldUpdateOperationsInput | number
   paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
   lop_days?: Prisma.IntFieldUpdateOperationsInput | number
-  payble_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
-  base_salary?: Prisma.FloatFieldUpdateOperationsInput | number
-  deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
   net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payrollRun?: Prisma.PayRollRunUpdateOneRequiredWithoutPayrollsNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutPayRollsNestedInput
+  payrollSnapComponents?: Prisma.PayrollSnapComponentUpdateManyWithoutPayrollNestedInput
 }
 
 export type PayRollUncheckedUpdateInput = {
@@ -461,12 +483,14 @@ export type PayRollUncheckedUpdateInput = {
   present_days?: Prisma.IntFieldUpdateOperationsInput | number
   paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
   lop_days?: Prisma.IntFieldUpdateOperationsInput | number
-  payble_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
-  base_salary?: Prisma.FloatFieldUpdateOperationsInput | number
-  deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
   net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  payrollSnapComponents?: Prisma.PayrollSnapComponentUncheckedUpdateManyWithoutPayrollNestedInput
 }
 
 export type PayRollCreateManyInput = {
@@ -477,11 +501,12 @@ export type PayRollCreateManyInput = {
   present_days: number
   paid_leave_days: number
   lop_days: number
-  payble_days: number
+  payable_days: number
   gross_salary: number
-  base_salary: number
-  deduction: number
+  overtime_amount?: number
+  total_deduction: number
   net_salary: number
+  status?: $Enums.PayrollStatus
   createdAt?: Date | string
 }
 
@@ -490,11 +515,12 @@ export type PayRollUpdateManyMutationInput = {
   present_days?: Prisma.IntFieldUpdateOperationsInput | number
   paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
   lop_days?: Prisma.IntFieldUpdateOperationsInput | number
-  payble_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
-  base_salary?: Prisma.FloatFieldUpdateOperationsInput | number
-  deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
   net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -506,11 +532,12 @@ export type PayRollUncheckedUpdateManyInput = {
   present_days?: Prisma.IntFieldUpdateOperationsInput | number
   paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
   lop_days?: Prisma.IntFieldUpdateOperationsInput | number
-  payble_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
-  base_salary?: Prisma.FloatFieldUpdateOperationsInput | number
-  deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
   net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -524,6 +551,11 @@ export type PayRollOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type PayRollPayroll_run_idEmployeeIdCompoundUniqueInput = {
+  payroll_run_id: number
+  employeeId: number
+}
+
 export type PayRollCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   payroll_run_id?: Prisma.SortOrder
@@ -532,11 +564,12 @@ export type PayRollCountOrderByAggregateInput = {
   present_days?: Prisma.SortOrder
   paid_leave_days?: Prisma.SortOrder
   lop_days?: Prisma.SortOrder
-  payble_days?: Prisma.SortOrder
+  payable_days?: Prisma.SortOrder
   gross_salary?: Prisma.SortOrder
-  base_salary?: Prisma.SortOrder
-  deduction?: Prisma.SortOrder
+  overtime_amount?: Prisma.SortOrder
+  total_deduction?: Prisma.SortOrder
   net_salary?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -548,10 +581,10 @@ export type PayRollAvgOrderByAggregateInput = {
   present_days?: Prisma.SortOrder
   paid_leave_days?: Prisma.SortOrder
   lop_days?: Prisma.SortOrder
-  payble_days?: Prisma.SortOrder
+  payable_days?: Prisma.SortOrder
   gross_salary?: Prisma.SortOrder
-  base_salary?: Prisma.SortOrder
-  deduction?: Prisma.SortOrder
+  overtime_amount?: Prisma.SortOrder
+  total_deduction?: Prisma.SortOrder
   net_salary?: Prisma.SortOrder
 }
 
@@ -563,11 +596,12 @@ export type PayRollMaxOrderByAggregateInput = {
   present_days?: Prisma.SortOrder
   paid_leave_days?: Prisma.SortOrder
   lop_days?: Prisma.SortOrder
-  payble_days?: Prisma.SortOrder
+  payable_days?: Prisma.SortOrder
   gross_salary?: Prisma.SortOrder
-  base_salary?: Prisma.SortOrder
-  deduction?: Prisma.SortOrder
+  overtime_amount?: Prisma.SortOrder
+  total_deduction?: Prisma.SortOrder
   net_salary?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -579,11 +613,12 @@ export type PayRollMinOrderByAggregateInput = {
   present_days?: Prisma.SortOrder
   paid_leave_days?: Prisma.SortOrder
   lop_days?: Prisma.SortOrder
-  payble_days?: Prisma.SortOrder
+  payable_days?: Prisma.SortOrder
   gross_salary?: Prisma.SortOrder
-  base_salary?: Prisma.SortOrder
-  deduction?: Prisma.SortOrder
+  overtime_amount?: Prisma.SortOrder
+  total_deduction?: Prisma.SortOrder
   net_salary?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -595,11 +630,16 @@ export type PayRollSumOrderByAggregateInput = {
   present_days?: Prisma.SortOrder
   paid_leave_days?: Prisma.SortOrder
   lop_days?: Prisma.SortOrder
-  payble_days?: Prisma.SortOrder
+  payable_days?: Prisma.SortOrder
   gross_salary?: Prisma.SortOrder
-  base_salary?: Prisma.SortOrder
-  deduction?: Prisma.SortOrder
+  overtime_amount?: Prisma.SortOrder
+  total_deduction?: Prisma.SortOrder
   net_salary?: Prisma.SortOrder
+}
+
+export type PayRollScalarRelationFilter = {
+  is?: Prisma.PayRollWhereInput
+  isNot?: Prisma.PayRollWhereInput
 }
 
 export type PayRollCreateNestedManyWithoutEmployeeInput = {
@@ -642,6 +682,24 @@ export type PayRollUncheckedUpdateManyWithoutEmployeeNestedInput = {
   update?: Prisma.PayRollUpdateWithWhereUniqueWithoutEmployeeInput | Prisma.PayRollUpdateWithWhereUniqueWithoutEmployeeInput[]
   updateMany?: Prisma.PayRollUpdateManyWithWhereWithoutEmployeeInput | Prisma.PayRollUpdateManyWithWhereWithoutEmployeeInput[]
   deleteMany?: Prisma.PayRollScalarWhereInput | Prisma.PayRollScalarWhereInput[]
+}
+
+export type EnumPayrollStatusFieldUpdateOperationsInput = {
+  set?: $Enums.PayrollStatus
+}
+
+export type PayRollCreateNestedOneWithoutPayrollSnapComponentsInput = {
+  create?: Prisma.XOR<Prisma.PayRollCreateWithoutPayrollSnapComponentsInput, Prisma.PayRollUncheckedCreateWithoutPayrollSnapComponentsInput>
+  connectOrCreate?: Prisma.PayRollCreateOrConnectWithoutPayrollSnapComponentsInput
+  connect?: Prisma.PayRollWhereUniqueInput
+}
+
+export type PayRollUpdateOneRequiredWithoutPayrollSnapComponentsNestedInput = {
+  create?: Prisma.XOR<Prisma.PayRollCreateWithoutPayrollSnapComponentsInput, Prisma.PayRollUncheckedCreateWithoutPayrollSnapComponentsInput>
+  connectOrCreate?: Prisma.PayRollCreateOrConnectWithoutPayrollSnapComponentsInput
+  upsert?: Prisma.PayRollUpsertWithoutPayrollSnapComponentsInput
+  connect?: Prisma.PayRollWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PayRollUpdateToOneWithWhereWithoutPayrollSnapComponentsInput, Prisma.PayRollUpdateWithoutPayrollSnapComponentsInput>, Prisma.PayRollUncheckedUpdateWithoutPayrollSnapComponentsInput>
 }
 
 export type PayRollCreateNestedManyWithoutPayrollRunInput = {
@@ -691,13 +749,15 @@ export type PayRollCreateWithoutEmployeeInput = {
   present_days: number
   paid_leave_days: number
   lop_days: number
-  payble_days: number
+  payable_days: number
   gross_salary: number
-  base_salary: number
-  deduction: number
+  overtime_amount?: number
+  total_deduction: number
   net_salary: number
+  status?: $Enums.PayrollStatus
   createdAt?: Date | string
   payrollRun: Prisma.PayRollRunCreateNestedOneWithoutPayrollsInput
+  payrollSnapComponents?: Prisma.PayrollSnapComponentCreateNestedManyWithoutPayrollInput
 }
 
 export type PayRollUncheckedCreateWithoutEmployeeInput = {
@@ -707,12 +767,14 @@ export type PayRollUncheckedCreateWithoutEmployeeInput = {
   present_days: number
   paid_leave_days: number
   lop_days: number
-  payble_days: number
+  payable_days: number
   gross_salary: number
-  base_salary: number
-  deduction: number
+  overtime_amount?: number
+  total_deduction: number
   net_salary: number
+  status?: $Enums.PayrollStatus
   createdAt?: Date | string
+  payrollSnapComponents?: Prisma.PayrollSnapComponentUncheckedCreateNestedManyWithoutPayrollInput
 }
 
 export type PayRollCreateOrConnectWithoutEmployeeInput = {
@@ -752,12 +814,95 @@ export type PayRollScalarWhereInput = {
   present_days?: Prisma.IntFilter<"PayRoll"> | number
   paid_leave_days?: Prisma.IntFilter<"PayRoll"> | number
   lop_days?: Prisma.IntFilter<"PayRoll"> | number
-  payble_days?: Prisma.IntFilter<"PayRoll"> | number
+  payable_days?: Prisma.IntFilter<"PayRoll"> | number
   gross_salary?: Prisma.FloatFilter<"PayRoll"> | number
-  base_salary?: Prisma.FloatFilter<"PayRoll"> | number
-  deduction?: Prisma.FloatFilter<"PayRoll"> | number
+  overtime_amount?: Prisma.FloatFilter<"PayRoll"> | number
+  total_deduction?: Prisma.FloatFilter<"PayRoll"> | number
   net_salary?: Prisma.FloatFilter<"PayRoll"> | number
+  status?: Prisma.EnumPayrollStatusFilter<"PayRoll"> | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFilter<"PayRoll"> | Date | string
+}
+
+export type PayRollCreateWithoutPayrollSnapComponentsInput = {
+  total_days: number
+  present_days: number
+  paid_leave_days: number
+  lop_days: number
+  payable_days: number
+  gross_salary: number
+  overtime_amount?: number
+  total_deduction: number
+  net_salary: number
+  status?: $Enums.PayrollStatus
+  createdAt?: Date | string
+  payrollRun: Prisma.PayRollRunCreateNestedOneWithoutPayrollsInput
+  employee: Prisma.EmployeeCreateNestedOneWithoutPayRollsInput
+}
+
+export type PayRollUncheckedCreateWithoutPayrollSnapComponentsInput = {
+  id?: number
+  payroll_run_id: number
+  employeeId: number
+  total_days: number
+  present_days: number
+  paid_leave_days: number
+  lop_days: number
+  payable_days: number
+  gross_salary: number
+  overtime_amount?: number
+  total_deduction: number
+  net_salary: number
+  status?: $Enums.PayrollStatus
+  createdAt?: Date | string
+}
+
+export type PayRollCreateOrConnectWithoutPayrollSnapComponentsInput = {
+  where: Prisma.PayRollWhereUniqueInput
+  create: Prisma.XOR<Prisma.PayRollCreateWithoutPayrollSnapComponentsInput, Prisma.PayRollUncheckedCreateWithoutPayrollSnapComponentsInput>
+}
+
+export type PayRollUpsertWithoutPayrollSnapComponentsInput = {
+  update: Prisma.XOR<Prisma.PayRollUpdateWithoutPayrollSnapComponentsInput, Prisma.PayRollUncheckedUpdateWithoutPayrollSnapComponentsInput>
+  create: Prisma.XOR<Prisma.PayRollCreateWithoutPayrollSnapComponentsInput, Prisma.PayRollUncheckedCreateWithoutPayrollSnapComponentsInput>
+  where?: Prisma.PayRollWhereInput
+}
+
+export type PayRollUpdateToOneWithWhereWithoutPayrollSnapComponentsInput = {
+  where?: Prisma.PayRollWhereInput
+  data: Prisma.XOR<Prisma.PayRollUpdateWithoutPayrollSnapComponentsInput, Prisma.PayRollUncheckedUpdateWithoutPayrollSnapComponentsInput>
+}
+
+export type PayRollUpdateWithoutPayrollSnapComponentsInput = {
+  total_days?: Prisma.IntFieldUpdateOperationsInput | number
+  present_days?: Prisma.IntFieldUpdateOperationsInput | number
+  paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
+  lop_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
+  gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
+  overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  payrollRun?: Prisma.PayRollRunUpdateOneRequiredWithoutPayrollsNestedInput
+  employee?: Prisma.EmployeeUpdateOneRequiredWithoutPayRollsNestedInput
+}
+
+export type PayRollUncheckedUpdateWithoutPayrollSnapComponentsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  payroll_run_id?: Prisma.IntFieldUpdateOperationsInput | number
+  employeeId?: Prisma.IntFieldUpdateOperationsInput | number
+  total_days?: Prisma.IntFieldUpdateOperationsInput | number
+  present_days?: Prisma.IntFieldUpdateOperationsInput | number
+  paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
+  lop_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
+  gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
+  overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PayRollCreateWithoutPayrollRunInput = {
@@ -765,13 +910,15 @@ export type PayRollCreateWithoutPayrollRunInput = {
   present_days: number
   paid_leave_days: number
   lop_days: number
-  payble_days: number
+  payable_days: number
   gross_salary: number
-  base_salary: number
-  deduction: number
+  overtime_amount?: number
+  total_deduction: number
   net_salary: number
+  status?: $Enums.PayrollStatus
   createdAt?: Date | string
   employee: Prisma.EmployeeCreateNestedOneWithoutPayRollsInput
+  payrollSnapComponents?: Prisma.PayrollSnapComponentCreateNestedManyWithoutPayrollInput
 }
 
 export type PayRollUncheckedCreateWithoutPayrollRunInput = {
@@ -781,12 +928,14 @@ export type PayRollUncheckedCreateWithoutPayrollRunInput = {
   present_days: number
   paid_leave_days: number
   lop_days: number
-  payble_days: number
+  payable_days: number
   gross_salary: number
-  base_salary: number
-  deduction: number
+  overtime_amount?: number
+  total_deduction: number
   net_salary: number
+  status?: $Enums.PayrollStatus
   createdAt?: Date | string
+  payrollSnapComponents?: Prisma.PayrollSnapComponentUncheckedCreateNestedManyWithoutPayrollInput
 }
 
 export type PayRollCreateOrConnectWithoutPayrollRunInput = {
@@ -822,11 +971,12 @@ export type PayRollCreateManyEmployeeInput = {
   present_days: number
   paid_leave_days: number
   lop_days: number
-  payble_days: number
+  payable_days: number
   gross_salary: number
-  base_salary: number
-  deduction: number
+  overtime_amount?: number
+  total_deduction: number
   net_salary: number
+  status?: $Enums.PayrollStatus
   createdAt?: Date | string
 }
 
@@ -835,13 +985,15 @@ export type PayRollUpdateWithoutEmployeeInput = {
   present_days?: Prisma.IntFieldUpdateOperationsInput | number
   paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
   lop_days?: Prisma.IntFieldUpdateOperationsInput | number
-  payble_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
-  base_salary?: Prisma.FloatFieldUpdateOperationsInput | number
-  deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
   net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payrollRun?: Prisma.PayRollRunUpdateOneRequiredWithoutPayrollsNestedInput
+  payrollSnapComponents?: Prisma.PayrollSnapComponentUpdateManyWithoutPayrollNestedInput
 }
 
 export type PayRollUncheckedUpdateWithoutEmployeeInput = {
@@ -851,12 +1003,14 @@ export type PayRollUncheckedUpdateWithoutEmployeeInput = {
   present_days?: Prisma.IntFieldUpdateOperationsInput | number
   paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
   lop_days?: Prisma.IntFieldUpdateOperationsInput | number
-  payble_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
-  base_salary?: Prisma.FloatFieldUpdateOperationsInput | number
-  deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
   net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  payrollSnapComponents?: Prisma.PayrollSnapComponentUncheckedUpdateManyWithoutPayrollNestedInput
 }
 
 export type PayRollUncheckedUpdateManyWithoutEmployeeInput = {
@@ -866,11 +1020,12 @@ export type PayRollUncheckedUpdateManyWithoutEmployeeInput = {
   present_days?: Prisma.IntFieldUpdateOperationsInput | number
   paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
   lop_days?: Prisma.IntFieldUpdateOperationsInput | number
-  payble_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
-  base_salary?: Prisma.FloatFieldUpdateOperationsInput | number
-  deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
   net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -881,11 +1036,12 @@ export type PayRollCreateManyPayrollRunInput = {
   present_days: number
   paid_leave_days: number
   lop_days: number
-  payble_days: number
+  payable_days: number
   gross_salary: number
-  base_salary: number
-  deduction: number
+  overtime_amount?: number
+  total_deduction: number
   net_salary: number
+  status?: $Enums.PayrollStatus
   createdAt?: Date | string
 }
 
@@ -894,13 +1050,15 @@ export type PayRollUpdateWithoutPayrollRunInput = {
   present_days?: Prisma.IntFieldUpdateOperationsInput | number
   paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
   lop_days?: Prisma.IntFieldUpdateOperationsInput | number
-  payble_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
-  base_salary?: Prisma.FloatFieldUpdateOperationsInput | number
-  deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
   net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutPayRollsNestedInput
+  payrollSnapComponents?: Prisma.PayrollSnapComponentUpdateManyWithoutPayrollNestedInput
 }
 
 export type PayRollUncheckedUpdateWithoutPayrollRunInput = {
@@ -910,12 +1068,14 @@ export type PayRollUncheckedUpdateWithoutPayrollRunInput = {
   present_days?: Prisma.IntFieldUpdateOperationsInput | number
   paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
   lop_days?: Prisma.IntFieldUpdateOperationsInput | number
-  payble_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
-  base_salary?: Prisma.FloatFieldUpdateOperationsInput | number
-  deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
   net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  payrollSnapComponents?: Prisma.PayrollSnapComponentUncheckedUpdateManyWithoutPayrollNestedInput
 }
 
 export type PayRollUncheckedUpdateManyWithoutPayrollRunInput = {
@@ -925,14 +1085,44 @@ export type PayRollUncheckedUpdateManyWithoutPayrollRunInput = {
   present_days?: Prisma.IntFieldUpdateOperationsInput | number
   paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
   lop_days?: Prisma.IntFieldUpdateOperationsInput | number
-  payble_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
-  base_salary?: Prisma.FloatFieldUpdateOperationsInput | number
-  deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
   net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+
+/**
+ * Count Type PayRollCountOutputType
+ */
+
+export type PayRollCountOutputType = {
+  payrollSnapComponents: number
+}
+
+export type PayRollCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  payrollSnapComponents?: boolean | PayRollCountOutputTypeCountPayrollSnapComponentsArgs
+}
+
+/**
+ * PayRollCountOutputType without action
+ */
+export type PayRollCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PayRollCountOutputType
+   */
+  select?: Prisma.PayRollCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * PayRollCountOutputType without action
+ */
+export type PayRollCountOutputTypeCountPayrollSnapComponentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PayrollSnapComponentWhereInput
+}
 
 
 export type PayRollSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -943,14 +1133,17 @@ export type PayRollSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   present_days?: boolean
   paid_leave_days?: boolean
   lop_days?: boolean
-  payble_days?: boolean
+  payable_days?: boolean
   gross_salary?: boolean
-  base_salary?: boolean
-  deduction?: boolean
+  overtime_amount?: boolean
+  total_deduction?: boolean
   net_salary?: boolean
+  status?: boolean
   createdAt?: boolean
   payrollRun?: boolean | Prisma.PayRollRunDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  payrollSnapComponents?: boolean | Prisma.PayRoll$payrollSnapComponentsArgs<ExtArgs>
+  _count?: boolean | Prisma.PayRollCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["payRoll"]>
 
 export type PayRollSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -961,11 +1154,12 @@ export type PayRollSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   present_days?: boolean
   paid_leave_days?: boolean
   lop_days?: boolean
-  payble_days?: boolean
+  payable_days?: boolean
   gross_salary?: boolean
-  base_salary?: boolean
-  deduction?: boolean
+  overtime_amount?: boolean
+  total_deduction?: boolean
   net_salary?: boolean
+  status?: boolean
   createdAt?: boolean
   payrollRun?: boolean | Prisma.PayRollRunDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
@@ -979,11 +1173,12 @@ export type PayRollSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   present_days?: boolean
   paid_leave_days?: boolean
   lop_days?: boolean
-  payble_days?: boolean
+  payable_days?: boolean
   gross_salary?: boolean
-  base_salary?: boolean
-  deduction?: boolean
+  overtime_amount?: boolean
+  total_deduction?: boolean
   net_salary?: boolean
+  status?: boolean
   createdAt?: boolean
   payrollRun?: boolean | Prisma.PayRollRunDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
@@ -997,18 +1192,21 @@ export type PayRollSelectScalar = {
   present_days?: boolean
   paid_leave_days?: boolean
   lop_days?: boolean
-  payble_days?: boolean
+  payable_days?: boolean
   gross_salary?: boolean
-  base_salary?: boolean
-  deduction?: boolean
+  overtime_amount?: boolean
+  total_deduction?: boolean
   net_salary?: boolean
+  status?: boolean
   createdAt?: boolean
 }
 
-export type PayRollOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "payroll_run_id" | "employeeId" | "total_days" | "present_days" | "paid_leave_days" | "lop_days" | "payble_days" | "gross_salary" | "base_salary" | "deduction" | "net_salary" | "createdAt", ExtArgs["result"]["payRoll"]>
+export type PayRollOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "payroll_run_id" | "employeeId" | "total_days" | "present_days" | "paid_leave_days" | "lop_days" | "payable_days" | "gross_salary" | "overtime_amount" | "total_deduction" | "net_salary" | "status" | "createdAt", ExtArgs["result"]["payRoll"]>
 export type PayRollInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   payrollRun?: boolean | Prisma.PayRollRunDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  payrollSnapComponents?: boolean | Prisma.PayRoll$payrollSnapComponentsArgs<ExtArgs>
+  _count?: boolean | Prisma.PayRollCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PayRollIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   payrollRun?: boolean | Prisma.PayRollRunDefaultArgs<ExtArgs>
@@ -1024,6 +1222,7 @@ export type $PayRollPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   objects: {
     payrollRun: Prisma.$PayRollRunPayload<ExtArgs>
     employee: Prisma.$EmployeePayload<ExtArgs>
+    payrollSnapComponents: Prisma.$PayrollSnapComponentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1033,11 +1232,12 @@ export type $PayRollPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     present_days: number
     paid_leave_days: number
     lop_days: number
-    payble_days: number
+    payable_days: number
     gross_salary: number
-    base_salary: number
-    deduction: number
+    overtime_amount: number
+    total_deduction: number
     net_salary: number
+    status: $Enums.PayrollStatus
     createdAt: Date
   }, ExtArgs["result"]["payRoll"]>
   composites: {}
@@ -1435,6 +1635,7 @@ export interface Prisma__PayRollClient<T, Null = never, ExtArgs extends runtime.
   readonly [Symbol.toStringTag]: "PrismaPromise"
   payrollRun<T extends Prisma.PayRollRunDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PayRollRunDefaultArgs<ExtArgs>>): Prisma.Prisma__PayRollRunClient<runtime.Types.Result.GetResult<Prisma.$PayRollRunPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   employee<T extends Prisma.EmployeeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EmployeeDefaultArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  payrollSnapComponents<T extends Prisma.PayRoll$payrollSnapComponentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PayRoll$payrollSnapComponentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PayrollSnapComponentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1471,11 +1672,12 @@ export interface PayRollFieldRefs {
   readonly present_days: Prisma.FieldRef<"PayRoll", 'Int'>
   readonly paid_leave_days: Prisma.FieldRef<"PayRoll", 'Int'>
   readonly lop_days: Prisma.FieldRef<"PayRoll", 'Int'>
-  readonly payble_days: Prisma.FieldRef<"PayRoll", 'Int'>
+  readonly payable_days: Prisma.FieldRef<"PayRoll", 'Int'>
   readonly gross_salary: Prisma.FieldRef<"PayRoll", 'Float'>
-  readonly base_salary: Prisma.FieldRef<"PayRoll", 'Float'>
-  readonly deduction: Prisma.FieldRef<"PayRoll", 'Float'>
+  readonly overtime_amount: Prisma.FieldRef<"PayRoll", 'Float'>
+  readonly total_deduction: Prisma.FieldRef<"PayRoll", 'Float'>
   readonly net_salary: Prisma.FieldRef<"PayRoll", 'Float'>
+  readonly status: Prisma.FieldRef<"PayRoll", 'PayrollStatus'>
   readonly createdAt: Prisma.FieldRef<"PayRoll", 'DateTime'>
 }
     
@@ -1875,6 +2077,30 @@ export type PayRollDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Limit how many PayRolls to delete.
    */
   limit?: number
+}
+
+/**
+ * PayRoll.payrollSnapComponents
+ */
+export type PayRoll$payrollSnapComponentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PayrollSnapComponent
+   */
+  select?: Prisma.PayrollSnapComponentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PayrollSnapComponent
+   */
+  omit?: Prisma.PayrollSnapComponentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PayrollSnapComponentInclude<ExtArgs> | null
+  where?: Prisma.PayrollSnapComponentWhereInput
+  orderBy?: Prisma.PayrollSnapComponentOrderByWithRelationInput | Prisma.PayrollSnapComponentOrderByWithRelationInput[]
+  cursor?: Prisma.PayrollSnapComponentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PayrollSnapComponentScalarFieldEnum | Prisma.PayrollSnapComponentScalarFieldEnum[]
 }
 
 /**

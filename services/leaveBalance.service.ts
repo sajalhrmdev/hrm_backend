@@ -146,3 +146,59 @@ export const allocateLeaveToAllEmployees = async (
     message: `Allocated ${total_allocated} days to ${employees.length} employees`,
   };
 };
+// ====================leave balance employye wise===============
+
+type GetBalanceInput = {
+  employeeId: number;
+  companyId: number;
+  year: number;
+};
+
+export const getEmployeeLeaveBalance = async (
+  input: GetBalanceInput
+) => {
+  const { employeeId, companyId, year } = input;
+
+  const balances =
+    await prisma.leaveBalance.findMany({
+      where: {
+        employeeId,
+        companyId,
+        year,
+      },
+
+      include: {
+        leaveType: {
+          select: {
+            id: true,
+            name: true,
+            code: true,
+            is_paid: true,
+          },
+        },
+      },
+
+      orderBy: {
+        leaveType: {
+          name: "asc",
+        },
+      },
+    });
+
+  // 🔥 calculate remaining
+  return balances.map((b) => ({
+    id: b.id,
+
+    total_allocated:
+      b.total_allocated,
+
+    used: b.used,
+
+    remaining:
+      b.total_allocated - b.used,
+
+    year: b.year,
+
+    leaveType: b.leaveType,
+  }));
+};

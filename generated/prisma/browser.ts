@@ -18,6 +18,11 @@ export { Prisma }
 export * as $Enums from './enums.js'
 export * from './enums.js';
 /**
+ * Model Company
+ * 
+ */
+export type Company = Prisma.CompanyModel
+/**
  * Model Department
  * 
  */
@@ -38,11 +43,6 @@ export type User = Prisma.UserModel
  */
 export type GlobalRole = Prisma.GlobalRoleModel
 /**
- * Model Company
- * 
- */
-export type Company = Prisma.CompanyModel
-/**
  * Model Role
  * 
  */
@@ -57,6 +57,21 @@ export type Membership = Prisma.MembershipModel
  * 
  */
 export type Employee = Prisma.EmployeeModel
+/**
+ * Model EmployeePersonalInfo
+ * 
+ */
+export type EmployeePersonalInfo = Prisma.EmployeePersonalInfoModel
+/**
+ * Model EmployeeAddress
+ * 
+ */
+export type EmployeeAddress = Prisma.EmployeeAddressModel
+/**
+ * Model EmployeeDocument
+ * 
+ */
+export type EmployeeDocument = Prisma.EmployeeDocumentModel
 /**
  * Model Attendance
  * 
@@ -83,15 +98,25 @@ export type CompanySetting = Prisma.CompanySettingModel
  */
 export type Shift = Prisma.ShiftModel
 /**
- * Model SalaryStracture
+ * Model SalaryComponent
  * 
  */
-export type SalaryStracture = Prisma.SalaryStractureModel
+export type SalaryComponent = Prisma.SalaryComponentModel
+/**
+ * Model EmployeeSalaryComponent
+ * 
+ */
+export type EmployeeSalaryComponent = Prisma.EmployeeSalaryComponentModel
 /**
  * Model PayRoll
  * 
  */
 export type PayRoll = Prisma.PayRollModel
+/**
+ * Model PayrollSnapComponent
+ * 
+ */
+export type PayrollSnapComponent = Prisma.PayrollSnapComponentModel
 /**
  * Model PayRollRun
  * 
@@ -112,3 +137,13 @@ export type LeaveBalance = Prisma.LeaveBalanceModel
  * 
  */
 export type LeaveApplication = Prisma.LeaveApplicationModel
+/**
+ * Model Holiday
+ * 
+ */
+export type Holiday = Prisma.HolidayModel
+/**
+ * Model WeeklyOffConfig
+ * 
+ */
+export type WeeklyOffConfig = Prisma.WeeklyOffConfigModel

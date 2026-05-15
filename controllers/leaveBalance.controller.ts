@@ -3,7 +3,9 @@ import {
   allocateLeaveBalance,
   allocateLeaveToAllEmployees,
   bulkAllocateLeaveBalance,
+  getEmployeeLeaveBalance,
 } from "../services/leaveBalance.service.js";
+import { getEmployeeFromRequest } from "../utils/getEmployeeFromRequest.js";
 
 interface AuthRequest extends Request {
   companyId?: number;
@@ -83,3 +85,40 @@ export const allocateAllEmployeesController = async (req: AuthRequest, res: Resp
     });
   }
 };
+
+// 4========================employee wise leave balance===============
+
+export const getMyLeaveBalanceController =
+  async (
+    req: Request,
+    res: Response
+  ) => {
+    try {
+      const employee =req.employee;
+      console.log(employee);
+      
+      if (!employee) throw new Error("Employee not found");
+
+      const year = Number(
+        req.query.year
+      ) || new Date().getFullYear();
+
+      const data =
+        await getEmployeeLeaveBalance({
+          employeeId: employee.id,
+          companyId:
+            employee.companyId,
+          year,
+        });
+
+      res.json({
+        success: true,
+        data,
+      });
+    } catch (err: any) {
+      res.status(400).json({
+        success: false,
+        message: err.message,
+      });
+    }
+  };

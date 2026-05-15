@@ -29,44 +29,83 @@ export type AggregateShift = {
 export type ShiftAvgAggregateOutputType = {
   id: number | null
   companyId: number | null
-  start_time: number | null
-  end_time: number | null
-  grace_minutes: number | null
+  breakMinutes: number | null
+  graceMinutes: number | null
+  lateAfterMinutes: number | null
+  halfDayAfterMinutes: number | null
+  overtimeAfterMinutes: number | null
+  minimumWorkMinutes: number | null
 }
 
 export type ShiftSumAggregateOutputType = {
   id: number | null
   companyId: number | null
-  start_time: number | null
-  end_time: number | null
-  grace_minutes: number | null
+  breakMinutes: number | null
+  graceMinutes: number | null
+  lateAfterMinutes: number | null
+  halfDayAfterMinutes: number | null
+  overtimeAfterMinutes: number | null
+  minimumWorkMinutes: number | null
 }
 
 export type ShiftMinAggregateOutputType = {
   id: number | null
   companyId: number | null
-  name: string | null
-  start_time: number | null
-  end_time: number | null
-  grace_minutes: number | null
+  title: string | null
+  code: string | null
+  description: string | null
+  startTime: string | null
+  endTime: string | null
+  breakMinutes: number | null
+  graceMinutes: number | null
+  lateAfterMinutes: number | null
+  halfDayAfterMinutes: number | null
+  overtimeAfterMinutes: number | null
+  minimumWorkMinutes: number | null
+  status: $Enums.ShiftStatus | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  deletedAt: Date | null
 }
 
 export type ShiftMaxAggregateOutputType = {
   id: number | null
   companyId: number | null
-  name: string | null
-  start_time: number | null
-  end_time: number | null
-  grace_minutes: number | null
+  title: string | null
+  code: string | null
+  description: string | null
+  startTime: string | null
+  endTime: string | null
+  breakMinutes: number | null
+  graceMinutes: number | null
+  lateAfterMinutes: number | null
+  halfDayAfterMinutes: number | null
+  overtimeAfterMinutes: number | null
+  minimumWorkMinutes: number | null
+  status: $Enums.ShiftStatus | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  deletedAt: Date | null
 }
 
 export type ShiftCountAggregateOutputType = {
   id: number
   companyId: number
-  name: number
-  start_time: number
-  end_time: number
-  grace_minutes: number
+  title: number
+  code: number
+  description: number
+  startTime: number
+  endTime: number
+  breakMinutes: number
+  graceMinutes: number
+  lateAfterMinutes: number
+  halfDayAfterMinutes: number
+  overtimeAfterMinutes: number
+  minimumWorkMinutes: number
+  status: number
+  createdAt: number
+  updatedAt: number
+  deletedAt: number
   _all: number
 }
 
@@ -74,44 +113,83 @@ export type ShiftCountAggregateOutputType = {
 export type ShiftAvgAggregateInputType = {
   id?: true
   companyId?: true
-  start_time?: true
-  end_time?: true
-  grace_minutes?: true
+  breakMinutes?: true
+  graceMinutes?: true
+  lateAfterMinutes?: true
+  halfDayAfterMinutes?: true
+  overtimeAfterMinutes?: true
+  minimumWorkMinutes?: true
 }
 
 export type ShiftSumAggregateInputType = {
   id?: true
   companyId?: true
-  start_time?: true
-  end_time?: true
-  grace_minutes?: true
+  breakMinutes?: true
+  graceMinutes?: true
+  lateAfterMinutes?: true
+  halfDayAfterMinutes?: true
+  overtimeAfterMinutes?: true
+  minimumWorkMinutes?: true
 }
 
 export type ShiftMinAggregateInputType = {
   id?: true
   companyId?: true
-  name?: true
-  start_time?: true
-  end_time?: true
-  grace_minutes?: true
+  title?: true
+  code?: true
+  description?: true
+  startTime?: true
+  endTime?: true
+  breakMinutes?: true
+  graceMinutes?: true
+  lateAfterMinutes?: true
+  halfDayAfterMinutes?: true
+  overtimeAfterMinutes?: true
+  minimumWorkMinutes?: true
+  status?: true
+  createdAt?: true
+  updatedAt?: true
+  deletedAt?: true
 }
 
 export type ShiftMaxAggregateInputType = {
   id?: true
   companyId?: true
-  name?: true
-  start_time?: true
-  end_time?: true
-  grace_minutes?: true
+  title?: true
+  code?: true
+  description?: true
+  startTime?: true
+  endTime?: true
+  breakMinutes?: true
+  graceMinutes?: true
+  lateAfterMinutes?: true
+  halfDayAfterMinutes?: true
+  overtimeAfterMinutes?: true
+  minimumWorkMinutes?: true
+  status?: true
+  createdAt?: true
+  updatedAt?: true
+  deletedAt?: true
 }
 
 export type ShiftCountAggregateInputType = {
   id?: true
   companyId?: true
-  name?: true
-  start_time?: true
-  end_time?: true
-  grace_minutes?: true
+  title?: true
+  code?: true
+  description?: true
+  startTime?: true
+  endTime?: true
+  breakMinutes?: true
+  graceMinutes?: true
+  lateAfterMinutes?: true
+  halfDayAfterMinutes?: true
+  overtimeAfterMinutes?: true
+  minimumWorkMinutes?: true
+  status?: true
+  createdAt?: true
+  updatedAt?: true
+  deletedAt?: true
   _all?: true
 }
 
@@ -204,10 +282,21 @@ export type ShiftGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type ShiftGroupByOutputType = {
   id: number
   companyId: number
-  name: string
-  start_time: number
-  end_time: number
-  grace_minutes: number
+  title: string
+  code: string | null
+  description: string | null
+  startTime: string
+  endTime: string
+  breakMinutes: number
+  graceMinutes: number
+  lateAfterMinutes: number
+  halfDayAfterMinutes: number | null
+  overtimeAfterMinutes: number
+  minimumWorkMinutes: number | null
+  status: $Enums.ShiftStatus
+  createdAt: Date
+  updatedAt: Date
+  deletedAt: Date | null
   _count: ShiftCountAggregateOutputType | null
   _avg: ShiftAvgAggregateOutputType | null
   _sum: ShiftSumAggregateOutputType | null
@@ -236,43 +325,91 @@ export type ShiftWhereInput = {
   NOT?: Prisma.ShiftWhereInput | Prisma.ShiftWhereInput[]
   id?: Prisma.IntFilter<"Shift"> | number
   companyId?: Prisma.IntFilter<"Shift"> | number
-  name?: Prisma.StringFilter<"Shift"> | string
-  start_time?: Prisma.IntFilter<"Shift"> | number
-  end_time?: Prisma.IntFilter<"Shift"> | number
-  grace_minutes?: Prisma.IntFilter<"Shift"> | number
+  title?: Prisma.StringFilter<"Shift"> | string
+  code?: Prisma.StringNullableFilter<"Shift"> | string | null
+  description?: Prisma.StringNullableFilter<"Shift"> | string | null
+  startTime?: Prisma.StringFilter<"Shift"> | string
+  endTime?: Prisma.StringFilter<"Shift"> | string
+  breakMinutes?: Prisma.IntFilter<"Shift"> | number
+  graceMinutes?: Prisma.IntFilter<"Shift"> | number
+  lateAfterMinutes?: Prisma.IntFilter<"Shift"> | number
+  halfDayAfterMinutes?: Prisma.IntNullableFilter<"Shift"> | number | null
+  overtimeAfterMinutes?: Prisma.IntFilter<"Shift"> | number
+  minimumWorkMinutes?: Prisma.IntNullableFilter<"Shift"> | number | null
+  status?: Prisma.EnumShiftStatusFilter<"Shift"> | $Enums.ShiftStatus
+  createdAt?: Prisma.DateTimeFilter<"Shift"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Shift"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"Shift"> | Date | string | null
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
+  employees?: Prisma.EmployeeListRelationFilter
 }
 
 export type ShiftOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  start_time?: Prisma.SortOrder
-  end_time?: Prisma.SortOrder
-  grace_minutes?: Prisma.SortOrder
+  title?: Prisma.SortOrder
+  code?: Prisma.SortOrderInput | Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  startTime?: Prisma.SortOrder
+  endTime?: Prisma.SortOrder
+  breakMinutes?: Prisma.SortOrder
+  graceMinutes?: Prisma.SortOrder
+  lateAfterMinutes?: Prisma.SortOrder
+  halfDayAfterMinutes?: Prisma.SortOrderInput | Prisma.SortOrder
+  overtimeAfterMinutes?: Prisma.SortOrder
+  minimumWorkMinutes?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   company?: Prisma.CompanyOrderByWithRelationInput
+  employees?: Prisma.EmployeeOrderByRelationAggregateInput
 }
 
 export type ShiftWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  companyId_title?: Prisma.ShiftCompanyIdTitleCompoundUniqueInput
   AND?: Prisma.ShiftWhereInput | Prisma.ShiftWhereInput[]
   OR?: Prisma.ShiftWhereInput[]
   NOT?: Prisma.ShiftWhereInput | Prisma.ShiftWhereInput[]
   companyId?: Prisma.IntFilter<"Shift"> | number
-  name?: Prisma.StringFilter<"Shift"> | string
-  start_time?: Prisma.IntFilter<"Shift"> | number
-  end_time?: Prisma.IntFilter<"Shift"> | number
-  grace_minutes?: Prisma.IntFilter<"Shift"> | number
+  title?: Prisma.StringFilter<"Shift"> | string
+  code?: Prisma.StringNullableFilter<"Shift"> | string | null
+  description?: Prisma.StringNullableFilter<"Shift"> | string | null
+  startTime?: Prisma.StringFilter<"Shift"> | string
+  endTime?: Prisma.StringFilter<"Shift"> | string
+  breakMinutes?: Prisma.IntFilter<"Shift"> | number
+  graceMinutes?: Prisma.IntFilter<"Shift"> | number
+  lateAfterMinutes?: Prisma.IntFilter<"Shift"> | number
+  halfDayAfterMinutes?: Prisma.IntNullableFilter<"Shift"> | number | null
+  overtimeAfterMinutes?: Prisma.IntFilter<"Shift"> | number
+  minimumWorkMinutes?: Prisma.IntNullableFilter<"Shift"> | number | null
+  status?: Prisma.EnumShiftStatusFilter<"Shift"> | $Enums.ShiftStatus
+  createdAt?: Prisma.DateTimeFilter<"Shift"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Shift"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"Shift"> | Date | string | null
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
-}, "id">
+  employees?: Prisma.EmployeeListRelationFilter
+}, "id" | "companyId_title">
 
 export type ShiftOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  start_time?: Prisma.SortOrder
-  end_time?: Prisma.SortOrder
-  grace_minutes?: Prisma.SortOrder
+  title?: Prisma.SortOrder
+  code?: Prisma.SortOrderInput | Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  startTime?: Prisma.SortOrder
+  endTime?: Prisma.SortOrder
+  breakMinutes?: Prisma.SortOrder
+  graceMinutes?: Prisma.SortOrder
+  lateAfterMinutes?: Prisma.SortOrder
+  halfDayAfterMinutes?: Prisma.SortOrderInput | Prisma.SortOrder
+  overtimeAfterMinutes?: Prisma.SortOrder
+  minimumWorkMinutes?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ShiftCountOrderByAggregateInput
   _avg?: Prisma.ShiftAvgOrderByAggregateInput
   _max?: Prisma.ShiftMaxOrderByAggregateInput
@@ -286,69 +423,161 @@ export type ShiftScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ShiftScalarWhereWithAggregatesInput | Prisma.ShiftScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Shift"> | number
   companyId?: Prisma.IntWithAggregatesFilter<"Shift"> | number
-  name?: Prisma.StringWithAggregatesFilter<"Shift"> | string
-  start_time?: Prisma.IntWithAggregatesFilter<"Shift"> | number
-  end_time?: Prisma.IntWithAggregatesFilter<"Shift"> | number
-  grace_minutes?: Prisma.IntWithAggregatesFilter<"Shift"> | number
+  title?: Prisma.StringWithAggregatesFilter<"Shift"> | string
+  code?: Prisma.StringNullableWithAggregatesFilter<"Shift"> | string | null
+  description?: Prisma.StringNullableWithAggregatesFilter<"Shift"> | string | null
+  startTime?: Prisma.StringWithAggregatesFilter<"Shift"> | string
+  endTime?: Prisma.StringWithAggregatesFilter<"Shift"> | string
+  breakMinutes?: Prisma.IntWithAggregatesFilter<"Shift"> | number
+  graceMinutes?: Prisma.IntWithAggregatesFilter<"Shift"> | number
+  lateAfterMinutes?: Prisma.IntWithAggregatesFilter<"Shift"> | number
+  halfDayAfterMinutes?: Prisma.IntNullableWithAggregatesFilter<"Shift"> | number | null
+  overtimeAfterMinutes?: Prisma.IntWithAggregatesFilter<"Shift"> | number
+  minimumWorkMinutes?: Prisma.IntNullableWithAggregatesFilter<"Shift"> | number | null
+  status?: Prisma.EnumShiftStatusWithAggregatesFilter<"Shift"> | $Enums.ShiftStatus
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Shift"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Shift"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Shift"> | Date | string | null
 }
 
 export type ShiftCreateInput = {
-  name: string
-  start_time: number
-  end_time: number
-  grace_minutes: number
+  title: string
+  code?: string | null
+  description?: string | null
+  startTime: string
+  endTime: string
+  breakMinutes?: number
+  graceMinutes?: number
+  lateAfterMinutes?: number
+  halfDayAfterMinutes?: number | null
+  overtimeAfterMinutes?: number
+  minimumWorkMinutes?: number | null
+  status?: $Enums.ShiftStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
   company: Prisma.CompanyCreateNestedOneWithoutShiftsInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutShiftInput
 }
 
 export type ShiftUncheckedCreateInput = {
   id?: number
   companyId: number
-  name: string
-  start_time: number
-  end_time: number
-  grace_minutes: number
+  title: string
+  code?: string | null
+  description?: string | null
+  startTime: string
+  endTime: string
+  breakMinutes?: number
+  graceMinutes?: number
+  lateAfterMinutes?: number
+  halfDayAfterMinutes?: number | null
+  overtimeAfterMinutes?: number
+  minimumWorkMinutes?: number | null
+  status?: $Enums.ShiftStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutShiftInput
 }
 
 export type ShiftUpdateInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  start_time?: Prisma.IntFieldUpdateOperationsInput | number
-  end_time?: Prisma.IntFieldUpdateOperationsInput | number
-  grace_minutes?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startTime?: Prisma.StringFieldUpdateOperationsInput | string
+  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  breakMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  graceMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  lateAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  halfDayAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  overtimeAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  minimumWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   company?: Prisma.CompanyUpdateOneRequiredWithoutShiftsNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutShiftNestedInput
 }
 
 export type ShiftUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   companyId?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  start_time?: Prisma.IntFieldUpdateOperationsInput | number
-  end_time?: Prisma.IntFieldUpdateOperationsInput | number
-  grace_minutes?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startTime?: Prisma.StringFieldUpdateOperationsInput | string
+  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  breakMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  graceMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  lateAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  halfDayAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  overtimeAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  minimumWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutShiftNestedInput
 }
 
 export type ShiftCreateManyInput = {
   id?: number
   companyId: number
-  name: string
-  start_time: number
-  end_time: number
-  grace_minutes: number
+  title: string
+  code?: string | null
+  description?: string | null
+  startTime: string
+  endTime: string
+  breakMinutes?: number
+  graceMinutes?: number
+  lateAfterMinutes?: number
+  halfDayAfterMinutes?: number | null
+  overtimeAfterMinutes?: number
+  minimumWorkMinutes?: number | null
+  status?: $Enums.ShiftStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
 }
 
 export type ShiftUpdateManyMutationInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  start_time?: Prisma.IntFieldUpdateOperationsInput | number
-  end_time?: Prisma.IntFieldUpdateOperationsInput | number
-  grace_minutes?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startTime?: Prisma.StringFieldUpdateOperationsInput | string
+  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  breakMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  graceMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  lateAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  halfDayAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  overtimeAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  minimumWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ShiftUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   companyId?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  start_time?: Prisma.IntFieldUpdateOperationsInput | number
-  end_time?: Prisma.IntFieldUpdateOperationsInput | number
-  grace_minutes?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startTime?: Prisma.StringFieldUpdateOperationsInput | string
+  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  breakMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  graceMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  lateAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  halfDayAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  overtimeAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  minimumWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ShiftListRelationFilter = {
@@ -361,47 +590,96 @@ export type ShiftOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type ShiftNullableScalarRelationFilter = {
+  is?: Prisma.ShiftWhereInput | null
+  isNot?: Prisma.ShiftWhereInput | null
+}
+
+export type ShiftCompanyIdTitleCompoundUniqueInput = {
+  companyId: number
+  title: string
+}
+
 export type ShiftCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  start_time?: Prisma.SortOrder
-  end_time?: Prisma.SortOrder
-  grace_minutes?: Prisma.SortOrder
+  title?: Prisma.SortOrder
+  code?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  startTime?: Prisma.SortOrder
+  endTime?: Prisma.SortOrder
+  breakMinutes?: Prisma.SortOrder
+  graceMinutes?: Prisma.SortOrder
+  lateAfterMinutes?: Prisma.SortOrder
+  halfDayAfterMinutes?: Prisma.SortOrder
+  overtimeAfterMinutes?: Prisma.SortOrder
+  minimumWorkMinutes?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type ShiftAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
-  start_time?: Prisma.SortOrder
-  end_time?: Prisma.SortOrder
-  grace_minutes?: Prisma.SortOrder
+  breakMinutes?: Prisma.SortOrder
+  graceMinutes?: Prisma.SortOrder
+  lateAfterMinutes?: Prisma.SortOrder
+  halfDayAfterMinutes?: Prisma.SortOrder
+  overtimeAfterMinutes?: Prisma.SortOrder
+  minimumWorkMinutes?: Prisma.SortOrder
 }
 
 export type ShiftMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  start_time?: Prisma.SortOrder
-  end_time?: Prisma.SortOrder
-  grace_minutes?: Prisma.SortOrder
+  title?: Prisma.SortOrder
+  code?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  startTime?: Prisma.SortOrder
+  endTime?: Prisma.SortOrder
+  breakMinutes?: Prisma.SortOrder
+  graceMinutes?: Prisma.SortOrder
+  lateAfterMinutes?: Prisma.SortOrder
+  halfDayAfterMinutes?: Prisma.SortOrder
+  overtimeAfterMinutes?: Prisma.SortOrder
+  minimumWorkMinutes?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type ShiftMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  start_time?: Prisma.SortOrder
-  end_time?: Prisma.SortOrder
-  grace_minutes?: Prisma.SortOrder
+  title?: Prisma.SortOrder
+  code?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  startTime?: Prisma.SortOrder
+  endTime?: Prisma.SortOrder
+  breakMinutes?: Prisma.SortOrder
+  graceMinutes?: Prisma.SortOrder
+  lateAfterMinutes?: Prisma.SortOrder
+  halfDayAfterMinutes?: Prisma.SortOrder
+  overtimeAfterMinutes?: Prisma.SortOrder
+  minimumWorkMinutes?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type ShiftSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
-  start_time?: Prisma.SortOrder
-  end_time?: Prisma.SortOrder
-  grace_minutes?: Prisma.SortOrder
+  breakMinutes?: Prisma.SortOrder
+  graceMinutes?: Prisma.SortOrder
+  lateAfterMinutes?: Prisma.SortOrder
+  halfDayAfterMinutes?: Prisma.SortOrder
+  overtimeAfterMinutes?: Prisma.SortOrder
+  minimumWorkMinutes?: Prisma.SortOrder
 }
 
 export type ShiftCreateNestedManyWithoutCompanyInput = {
@@ -446,19 +724,63 @@ export type ShiftUncheckedUpdateManyWithoutCompanyNestedInput = {
   deleteMany?: Prisma.ShiftScalarWhereInput | Prisma.ShiftScalarWhereInput[]
 }
 
+export type ShiftCreateNestedOneWithoutEmployeesInput = {
+  create?: Prisma.XOR<Prisma.ShiftCreateWithoutEmployeesInput, Prisma.ShiftUncheckedCreateWithoutEmployeesInput>
+  connectOrCreate?: Prisma.ShiftCreateOrConnectWithoutEmployeesInput
+  connect?: Prisma.ShiftWhereUniqueInput
+}
+
+export type ShiftUpdateOneWithoutEmployeesNestedInput = {
+  create?: Prisma.XOR<Prisma.ShiftCreateWithoutEmployeesInput, Prisma.ShiftUncheckedCreateWithoutEmployeesInput>
+  connectOrCreate?: Prisma.ShiftCreateOrConnectWithoutEmployeesInput
+  upsert?: Prisma.ShiftUpsertWithoutEmployeesInput
+  disconnect?: Prisma.ShiftWhereInput | boolean
+  delete?: Prisma.ShiftWhereInput | boolean
+  connect?: Prisma.ShiftWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ShiftUpdateToOneWithWhereWithoutEmployeesInput, Prisma.ShiftUpdateWithoutEmployeesInput>, Prisma.ShiftUncheckedUpdateWithoutEmployeesInput>
+}
+
+export type EnumShiftStatusFieldUpdateOperationsInput = {
+  set?: $Enums.ShiftStatus
+}
+
 export type ShiftCreateWithoutCompanyInput = {
-  name: string
-  start_time: number
-  end_time: number
-  grace_minutes: number
+  title: string
+  code?: string | null
+  description?: string | null
+  startTime: string
+  endTime: string
+  breakMinutes?: number
+  graceMinutes?: number
+  lateAfterMinutes?: number
+  halfDayAfterMinutes?: number | null
+  overtimeAfterMinutes?: number
+  minimumWorkMinutes?: number | null
+  status?: $Enums.ShiftStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  employees?: Prisma.EmployeeCreateNestedManyWithoutShiftInput
 }
 
 export type ShiftUncheckedCreateWithoutCompanyInput = {
   id?: number
-  name: string
-  start_time: number
-  end_time: number
-  grace_minutes: number
+  title: string
+  code?: string | null
+  description?: string | null
+  startTime: string
+  endTime: string
+  breakMinutes?: number
+  graceMinutes?: number
+  lateAfterMinutes?: number
+  halfDayAfterMinutes?: number | null
+  overtimeAfterMinutes?: number
+  minimumWorkMinutes?: number | null
+  status?: $Enums.ShiftStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutShiftInput
 }
 
 export type ShiftCreateOrConnectWithoutCompanyInput = {
@@ -493,87 +815,315 @@ export type ShiftScalarWhereInput = {
   NOT?: Prisma.ShiftScalarWhereInput | Prisma.ShiftScalarWhereInput[]
   id?: Prisma.IntFilter<"Shift"> | number
   companyId?: Prisma.IntFilter<"Shift"> | number
-  name?: Prisma.StringFilter<"Shift"> | string
-  start_time?: Prisma.IntFilter<"Shift"> | number
-  end_time?: Prisma.IntFilter<"Shift"> | number
-  grace_minutes?: Prisma.IntFilter<"Shift"> | number
+  title?: Prisma.StringFilter<"Shift"> | string
+  code?: Prisma.StringNullableFilter<"Shift"> | string | null
+  description?: Prisma.StringNullableFilter<"Shift"> | string | null
+  startTime?: Prisma.StringFilter<"Shift"> | string
+  endTime?: Prisma.StringFilter<"Shift"> | string
+  breakMinutes?: Prisma.IntFilter<"Shift"> | number
+  graceMinutes?: Prisma.IntFilter<"Shift"> | number
+  lateAfterMinutes?: Prisma.IntFilter<"Shift"> | number
+  halfDayAfterMinutes?: Prisma.IntNullableFilter<"Shift"> | number | null
+  overtimeAfterMinutes?: Prisma.IntFilter<"Shift"> | number
+  minimumWorkMinutes?: Prisma.IntNullableFilter<"Shift"> | number | null
+  status?: Prisma.EnumShiftStatusFilter<"Shift"> | $Enums.ShiftStatus
+  createdAt?: Prisma.DateTimeFilter<"Shift"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Shift"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"Shift"> | Date | string | null
+}
+
+export type ShiftCreateWithoutEmployeesInput = {
+  title: string
+  code?: string | null
+  description?: string | null
+  startTime: string
+  endTime: string
+  breakMinutes?: number
+  graceMinutes?: number
+  lateAfterMinutes?: number
+  halfDayAfterMinutes?: number | null
+  overtimeAfterMinutes?: number
+  minimumWorkMinutes?: number | null
+  status?: $Enums.ShiftStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  company: Prisma.CompanyCreateNestedOneWithoutShiftsInput
+}
+
+export type ShiftUncheckedCreateWithoutEmployeesInput = {
+  id?: number
+  companyId: number
+  title: string
+  code?: string | null
+  description?: string | null
+  startTime: string
+  endTime: string
+  breakMinutes?: number
+  graceMinutes?: number
+  lateAfterMinutes?: number
+  halfDayAfterMinutes?: number | null
+  overtimeAfterMinutes?: number
+  minimumWorkMinutes?: number | null
+  status?: $Enums.ShiftStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+}
+
+export type ShiftCreateOrConnectWithoutEmployeesInput = {
+  where: Prisma.ShiftWhereUniqueInput
+  create: Prisma.XOR<Prisma.ShiftCreateWithoutEmployeesInput, Prisma.ShiftUncheckedCreateWithoutEmployeesInput>
+}
+
+export type ShiftUpsertWithoutEmployeesInput = {
+  update: Prisma.XOR<Prisma.ShiftUpdateWithoutEmployeesInput, Prisma.ShiftUncheckedUpdateWithoutEmployeesInput>
+  create: Prisma.XOR<Prisma.ShiftCreateWithoutEmployeesInput, Prisma.ShiftUncheckedCreateWithoutEmployeesInput>
+  where?: Prisma.ShiftWhereInput
+}
+
+export type ShiftUpdateToOneWithWhereWithoutEmployeesInput = {
+  where?: Prisma.ShiftWhereInput
+  data: Prisma.XOR<Prisma.ShiftUpdateWithoutEmployeesInput, Prisma.ShiftUncheckedUpdateWithoutEmployeesInput>
+}
+
+export type ShiftUpdateWithoutEmployeesInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startTime?: Prisma.StringFieldUpdateOperationsInput | string
+  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  breakMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  graceMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  lateAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  halfDayAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  overtimeAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  minimumWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  company?: Prisma.CompanyUpdateOneRequiredWithoutShiftsNestedInput
+}
+
+export type ShiftUncheckedUpdateWithoutEmployeesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  companyId?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startTime?: Prisma.StringFieldUpdateOperationsInput | string
+  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  breakMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  graceMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  lateAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  halfDayAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  overtimeAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  minimumWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ShiftCreateManyCompanyInput = {
   id?: number
-  name: string
-  start_time: number
-  end_time: number
-  grace_minutes: number
+  title: string
+  code?: string | null
+  description?: string | null
+  startTime: string
+  endTime: string
+  breakMinutes?: number
+  graceMinutes?: number
+  lateAfterMinutes?: number
+  halfDayAfterMinutes?: number | null
+  overtimeAfterMinutes?: number
+  minimumWorkMinutes?: number | null
+  status?: $Enums.ShiftStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
 }
 
 export type ShiftUpdateWithoutCompanyInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  start_time?: Prisma.IntFieldUpdateOperationsInput | number
-  end_time?: Prisma.IntFieldUpdateOperationsInput | number
-  grace_minutes?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startTime?: Prisma.StringFieldUpdateOperationsInput | string
+  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  breakMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  graceMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  lateAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  halfDayAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  overtimeAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  minimumWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  employees?: Prisma.EmployeeUpdateManyWithoutShiftNestedInput
 }
 
 export type ShiftUncheckedUpdateWithoutCompanyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  start_time?: Prisma.IntFieldUpdateOperationsInput | number
-  end_time?: Prisma.IntFieldUpdateOperationsInput | number
-  grace_minutes?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startTime?: Prisma.StringFieldUpdateOperationsInput | string
+  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  breakMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  graceMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  lateAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  halfDayAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  overtimeAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  minimumWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutShiftNestedInput
 }
 
 export type ShiftUncheckedUpdateManyWithoutCompanyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  start_time?: Prisma.IntFieldUpdateOperationsInput | number
-  end_time?: Prisma.IntFieldUpdateOperationsInput | number
-  grace_minutes?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startTime?: Prisma.StringFieldUpdateOperationsInput | string
+  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  breakMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  graceMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  lateAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  halfDayAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  overtimeAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  minimumWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
+
+/**
+ * Count Type ShiftCountOutputType
+ */
+
+export type ShiftCountOutputType = {
+  employees: number
+}
+
+export type ShiftCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  employees?: boolean | ShiftCountOutputTypeCountEmployeesArgs
+}
+
+/**
+ * ShiftCountOutputType without action
+ */
+export type ShiftCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ShiftCountOutputType
+   */
+  select?: Prisma.ShiftCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ShiftCountOutputType without action
+ */
+export type ShiftCountOutputTypeCountEmployeesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EmployeeWhereInput
+}
 
 
 export type ShiftSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   companyId?: boolean
-  name?: boolean
-  start_time?: boolean
-  end_time?: boolean
-  grace_minutes?: boolean
+  title?: boolean
+  code?: boolean
+  description?: boolean
+  startTime?: boolean
+  endTime?: boolean
+  breakMinutes?: boolean
+  graceMinutes?: boolean
+  lateAfterMinutes?: boolean
+  halfDayAfterMinutes?: boolean
+  overtimeAfterMinutes?: boolean
+  minimumWorkMinutes?: boolean
+  status?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  deletedAt?: boolean
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  employees?: boolean | Prisma.Shift$employeesArgs<ExtArgs>
+  _count?: boolean | Prisma.ShiftCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["shift"]>
 
 export type ShiftSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   companyId?: boolean
-  name?: boolean
-  start_time?: boolean
-  end_time?: boolean
-  grace_minutes?: boolean
+  title?: boolean
+  code?: boolean
+  description?: boolean
+  startTime?: boolean
+  endTime?: boolean
+  breakMinutes?: boolean
+  graceMinutes?: boolean
+  lateAfterMinutes?: boolean
+  halfDayAfterMinutes?: boolean
+  overtimeAfterMinutes?: boolean
+  minimumWorkMinutes?: boolean
+  status?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  deletedAt?: boolean
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["shift"]>
 
 export type ShiftSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   companyId?: boolean
-  name?: boolean
-  start_time?: boolean
-  end_time?: boolean
-  grace_minutes?: boolean
+  title?: boolean
+  code?: boolean
+  description?: boolean
+  startTime?: boolean
+  endTime?: boolean
+  breakMinutes?: boolean
+  graceMinutes?: boolean
+  lateAfterMinutes?: boolean
+  halfDayAfterMinutes?: boolean
+  overtimeAfterMinutes?: boolean
+  minimumWorkMinutes?: boolean
+  status?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  deletedAt?: boolean
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["shift"]>
 
 export type ShiftSelectScalar = {
   id?: boolean
   companyId?: boolean
-  name?: boolean
-  start_time?: boolean
-  end_time?: boolean
-  grace_minutes?: boolean
+  title?: boolean
+  code?: boolean
+  description?: boolean
+  startTime?: boolean
+  endTime?: boolean
+  breakMinutes?: boolean
+  graceMinutes?: boolean
+  lateAfterMinutes?: boolean
+  halfDayAfterMinutes?: boolean
+  overtimeAfterMinutes?: boolean
+  minimumWorkMinutes?: boolean
+  status?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  deletedAt?: boolean
 }
 
-export type ShiftOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "name" | "start_time" | "end_time" | "grace_minutes", ExtArgs["result"]["shift"]>
+export type ShiftOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "title" | "code" | "description" | "startTime" | "endTime" | "breakMinutes" | "graceMinutes" | "lateAfterMinutes" | "halfDayAfterMinutes" | "overtimeAfterMinutes" | "minimumWorkMinutes" | "status" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["shift"]>
 export type ShiftInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  employees?: boolean | Prisma.Shift$employeesArgs<ExtArgs>
+  _count?: boolean | Prisma.ShiftCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ShiftIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
@@ -586,14 +1136,26 @@ export type $ShiftPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   name: "Shift"
   objects: {
     company: Prisma.$CompanyPayload<ExtArgs>
+    employees: Prisma.$EmployeePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     companyId: number
-    name: string
-    start_time: number
-    end_time: number
-    grace_minutes: number
+    title: string
+    code: string | null
+    description: string | null
+    startTime: string
+    endTime: string
+    breakMinutes: number
+    graceMinutes: number
+    lateAfterMinutes: number
+    halfDayAfterMinutes: number | null
+    overtimeAfterMinutes: number
+    minimumWorkMinutes: number | null
+    status: $Enums.ShiftStatus
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date | null
   }, ExtArgs["result"]["shift"]>
   composites: {}
 }
@@ -989,6 +1551,7 @@ readonly fields: ShiftFieldRefs;
 export interface Prisma__ShiftClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   company<T extends Prisma.CompanyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CompanyDefaultArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  employees<T extends Prisma.Shift$employeesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Shift$employeesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1020,10 +1583,21 @@ export interface Prisma__ShiftClient<T, Null = never, ExtArgs extends runtime.Ty
 export interface ShiftFieldRefs {
   readonly id: Prisma.FieldRef<"Shift", 'Int'>
   readonly companyId: Prisma.FieldRef<"Shift", 'Int'>
-  readonly name: Prisma.FieldRef<"Shift", 'String'>
-  readonly start_time: Prisma.FieldRef<"Shift", 'Int'>
-  readonly end_time: Prisma.FieldRef<"Shift", 'Int'>
-  readonly grace_minutes: Prisma.FieldRef<"Shift", 'Int'>
+  readonly title: Prisma.FieldRef<"Shift", 'String'>
+  readonly code: Prisma.FieldRef<"Shift", 'String'>
+  readonly description: Prisma.FieldRef<"Shift", 'String'>
+  readonly startTime: Prisma.FieldRef<"Shift", 'String'>
+  readonly endTime: Prisma.FieldRef<"Shift", 'String'>
+  readonly breakMinutes: Prisma.FieldRef<"Shift", 'Int'>
+  readonly graceMinutes: Prisma.FieldRef<"Shift", 'Int'>
+  readonly lateAfterMinutes: Prisma.FieldRef<"Shift", 'Int'>
+  readonly halfDayAfterMinutes: Prisma.FieldRef<"Shift", 'Int'>
+  readonly overtimeAfterMinutes: Prisma.FieldRef<"Shift", 'Int'>
+  readonly minimumWorkMinutes: Prisma.FieldRef<"Shift", 'Int'>
+  readonly status: Prisma.FieldRef<"Shift", 'ShiftStatus'>
+  readonly createdAt: Prisma.FieldRef<"Shift", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Shift", 'DateTime'>
+  readonly deletedAt: Prisma.FieldRef<"Shift", 'DateTime'>
 }
     
 
@@ -1422,6 +1996,30 @@ export type ShiftDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Limit how many Shifts to delete.
    */
   limit?: number
+}
+
+/**
+ * Shift.employees
+ */
+export type Shift$employeesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Employee
+   */
+  select?: Prisma.EmployeeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Employee
+   */
+  omit?: Prisma.EmployeeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmployeeInclude<ExtArgs> | null
+  where?: Prisma.EmployeeWhereInput
+  orderBy?: Prisma.EmployeeOrderByWithRelationInput | Prisma.EmployeeOrderByWithRelationInput[]
+  cursor?: Prisma.EmployeeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EmployeeScalarFieldEnum | Prisma.EmployeeScalarFieldEnum[]
 }
 
 /**

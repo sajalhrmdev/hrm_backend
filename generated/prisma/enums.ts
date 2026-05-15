@@ -9,15 +9,6 @@
 * 🟢 You can import this file directly.
 */
 
-export const UserStatus = {
-  ACTIVE: 'ACTIVE',
-  INACTIVE: 'INACTIVE',
-  SUSPENDED: 'SUSPENDED'
-} as const
-
-export type UserStatus = (typeof UserStatus)[keyof typeof UserStatus]
-
-
 export const CompanyStatus = {
   ACTIVE: 'ACTIVE',
   INACTIVE: 'INACTIVE',
@@ -25,6 +16,23 @@ export const CompanyStatus = {
 } as const
 
 export type CompanyStatus = (typeof CompanyStatus)[keyof typeof CompanyStatus]
+
+
+export const DesignationStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type DesignationStatus = (typeof DesignationStatus)[keyof typeof DesignationStatus]
+
+
+export const UserStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+  SUSPENDED: 'SUSPENDED'
+} as const
+
+export type UserStatus = (typeof UserStatus)[keyof typeof UserStatus]
 
 
 export const MembershipStatus = {
@@ -45,6 +53,14 @@ export const EmployeeStatus = {
 export type EmployeeStatus = (typeof EmployeeStatus)[keyof typeof EmployeeStatus]
 
 
+export const EmployeeDocumentStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type EmployeeDocumentStatus = (typeof EmployeeDocumentStatus)[keyof typeof EmployeeDocumentStatus]
+
+
 export const AttendanceMode = {
   SINGLE: 'SINGLE',
   MULTI: 'MULTI'
@@ -53,9 +69,34 @@ export const AttendanceMode = {
 export type AttendanceMode = (typeof AttendanceMode)[keyof typeof AttendanceMode]
 
 
+export const ShiftStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type ShiftStatus = (typeof ShiftStatus)[keyof typeof ShiftStatus]
+
+
+export const SalaryComponentType = {
+  EARNING: 'EARNING',
+  DEDUCTION: 'DEDUCTION'
+} as const
+
+export type SalaryComponentType = (typeof SalaryComponentType)[keyof typeof SalaryComponentType]
+
+
+export const PayrollStatus = {
+  DRAFT: 'DRAFT',
+  FINALIZED: 'FINALIZED',
+  PAID: 'PAID'
+} as const
+
+export type PayrollStatus = (typeof PayrollStatus)[keyof typeof PayrollStatus]
+
+
 export const PayrollRunStatus = {
   DRAFT: 'DRAFT',
-  FINAL: 'FINAL'
+  FINALIZED: 'FINALIZED'
 } as const
 
 export type PayrollRunStatus = (typeof PayrollRunStatus)[keyof typeof PayrollRunStatus]
@@ -68,3 +109,13 @@ export const LeaveStatus = {
 } as const
 
 export type LeaveStatus = (typeof LeaveStatus)[keyof typeof LeaveStatus]
+
+
+export const HolidayType = {
+  NATIONAL: 'NATIONAL',
+  FESTIVAL: 'FESTIVAL',
+  COMPANY: 'COMPANY',
+  OPTIONAL: 'OPTIONAL'
+} as const
+
+export type HolidayType = (typeof HolidayType)[keyof typeof HolidayType]

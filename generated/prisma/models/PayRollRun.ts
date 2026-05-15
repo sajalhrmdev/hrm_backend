@@ -29,38 +29,43 @@ export type AggregatePayRollRun = {
 export type PayRollRunAvgAggregateOutputType = {
   id: number | null
   companyId: number | null
-  month: number | null
-  year: number | null
 }
 
 export type PayRollRunSumAggregateOutputType = {
   id: number | null
   companyId: number | null
-  month: number | null
-  year: number | null
 }
 
 export type PayRollRunMinAggregateOutputType = {
   id: number | null
   companyId: number | null
-  month: number | null
-  year: number | null
+  title: string | null
+  periodStart: Date | null
+  periodEnd: Date | null
+  createdAt: Date | null
+  updatedAt: Date | null
   status: $Enums.PayrollRunStatus | null
 }
 
 export type PayRollRunMaxAggregateOutputType = {
   id: number | null
   companyId: number | null
-  month: number | null
-  year: number | null
+  title: string | null
+  periodStart: Date | null
+  periodEnd: Date | null
+  createdAt: Date | null
+  updatedAt: Date | null
   status: $Enums.PayrollRunStatus | null
 }
 
 export type PayRollRunCountAggregateOutputType = {
   id: number
   companyId: number
-  month: number
-  year: number
+  title: number
+  periodStart: number
+  periodEnd: number
+  createdAt: number
+  updatedAt: number
   status: number
   _all: number
 }
@@ -69,38 +74,43 @@ export type PayRollRunCountAggregateOutputType = {
 export type PayRollRunAvgAggregateInputType = {
   id?: true
   companyId?: true
-  month?: true
-  year?: true
 }
 
 export type PayRollRunSumAggregateInputType = {
   id?: true
   companyId?: true
-  month?: true
-  year?: true
 }
 
 export type PayRollRunMinAggregateInputType = {
   id?: true
   companyId?: true
-  month?: true
-  year?: true
+  title?: true
+  periodStart?: true
+  periodEnd?: true
+  createdAt?: true
+  updatedAt?: true
   status?: true
 }
 
 export type PayRollRunMaxAggregateInputType = {
   id?: true
   companyId?: true
-  month?: true
-  year?: true
+  title?: true
+  periodStart?: true
+  periodEnd?: true
+  createdAt?: true
+  updatedAt?: true
   status?: true
 }
 
 export type PayRollRunCountAggregateInputType = {
   id?: true
   companyId?: true
-  month?: true
-  year?: true
+  title?: true
+  periodStart?: true
+  periodEnd?: true
+  createdAt?: true
+  updatedAt?: true
   status?: true
   _all?: true
 }
@@ -194,8 +204,11 @@ export type PayRollRunGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 export type PayRollRunGroupByOutputType = {
   id: number
   companyId: number
-  month: number
-  year: number
+  title: string | null
+  periodStart: Date
+  periodEnd: Date
+  createdAt: Date
+  updatedAt: Date
   status: $Enums.PayrollRunStatus
   _count: PayRollRunCountAggregateOutputType | null
   _avg: PayRollRunAvgAggregateOutputType | null
@@ -225,42 +238,54 @@ export type PayRollRunWhereInput = {
   NOT?: Prisma.PayRollRunWhereInput | Prisma.PayRollRunWhereInput[]
   id?: Prisma.IntFilter<"PayRollRun"> | number
   companyId?: Prisma.IntFilter<"PayRollRun"> | number
-  month?: Prisma.IntFilter<"PayRollRun"> | number
-  year?: Prisma.IntFilter<"PayRollRun"> | number
+  title?: Prisma.StringNullableFilter<"PayRollRun"> | string | null
+  periodStart?: Prisma.DateTimeFilter<"PayRollRun"> | Date | string
+  periodEnd?: Prisma.DateTimeFilter<"PayRollRun"> | Date | string
+  createdAt?: Prisma.DateTimeFilter<"PayRollRun"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"PayRollRun"> | Date | string
   status?: Prisma.EnumPayrollRunStatusFilter<"PayRollRun"> | $Enums.PayrollRunStatus
-  company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
   payrolls?: Prisma.PayRollListRelationFilter
+  company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
 }
 
 export type PayRollRunOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
-  month?: Prisma.SortOrder
-  year?: Prisma.SortOrder
+  title?: Prisma.SortOrderInput | Prisma.SortOrder
+  periodStart?: Prisma.SortOrder
+  periodEnd?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  company?: Prisma.CompanyOrderByWithRelationInput
   payrolls?: Prisma.PayRollOrderByRelationAggregateInput
+  company?: Prisma.CompanyOrderByWithRelationInput
 }
 
 export type PayRollRunWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  companyId_month_year?: Prisma.PayRollRunCompanyIdMonthYearCompoundUniqueInput
+  companyId_periodStart_periodEnd?: Prisma.PayRollRunCompanyIdPeriodStartPeriodEndCompoundUniqueInput
   AND?: Prisma.PayRollRunWhereInput | Prisma.PayRollRunWhereInput[]
   OR?: Prisma.PayRollRunWhereInput[]
   NOT?: Prisma.PayRollRunWhereInput | Prisma.PayRollRunWhereInput[]
   companyId?: Prisma.IntFilter<"PayRollRun"> | number
-  month?: Prisma.IntFilter<"PayRollRun"> | number
-  year?: Prisma.IntFilter<"PayRollRun"> | number
+  title?: Prisma.StringNullableFilter<"PayRollRun"> | string | null
+  periodStart?: Prisma.DateTimeFilter<"PayRollRun"> | Date | string
+  periodEnd?: Prisma.DateTimeFilter<"PayRollRun"> | Date | string
+  createdAt?: Prisma.DateTimeFilter<"PayRollRun"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"PayRollRun"> | Date | string
   status?: Prisma.EnumPayrollRunStatusFilter<"PayRollRun"> | $Enums.PayrollRunStatus
-  company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
   payrolls?: Prisma.PayRollListRelationFilter
-}, "id" | "companyId_month_year">
+  company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
+}, "id" | "companyId_periodStart_periodEnd">
 
 export type PayRollRunOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
-  month?: Prisma.SortOrder
-  year?: Prisma.SortOrder
+  title?: Prisma.SortOrderInput | Prisma.SortOrder
+  periodStart?: Prisma.SortOrder
+  periodEnd?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   status?: Prisma.SortOrder
   _count?: Prisma.PayRollRunCountOrderByAggregateInput
   _avg?: Prisma.PayRollRunAvgOrderByAggregateInput
@@ -275,41 +300,56 @@ export type PayRollRunScalarWhereWithAggregatesInput = {
   NOT?: Prisma.PayRollRunScalarWhereWithAggregatesInput | Prisma.PayRollRunScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"PayRollRun"> | number
   companyId?: Prisma.IntWithAggregatesFilter<"PayRollRun"> | number
-  month?: Prisma.IntWithAggregatesFilter<"PayRollRun"> | number
-  year?: Prisma.IntWithAggregatesFilter<"PayRollRun"> | number
+  title?: Prisma.StringNullableWithAggregatesFilter<"PayRollRun"> | string | null
+  periodStart?: Prisma.DateTimeWithAggregatesFilter<"PayRollRun"> | Date | string
+  periodEnd?: Prisma.DateTimeWithAggregatesFilter<"PayRollRun"> | Date | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"PayRollRun"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"PayRollRun"> | Date | string
   status?: Prisma.EnumPayrollRunStatusWithAggregatesFilter<"PayRollRun"> | $Enums.PayrollRunStatus
 }
 
 export type PayRollRunCreateInput = {
-  month: number
-  year: number
+  title?: string | null
+  periodStart: Date | string
+  periodEnd: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
   status?: $Enums.PayrollRunStatus
-  company: Prisma.CompanyCreateNestedOneWithoutPayRollRunsInput
   payrolls?: Prisma.PayRollCreateNestedManyWithoutPayrollRunInput
+  company: Prisma.CompanyCreateNestedOneWithoutPayRollRunsInput
 }
 
 export type PayRollRunUncheckedCreateInput = {
   id?: number
   companyId: number
-  month: number
-  year: number
+  title?: string | null
+  periodStart: Date | string
+  periodEnd: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
   status?: $Enums.PayrollRunStatus
   payrolls?: Prisma.PayRollUncheckedCreateNestedManyWithoutPayrollRunInput
 }
 
 export type PayRollRunUpdateInput = {
-  month?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  periodStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  periodEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumPayrollRunStatusFieldUpdateOperationsInput | $Enums.PayrollRunStatus
-  company?: Prisma.CompanyUpdateOneRequiredWithoutPayRollRunsNestedInput
   payrolls?: Prisma.PayRollUpdateManyWithoutPayrollRunNestedInput
+  company?: Prisma.CompanyUpdateOneRequiredWithoutPayRollRunsNestedInput
 }
 
 export type PayRollRunUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   companyId?: Prisma.IntFieldUpdateOperationsInput | number
-  month?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  periodStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  periodEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumPayrollRunStatusFieldUpdateOperationsInput | $Enums.PayrollRunStatus
   payrolls?: Prisma.PayRollUncheckedUpdateManyWithoutPayrollRunNestedInput
 }
@@ -317,22 +357,31 @@ export type PayRollRunUncheckedUpdateInput = {
 export type PayRollRunCreateManyInput = {
   id?: number
   companyId: number
-  month: number
-  year: number
+  title?: string | null
+  periodStart: Date | string
+  periodEnd: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
   status?: $Enums.PayrollRunStatus
 }
 
 export type PayRollRunUpdateManyMutationInput = {
-  month?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  periodStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  periodEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumPayrollRunStatusFieldUpdateOperationsInput | $Enums.PayrollRunStatus
 }
 
 export type PayRollRunUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   companyId?: Prisma.IntFieldUpdateOperationsInput | number
-  month?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  periodStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  periodEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumPayrollRunStatusFieldUpdateOperationsInput | $Enums.PayrollRunStatus
 }
 
@@ -351,48 +400,53 @@ export type PayRollRunScalarRelationFilter = {
   isNot?: Prisma.PayRollRunWhereInput
 }
 
-export type PayRollRunCompanyIdMonthYearCompoundUniqueInput = {
+export type PayRollRunCompanyIdPeriodStartPeriodEndCompoundUniqueInput = {
   companyId: number
-  month: number
-  year: number
+  periodStart: Date | string
+  periodEnd: Date | string
 }
 
 export type PayRollRunCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
-  month?: Prisma.SortOrder
-  year?: Prisma.SortOrder
+  title?: Prisma.SortOrder
+  periodStart?: Prisma.SortOrder
+  periodEnd?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   status?: Prisma.SortOrder
 }
 
 export type PayRollRunAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
-  month?: Prisma.SortOrder
-  year?: Prisma.SortOrder
 }
 
 export type PayRollRunMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
-  month?: Prisma.SortOrder
-  year?: Prisma.SortOrder
+  title?: Prisma.SortOrder
+  periodStart?: Prisma.SortOrder
+  periodEnd?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   status?: Prisma.SortOrder
 }
 
 export type PayRollRunMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
-  month?: Prisma.SortOrder
-  year?: Prisma.SortOrder
+  title?: Prisma.SortOrder
+  periodStart?: Prisma.SortOrder
+  periodEnd?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   status?: Prisma.SortOrder
 }
 
 export type PayRollRunSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
-  month?: Prisma.SortOrder
-  year?: Prisma.SortOrder
 }
 
 export type PayRollRunCreateNestedManyWithoutCompanyInput = {
@@ -456,16 +510,22 @@ export type EnumPayrollRunStatusFieldUpdateOperationsInput = {
 }
 
 export type PayRollRunCreateWithoutCompanyInput = {
-  month: number
-  year: number
+  title?: string | null
+  periodStart: Date | string
+  periodEnd: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
   status?: $Enums.PayrollRunStatus
   payrolls?: Prisma.PayRollCreateNestedManyWithoutPayrollRunInput
 }
 
 export type PayRollRunUncheckedCreateWithoutCompanyInput = {
   id?: number
-  month: number
-  year: number
+  title?: string | null
+  periodStart: Date | string
+  periodEnd: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
   status?: $Enums.PayrollRunStatus
   payrolls?: Prisma.PayRollUncheckedCreateNestedManyWithoutPayrollRunInput
 }
@@ -502,14 +562,20 @@ export type PayRollRunScalarWhereInput = {
   NOT?: Prisma.PayRollRunScalarWhereInput | Prisma.PayRollRunScalarWhereInput[]
   id?: Prisma.IntFilter<"PayRollRun"> | number
   companyId?: Prisma.IntFilter<"PayRollRun"> | number
-  month?: Prisma.IntFilter<"PayRollRun"> | number
-  year?: Prisma.IntFilter<"PayRollRun"> | number
+  title?: Prisma.StringNullableFilter<"PayRollRun"> | string | null
+  periodStart?: Prisma.DateTimeFilter<"PayRollRun"> | Date | string
+  periodEnd?: Prisma.DateTimeFilter<"PayRollRun"> | Date | string
+  createdAt?: Prisma.DateTimeFilter<"PayRollRun"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"PayRollRun"> | Date | string
   status?: Prisma.EnumPayrollRunStatusFilter<"PayRollRun"> | $Enums.PayrollRunStatus
 }
 
 export type PayRollRunCreateWithoutPayrollsInput = {
-  month: number
-  year: number
+  title?: string | null
+  periodStart: Date | string
+  periodEnd: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
   status?: $Enums.PayrollRunStatus
   company: Prisma.CompanyCreateNestedOneWithoutPayRollRunsInput
 }
@@ -517,8 +583,11 @@ export type PayRollRunCreateWithoutPayrollsInput = {
 export type PayRollRunUncheckedCreateWithoutPayrollsInput = {
   id?: number
   companyId: number
-  month: number
-  year: number
+  title?: string | null
+  periodStart: Date | string
+  periodEnd: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
   status?: $Enums.PayrollRunStatus
 }
 
@@ -539,8 +608,11 @@ export type PayRollRunUpdateToOneWithWhereWithoutPayrollsInput = {
 }
 
 export type PayRollRunUpdateWithoutPayrollsInput = {
-  month?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  periodStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  periodEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumPayrollRunStatusFieldUpdateOperationsInput | $Enums.PayrollRunStatus
   company?: Prisma.CompanyUpdateOneRequiredWithoutPayRollRunsNestedInput
 }
@@ -548,37 +620,52 @@ export type PayRollRunUpdateWithoutPayrollsInput = {
 export type PayRollRunUncheckedUpdateWithoutPayrollsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   companyId?: Prisma.IntFieldUpdateOperationsInput | number
-  month?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  periodStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  periodEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumPayrollRunStatusFieldUpdateOperationsInput | $Enums.PayrollRunStatus
 }
 
 export type PayRollRunCreateManyCompanyInput = {
   id?: number
-  month: number
-  year: number
+  title?: string | null
+  periodStart: Date | string
+  periodEnd: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
   status?: $Enums.PayrollRunStatus
 }
 
 export type PayRollRunUpdateWithoutCompanyInput = {
-  month?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  periodStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  periodEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumPayrollRunStatusFieldUpdateOperationsInput | $Enums.PayrollRunStatus
   payrolls?: Prisma.PayRollUpdateManyWithoutPayrollRunNestedInput
 }
 
 export type PayRollRunUncheckedUpdateWithoutCompanyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  month?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  periodStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  periodEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumPayrollRunStatusFieldUpdateOperationsInput | $Enums.PayrollRunStatus
   payrolls?: Prisma.PayRollUncheckedUpdateManyWithoutPayrollRunNestedInput
 }
 
 export type PayRollRunUncheckedUpdateManyWithoutCompanyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  month?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  periodStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  periodEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumPayrollRunStatusFieldUpdateOperationsInput | $Enums.PayrollRunStatus
 }
 
@@ -616,19 +703,25 @@ export type PayRollRunCountOutputTypeCountPayrollsArgs<ExtArgs extends runtime.T
 export type PayRollRunSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   companyId?: boolean
-  month?: boolean
-  year?: boolean
+  title?: boolean
+  periodStart?: boolean
+  periodEnd?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   status?: boolean
-  company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   payrolls?: boolean | Prisma.PayRollRun$payrollsArgs<ExtArgs>
+  company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.PayRollRunCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["payRollRun"]>
 
 export type PayRollRunSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   companyId?: boolean
-  month?: boolean
-  year?: boolean
+  title?: boolean
+  periodStart?: boolean
+  periodEnd?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   status?: boolean
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["payRollRun"]>
@@ -636,8 +729,11 @@ export type PayRollRunSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
 export type PayRollRunSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   companyId?: boolean
-  month?: boolean
-  year?: boolean
+  title?: boolean
+  periodStart?: boolean
+  periodEnd?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   status?: boolean
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["payRollRun"]>
@@ -645,15 +741,18 @@ export type PayRollRunSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
 export type PayRollRunSelectScalar = {
   id?: boolean
   companyId?: boolean
-  month?: boolean
-  year?: boolean
+  title?: boolean
+  periodStart?: boolean
+  periodEnd?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   status?: boolean
 }
 
-export type PayRollRunOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "month" | "year" | "status", ExtArgs["result"]["payRollRun"]>
+export type PayRollRunOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "title" | "periodStart" | "periodEnd" | "createdAt" | "updatedAt" | "status", ExtArgs["result"]["payRollRun"]>
 export type PayRollRunInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   payrolls?: boolean | Prisma.PayRollRun$payrollsArgs<ExtArgs>
+  company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.PayRollRunCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PayRollRunIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -666,14 +765,17 @@ export type PayRollRunIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.E
 export type $PayRollRunPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "PayRollRun"
   objects: {
-    company: Prisma.$CompanyPayload<ExtArgs>
     payrolls: Prisma.$PayRollPayload<ExtArgs>[]
+    company: Prisma.$CompanyPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     companyId: number
-    month: number
-    year: number
+    title: string | null
+    periodStart: Date
+    periodEnd: Date
+    createdAt: Date
+    updatedAt: Date
     status: $Enums.PayrollRunStatus
   }, ExtArgs["result"]["payRollRun"]>
   composites: {}
@@ -1069,8 +1171,8 @@ readonly fields: PayRollRunFieldRefs;
  */
 export interface Prisma__PayRollRunClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  company<T extends Prisma.CompanyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CompanyDefaultArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   payrolls<T extends Prisma.PayRollRun$payrollsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PayRollRun$payrollsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PayRollPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  company<T extends Prisma.CompanyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CompanyDefaultArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1102,8 +1204,11 @@ export interface Prisma__PayRollRunClient<T, Null = never, ExtArgs extends runti
 export interface PayRollRunFieldRefs {
   readonly id: Prisma.FieldRef<"PayRollRun", 'Int'>
   readonly companyId: Prisma.FieldRef<"PayRollRun", 'Int'>
-  readonly month: Prisma.FieldRef<"PayRollRun", 'Int'>
-  readonly year: Prisma.FieldRef<"PayRollRun", 'Int'>
+  readonly title: Prisma.FieldRef<"PayRollRun", 'String'>
+  readonly periodStart: Prisma.FieldRef<"PayRollRun", 'DateTime'>
+  readonly periodEnd: Prisma.FieldRef<"PayRollRun", 'DateTime'>
+  readonly createdAt: Prisma.FieldRef<"PayRollRun", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"PayRollRun", 'DateTime'>
   readonly status: Prisma.FieldRef<"PayRollRun", 'PayrollRunStatus'>
 }
     

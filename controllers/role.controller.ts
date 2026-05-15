@@ -57,7 +57,7 @@ export const createRole = async (req: Request, res: Response) => {
 // ================= GET ALL ROLES =================
 export const getAllRoles = async (req: Request, res: Response) => {
   try {
-    const { companyId } = req.query;
+    const companyId = req.companyId;
 
     // 🔥 validation
     if (!companyId) {

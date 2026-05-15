@@ -563,10 +563,6 @@ export type LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput = {
   deleteMany?: Prisma.LeaveTypeScalarWhereInput | Prisma.LeaveTypeScalarWhereInput[]
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type LeaveTypeCreateNestedOneWithoutLeaveBalancesInput = {
   create?: Prisma.XOR<Prisma.LeaveTypeCreateWithoutLeaveBalancesInput, Prisma.LeaveTypeUncheckedCreateWithoutLeaveBalancesInput>
   connectOrCreate?: Prisma.LeaveTypeCreateOrConnectWithoutLeaveBalancesInput

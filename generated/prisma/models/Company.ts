@@ -255,12 +255,16 @@ export type CompanyWhereInput = {
   workPolicies?: Prisma.WorkPolicyListRelationFilter
   CompanySettings?: Prisma.CompanySettingListRelationFilter
   Shifts?: Prisma.ShiftListRelationFilter
-  SalaryStractures?: Prisma.SalaryStractureListRelationFilter
+  salaryComponents?: Prisma.SalaryComponentListRelationFilter
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentListRelationFilter
   payRollRuns?: Prisma.PayRollRunListRelationFilter
   memberships?: Prisma.MembershipListRelationFilter
   leaveTypes?: Prisma.LeaveTypeListRelationFilter
   leaveBalances?: Prisma.LeaveBalanceListRelationFilter
   leaveApplications?: Prisma.LeaveApplicationListRelationFilter
+  holidays?: Prisma.HolidayListRelationFilter
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigListRelationFilter
+  designations?: Prisma.DesignationListRelationFilter
 }
 
 export type CompanyOrderByWithRelationInput = {
@@ -280,12 +284,16 @@ export type CompanyOrderByWithRelationInput = {
   workPolicies?: Prisma.WorkPolicyOrderByRelationAggregateInput
   CompanySettings?: Prisma.CompanySettingOrderByRelationAggregateInput
   Shifts?: Prisma.ShiftOrderByRelationAggregateInput
-  SalaryStractures?: Prisma.SalaryStractureOrderByRelationAggregateInput
+  salaryComponents?: Prisma.SalaryComponentOrderByRelationAggregateInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentOrderByRelationAggregateInput
   payRollRuns?: Prisma.PayRollRunOrderByRelationAggregateInput
   memberships?: Prisma.MembershipOrderByRelationAggregateInput
   leaveTypes?: Prisma.LeaveTypeOrderByRelationAggregateInput
   leaveBalances?: Prisma.LeaveBalanceOrderByRelationAggregateInput
   leaveApplications?: Prisma.LeaveApplicationOrderByRelationAggregateInput
+  holidays?: Prisma.HolidayOrderByRelationAggregateInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigOrderByRelationAggregateInput
+  designations?: Prisma.DesignationOrderByRelationAggregateInput
 }
 
 export type CompanyWhereUniqueInput = Prisma.AtLeast<{
@@ -308,12 +316,16 @@ export type CompanyWhereUniqueInput = Prisma.AtLeast<{
   workPolicies?: Prisma.WorkPolicyListRelationFilter
   CompanySettings?: Prisma.CompanySettingListRelationFilter
   Shifts?: Prisma.ShiftListRelationFilter
-  SalaryStractures?: Prisma.SalaryStractureListRelationFilter
+  salaryComponents?: Prisma.SalaryComponentListRelationFilter
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentListRelationFilter
   payRollRuns?: Prisma.PayRollRunListRelationFilter
   memberships?: Prisma.MembershipListRelationFilter
   leaveTypes?: Prisma.LeaveTypeListRelationFilter
   leaveBalances?: Prisma.LeaveBalanceListRelationFilter
   leaveApplications?: Prisma.LeaveApplicationListRelationFilter
+  holidays?: Prisma.HolidayListRelationFilter
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigListRelationFilter
+  designations?: Prisma.DesignationListRelationFilter
 }, "id" | "slug">
 
 export type CompanyOrderByWithAggregationInput = {
@@ -364,12 +376,16 @@ export type CompanyCreateInput = {
   workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateInput = {
@@ -389,12 +405,16 @@ export type CompanyUncheckedCreateInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUpdateInput = {
@@ -413,12 +433,16 @@ export type CompanyUpdateInput = {
   workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateInput = {
@@ -438,12 +462,16 @@ export type CompanyUncheckedUpdateInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateManyInput = {
@@ -530,8 +558,38 @@ export type CompanyScalarRelationFilter = {
   isNot?: Prisma.CompanyWhereInput
 }
 
+export type StringFieldUpdateOperationsInput = {
+  set?: string
+}
+
 export type EnumCompanyStatusFieldUpdateOperationsInput = {
   set?: $Enums.CompanyStatus
+}
+
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type CompanyCreateNestedOneWithoutDesignationsInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutDesignationsInput, Prisma.CompanyUncheckedCreateWithoutDesignationsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutDesignationsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutDesignationsNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutDesignationsInput, Prisma.CompanyUncheckedCreateWithoutDesignationsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutDesignationsInput
+  upsert?: Prisma.CompanyUpsertWithoutDesignationsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutDesignationsInput, Prisma.CompanyUpdateWithoutDesignationsInput>, Prisma.CompanyUncheckedUpdateWithoutDesignationsInput>
 }
 
 export type CompanyCreateNestedOneWithoutRolesInput = {
@@ -646,18 +704,32 @@ export type CompanyUpdateOneRequiredWithoutShiftsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutShiftsInput, Prisma.CompanyUpdateWithoutShiftsInput>, Prisma.CompanyUncheckedUpdateWithoutShiftsInput>
 }
 
-export type CompanyCreateNestedOneWithoutSalaryStracturesInput = {
-  create?: Prisma.XOR<Prisma.CompanyCreateWithoutSalaryStracturesInput, Prisma.CompanyUncheckedCreateWithoutSalaryStracturesInput>
-  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutSalaryStracturesInput
+export type CompanyCreateNestedOneWithoutSalaryComponentsInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutSalaryComponentsInput, Prisma.CompanyUncheckedCreateWithoutSalaryComponentsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutSalaryComponentsInput
   connect?: Prisma.CompanyWhereUniqueInput
 }
 
-export type CompanyUpdateOneRequiredWithoutSalaryStracturesNestedInput = {
-  create?: Prisma.XOR<Prisma.CompanyCreateWithoutSalaryStracturesInput, Prisma.CompanyUncheckedCreateWithoutSalaryStracturesInput>
-  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutSalaryStracturesInput
-  upsert?: Prisma.CompanyUpsertWithoutSalaryStracturesInput
+export type CompanyUpdateOneRequiredWithoutSalaryComponentsNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutSalaryComponentsInput, Prisma.CompanyUncheckedCreateWithoutSalaryComponentsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutSalaryComponentsInput
+  upsert?: Prisma.CompanyUpsertWithoutSalaryComponentsInput
   connect?: Prisma.CompanyWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutSalaryStracturesInput, Prisma.CompanyUpdateWithoutSalaryStracturesInput>, Prisma.CompanyUncheckedUpdateWithoutSalaryStracturesInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutSalaryComponentsInput, Prisma.CompanyUpdateWithoutSalaryComponentsInput>, Prisma.CompanyUncheckedUpdateWithoutSalaryComponentsInput>
+}
+
+export type CompanyCreateNestedOneWithoutEmployeeSalaryComponentsInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutEmployeeSalaryComponentsInput, Prisma.CompanyUncheckedCreateWithoutEmployeeSalaryComponentsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutEmployeeSalaryComponentsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutEmployeeSalaryComponentsNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutEmployeeSalaryComponentsInput, Prisma.CompanyUncheckedCreateWithoutEmployeeSalaryComponentsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutEmployeeSalaryComponentsInput
+  upsert?: Prisma.CompanyUpsertWithoutEmployeeSalaryComponentsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutEmployeeSalaryComponentsInput, Prisma.CompanyUpdateWithoutEmployeeSalaryComponentsInput>, Prisma.CompanyUncheckedUpdateWithoutEmployeeSalaryComponentsInput>
 }
 
 export type CompanyCreateNestedOneWithoutPayRollRunsInput = {
@@ -716,6 +788,160 @@ export type CompanyUpdateOneRequiredWithoutLeaveApplicationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutLeaveApplicationsInput, Prisma.CompanyUpdateWithoutLeaveApplicationsInput>, Prisma.CompanyUncheckedUpdateWithoutLeaveApplicationsInput>
 }
 
+export type CompanyCreateNestedOneWithoutHolidaysInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutHolidaysInput, Prisma.CompanyUncheckedCreateWithoutHolidaysInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutHolidaysInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutHolidaysNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutHolidaysInput, Prisma.CompanyUncheckedCreateWithoutHolidaysInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutHolidaysInput
+  upsert?: Prisma.CompanyUpsertWithoutHolidaysInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutHolidaysInput, Prisma.CompanyUpdateWithoutHolidaysInput>, Prisma.CompanyUncheckedUpdateWithoutHolidaysInput>
+}
+
+export type CompanyCreateNestedOneWithoutWeeklyOffConfigsInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutWeeklyOffConfigsInput, Prisma.CompanyUncheckedCreateWithoutWeeklyOffConfigsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutWeeklyOffConfigsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutWeeklyOffConfigsNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutWeeklyOffConfigsInput, Prisma.CompanyUncheckedCreateWithoutWeeklyOffConfigsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutWeeklyOffConfigsInput
+  upsert?: Prisma.CompanyUpsertWithoutWeeklyOffConfigsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutWeeklyOffConfigsInput, Prisma.CompanyUpdateWithoutWeeklyOffConfigsInput>, Prisma.CompanyUncheckedUpdateWithoutWeeklyOffConfigsInput>
+}
+
+export type CompanyCreateWithoutDesignationsInput = {
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutDesignationsInput = {
+  id?: number
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutDesignationsInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutDesignationsInput, Prisma.CompanyUncheckedCreateWithoutDesignationsInput>
+}
+
+export type CompanyUpsertWithoutDesignationsInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutDesignationsInput, Prisma.CompanyUncheckedUpdateWithoutDesignationsInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutDesignationsInput, Prisma.CompanyUncheckedCreateWithoutDesignationsInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutDesignationsInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutDesignationsInput, Prisma.CompanyUncheckedUpdateWithoutDesignationsInput>
+}
+
+export type CompanyUpdateWithoutDesignationsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutDesignationsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
 export type CompanyCreateWithoutRolesInput = {
   name: string
   slug: string
@@ -731,12 +957,16 @@ export type CompanyCreateWithoutRolesInput = {
   workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutRolesInput = {
@@ -755,12 +985,16 @@ export type CompanyUncheckedCreateWithoutRolesInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutRolesInput = {
@@ -794,12 +1028,16 @@ export type CompanyUpdateWithoutRolesInput = {
   workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutRolesInput = {
@@ -818,12 +1056,16 @@ export type CompanyUncheckedUpdateWithoutRolesInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutMembershipsInput = {
@@ -842,11 +1084,15 @@ export type CompanyCreateWithoutMembershipsInput = {
   workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutMembershipsInput = {
@@ -866,11 +1112,15 @@ export type CompanyUncheckedCreateWithoutMembershipsInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutMembershipsInput = {
@@ -905,11 +1155,15 @@ export type CompanyUpdateWithoutMembershipsInput = {
   workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutMembershipsInput = {
@@ -929,11 +1183,15 @@ export type CompanyUncheckedUpdateWithoutMembershipsInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmployeesInput = {
@@ -951,12 +1209,16 @@ export type CompanyCreateWithoutEmployeesInput = {
   workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmployeesInput = {
@@ -975,12 +1237,16 @@ export type CompanyUncheckedCreateWithoutEmployeesInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmployeesInput = {
@@ -1014,12 +1280,16 @@ export type CompanyUpdateWithoutEmployeesInput = {
   workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmployeesInput = {
@@ -1038,12 +1308,16 @@ export type CompanyUncheckedUpdateWithoutEmployeesInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutAttendancesInput = {
@@ -1061,12 +1335,16 @@ export type CompanyCreateWithoutAttendancesInput = {
   workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutAttendancesInput = {
@@ -1085,12 +1363,16 @@ export type CompanyUncheckedCreateWithoutAttendancesInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutAttendancesInput = {
@@ -1124,12 +1406,16 @@ export type CompanyUpdateWithoutAttendancesInput = {
   workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutAttendancesInput = {
@@ -1148,12 +1434,16 @@ export type CompanyUncheckedUpdateWithoutAttendancesInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutAttendanceLogsInput = {
@@ -1171,12 +1461,16 @@ export type CompanyCreateWithoutAttendanceLogsInput = {
   workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutAttendanceLogsInput = {
@@ -1195,12 +1489,16 @@ export type CompanyUncheckedCreateWithoutAttendanceLogsInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutAttendanceLogsInput = {
@@ -1234,12 +1532,16 @@ export type CompanyUpdateWithoutAttendanceLogsInput = {
   workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutAttendanceLogsInput = {
@@ -1258,12 +1560,16 @@ export type CompanyUncheckedUpdateWithoutAttendanceLogsInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutWorkPoliciesInput = {
@@ -1281,12 +1587,16 @@ export type CompanyCreateWithoutWorkPoliciesInput = {
   attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutWorkPoliciesInput = {
@@ -1305,12 +1615,16 @@ export type CompanyUncheckedCreateWithoutWorkPoliciesInput = {
   attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutWorkPoliciesInput = {
@@ -1344,12 +1658,16 @@ export type CompanyUpdateWithoutWorkPoliciesInput = {
   attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutWorkPoliciesInput = {
@@ -1368,12 +1686,16 @@ export type CompanyUncheckedUpdateWithoutWorkPoliciesInput = {
   attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutCompanySettingsInput = {
@@ -1391,12 +1713,16 @@ export type CompanyCreateWithoutCompanySettingsInput = {
   attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutCompanyInput
   workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutCompanySettingsInput = {
@@ -1415,12 +1741,16 @@ export type CompanyUncheckedCreateWithoutCompanySettingsInput = {
   attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutCompanyInput
   workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutCompanySettingsInput = {
@@ -1454,12 +1784,16 @@ export type CompanyUpdateWithoutCompanySettingsInput = {
   attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutCompanyNestedInput
   workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutCompanySettingsInput = {
@@ -1478,12 +1812,16 @@ export type CompanyUncheckedUpdateWithoutCompanySettingsInput = {
   attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutCompanyNestedInput
   workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutShiftsInput = {
@@ -1501,12 +1839,16 @@ export type CompanyCreateWithoutShiftsInput = {
   attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutCompanyInput
   workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutShiftsInput = {
@@ -1525,12 +1867,16 @@ export type CompanyUncheckedCreateWithoutShiftsInput = {
   attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutCompanyInput
   workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutShiftsInput = {
@@ -1564,12 +1910,16 @@ export type CompanyUpdateWithoutShiftsInput = {
   attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutCompanyNestedInput
   workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutShiftsInput = {
@@ -1588,15 +1938,19 @@ export type CompanyUncheckedUpdateWithoutShiftsInput = {
   attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutCompanyNestedInput
   workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
-export type CompanyCreateWithoutSalaryStracturesInput = {
+export type CompanyCreateWithoutSalaryComponentsInput = {
   name: string
   slug: string
   email: string
@@ -1612,14 +1966,18 @@ export type CompanyCreateWithoutSalaryStracturesInput = {
   workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
 }
 
-export type CompanyUncheckedCreateWithoutSalaryStracturesInput = {
+export type CompanyUncheckedCreateWithoutSalaryComponentsInput = {
   id?: number
   name: string
   slug: string
@@ -1636,30 +1994,34 @@ export type CompanyUncheckedCreateWithoutSalaryStracturesInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
-export type CompanyCreateOrConnectWithoutSalaryStracturesInput = {
+export type CompanyCreateOrConnectWithoutSalaryComponentsInput = {
   where: Prisma.CompanyWhereUniqueInput
-  create: Prisma.XOR<Prisma.CompanyCreateWithoutSalaryStracturesInput, Prisma.CompanyUncheckedCreateWithoutSalaryStracturesInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutSalaryComponentsInput, Prisma.CompanyUncheckedCreateWithoutSalaryComponentsInput>
 }
 
-export type CompanyUpsertWithoutSalaryStracturesInput = {
-  update: Prisma.XOR<Prisma.CompanyUpdateWithoutSalaryStracturesInput, Prisma.CompanyUncheckedUpdateWithoutSalaryStracturesInput>
-  create: Prisma.XOR<Prisma.CompanyCreateWithoutSalaryStracturesInput, Prisma.CompanyUncheckedCreateWithoutSalaryStracturesInput>
+export type CompanyUpsertWithoutSalaryComponentsInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutSalaryComponentsInput, Prisma.CompanyUncheckedUpdateWithoutSalaryComponentsInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutSalaryComponentsInput, Prisma.CompanyUncheckedCreateWithoutSalaryComponentsInput>
   where?: Prisma.CompanyWhereInput
 }
 
-export type CompanyUpdateToOneWithWhereWithoutSalaryStracturesInput = {
+export type CompanyUpdateToOneWithWhereWithoutSalaryComponentsInput = {
   where?: Prisma.CompanyWhereInput
-  data: Prisma.XOR<Prisma.CompanyUpdateWithoutSalaryStracturesInput, Prisma.CompanyUncheckedUpdateWithoutSalaryStracturesInput>
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutSalaryComponentsInput, Prisma.CompanyUncheckedUpdateWithoutSalaryComponentsInput>
 }
 
-export type CompanyUpdateWithoutSalaryStracturesInput = {
+export type CompanyUpdateWithoutSalaryComponentsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1675,14 +2037,18 @@ export type CompanyUpdateWithoutSalaryStracturesInput = {
   workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
 }
 
-export type CompanyUncheckedUpdateWithoutSalaryStracturesInput = {
+export type CompanyUncheckedUpdateWithoutSalaryComponentsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1699,11 +2065,141 @@ export type CompanyUncheckedUpdateWithoutSalaryStracturesInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutEmployeeSalaryComponentsInput = {
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutEmployeeSalaryComponentsInput = {
+  id?: number
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutEmployeeSalaryComponentsInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutEmployeeSalaryComponentsInput, Prisma.CompanyUncheckedCreateWithoutEmployeeSalaryComponentsInput>
+}
+
+export type CompanyUpsertWithoutEmployeeSalaryComponentsInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutEmployeeSalaryComponentsInput, Prisma.CompanyUncheckedUpdateWithoutEmployeeSalaryComponentsInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutEmployeeSalaryComponentsInput, Prisma.CompanyUncheckedCreateWithoutEmployeeSalaryComponentsInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutEmployeeSalaryComponentsInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutEmployeeSalaryComponentsInput, Prisma.CompanyUncheckedUpdateWithoutEmployeeSalaryComponentsInput>
+}
+
+export type CompanyUpdateWithoutEmployeeSalaryComponentsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutEmployeeSalaryComponentsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutPayRollRunsInput = {
@@ -1722,11 +2218,15 @@ export type CompanyCreateWithoutPayRollRunsInput = {
   workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutPayRollRunsInput = {
@@ -1746,11 +2246,15 @@ export type CompanyUncheckedCreateWithoutPayRollRunsInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutPayRollRunsInput = {
@@ -1785,11 +2289,15 @@ export type CompanyUpdateWithoutPayRollRunsInput = {
   workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutPayRollRunsInput = {
@@ -1809,11 +2317,15 @@ export type CompanyUncheckedUpdateWithoutPayRollRunsInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutLeaveTypesInput = {
@@ -1832,11 +2344,15 @@ export type CompanyCreateWithoutLeaveTypesInput = {
   workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutLeaveTypesInput = {
@@ -1856,11 +2372,15 @@ export type CompanyUncheckedCreateWithoutLeaveTypesInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutLeaveTypesInput = {
@@ -1895,11 +2415,15 @@ export type CompanyUpdateWithoutLeaveTypesInput = {
   workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutLeaveTypesInput = {
@@ -1919,11 +2443,15 @@ export type CompanyUncheckedUpdateWithoutLeaveTypesInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutLeaveBalancesInput = {
@@ -1942,11 +2470,15 @@ export type CompanyCreateWithoutLeaveBalancesInput = {
   workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutLeaveBalancesInput = {
@@ -1966,11 +2498,15 @@ export type CompanyUncheckedCreateWithoutLeaveBalancesInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutLeaveBalancesInput = {
@@ -2005,11 +2541,15 @@ export type CompanyUpdateWithoutLeaveBalancesInput = {
   workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutLeaveBalancesInput = {
@@ -2029,11 +2569,15 @@ export type CompanyUncheckedUpdateWithoutLeaveBalancesInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
   leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutLeaveApplicationsInput = {
@@ -2052,11 +2596,15 @@ export type CompanyCreateWithoutLeaveApplicationsInput = {
   workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutLeaveApplicationsInput = {
@@ -2076,11 +2624,15 @@ export type CompanyUncheckedCreateWithoutLeaveApplicationsInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
   CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
   Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
   payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
   leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutLeaveApplicationsInput = {
@@ -2115,11 +2667,15 @@ export type CompanyUpdateWithoutLeaveApplicationsInput = {
   workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutLeaveApplicationsInput = {
@@ -2139,11 +2695,267 @@ export type CompanyUncheckedUpdateWithoutLeaveApplicationsInput = {
   workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
   CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
   Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
-  SalaryStractures?: Prisma.SalaryStractureUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
   payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutHolidaysInput = {
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutHolidaysInput = {
+  id?: number
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutHolidaysInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutHolidaysInput, Prisma.CompanyUncheckedCreateWithoutHolidaysInput>
+}
+
+export type CompanyUpsertWithoutHolidaysInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutHolidaysInput, Prisma.CompanyUncheckedUpdateWithoutHolidaysInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutHolidaysInput, Prisma.CompanyUncheckedCreateWithoutHolidaysInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutHolidaysInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutHolidaysInput, Prisma.CompanyUncheckedUpdateWithoutHolidaysInput>
+}
+
+export type CompanyUpdateWithoutHolidaysInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutHolidaysInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutWeeklyOffConfigsInput = {
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutWeeklyOffConfigsInput = {
+  id?: number
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutWeeklyOffConfigsInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutWeeklyOffConfigsInput, Prisma.CompanyUncheckedCreateWithoutWeeklyOffConfigsInput>
+}
+
+export type CompanyUpsertWithoutWeeklyOffConfigsInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutWeeklyOffConfigsInput, Prisma.CompanyUncheckedUpdateWithoutWeeklyOffConfigsInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutWeeklyOffConfigsInput, Prisma.CompanyUncheckedCreateWithoutWeeklyOffConfigsInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutWeeklyOffConfigsInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutWeeklyOffConfigsInput, Prisma.CompanyUncheckedUpdateWithoutWeeklyOffConfigsInput>
+}
+
+export type CompanyUpdateWithoutWeeklyOffConfigsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutWeeklyOffConfigsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 
@@ -2159,12 +2971,16 @@ export type CompanyCountOutputType = {
   workPolicies: number
   CompanySettings: number
   Shifts: number
-  SalaryStractures: number
+  salaryComponents: number
+  employeeSalaryComponents: number
   payRollRuns: number
   memberships: number
   leaveTypes: number
   leaveBalances: number
   leaveApplications: number
+  holidays: number
+  weeklyOffConfigs: number
+  designations: number
 }
 
 export type CompanyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2175,12 +2991,16 @@ export type CompanyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   workPolicies?: boolean | CompanyCountOutputTypeCountWorkPoliciesArgs
   CompanySettings?: boolean | CompanyCountOutputTypeCountCompanySettingsArgs
   Shifts?: boolean | CompanyCountOutputTypeCountShiftsArgs
-  SalaryStractures?: boolean | CompanyCountOutputTypeCountSalaryStracturesArgs
+  salaryComponents?: boolean | CompanyCountOutputTypeCountSalaryComponentsArgs
+  employeeSalaryComponents?: boolean | CompanyCountOutputTypeCountEmployeeSalaryComponentsArgs
   payRollRuns?: boolean | CompanyCountOutputTypeCountPayRollRunsArgs
   memberships?: boolean | CompanyCountOutputTypeCountMembershipsArgs
   leaveTypes?: boolean | CompanyCountOutputTypeCountLeaveTypesArgs
   leaveBalances?: boolean | CompanyCountOutputTypeCountLeaveBalancesArgs
   leaveApplications?: boolean | CompanyCountOutputTypeCountLeaveApplicationsArgs
+  holidays?: boolean | CompanyCountOutputTypeCountHolidaysArgs
+  weeklyOffConfigs?: boolean | CompanyCountOutputTypeCountWeeklyOffConfigsArgs
+  designations?: boolean | CompanyCountOutputTypeCountDesignationsArgs
 }
 
 /**
@@ -2245,8 +3065,15 @@ export type CompanyCountOutputTypeCountShiftsArgs<ExtArgs extends runtime.Types.
 /**
  * CompanyCountOutputType without action
  */
-export type CompanyCountOutputTypeCountSalaryStracturesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SalaryStractureWhereInput
+export type CompanyCountOutputTypeCountSalaryComponentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SalaryComponentWhereInput
+}
+
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountEmployeeSalaryComponentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EmployeeSalaryComponentWhereInput
 }
 
 /**
@@ -2284,6 +3111,27 @@ export type CompanyCountOutputTypeCountLeaveApplicationsArgs<ExtArgs extends run
   where?: Prisma.LeaveApplicationWhereInput
 }
 
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountHolidaysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.HolidayWhereInput
+}
+
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountWeeklyOffConfigsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WeeklyOffConfigWhereInput
+}
+
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountDesignationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DesignationWhereInput
+}
+
 
 export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2302,12 +3150,16 @@ export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   workPolicies?: boolean | Prisma.Company$workPoliciesArgs<ExtArgs>
   CompanySettings?: boolean | Prisma.Company$CompanySettingsArgs<ExtArgs>
   Shifts?: boolean | Prisma.Company$ShiftsArgs<ExtArgs>
-  SalaryStractures?: boolean | Prisma.Company$SalaryStracturesArgs<ExtArgs>
+  salaryComponents?: boolean | Prisma.Company$salaryComponentsArgs<ExtArgs>
+  employeeSalaryComponents?: boolean | Prisma.Company$employeeSalaryComponentsArgs<ExtArgs>
   payRollRuns?: boolean | Prisma.Company$payRollRunsArgs<ExtArgs>
   memberships?: boolean | Prisma.Company$membershipsArgs<ExtArgs>
   leaveTypes?: boolean | Prisma.Company$leaveTypesArgs<ExtArgs>
   leaveBalances?: boolean | Prisma.Company$leaveBalancesArgs<ExtArgs>
   leaveApplications?: boolean | Prisma.Company$leaveApplicationsArgs<ExtArgs>
+  holidays?: boolean | Prisma.Company$holidaysArgs<ExtArgs>
+  weeklyOffConfigs?: boolean | Prisma.Company$weeklyOffConfigsArgs<ExtArgs>
+  designations?: boolean | Prisma.Company$designationsArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["company"]>
 
@@ -2356,12 +3208,16 @@ export type CompanyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   workPolicies?: boolean | Prisma.Company$workPoliciesArgs<ExtArgs>
   CompanySettings?: boolean | Prisma.Company$CompanySettingsArgs<ExtArgs>
   Shifts?: boolean | Prisma.Company$ShiftsArgs<ExtArgs>
-  SalaryStractures?: boolean | Prisma.Company$SalaryStracturesArgs<ExtArgs>
+  salaryComponents?: boolean | Prisma.Company$salaryComponentsArgs<ExtArgs>
+  employeeSalaryComponents?: boolean | Prisma.Company$employeeSalaryComponentsArgs<ExtArgs>
   payRollRuns?: boolean | Prisma.Company$payRollRunsArgs<ExtArgs>
   memberships?: boolean | Prisma.Company$membershipsArgs<ExtArgs>
   leaveTypes?: boolean | Prisma.Company$leaveTypesArgs<ExtArgs>
   leaveBalances?: boolean | Prisma.Company$leaveBalancesArgs<ExtArgs>
   leaveApplications?: boolean | Prisma.Company$leaveApplicationsArgs<ExtArgs>
+  holidays?: boolean | Prisma.Company$holidaysArgs<ExtArgs>
+  weeklyOffConfigs?: boolean | Prisma.Company$weeklyOffConfigsArgs<ExtArgs>
+  designations?: boolean | Prisma.Company$designationsArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CompanyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -2377,12 +3233,16 @@ export type $CompanyPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     workPolicies: Prisma.$WorkPolicyPayload<ExtArgs>[]
     CompanySettings: Prisma.$CompanySettingPayload<ExtArgs>[]
     Shifts: Prisma.$ShiftPayload<ExtArgs>[]
-    SalaryStractures: Prisma.$SalaryStracturePayload<ExtArgs>[]
+    salaryComponents: Prisma.$SalaryComponentPayload<ExtArgs>[]
+    employeeSalaryComponents: Prisma.$EmployeeSalaryComponentPayload<ExtArgs>[]
     payRollRuns: Prisma.$PayRollRunPayload<ExtArgs>[]
     memberships: Prisma.$MembershipPayload<ExtArgs>[]
     leaveTypes: Prisma.$LeaveTypePayload<ExtArgs>[]
     leaveBalances: Prisma.$LeaveBalancePayload<ExtArgs>[]
     leaveApplications: Prisma.$LeaveApplicationPayload<ExtArgs>[]
+    holidays: Prisma.$HolidayPayload<ExtArgs>[]
+    weeklyOffConfigs: Prisma.$WeeklyOffConfigPayload<ExtArgs>[]
+    designations: Prisma.$DesignationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -2795,12 +3655,16 @@ export interface Prisma__CompanyClient<T, Null = never, ExtArgs extends runtime.
   workPolicies<T extends Prisma.Company$workPoliciesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$workPoliciesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkPolicyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   CompanySettings<T extends Prisma.Company$CompanySettingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$CompanySettingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompanySettingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   Shifts<T extends Prisma.Company$ShiftsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$ShiftsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShiftPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  SalaryStractures<T extends Prisma.Company$SalaryStracturesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$SalaryStracturesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SalaryStracturePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  salaryComponents<T extends Prisma.Company$salaryComponentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$salaryComponentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SalaryComponentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  employeeSalaryComponents<T extends Prisma.Company$employeeSalaryComponentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$employeeSalaryComponentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeeSalaryComponentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   payRollRuns<T extends Prisma.Company$payRollRunsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$payRollRunsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PayRollRunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   memberships<T extends Prisma.Company$membershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$membershipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MembershipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   leaveTypes<T extends Prisma.Company$leaveTypesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$leaveTypesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeaveTypePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   leaveBalances<T extends Prisma.Company$leaveBalancesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$leaveBalancesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeaveBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   leaveApplications<T extends Prisma.Company$leaveApplicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$leaveApplicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeaveApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  holidays<T extends Prisma.Company$holidaysArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$holidaysArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HolidayPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  weeklyOffConfigs<T extends Prisma.Company$weeklyOffConfigsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$weeklyOffConfigsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WeeklyOffConfigPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  designations<T extends Prisma.Company$designationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$designationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DesignationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3400,27 +4264,51 @@ export type Company$ShiftsArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Company.SalaryStractures
+ * Company.salaryComponents
  */
-export type Company$SalaryStracturesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Company$salaryComponentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the SalaryStracture
+   * Select specific fields to fetch from the SalaryComponent
    */
-  select?: Prisma.SalaryStractureSelect<ExtArgs> | null
+  select?: Prisma.SalaryComponentSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the SalaryStracture
+   * Omit specific fields from the SalaryComponent
    */
-  omit?: Prisma.SalaryStractureOmit<ExtArgs> | null
+  omit?: Prisma.SalaryComponentOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.SalaryStractureInclude<ExtArgs> | null
-  where?: Prisma.SalaryStractureWhereInput
-  orderBy?: Prisma.SalaryStractureOrderByWithRelationInput | Prisma.SalaryStractureOrderByWithRelationInput[]
-  cursor?: Prisma.SalaryStractureWhereUniqueInput
+  include?: Prisma.SalaryComponentInclude<ExtArgs> | null
+  where?: Prisma.SalaryComponentWhereInput
+  orderBy?: Prisma.SalaryComponentOrderByWithRelationInput | Prisma.SalaryComponentOrderByWithRelationInput[]
+  cursor?: Prisma.SalaryComponentWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.SalaryStractureScalarFieldEnum | Prisma.SalaryStractureScalarFieldEnum[]
+  distinct?: Prisma.SalaryComponentScalarFieldEnum | Prisma.SalaryComponentScalarFieldEnum[]
+}
+
+/**
+ * Company.employeeSalaryComponents
+ */
+export type Company$employeeSalaryComponentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EmployeeSalaryComponent
+   */
+  select?: Prisma.EmployeeSalaryComponentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EmployeeSalaryComponent
+   */
+  omit?: Prisma.EmployeeSalaryComponentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmployeeSalaryComponentInclude<ExtArgs> | null
+  where?: Prisma.EmployeeSalaryComponentWhereInput
+  orderBy?: Prisma.EmployeeSalaryComponentOrderByWithRelationInput | Prisma.EmployeeSalaryComponentOrderByWithRelationInput[]
+  cursor?: Prisma.EmployeeSalaryComponentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EmployeeSalaryComponentScalarFieldEnum | Prisma.EmployeeSalaryComponentScalarFieldEnum[]
 }
 
 /**
@@ -3541,6 +4429,78 @@ export type Company$leaveApplicationsArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   distinct?: Prisma.LeaveApplicationScalarFieldEnum | Prisma.LeaveApplicationScalarFieldEnum[]
+}
+
+/**
+ * Company.holidays
+ */
+export type Company$holidaysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Holiday
+   */
+  select?: Prisma.HolidaySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Holiday
+   */
+  omit?: Prisma.HolidayOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.HolidayInclude<ExtArgs> | null
+  where?: Prisma.HolidayWhereInput
+  orderBy?: Prisma.HolidayOrderByWithRelationInput | Prisma.HolidayOrderByWithRelationInput[]
+  cursor?: Prisma.HolidayWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.HolidayScalarFieldEnum | Prisma.HolidayScalarFieldEnum[]
+}
+
+/**
+ * Company.weeklyOffConfigs
+ */
+export type Company$weeklyOffConfigsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WeeklyOffConfig
+   */
+  select?: Prisma.WeeklyOffConfigSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WeeklyOffConfig
+   */
+  omit?: Prisma.WeeklyOffConfigOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WeeklyOffConfigInclude<ExtArgs> | null
+  where?: Prisma.WeeklyOffConfigWhereInput
+  orderBy?: Prisma.WeeklyOffConfigOrderByWithRelationInput | Prisma.WeeklyOffConfigOrderByWithRelationInput[]
+  cursor?: Prisma.WeeklyOffConfigWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WeeklyOffConfigScalarFieldEnum | Prisma.WeeklyOffConfigScalarFieldEnum[]
+}
+
+/**
+ * Company.designations
+ */
+export type Company$designationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Designation
+   */
+  select?: Prisma.DesignationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Designation
+   */
+  omit?: Prisma.DesignationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DesignationInclude<ExtArgs> | null
+  where?: Prisma.DesignationWhereInput
+  orderBy?: Prisma.DesignationOrderByWithRelationInput | Prisma.DesignationOrderByWithRelationInput[]
+  cursor?: Prisma.DesignationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DesignationScalarFieldEnum | Prisma.DesignationScalarFieldEnum[]
 }
 
 /**

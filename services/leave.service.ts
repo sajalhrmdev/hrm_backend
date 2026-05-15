@@ -203,3 +203,64 @@ export const getAllLeaves = async (
 
   return leaves;
 };
+
+// 3============================employeewise leave=================
+
+type GetEmployeeLeavesInput = {
+  employeeId: number;
+  companyId: number;
+  year?: number;
+};
+
+export const getEmployeeAllLeaves =
+  async (
+    input: GetEmployeeLeavesInput
+  ) => {
+    const {
+      employeeId,
+      companyId,
+      year,
+    } = input;
+
+    const where: any = {
+      employeeId,
+      companyId,
+    };
+
+    // 🔥 optional year filter
+    if (year) {
+      where.fromDate = {
+        gte: new Date(
+          `${year}-01-01`
+        ),
+
+        lte: new Date(
+          `${year}-12-31`
+        ),
+      };
+    }
+
+    const leaves =
+      await prisma.leaveApplication.findMany(
+        {
+          where,
+
+          orderBy: {
+            applied_at: "desc",
+          },
+
+          include: {
+            leaveType: {
+              select: {
+                id: true,
+                name: true,
+                code: true,
+                is_paid: true,
+              },
+            },
+          },
+        }
+      );
+
+    return leaves;
+  };

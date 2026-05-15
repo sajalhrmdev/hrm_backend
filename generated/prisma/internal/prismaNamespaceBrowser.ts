@@ -51,25 +51,32 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  Company: 'Company',
   Department: 'Department',
   Designation: 'Designation',
   User: 'User',
   GlobalRole: 'GlobalRole',
-  Company: 'Company',
   Role: 'Role',
   Membership: 'Membership',
   Employee: 'Employee',
+  EmployeePersonalInfo: 'EmployeePersonalInfo',
+  EmployeeAddress: 'EmployeeAddress',
+  EmployeeDocument: 'EmployeeDocument',
   Attendance: 'Attendance',
   AttendanceLog: 'AttendanceLog',
   WorkPolicy: 'WorkPolicy',
   CompanySetting: 'CompanySetting',
   Shift: 'Shift',
-  SalaryStracture: 'SalaryStracture',
+  SalaryComponent: 'SalaryComponent',
+  EmployeeSalaryComponent: 'EmployeeSalaryComponent',
   PayRoll: 'PayRoll',
+  PayrollSnapComponent: 'PayrollSnapComponent',
   PayRollRun: 'PayRollRun',
   LeaveType: 'LeaveType',
   LeaveBalance: 'LeaveBalance',
-  LeaveApplication: 'LeaveApplication'
+  LeaveApplication: 'LeaveApplication',
+  Holiday: 'Holiday',
+  WeeklyOffConfig: 'WeeklyOffConfig'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -88,6 +95,21 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const CompanyScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  email: 'email',
+  phone: 'phone',
+  address: 'address',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CompanyScalarFieldEnum = (typeof CompanyScalarFieldEnum)[keyof typeof CompanyScalarFieldEnum]
+
+
 export const DepartmentScalarFieldEnum = {
   id: 'id',
   title: 'title',
@@ -104,13 +126,16 @@ export type DepartmentScalarFieldEnum = (typeof DepartmentScalarFieldEnum)[keyof
 
 export const DesignationScalarFieldEnum = {
   id: 'id',
+  companyId: 'companyId',
+  branchId: 'branchId',
+  departmentId: 'departmentId',
   title: 'title',
-  status_id: 'status_id',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  deleted_at: 'deleted_at',
-  company_id: 'company_id',
-  branch_id: 'branch_id'
+  code: 'code',
+  level: 'level',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
 } as const
 
 export type DesignationScalarFieldEnum = (typeof DesignationScalarFieldEnum)[keyof typeof DesignationScalarFieldEnum]
@@ -140,21 +165,6 @@ export const GlobalRoleScalarFieldEnum = {
 } as const
 
 export type GlobalRoleScalarFieldEnum = (typeof GlobalRoleScalarFieldEnum)[keyof typeof GlobalRoleScalarFieldEnum]
-
-
-export const CompanyScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  slug: 'slug',
-  email: 'email',
-  phone: 'phone',
-  address: 'address',
-  status: 'status',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type CompanyScalarFieldEnum = (typeof CompanyScalarFieldEnum)[keyof typeof CompanyScalarFieldEnum]
 
 
 export const RoleScalarFieldEnum = {
@@ -193,12 +203,67 @@ export const EmployeeScalarFieldEnum = {
   employeeCode: 'employeeCode',
   departmentId: 'departmentId',
   designationId: 'designationId',
+  shiftId: 'shiftId',
   joiningDate: 'joiningDate',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type EmployeeScalarFieldEnum = (typeof EmployeeScalarFieldEnum)[keyof typeof EmployeeScalarFieldEnum]
+
+
+export const EmployeePersonalInfoScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  dob: 'dob',
+  gender: 'gender',
+  bloodGroup: 'bloodGroup',
+  maritalStatus: 'maritalStatus',
+  fatherName: 'fatherName',
+  motherName: 'motherName',
+  nationality: 'nationality',
+  religion: 'religion',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EmployeePersonalInfoScalarFieldEnum = (typeof EmployeePersonalInfoScalarFieldEnum)[keyof typeof EmployeePersonalInfoScalarFieldEnum]
+
+
+export const EmployeeAddressScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  presentAddress: 'presentAddress',
+  permanentAddress: 'permanentAddress',
+  city: 'city',
+  state: 'state',
+  country: 'country',
+  pinCode: 'pinCode',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EmployeeAddressScalarFieldEnum = (typeof EmployeeAddressScalarFieldEnum)[keyof typeof EmployeeAddressScalarFieldEnum]
+
+
+export const EmployeeDocumentScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  title: 'title',
+  documentType: 'documentType',
+  documentNumber: 'documentNumber',
+  fileUrl: 'fileUrl',
+  fileName: 'fileName',
+  mimeType: 'mimeType',
+  fileSize: 'fileSize',
+  isVerified: 'isVerified',
+  verifiedAt: 'verifiedAt',
+  status: 'status',
+  uploadedAt: 'uploadedAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EmployeeDocumentScalarFieldEnum = (typeof EmployeeDocumentScalarFieldEnum)[keyof typeof EmployeeDocumentScalarFieldEnum]
 
 
 export const AttendanceScalarFieldEnum = {
@@ -261,26 +326,50 @@ export type CompanySettingScalarFieldEnum = (typeof CompanySettingScalarFieldEnu
 export const ShiftScalarFieldEnum = {
   id: 'id',
   companyId: 'companyId',
-  name: 'name',
-  start_time: 'start_time',
-  end_time: 'end_time',
-  grace_minutes: 'grace_minutes'
+  title: 'title',
+  code: 'code',
+  description: 'description',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  breakMinutes: 'breakMinutes',
+  graceMinutes: 'graceMinutes',
+  lateAfterMinutes: 'lateAfterMinutes',
+  halfDayAfterMinutes: 'halfDayAfterMinutes',
+  overtimeAfterMinutes: 'overtimeAfterMinutes',
+  minimumWorkMinutes: 'minimumWorkMinutes',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
 } as const
 
 export type ShiftScalarFieldEnum = (typeof ShiftScalarFieldEnum)[keyof typeof ShiftScalarFieldEnum]
 
 
-export const SalaryStractureScalarFieldEnum = {
+export const SalaryComponentScalarFieldEnum = {
   id: 'id',
   companyId: 'companyId',
-  employeeId: 'employeeId',
-  monthly_salary: 'monthly_salary',
-  effective_from: 'effective_from',
+  name: 'name',
+  code: 'code',
+  type: 'type',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type SalaryStractureScalarFieldEnum = (typeof SalaryStractureScalarFieldEnum)[keyof typeof SalaryStractureScalarFieldEnum]
+export type SalaryComponentScalarFieldEnum = (typeof SalaryComponentScalarFieldEnum)[keyof typeof SalaryComponentScalarFieldEnum]
+
+
+export const EmployeeSalaryComponentScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  employeeId: 'employeeId',
+  salaryComponentId: 'salaryComponentId',
+  amount: 'amount',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EmployeeSalaryComponentScalarFieldEnum = (typeof EmployeeSalaryComponentScalarFieldEnum)[keyof typeof EmployeeSalaryComponentScalarFieldEnum]
 
 
 export const PayRollScalarFieldEnum = {
@@ -291,22 +380,40 @@ export const PayRollScalarFieldEnum = {
   present_days: 'present_days',
   paid_leave_days: 'paid_leave_days',
   lop_days: 'lop_days',
-  payble_days: 'payble_days',
+  payable_days: 'payable_days',
   gross_salary: 'gross_salary',
-  base_salary: 'base_salary',
-  deduction: 'deduction',
+  overtime_amount: 'overtime_amount',
+  total_deduction: 'total_deduction',
   net_salary: 'net_salary',
+  status: 'status',
   createdAt: 'createdAt'
 } as const
 
 export type PayRollScalarFieldEnum = (typeof PayRollScalarFieldEnum)[keyof typeof PayRollScalarFieldEnum]
 
 
+export const PayrollSnapComponentScalarFieldEnum = {
+  id: 'id',
+  payrollId: 'payrollId',
+  componentName: 'componentName',
+  componentCode: 'componentCode',
+  type: 'type',
+  standardAmount: 'standardAmount',
+  amount: 'amount',
+  createdAt: 'createdAt'
+} as const
+
+export type PayrollSnapComponentScalarFieldEnum = (typeof PayrollSnapComponentScalarFieldEnum)[keyof typeof PayrollSnapComponentScalarFieldEnum]
+
+
 export const PayRollRunScalarFieldEnum = {
   id: 'id',
   companyId: 'companyId',
-  month: 'month',
-  year: 'year',
+  title: 'title',
+  periodStart: 'periodStart',
+  periodEnd: 'periodEnd',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   status: 'status'
 } as const
 
@@ -364,6 +471,34 @@ export const LeaveApplicationScalarFieldEnum = {
 } as const
 
 export type LeaveApplicationScalarFieldEnum = (typeof LeaveApplicationScalarFieldEnum)[keyof typeof LeaveApplicationScalarFieldEnum]
+
+
+export const HolidayScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  title: 'title',
+  date: 'date',
+  type: 'type',
+  isPaid: 'isPaid',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type HolidayScalarFieldEnum = (typeof HolidayScalarFieldEnum)[keyof typeof HolidayScalarFieldEnum]
+
+
+export const WeeklyOffConfigScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  dayOfWeek: 'dayOfWeek',
+  weekNumber: 'weekNumber',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WeeklyOffConfigScalarFieldEnum = (typeof WeeklyOffConfigScalarFieldEnum)[keyof typeof WeeklyOffConfigScalarFieldEnum]
 
 
 export const SortOrder = {

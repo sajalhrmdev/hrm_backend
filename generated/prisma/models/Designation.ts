@@ -28,98 +28,120 @@ export type AggregateDesignation = {
 
 export type DesignationAvgAggregateOutputType = {
   id: number | null
-  status_id: number | null
-  company_id: number | null
-  branch_id: number | null
+  companyId: number | null
+  branchId: number | null
+  departmentId: number | null
+  level: number | null
 }
 
 export type DesignationSumAggregateOutputType = {
   id: number | null
-  status_id: number | null
-  company_id: number | null
-  branch_id: number | null
+  companyId: number | null
+  branchId: number | null
+  departmentId: number | null
+  level: number | null
 }
 
 export type DesignationMinAggregateOutputType = {
   id: number | null
+  companyId: number | null
+  branchId: number | null
+  departmentId: number | null
   title: string | null
-  status_id: number | null
-  created_at: Date | null
-  updated_at: Date | null
-  deleted_at: Date | null
-  company_id: number | null
-  branch_id: number | null
+  code: string | null
+  level: number | null
+  status: $Enums.DesignationStatus | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  deletedAt: Date | null
 }
 
 export type DesignationMaxAggregateOutputType = {
   id: number | null
+  companyId: number | null
+  branchId: number | null
+  departmentId: number | null
   title: string | null
-  status_id: number | null
-  created_at: Date | null
-  updated_at: Date | null
-  deleted_at: Date | null
-  company_id: number | null
-  branch_id: number | null
+  code: string | null
+  level: number | null
+  status: $Enums.DesignationStatus | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  deletedAt: Date | null
 }
 
 export type DesignationCountAggregateOutputType = {
   id: number
+  companyId: number
+  branchId: number
+  departmentId: number
   title: number
-  status_id: number
-  created_at: number
-  updated_at: number
-  deleted_at: number
-  company_id: number
-  branch_id: number
+  code: number
+  level: number
+  status: number
+  createdAt: number
+  updatedAt: number
+  deletedAt: number
   _all: number
 }
 
 
 export type DesignationAvgAggregateInputType = {
   id?: true
-  status_id?: true
-  company_id?: true
-  branch_id?: true
+  companyId?: true
+  branchId?: true
+  departmentId?: true
+  level?: true
 }
 
 export type DesignationSumAggregateInputType = {
   id?: true
-  status_id?: true
-  company_id?: true
-  branch_id?: true
+  companyId?: true
+  branchId?: true
+  departmentId?: true
+  level?: true
 }
 
 export type DesignationMinAggregateInputType = {
   id?: true
+  companyId?: true
+  branchId?: true
+  departmentId?: true
   title?: true
-  status_id?: true
-  created_at?: true
-  updated_at?: true
-  deleted_at?: true
-  company_id?: true
-  branch_id?: true
+  code?: true
+  level?: true
+  status?: true
+  createdAt?: true
+  updatedAt?: true
+  deletedAt?: true
 }
 
 export type DesignationMaxAggregateInputType = {
   id?: true
+  companyId?: true
+  branchId?: true
+  departmentId?: true
   title?: true
-  status_id?: true
-  created_at?: true
-  updated_at?: true
-  deleted_at?: true
-  company_id?: true
-  branch_id?: true
+  code?: true
+  level?: true
+  status?: true
+  createdAt?: true
+  updatedAt?: true
+  deletedAt?: true
 }
 
 export type DesignationCountAggregateInputType = {
   id?: true
+  companyId?: true
+  branchId?: true
+  departmentId?: true
   title?: true
-  status_id?: true
-  created_at?: true
-  updated_at?: true
-  deleted_at?: true
-  company_id?: true
-  branch_id?: true
+  code?: true
+  level?: true
+  status?: true
+  createdAt?: true
+  updatedAt?: true
+  deletedAt?: true
   _all?: true
 }
 
@@ -211,13 +233,16 @@ export type DesignationGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 
 export type DesignationGroupByOutputType = {
   id: number
+  companyId: number
+  branchId: number | null
+  departmentId: number | null
   title: string
-  status_id: number
-  created_at: Date | null
-  updated_at: Date | null
-  deleted_at: Date | null
-  company_id: number | null
-  branch_id: number | null
+  code: string | null
+  level: number | null
+  status: $Enums.DesignationStatus
+  createdAt: Date
+  updatedAt: Date
+  deletedAt: Date | null
   _count: DesignationCountAggregateOutputType | null
   _avg: DesignationAvgAggregateOutputType | null
   _sum: DesignationSumAggregateOutputType | null
@@ -245,52 +270,71 @@ export type DesignationWhereInput = {
   OR?: Prisma.DesignationWhereInput[]
   NOT?: Prisma.DesignationWhereInput | Prisma.DesignationWhereInput[]
   id?: Prisma.IntFilter<"Designation"> | number
+  companyId?: Prisma.IntFilter<"Designation"> | number
+  branchId?: Prisma.IntNullableFilter<"Designation"> | number | null
+  departmentId?: Prisma.IntNullableFilter<"Designation"> | number | null
   title?: Prisma.StringFilter<"Designation"> | string
-  status_id?: Prisma.IntFilter<"Designation"> | number
-  created_at?: Prisma.DateTimeNullableFilter<"Designation"> | Date | string | null
-  updated_at?: Prisma.DateTimeNullableFilter<"Designation"> | Date | string | null
-  deleted_at?: Prisma.DateTimeNullableFilter<"Designation"> | Date | string | null
-  company_id?: Prisma.IntNullableFilter<"Designation"> | number | null
-  branch_id?: Prisma.IntNullableFilter<"Designation"> | number | null
+  code?: Prisma.StringNullableFilter<"Designation"> | string | null
+  level?: Prisma.IntNullableFilter<"Designation"> | number | null
+  status?: Prisma.EnumDesignationStatusFilter<"Designation"> | $Enums.DesignationStatus
+  createdAt?: Prisma.DateTimeFilter<"Designation"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Designation"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"Designation"> | Date | string | null
+  company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
+  department?: Prisma.XOR<Prisma.DepartmentNullableScalarRelationFilter, Prisma.DepartmentWhereInput> | null
   employees?: Prisma.EmployeeListRelationFilter
 }
 
 export type DesignationOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  companyId?: Prisma.SortOrder
+  branchId?: Prisma.SortOrderInput | Prisma.SortOrder
+  departmentId?: Prisma.SortOrderInput | Prisma.SortOrder
   title?: Prisma.SortOrder
-  status_id?: Prisma.SortOrder
-  created_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  company_id?: Prisma.SortOrderInput | Prisma.SortOrder
-  branch_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  code?: Prisma.SortOrderInput | Prisma.SortOrder
+  level?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  company?: Prisma.CompanyOrderByWithRelationInput
+  department?: Prisma.DepartmentOrderByWithRelationInput
   employees?: Prisma.EmployeeOrderByRelationAggregateInput
 }
 
 export type DesignationWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  companyId_departmentId_title?: Prisma.DesignationCompanyIdDepartmentIdTitleCompoundUniqueInput
   AND?: Prisma.DesignationWhereInput | Prisma.DesignationWhereInput[]
   OR?: Prisma.DesignationWhereInput[]
   NOT?: Prisma.DesignationWhereInput | Prisma.DesignationWhereInput[]
+  companyId?: Prisma.IntFilter<"Designation"> | number
+  branchId?: Prisma.IntNullableFilter<"Designation"> | number | null
+  departmentId?: Prisma.IntNullableFilter<"Designation"> | number | null
   title?: Prisma.StringFilter<"Designation"> | string
-  status_id?: Prisma.IntFilter<"Designation"> | number
-  created_at?: Prisma.DateTimeNullableFilter<"Designation"> | Date | string | null
-  updated_at?: Prisma.DateTimeNullableFilter<"Designation"> | Date | string | null
-  deleted_at?: Prisma.DateTimeNullableFilter<"Designation"> | Date | string | null
-  company_id?: Prisma.IntNullableFilter<"Designation"> | number | null
-  branch_id?: Prisma.IntNullableFilter<"Designation"> | number | null
+  code?: Prisma.StringNullableFilter<"Designation"> | string | null
+  level?: Prisma.IntNullableFilter<"Designation"> | number | null
+  status?: Prisma.EnumDesignationStatusFilter<"Designation"> | $Enums.DesignationStatus
+  createdAt?: Prisma.DateTimeFilter<"Designation"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Designation"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"Designation"> | Date | string | null
+  company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
+  department?: Prisma.XOR<Prisma.DepartmentNullableScalarRelationFilter, Prisma.DepartmentWhereInput> | null
   employees?: Prisma.EmployeeListRelationFilter
-}, "id">
+}, "id" | "companyId_departmentId_title">
 
 export type DesignationOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  companyId?: Prisma.SortOrder
+  branchId?: Prisma.SortOrderInput | Prisma.SortOrder
+  departmentId?: Prisma.SortOrderInput | Prisma.SortOrder
   title?: Prisma.SortOrder
-  status_id?: Prisma.SortOrder
-  created_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  company_id?: Prisma.SortOrderInput | Prisma.SortOrder
-  branch_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  code?: Prisma.SortOrderInput | Prisma.SortOrder
+  level?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.DesignationCountOrderByAggregateInput
   _avg?: Prisma.DesignationAvgOrderByAggregateInput
   _max?: Prisma.DesignationMaxOrderByAggregateInput
@@ -303,138 +347,187 @@ export type DesignationScalarWhereWithAggregatesInput = {
   OR?: Prisma.DesignationScalarWhereWithAggregatesInput[]
   NOT?: Prisma.DesignationScalarWhereWithAggregatesInput | Prisma.DesignationScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Designation"> | number
+  companyId?: Prisma.IntWithAggregatesFilter<"Designation"> | number
+  branchId?: Prisma.IntNullableWithAggregatesFilter<"Designation"> | number | null
+  departmentId?: Prisma.IntNullableWithAggregatesFilter<"Designation"> | number | null
   title?: Prisma.StringWithAggregatesFilter<"Designation"> | string
-  status_id?: Prisma.IntWithAggregatesFilter<"Designation"> | number
-  created_at?: Prisma.DateTimeNullableWithAggregatesFilter<"Designation"> | Date | string | null
-  updated_at?: Prisma.DateTimeNullableWithAggregatesFilter<"Designation"> | Date | string | null
-  deleted_at?: Prisma.DateTimeNullableWithAggregatesFilter<"Designation"> | Date | string | null
-  company_id?: Prisma.IntNullableWithAggregatesFilter<"Designation"> | number | null
-  branch_id?: Prisma.IntNullableWithAggregatesFilter<"Designation"> | number | null
+  code?: Prisma.StringNullableWithAggregatesFilter<"Designation"> | string | null
+  level?: Prisma.IntNullableWithAggregatesFilter<"Designation"> | number | null
+  status?: Prisma.EnumDesignationStatusWithAggregatesFilter<"Designation"> | $Enums.DesignationStatus
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Designation"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Designation"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Designation"> | Date | string | null
 }
 
 export type DesignationCreateInput = {
+  branchId?: number | null
   title: string
-  status_id: number
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
-  deleted_at?: Date | string | null
-  company_id?: number | null
-  branch_id?: number | null
+  code?: string | null
+  level?: number | null
+  status?: $Enums.DesignationStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  company: Prisma.CompanyCreateNestedOneWithoutDesignationsInput
+  department?: Prisma.DepartmentCreateNestedOneWithoutDesignationsInput
   employees?: Prisma.EmployeeCreateNestedManyWithoutDesignationInput
 }
 
 export type DesignationUncheckedCreateInput = {
   id?: number
+  companyId: number
+  branchId?: number | null
+  departmentId?: number | null
   title: string
-  status_id: number
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
-  deleted_at?: Date | string | null
-  company_id?: number | null
-  branch_id?: number | null
+  code?: string | null
+  level?: number | null
+  status?: $Enums.DesignationStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
   employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutDesignationInput
 }
 
 export type DesignationUpdateInput = {
+  branchId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  status_id?: Prisma.IntFieldUpdateOperationsInput | number
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  company_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  branch_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumDesignationStatusFieldUpdateOperationsInput | $Enums.DesignationStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  company?: Prisma.CompanyUpdateOneRequiredWithoutDesignationsNestedInput
+  department?: Prisma.DepartmentUpdateOneWithoutDesignationsNestedInput
   employees?: Prisma.EmployeeUpdateManyWithoutDesignationNestedInput
 }
 
 export type DesignationUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  companyId?: Prisma.IntFieldUpdateOperationsInput | number
+  branchId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  departmentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  status_id?: Prisma.IntFieldUpdateOperationsInput | number
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  company_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  branch_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumDesignationStatusFieldUpdateOperationsInput | $Enums.DesignationStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employees?: Prisma.EmployeeUncheckedUpdateManyWithoutDesignationNestedInput
 }
 
 export type DesignationCreateManyInput = {
   id?: number
+  companyId: number
+  branchId?: number | null
+  departmentId?: number | null
   title: string
-  status_id: number
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
-  deleted_at?: Date | string | null
-  company_id?: number | null
-  branch_id?: number | null
+  code?: string | null
+  level?: number | null
+  status?: $Enums.DesignationStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
 }
 
 export type DesignationUpdateManyMutationInput = {
+  branchId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  status_id?: Prisma.IntFieldUpdateOperationsInput | number
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  company_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  branch_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumDesignationStatusFieldUpdateOperationsInput | $Enums.DesignationStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type DesignationUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  companyId?: Prisma.IntFieldUpdateOperationsInput | number
+  branchId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  departmentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  status_id?: Prisma.IntFieldUpdateOperationsInput | number
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  company_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  branch_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumDesignationStatusFieldUpdateOperationsInput | $Enums.DesignationStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type DesignationListRelationFilter = {
+  every?: Prisma.DesignationWhereInput
+  some?: Prisma.DesignationWhereInput
+  none?: Prisma.DesignationWhereInput
+}
+
+export type DesignationOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
+export type DesignationCompanyIdDepartmentIdTitleCompoundUniqueInput = {
+  companyId: number
+  departmentId: number
+  title: string
 }
 
 export type DesignationCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  companyId?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  status_id?: Prisma.SortOrder
-  created_at?: Prisma.SortOrder
-  updated_at?: Prisma.SortOrder
-  deleted_at?: Prisma.SortOrder
-  company_id?: Prisma.SortOrder
-  branch_id?: Prisma.SortOrder
+  code?: Prisma.SortOrder
+  level?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type DesignationAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  status_id?: Prisma.SortOrder
-  company_id?: Prisma.SortOrder
-  branch_id?: Prisma.SortOrder
+  companyId?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
+  level?: Prisma.SortOrder
 }
 
 export type DesignationMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  companyId?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  status_id?: Prisma.SortOrder
-  created_at?: Prisma.SortOrder
-  updated_at?: Prisma.SortOrder
-  deleted_at?: Prisma.SortOrder
-  company_id?: Prisma.SortOrder
-  branch_id?: Prisma.SortOrder
+  code?: Prisma.SortOrder
+  level?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type DesignationMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  companyId?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  status_id?: Prisma.SortOrder
-  created_at?: Prisma.SortOrder
-  updated_at?: Prisma.SortOrder
-  deleted_at?: Prisma.SortOrder
-  company_id?: Prisma.SortOrder
-  branch_id?: Prisma.SortOrder
+  code?: Prisma.SortOrder
+  level?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
 }
 
 export type DesignationSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  status_id?: Prisma.SortOrder
-  company_id?: Prisma.SortOrder
-  branch_id?: Prisma.SortOrder
+  companyId?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
+  level?: Prisma.SortOrder
 }
 
 export type DesignationNullableScalarRelationFilter = {
@@ -442,12 +535,96 @@ export type DesignationNullableScalarRelationFilter = {
   isNot?: Prisma.DesignationWhereInput | null
 }
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
+export type DesignationCreateNestedManyWithoutCompanyInput = {
+  create?: Prisma.XOR<Prisma.DesignationCreateWithoutCompanyInput, Prisma.DesignationUncheckedCreateWithoutCompanyInput> | Prisma.DesignationCreateWithoutCompanyInput[] | Prisma.DesignationUncheckedCreateWithoutCompanyInput[]
+  connectOrCreate?: Prisma.DesignationCreateOrConnectWithoutCompanyInput | Prisma.DesignationCreateOrConnectWithoutCompanyInput[]
+  createMany?: Prisma.DesignationCreateManyCompanyInputEnvelope
+  connect?: Prisma.DesignationWhereUniqueInput | Prisma.DesignationWhereUniqueInput[]
+}
+
+export type DesignationUncheckedCreateNestedManyWithoutCompanyInput = {
+  create?: Prisma.XOR<Prisma.DesignationCreateWithoutCompanyInput, Prisma.DesignationUncheckedCreateWithoutCompanyInput> | Prisma.DesignationCreateWithoutCompanyInput[] | Prisma.DesignationUncheckedCreateWithoutCompanyInput[]
+  connectOrCreate?: Prisma.DesignationCreateOrConnectWithoutCompanyInput | Prisma.DesignationCreateOrConnectWithoutCompanyInput[]
+  createMany?: Prisma.DesignationCreateManyCompanyInputEnvelope
+  connect?: Prisma.DesignationWhereUniqueInput | Prisma.DesignationWhereUniqueInput[]
+}
+
+export type DesignationUpdateManyWithoutCompanyNestedInput = {
+  create?: Prisma.XOR<Prisma.DesignationCreateWithoutCompanyInput, Prisma.DesignationUncheckedCreateWithoutCompanyInput> | Prisma.DesignationCreateWithoutCompanyInput[] | Prisma.DesignationUncheckedCreateWithoutCompanyInput[]
+  connectOrCreate?: Prisma.DesignationCreateOrConnectWithoutCompanyInput | Prisma.DesignationCreateOrConnectWithoutCompanyInput[]
+  upsert?: Prisma.DesignationUpsertWithWhereUniqueWithoutCompanyInput | Prisma.DesignationUpsertWithWhereUniqueWithoutCompanyInput[]
+  createMany?: Prisma.DesignationCreateManyCompanyInputEnvelope
+  set?: Prisma.DesignationWhereUniqueInput | Prisma.DesignationWhereUniqueInput[]
+  disconnect?: Prisma.DesignationWhereUniqueInput | Prisma.DesignationWhereUniqueInput[]
+  delete?: Prisma.DesignationWhereUniqueInput | Prisma.DesignationWhereUniqueInput[]
+  connect?: Prisma.DesignationWhereUniqueInput | Prisma.DesignationWhereUniqueInput[]
+  update?: Prisma.DesignationUpdateWithWhereUniqueWithoutCompanyInput | Prisma.DesignationUpdateWithWhereUniqueWithoutCompanyInput[]
+  updateMany?: Prisma.DesignationUpdateManyWithWhereWithoutCompanyInput | Prisma.DesignationUpdateManyWithWhereWithoutCompanyInput[]
+  deleteMany?: Prisma.DesignationScalarWhereInput | Prisma.DesignationScalarWhereInput[]
+}
+
+export type DesignationUncheckedUpdateManyWithoutCompanyNestedInput = {
+  create?: Prisma.XOR<Prisma.DesignationCreateWithoutCompanyInput, Prisma.DesignationUncheckedCreateWithoutCompanyInput> | Prisma.DesignationCreateWithoutCompanyInput[] | Prisma.DesignationUncheckedCreateWithoutCompanyInput[]
+  connectOrCreate?: Prisma.DesignationCreateOrConnectWithoutCompanyInput | Prisma.DesignationCreateOrConnectWithoutCompanyInput[]
+  upsert?: Prisma.DesignationUpsertWithWhereUniqueWithoutCompanyInput | Prisma.DesignationUpsertWithWhereUniqueWithoutCompanyInput[]
+  createMany?: Prisma.DesignationCreateManyCompanyInputEnvelope
+  set?: Prisma.DesignationWhereUniqueInput | Prisma.DesignationWhereUniqueInput[]
+  disconnect?: Prisma.DesignationWhereUniqueInput | Prisma.DesignationWhereUniqueInput[]
+  delete?: Prisma.DesignationWhereUniqueInput | Prisma.DesignationWhereUniqueInput[]
+  connect?: Prisma.DesignationWhereUniqueInput | Prisma.DesignationWhereUniqueInput[]
+  update?: Prisma.DesignationUpdateWithWhereUniqueWithoutCompanyInput | Prisma.DesignationUpdateWithWhereUniqueWithoutCompanyInput[]
+  updateMany?: Prisma.DesignationUpdateManyWithWhereWithoutCompanyInput | Prisma.DesignationUpdateManyWithWhereWithoutCompanyInput[]
+  deleteMany?: Prisma.DesignationScalarWhereInput | Prisma.DesignationScalarWhereInput[]
+}
+
+export type DesignationCreateNestedManyWithoutDepartmentInput = {
+  create?: Prisma.XOR<Prisma.DesignationCreateWithoutDepartmentInput, Prisma.DesignationUncheckedCreateWithoutDepartmentInput> | Prisma.DesignationCreateWithoutDepartmentInput[] | Prisma.DesignationUncheckedCreateWithoutDepartmentInput[]
+  connectOrCreate?: Prisma.DesignationCreateOrConnectWithoutDepartmentInput | Prisma.DesignationCreateOrConnectWithoutDepartmentInput[]
+  createMany?: Prisma.DesignationCreateManyDepartmentInputEnvelope
+  connect?: Prisma.DesignationWhereUniqueInput | Prisma.DesignationWhereUniqueInput[]
+}
+
+export type DesignationUncheckedCreateNestedManyWithoutDepartmentInput = {
+  create?: Prisma.XOR<Prisma.DesignationCreateWithoutDepartmentInput, Prisma.DesignationUncheckedCreateWithoutDepartmentInput> | Prisma.DesignationCreateWithoutDepartmentInput[] | Prisma.DesignationUncheckedCreateWithoutDepartmentInput[]
+  connectOrCreate?: Prisma.DesignationCreateOrConnectWithoutDepartmentInput | Prisma.DesignationCreateOrConnectWithoutDepartmentInput[]
+  createMany?: Prisma.DesignationCreateManyDepartmentInputEnvelope
+  connect?: Prisma.DesignationWhereUniqueInput | Prisma.DesignationWhereUniqueInput[]
+}
+
+export type DesignationUpdateManyWithoutDepartmentNestedInput = {
+  create?: Prisma.XOR<Prisma.DesignationCreateWithoutDepartmentInput, Prisma.DesignationUncheckedCreateWithoutDepartmentInput> | Prisma.DesignationCreateWithoutDepartmentInput[] | Prisma.DesignationUncheckedCreateWithoutDepartmentInput[]
+  connectOrCreate?: Prisma.DesignationCreateOrConnectWithoutDepartmentInput | Prisma.DesignationCreateOrConnectWithoutDepartmentInput[]
+  upsert?: Prisma.DesignationUpsertWithWhereUniqueWithoutDepartmentInput | Prisma.DesignationUpsertWithWhereUniqueWithoutDepartmentInput[]
+  createMany?: Prisma.DesignationCreateManyDepartmentInputEnvelope
+  set?: Prisma.DesignationWhereUniqueInput | Prisma.DesignationWhereUniqueInput[]
+  disconnect?: Prisma.DesignationWhereUniqueInput | Prisma.DesignationWhereUniqueInput[]
+  delete?: Prisma.DesignationWhereUniqueInput | Prisma.DesignationWhereUniqueInput[]
+  connect?: Prisma.DesignationWhereUniqueInput | Prisma.DesignationWhereUniqueInput[]
+  update?: Prisma.DesignationUpdateWithWhereUniqueWithoutDepartmentInput | Prisma.DesignationUpdateWithWhereUniqueWithoutDepartmentInput[]
+  updateMany?: Prisma.DesignationUpdateManyWithWhereWithoutDepartmentInput | Prisma.DesignationUpdateManyWithWhereWithoutDepartmentInput[]
+  deleteMany?: Prisma.DesignationScalarWhereInput | Prisma.DesignationScalarWhereInput[]
+}
+
+export type DesignationUncheckedUpdateManyWithoutDepartmentNestedInput = {
+  create?: Prisma.XOR<Prisma.DesignationCreateWithoutDepartmentInput, Prisma.DesignationUncheckedCreateWithoutDepartmentInput> | Prisma.DesignationCreateWithoutDepartmentInput[] | Prisma.DesignationUncheckedCreateWithoutDepartmentInput[]
+  connectOrCreate?: Prisma.DesignationCreateOrConnectWithoutDepartmentInput | Prisma.DesignationCreateOrConnectWithoutDepartmentInput[]
+  upsert?: Prisma.DesignationUpsertWithWhereUniqueWithoutDepartmentInput | Prisma.DesignationUpsertWithWhereUniqueWithoutDepartmentInput[]
+  createMany?: Prisma.DesignationCreateManyDepartmentInputEnvelope
+  set?: Prisma.DesignationWhereUniqueInput | Prisma.DesignationWhereUniqueInput[]
+  disconnect?: Prisma.DesignationWhereUniqueInput | Prisma.DesignationWhereUniqueInput[]
+  delete?: Prisma.DesignationWhereUniqueInput | Prisma.DesignationWhereUniqueInput[]
+  connect?: Prisma.DesignationWhereUniqueInput | Prisma.DesignationWhereUniqueInput[]
+  update?: Prisma.DesignationUpdateWithWhereUniqueWithoutDepartmentInput | Prisma.DesignationUpdateWithWhereUniqueWithoutDepartmentInput[]
+  updateMany?: Prisma.DesignationUpdateManyWithWhereWithoutDepartmentInput | Prisma.DesignationUpdateManyWithWhereWithoutDepartmentInput[]
+  deleteMany?: Prisma.DesignationScalarWhereInput | Prisma.DesignationScalarWhereInput[]
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type EnumDesignationStatusFieldUpdateOperationsInput = {
+  set?: $Enums.DesignationStatus
 }
 
 export type DesignationCreateNestedOneWithoutEmployeesInput = {
@@ -466,25 +643,154 @@ export type DesignationUpdateOneWithoutEmployeesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.DesignationUpdateToOneWithWhereWithoutEmployeesInput, Prisma.DesignationUpdateWithoutEmployeesInput>, Prisma.DesignationUncheckedUpdateWithoutEmployeesInput>
 }
 
-export type DesignationCreateWithoutEmployeesInput = {
+export type DesignationCreateWithoutCompanyInput = {
+  branchId?: number | null
   title: string
-  status_id: number
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
-  deleted_at?: Date | string | null
-  company_id?: number | null
-  branch_id?: number | null
+  code?: string | null
+  level?: number | null
+  status?: $Enums.DesignationStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  department?: Prisma.DepartmentCreateNestedOneWithoutDesignationsInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutDesignationInput
+}
+
+export type DesignationUncheckedCreateWithoutCompanyInput = {
+  id?: number
+  branchId?: number | null
+  departmentId?: number | null
+  title: string
+  code?: string | null
+  level?: number | null
+  status?: $Enums.DesignationStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutDesignationInput
+}
+
+export type DesignationCreateOrConnectWithoutCompanyInput = {
+  where: Prisma.DesignationWhereUniqueInput
+  create: Prisma.XOR<Prisma.DesignationCreateWithoutCompanyInput, Prisma.DesignationUncheckedCreateWithoutCompanyInput>
+}
+
+export type DesignationCreateManyCompanyInputEnvelope = {
+  data: Prisma.DesignationCreateManyCompanyInput | Prisma.DesignationCreateManyCompanyInput[]
+  skipDuplicates?: boolean
+}
+
+export type DesignationUpsertWithWhereUniqueWithoutCompanyInput = {
+  where: Prisma.DesignationWhereUniqueInput
+  update: Prisma.XOR<Prisma.DesignationUpdateWithoutCompanyInput, Prisma.DesignationUncheckedUpdateWithoutCompanyInput>
+  create: Prisma.XOR<Prisma.DesignationCreateWithoutCompanyInput, Prisma.DesignationUncheckedCreateWithoutCompanyInput>
+}
+
+export type DesignationUpdateWithWhereUniqueWithoutCompanyInput = {
+  where: Prisma.DesignationWhereUniqueInput
+  data: Prisma.XOR<Prisma.DesignationUpdateWithoutCompanyInput, Prisma.DesignationUncheckedUpdateWithoutCompanyInput>
+}
+
+export type DesignationUpdateManyWithWhereWithoutCompanyInput = {
+  where: Prisma.DesignationScalarWhereInput
+  data: Prisma.XOR<Prisma.DesignationUpdateManyMutationInput, Prisma.DesignationUncheckedUpdateManyWithoutCompanyInput>
+}
+
+export type DesignationScalarWhereInput = {
+  AND?: Prisma.DesignationScalarWhereInput | Prisma.DesignationScalarWhereInput[]
+  OR?: Prisma.DesignationScalarWhereInput[]
+  NOT?: Prisma.DesignationScalarWhereInput | Prisma.DesignationScalarWhereInput[]
+  id?: Prisma.IntFilter<"Designation"> | number
+  companyId?: Prisma.IntFilter<"Designation"> | number
+  branchId?: Prisma.IntNullableFilter<"Designation"> | number | null
+  departmentId?: Prisma.IntNullableFilter<"Designation"> | number | null
+  title?: Prisma.StringFilter<"Designation"> | string
+  code?: Prisma.StringNullableFilter<"Designation"> | string | null
+  level?: Prisma.IntNullableFilter<"Designation"> | number | null
+  status?: Prisma.EnumDesignationStatusFilter<"Designation"> | $Enums.DesignationStatus
+  createdAt?: Prisma.DateTimeFilter<"Designation"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Designation"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"Designation"> | Date | string | null
+}
+
+export type DesignationCreateWithoutDepartmentInput = {
+  branchId?: number | null
+  title: string
+  code?: string | null
+  level?: number | null
+  status?: $Enums.DesignationStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  company: Prisma.CompanyCreateNestedOneWithoutDesignationsInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutDesignationInput
+}
+
+export type DesignationUncheckedCreateWithoutDepartmentInput = {
+  id?: number
+  companyId: number
+  branchId?: number | null
+  title: string
+  code?: string | null
+  level?: number | null
+  status?: $Enums.DesignationStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutDesignationInput
+}
+
+export type DesignationCreateOrConnectWithoutDepartmentInput = {
+  where: Prisma.DesignationWhereUniqueInput
+  create: Prisma.XOR<Prisma.DesignationCreateWithoutDepartmentInput, Prisma.DesignationUncheckedCreateWithoutDepartmentInput>
+}
+
+export type DesignationCreateManyDepartmentInputEnvelope = {
+  data: Prisma.DesignationCreateManyDepartmentInput | Prisma.DesignationCreateManyDepartmentInput[]
+  skipDuplicates?: boolean
+}
+
+export type DesignationUpsertWithWhereUniqueWithoutDepartmentInput = {
+  where: Prisma.DesignationWhereUniqueInput
+  update: Prisma.XOR<Prisma.DesignationUpdateWithoutDepartmentInput, Prisma.DesignationUncheckedUpdateWithoutDepartmentInput>
+  create: Prisma.XOR<Prisma.DesignationCreateWithoutDepartmentInput, Prisma.DesignationUncheckedCreateWithoutDepartmentInput>
+}
+
+export type DesignationUpdateWithWhereUniqueWithoutDepartmentInput = {
+  where: Prisma.DesignationWhereUniqueInput
+  data: Prisma.XOR<Prisma.DesignationUpdateWithoutDepartmentInput, Prisma.DesignationUncheckedUpdateWithoutDepartmentInput>
+}
+
+export type DesignationUpdateManyWithWhereWithoutDepartmentInput = {
+  where: Prisma.DesignationScalarWhereInput
+  data: Prisma.XOR<Prisma.DesignationUpdateManyMutationInput, Prisma.DesignationUncheckedUpdateManyWithoutDepartmentInput>
+}
+
+export type DesignationCreateWithoutEmployeesInput = {
+  branchId?: number | null
+  title: string
+  code?: string | null
+  level?: number | null
+  status?: $Enums.DesignationStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  company: Prisma.CompanyCreateNestedOneWithoutDesignationsInput
+  department?: Prisma.DepartmentCreateNestedOneWithoutDesignationsInput
 }
 
 export type DesignationUncheckedCreateWithoutEmployeesInput = {
   id?: number
+  companyId: number
+  branchId?: number | null
+  departmentId?: number | null
   title: string
-  status_id: number
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
-  deleted_at?: Date | string | null
-  company_id?: number | null
-  branch_id?: number | null
+  code?: string | null
+  level?: number | null
+  status?: $Enums.DesignationStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
 }
 
 export type DesignationCreateOrConnectWithoutEmployeesInput = {
@@ -504,24 +810,136 @@ export type DesignationUpdateToOneWithWhereWithoutEmployeesInput = {
 }
 
 export type DesignationUpdateWithoutEmployeesInput = {
+  branchId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  status_id?: Prisma.IntFieldUpdateOperationsInput | number
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  company_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  branch_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumDesignationStatusFieldUpdateOperationsInput | $Enums.DesignationStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  company?: Prisma.CompanyUpdateOneRequiredWithoutDesignationsNestedInput
+  department?: Prisma.DepartmentUpdateOneWithoutDesignationsNestedInput
 }
 
 export type DesignationUncheckedUpdateWithoutEmployeesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  companyId?: Prisma.IntFieldUpdateOperationsInput | number
+  branchId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  departmentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  status_id?: Prisma.IntFieldUpdateOperationsInput | number
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  company_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  branch_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumDesignationStatusFieldUpdateOperationsInput | $Enums.DesignationStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type DesignationCreateManyCompanyInput = {
+  id?: number
+  branchId?: number | null
+  departmentId?: number | null
+  title: string
+  code?: string | null
+  level?: number | null
+  status?: $Enums.DesignationStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+}
+
+export type DesignationUpdateWithoutCompanyInput = {
+  branchId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumDesignationStatusFieldUpdateOperationsInput | $Enums.DesignationStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  department?: Prisma.DepartmentUpdateOneWithoutDesignationsNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutDesignationNestedInput
+}
+
+export type DesignationUncheckedUpdateWithoutCompanyInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  branchId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  departmentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumDesignationStatusFieldUpdateOperationsInput | $Enums.DesignationStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutDesignationNestedInput
+}
+
+export type DesignationUncheckedUpdateManyWithoutCompanyInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  branchId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  departmentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumDesignationStatusFieldUpdateOperationsInput | $Enums.DesignationStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type DesignationCreateManyDepartmentInput = {
+  id?: number
+  companyId: number
+  branchId?: number | null
+  title: string
+  code?: string | null
+  level?: number | null
+  status?: $Enums.DesignationStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+}
+
+export type DesignationUpdateWithoutDepartmentInput = {
+  branchId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumDesignationStatusFieldUpdateOperationsInput | $Enums.DesignationStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  company?: Prisma.CompanyUpdateOneRequiredWithoutDesignationsNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutDesignationNestedInput
+}
+
+export type DesignationUncheckedUpdateWithoutDepartmentInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  companyId?: Prisma.IntFieldUpdateOperationsInput | number
+  branchId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumDesignationStatusFieldUpdateOperationsInput | $Enums.DesignationStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutDesignationNestedInput
+}
+
+export type DesignationUncheckedUpdateManyWithoutDepartmentInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  companyId?: Prisma.IntFieldUpdateOperationsInput | number
+  branchId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumDesignationStatusFieldUpdateOperationsInput | $Enums.DesignationStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -557,72 +975,103 @@ export type DesignationCountOutputTypeCountEmployeesArgs<ExtArgs extends runtime
 
 export type DesignationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  companyId?: boolean
+  branchId?: boolean
+  departmentId?: boolean
   title?: boolean
-  status_id?: boolean
-  created_at?: boolean
-  updated_at?: boolean
-  deleted_at?: boolean
-  company_id?: boolean
-  branch_id?: boolean
+  code?: boolean
+  level?: boolean
+  status?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  deletedAt?: boolean
+  company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.Designation$departmentArgs<ExtArgs>
   employees?: boolean | Prisma.Designation$employeesArgs<ExtArgs>
   _count?: boolean | Prisma.DesignationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["designation"]>
 
 export type DesignationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  companyId?: boolean
+  branchId?: boolean
+  departmentId?: boolean
   title?: boolean
-  status_id?: boolean
-  created_at?: boolean
-  updated_at?: boolean
-  deleted_at?: boolean
-  company_id?: boolean
-  branch_id?: boolean
+  code?: boolean
+  level?: boolean
+  status?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  deletedAt?: boolean
+  company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.Designation$departmentArgs<ExtArgs>
 }, ExtArgs["result"]["designation"]>
 
 export type DesignationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  companyId?: boolean
+  branchId?: boolean
+  departmentId?: boolean
   title?: boolean
-  status_id?: boolean
-  created_at?: boolean
-  updated_at?: boolean
-  deleted_at?: boolean
-  company_id?: boolean
-  branch_id?: boolean
+  code?: boolean
+  level?: boolean
+  status?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  deletedAt?: boolean
+  company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.Designation$departmentArgs<ExtArgs>
 }, ExtArgs["result"]["designation"]>
 
 export type DesignationSelectScalar = {
   id?: boolean
+  companyId?: boolean
+  branchId?: boolean
+  departmentId?: boolean
   title?: boolean
-  status_id?: boolean
-  created_at?: boolean
-  updated_at?: boolean
-  deleted_at?: boolean
-  company_id?: boolean
-  branch_id?: boolean
+  code?: boolean
+  level?: boolean
+  status?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  deletedAt?: boolean
 }
 
-export type DesignationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "status_id" | "created_at" | "updated_at" | "deleted_at" | "company_id" | "branch_id", ExtArgs["result"]["designation"]>
+export type DesignationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "branchId" | "departmentId" | "title" | "code" | "level" | "status" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["designation"]>
 export type DesignationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.Designation$departmentArgs<ExtArgs>
   employees?: boolean | Prisma.Designation$employeesArgs<ExtArgs>
   _count?: boolean | Prisma.DesignationCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type DesignationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type DesignationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type DesignationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.Designation$departmentArgs<ExtArgs>
+}
+export type DesignationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.Designation$departmentArgs<ExtArgs>
+}
 
 export type $DesignationPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Designation"
   objects: {
+    company: Prisma.$CompanyPayload<ExtArgs>
+    department: Prisma.$DepartmentPayload<ExtArgs> | null
     employees: Prisma.$EmployeePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    companyId: number
+    branchId: number | null
+    departmentId: number | null
     title: string
-    status_id: number
-    created_at: Date | null
-    updated_at: Date | null
-    deleted_at: Date | null
-    company_id: number | null
-    branch_id: number | null
+    code: string | null
+    level: number | null
+    status: $Enums.DesignationStatus
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date | null
   }, ExtArgs["result"]["designation"]>
   composites: {}
 }
@@ -1017,6 +1466,8 @@ readonly fields: DesignationFieldRefs;
  */
 export interface Prisma__DesignationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  company<T extends Prisma.CompanyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CompanyDefaultArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  department<T extends Prisma.Designation$departmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Designation$departmentArgs<ExtArgs>>): Prisma.Prisma__DepartmentClient<runtime.Types.Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   employees<T extends Prisma.Designation$employeesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Designation$employeesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1048,13 +1499,16 @@ export interface Prisma__DesignationClient<T, Null = never, ExtArgs extends runt
  */
 export interface DesignationFieldRefs {
   readonly id: Prisma.FieldRef<"Designation", 'Int'>
+  readonly companyId: Prisma.FieldRef<"Designation", 'Int'>
+  readonly branchId: Prisma.FieldRef<"Designation", 'Int'>
+  readonly departmentId: Prisma.FieldRef<"Designation", 'Int'>
   readonly title: Prisma.FieldRef<"Designation", 'String'>
-  readonly status_id: Prisma.FieldRef<"Designation", 'Int'>
-  readonly created_at: Prisma.FieldRef<"Designation", 'DateTime'>
-  readonly updated_at: Prisma.FieldRef<"Designation", 'DateTime'>
-  readonly deleted_at: Prisma.FieldRef<"Designation", 'DateTime'>
-  readonly company_id: Prisma.FieldRef<"Designation", 'Int'>
-  readonly branch_id: Prisma.FieldRef<"Designation", 'Int'>
+  readonly code: Prisma.FieldRef<"Designation", 'String'>
+  readonly level: Prisma.FieldRef<"Designation", 'Int'>
+  readonly status: Prisma.FieldRef<"Designation", 'DesignationStatus'>
+  readonly createdAt: Prisma.FieldRef<"Designation", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Designation", 'DateTime'>
+  readonly deletedAt: Prisma.FieldRef<"Designation", 'DateTime'>
 }
     
 
@@ -1309,6 +1763,10 @@ export type DesignationCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Ext
    */
   data: Prisma.DesignationCreateManyInput | Prisma.DesignationCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DesignationIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1379,6 +1837,10 @@ export type DesignationUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Ext
    * Limit how many Designations to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DesignationIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1445,6 +1907,25 @@ export type DesignationDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
    * Limit how many Designations to delete.
    */
   limit?: number
+}
+
+/**
+ * Designation.department
+ */
+export type Designation$departmentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Department
+   */
+  select?: Prisma.DepartmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Department
+   */
+  omit?: Prisma.DepartmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentInclude<ExtArgs> | null
+  where?: Prisma.DepartmentWhereInput
 }
 
 /**
