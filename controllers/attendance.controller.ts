@@ -199,7 +199,9 @@ export const getTodayAttendanceByEmployee = async (
   res: Response,
 ) => {
   try {
-    const employee = await getEmployeeFromRequest(req);
+    console.log("companyId", req.companyId);
+    console.log("employeeby", req.employee);
+    console.log("hit today attendance by employee");
 
     // ======================================
     // TODAY RANGE
@@ -221,9 +223,9 @@ export const getTodayAttendanceByEmployee = async (
 
     const attendance = await prisma.attendance.findFirst({
       where: {
-        companyId: req.companyId,
+        companyId: Number(req.companyId),
 
-        employeeId: employee.id,
+        employeeId: Number(req.employee?.id),
 
         date: {
           gte: start,

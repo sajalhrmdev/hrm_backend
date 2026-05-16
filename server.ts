@@ -66,6 +66,7 @@ app.use(
   "/api/v1/attendance",
   authMiddleware,
   companyAccessMiddleware,
+  employeeMiddleware,
   attendanceRoutes,
 );
 app.use(
