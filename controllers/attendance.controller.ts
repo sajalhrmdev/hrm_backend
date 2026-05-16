@@ -1,6 +1,12 @@
 // controllers/attendance.controller.ts
 import { Request, Response } from "express";
-import { getAttendanceByRange, getCompanyDayAttendance, getMonthlyAttendance, getTodayAttendance, handleAttendance } from "../services/handleAttendance/attendance.service.js";
+import {
+  getAttendanceByRange,
+  getCompanyDayAttendance,
+  getMonthlyAttendance,
+  getTodayAttendance,
+  handleAttendance,
+} from "../services/handleAttendance/attendance.service.js";
 import { prisma } from "../lib/prisma.js";
 import { getEmployeeFromRequest } from "../utils/getEmployeeFromRequest.js";
 import getStartEndOfMonth from "../utils/monthlyDate.js";
@@ -11,10 +17,14 @@ export const checkIn = async (req: Request, res: Response) => {
   try {
     // const { employeeId } = req.body;
     const { latitude, longitude, accuracy } = req.body;
-const employee = await getEmployeeFromRequest(req);
-    const data = await handleAttendance(employee.id, "IN", latitude,
-  longitude,
-  accuracy);
+    const employee = await getEmployeeFromRequest(req);
+    const data = await handleAttendance(
+      employee.id,
+      "IN",
+      latitude,
+      longitude,
+      accuracy,
+    );
 
     res.json({ success: true, data });
   } catch (err: any) {
@@ -28,9 +38,13 @@ export const checkOut = async (req: Request, res: Response) => {
     const { latitude, longitude, accuracy } = req.body;
     const employee = await getEmployeeFromRequest(req);
 
-    const data = await handleAttendance(employee.id, "OUT", latitude,
-  longitude,
-  accuracy);
+    const data = await handleAttendance(
+      employee.id,
+      "OUT",
+      latitude,
+      longitude,
+      accuracy,
+    );
 
     res.json({ success: true, data });
   } catch (err: any) {
@@ -40,16 +54,16 @@ export const checkOut = async (req: Request, res: Response) => {
 
 export const getToday = async (req: Request, res: Response) => {
   try {
-const employee = await getEmployeeFromRequest(req);
+    const employee = await getEmployeeFromRequest(req);
     const data = await getTodayAttendance(employee.id);
 
     res.json({
       success: true,
-      data
+      data,
     });
   } catch (err: any) {
     res.status(400).json({
-      message: err.message
+      message: err.message,
     });
   }
 };
@@ -99,7 +113,7 @@ export const getCompanyDay = async (req: Request, res: Response) => {
 
     const data = await getCompanyDayAttendance(
       Number(req.companyId), // or employee.companyId
-      parsedDate
+      parsedDate,
     );
 
     res.json({
@@ -121,7 +135,7 @@ export const getByRange = async (req: Request, res: Response) => {
       Number(companyId),
       Number(employeeId),
       new Date(startDate as string),
-      new Date(endDate as string)
+      new Date(endDate as string),
     );
 
     res.json({
@@ -135,38 +149,141 @@ export const getByRange = async (req: Request, res: Response) => {
   }
 };
 
-export const getTodayAttendanceByEmployee = async (req: Request, res: Response) => {
+// export const getTodayAttendanceByEmployee = async (req: Request, res: Response) => {
+//   try {
+//     // const { companyId, employeeId } = req.query;
+// const employee = await getEmployeeFromRequest(req);
+//     const today = new Date();
+//     const start = new Date(today);
+//     start.setHours(0, 0, 0, 0);
+
+//     const end = new Date(today);
+//     end.setHours(23, 59, 59, 999);
+
+//     const data = await prisma.attendance.findMany({
+//       where: {
+//         companyId: req.companyId,
+//         employeeId: employee.id,
+//         date: {
+//           gte: start,
+//           lte: end,
+//         },
+//       },
+//       include: {
+//         attendanceLogs: {
+//           orderBy: { time: "asc" },
+//         },
+//         employee:true,
+//         company:true,
+//       },
+//     });
+
+//     res.json({
+//       success: true,
+//       data,
+//     });
+//   } catch (err: any) {
+//     res.status(400).json({
+//       message: err.message,
+//     });
+//   }
+// };
+
+// interface AuthRequest extends Request {
+//   user?: any;
+//   companyId?: number;
+// }
+
+export const getTodayAttendanceByEmployee = async (
+  req: Request,
+  res: Response,
+) => {
   try {
-    // const { companyId, employeeId } = req.query;
-const employee = await getEmployeeFromRequest(req);
+    const employee = await getEmployeeFromRequest(req);
+
+    // ======================================
+    // TODAY RANGE
+    // ======================================
+
     const today = new Date();
+
     const start = new Date(today);
+
     start.setHours(0, 0, 0, 0);
 
     const end = new Date(today);
+
     end.setHours(23, 59, 59, 999);
 
-    const data = await prisma.attendance.findMany({
+    // ======================================
+    // ATTENDANCE
+    // ======================================
+
+    const attendance = await prisma.attendance.findFirst({
       where: {
         companyId: req.companyId,
+
         employeeId: employee.id,
+
         date: {
           gte: start,
-          lte: end, 
+
+          lte: end,
         },
       },
+
       include: {
         attendanceLogs: {
-          orderBy: { time: "asc" },
+          orderBy: {
+            time: "asc",
+          },
         },
-        employee:true,
-        company:true,
+
+        employee: true,
+
+        company: true,
+
+        shift: true,
       },
     });
 
+    // ======================================
+    // NEXT ACTION
+    // ======================================
+
+    let nextAction = "CHECK_IN";
+
+    if (attendance?.attendanceLogs?.length) {
+      const lastLog =
+        attendance.attendanceLogs[attendance.attendanceLogs.length - 1];
+
+      // ==============================
+      // IF LAST LOG IS IN
+      // ==============================
+
+      if (lastLog.type === "IN") {
+        nextAction = "CHECK_OUT";
+      }
+
+      // ==============================
+      // IF LAST LOG IS OUT
+      // ==============================
+
+      if (lastLog.type === "OUT") {
+        nextAction = "CHECK_IN";
+      }
+    }
+
+    // ======================================
+    // RESPONSE
+    // ======================================
+
     res.json({
       success: true,
-      data,
+
+      data: attendance,
+
+      nextAction,
     });
   } catch (err: any) {
     res.status(400).json({
@@ -175,21 +292,13 @@ const employee = await getEmployeeFromRequest(req);
   }
 };
 
-
-
-
-// interface AuthRequest extends Request {
-//   user?: any;
-//   companyId?: number;
-// }
-
 export const getEmployeeMonthlyAttendances = async (
   req: Request,
-  res: Response
+  res: Response,
 ) => {
   try {
     const employee = await getEmployeeFromRequest(req);
-const companyId=req.companyId
+    const companyId = req.companyId;
     const { year, month } = req.query;
 
     if (!year || !month) {
@@ -198,12 +307,12 @@ const companyId=req.companyId
         message: "year and month required",
       });
     }
-const { start, end } = getStartEndOfMonth(
-  "Asia/Kolkata",
-  Number(year),
-  Number(month)
-);
-const datas=getAttendanceByRange(companyId,employee.id,start, end)
+    const { start, end } = getStartEndOfMonth(
+      "Asia/Kolkata",
+      Number(year),
+      Number(month),
+    );
+    const datas = getAttendanceByRange(companyId, employee.id, start, end);
     // const start = new Date(Number(year), Number(month) - 1, 1);
     // const end = new Date(Number(year), Number(month), 0, 23, 59, 59);
 
@@ -239,15 +348,14 @@ const datas=getAttendanceByRange(companyId,employee.id,start, end)
   }
 };
 
-
 export const getMonthlyAttendanceController = async (
   req: Request,
-  res: Response
+  res: Response,
 ) => {
   try {
     const employee = await getEmployeeFromRequest(req);
     console.log("request:", req.companyId, employee.id);
-    
+
     const { year, month } = req.query;
 
     if (!year || !month) {
@@ -261,7 +369,7 @@ export const getMonthlyAttendanceController = async (
       Number(req.companyId),
       employee.id,
       Number(year),
-      Number(month)
+      Number(month),
     );
 
     res.json({

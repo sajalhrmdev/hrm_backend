@@ -1,3 +1,5 @@
+import { AttendanceStatus } from "../../generated/prisma/browser.js";
+
 export const calculateAttendance = (logs: any[]) => {
   let totalMinutes = 0;
 
@@ -15,26 +17,93 @@ export const calculateAttendance = (logs: any[]) => {
   return Math.floor(totalMinutes);
 };
 
-export const applyPolicy = (totalMinutes: number, policy: any) => {
-  const std = policy?.std_work_minutes || 480;
+// export const applyPolicy = (totalMinutes: number, policy: any) => {
+//   const std = policy?.std_work_minutes || 480;
 
-  const overtime = totalMinutes > std ? totalMinutes - std : 0;
+//   const overtime = totalMinutes > std ? totalMinutes - std : 0;
 
-  let status = "PRESENT";
+//   let status = AttendanceStatus.PRESENT;
 
-  if (totalMinutes === 0) status = "ABSENT";
-  else if (totalMinutes < std / 2) status = "HALF_DAY";
+//   if (totalMinutes === 0) status = "ABSENT";
+//   else if (totalMinutes < std / 2) status = "HALF_DAY";
+
+//   return {
+//     overtime: Math.floor(overtime),
+//     status,
+//   };
+// };
+
+export const applyPolicy = (
+  totalMinutes: number,
+
+  policy: any,
+
+  shift?: any,
+) => {
+  // ========================================
+  // STANDARD WORK MINUTES
+  // ========================================
+
+  const std = shift?.minimumWorkMinutes || policy?.std_work_minutes || 480;
+
+  // ========================================
+  // OVERTIME THRESHOLD
+  // ========================================
+
+  const overtimeThreshold = std + (shift?.overtimeAfterMinutes || 0);
+
+  // ========================================
+  // OVERTIME
+  // ========================================
+
+  let overtime = 0;
+
+  if (totalMinutes > overtimeThreshold) {
+    overtime = totalMinutes - overtimeThreshold;
+  }
+
+  // ========================================
+  // STATUS
+  // ========================================
+
+  let status: AttendanceStatus = AttendanceStatus.PRESENT;
+
+  // ========================================
+  // ABSENT
+  // ========================================
+
+  if (totalMinutes === 0) {
+    status = AttendanceStatus.ABSENT;
+  }
+
+  // ========================================
+  // HALF DAY
+  // ========================================
+  else if (
+    shift?.halfDayAfterMinutes &&
+    totalMinutes < shift.halfDayAfterMinutes
+  ) {
+    status = AttendanceStatus.HALF_DAY;
+  }
+
+  // ========================================
+  // FALLBACK HALF DAY
+  // ========================================
+  else if (totalMinutes < std / 2) {
+    status = AttendanceStatus.HALF_DAY;
+  }
 
   return {
     overtime: Math.floor(overtime),
-    status
+
+    status,
   };
 };
 
 export const validateAttendance = (
   logs: any[],
   type: "IN" | "OUT",
-  mode: "SINGLE" | "MULTI"
+  mode: "SINGLE" | "MULTI",
 ) => {
   const lastLog = logs[logs.length - 1];
 
@@ -68,15 +137,20 @@ export const validateAttendance = (
   }
 };
 
-export const getDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
+export const getDistance = (
+  lat1: number,
+  lon1: number,
+  lat2: number,
+  lon2: number,
+) => {
   const R = 6371;
-  const dLat = (lat2 - lat1) * Math.PI / 180;
-  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLon = ((lon2 - lon1) * Math.PI) / 180;
 
   const a =
     Math.sin(dLat / 2) ** 2 +
-    Math.cos(lat1 * Math.PI / 180) *
-      Math.cos(lat2 * Math.PI / 180) *
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
       Math.sin(dLon / 2) ** 2;
 
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));

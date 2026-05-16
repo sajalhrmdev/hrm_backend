@@ -1,3 +1,4 @@
+import { AttendanceStatus } from "../../generated/prisma/browser.js";
 import { prisma } from "../../lib/prisma.js";
 import getStartEndOfDay from "../../utils/getStartEndOfDay.js";
 import getStartEndOfMonth from "../../utils/monthlyDate.js";
@@ -35,6 +36,9 @@ export const handleAttendance = async (
   const today = start;
   const employee = await prisma.employee.findUnique({
     where: { id: employeeId },
+    include: {
+      shift: true,
+    },
   });
 
   if (!employee) throw new Error("Employee not found");
@@ -73,7 +77,33 @@ export const handleAttendance = async (
   // if (accuracy && accuracy > 100) {
   //   throw new Error("Location not accurate");
   // }
+  let lateMinutes = 0;
 
+  if (type === "IN" && employee.shift) {
+    const [startHour, startMinute] = employee.shift.startTime
+      .split(":")
+      .map(Number);
+
+    const shiftStart = new Date(now);
+
+    shiftStart.setHours(
+      startHour,
+
+      startMinute +
+        (employee.shift.graceMinutes || 0) +
+        (employee.shift.lateAfterMinutes || 0),
+
+      0,
+
+      0,
+    );
+
+    if (now > shiftStart) {
+      lateMinutes = Math.floor(
+        (now.getTime() - shiftStart.getTime()) / (1000 * 60),
+      );
+    }
+  }
   if (type === "IN") {
     attendance = await prisma.attendance.upsert({
       where: {
@@ -88,10 +118,13 @@ export const handleAttendance = async (
       create: {
         employeeId,
         companyId,
+        shiftId: employee.shiftId,
         date: today,
+        check_in_time: now,
         total_work_minutes: 0,
         overtime_minutes: 0,
-        status: "PRESENT", // or "PRESENT"
+        late_minutes: lateMinutes,
+        status: AttendanceStatus.PRESENT,
       },
     });
   } else {
@@ -118,6 +151,11 @@ export const handleAttendance = async (
       time: now,
       latitude,
       longitude,
+      shiftName: employee.shift?.title,
+
+      shiftStartTime: employee.shift?.startTime,
+
+      shiftEndTime: employee.shift?.endTime,
     },
   });
 
@@ -127,7 +165,7 @@ export const handleAttendance = async (
 
     const totalMinutes = calculateAttendance(allLogs);
 
-    const { overtime, status } = applyPolicy(totalMinutes, policy);
+    const { overtime, status } = applyPolicy(totalMinutes, policy,employee.shift);
 
     await prisma.attendance.update({
       where: {
@@ -140,6 +178,7 @@ export const handleAttendance = async (
         total_work_minutes: totalMinutes,
         overtime_minutes: overtime,
         status,
+        check_out_time: now,
       },
     });
   }
@@ -246,18 +285,17 @@ export const getAttendanceByRange = async (
   return data;
 };
 
-
 // ===========================
 export const getMonthlyAttendance = async (
   companyId: number,
   employeeId: number,
   year: number,
-  month: number
+  month: number,
 ) => {
   const { start, end } = getStartEndOfMonth(
     "Asia/Kolkata", // 🔥 change if needed
     year,
-    month
+    month,
   );
 
   const data = await prisma.attendance.findMany({
@@ -276,4 +314,3 @@ export const getMonthlyAttendance = async (
 
   return data;
 };
-

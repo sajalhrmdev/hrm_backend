@@ -276,6 +276,26 @@ model EmployeeDocument {
   updatedAt DateTime  @updatedAt
 }
 // =================================ATTENDANCE====================================
+enum AttendanceStatus {
+
+  PRESENT
+
+  ABSENT
+
+  HALF_DAY
+
+  WEEKLY_OFF
+
+  HOLIDAY
+
+  PAID_LEAVE
+
+  UNPAID_LEAVE
+
+  ON_DUTY
+
+  WORK_FROM_HOME
+}
 model Attendance{
   id     Int @id @default(autoincrement())
   employeeId Int
@@ -284,7 +304,12 @@ model Attendance{
   company Company @relation(fields: [companyId],references: [id])
 
   date DateTime
-  status String  
+  status AttendanceStatus @default(PRESENT)
+  shiftId Int?
+  shift Shift? @relation(fields: [shiftId], references: [id])
+  check_in_time DateTime?
+
+check_out_time DateTime?
 
   total_work_minutes Int @default(0)
   overtime_minutes Int @default(0)
@@ -293,6 +318,11 @@ model Attendance{
   updatedAt DateTime @updatedAt
   attendanceLogs AttendanceLog[]
   @@unique([employeeId,date])
+  @@index([companyId])
+
+@@index([date])
+
+@@index([shiftId])
 }
 // =======================================================================================
 
@@ -306,13 +336,25 @@ model AttendanceLog{
   // ***** pore ? hatate hobe
     attendanceId Int?  // 🔥 foreign key
   attendance Attendance? @relation(fields: [attendanceId], references: [id])
-// in/out--
+
   type String  
    latitude  Float?
   longitude Float?
   time DateTime
   source String?
+  shiftName String?
+
+shiftStartTime String?
+
+shiftEndTime String?
   createdAt DateTime @default(now())
+  @@index([employeeId])
+
+@@index([attendanceId])
+
+@@index([companyId])
+
+@@index([time])
 }
 // ============================================================================================
 
@@ -371,6 +413,8 @@ model Shift {
   updatedAt DateTime   @updatedAt
   deletedAt DateTime?
   employees Employee[]
+  attendances Attendance[]
+   
   @@index([companyId])
   @@unique([  companyId,   title])
 }

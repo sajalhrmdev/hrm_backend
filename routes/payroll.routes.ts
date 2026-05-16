@@ -1,10 +1,10 @@
-// routes/payroll.routes.ts
+// // routes/payroll.routes.ts
 
-import express from "express";
-import { runPayrollController } from "../controllers/payroll.controller.js";
+// import express from "express";
+// import { runPayrollController } from "../controllers/payroll.controller.js";
 
-const router = express.Router();
+// const router = express.Router();
 
-router.post("/run", runPayrollController);
+// router.post("/run", runPayrollController);
 
-export default router;
+// export default router;

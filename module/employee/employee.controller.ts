@@ -5,6 +5,7 @@
 import { Request, Response } from "express";
 
 import {
+  assignShiftService,
   bulkCreateEmployeesService,
   createEmployeeService,
   deleteEmployeeService,
@@ -189,6 +190,42 @@ export const deleteEmployee = async (req: AuthRequest, res: Response) => {
       success: false,
 
       message: error.message,
+    });
+  }
+};
+
+// ==================================assigned shift==============================
+export const assignShiftController = async (req: Request, res: Response) => {
+  try {
+    const employeeId = Number(req.params.id);
+
+    const { shiftId } = req.body;
+
+    const companyId = req.companyId;
+    if (!companyId) {
+      throw new Error("Company not found");
+    }
+
+    const data = await assignShiftService(
+      companyId,
+
+      employeeId,
+
+      shiftId,
+    );
+
+    res.json({
+      success: true,
+
+      message: "Shift assigned successfully",
+
+      data,
+    });
+  } catch (err: any) {
+    res.status(400).json({
+      success: false,
+
+      message: err.message,
     });
   }
 };

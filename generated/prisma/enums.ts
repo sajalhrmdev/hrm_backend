@@ -61,6 +61,21 @@ export const EmployeeDocumentStatus = {
 export type EmployeeDocumentStatus = (typeof EmployeeDocumentStatus)[keyof typeof EmployeeDocumentStatus]
 
 
+export const AttendanceStatus = {
+  PRESENT: 'PRESENT',
+  ABSENT: 'ABSENT',
+  HALF_DAY: 'HALF_DAY',
+  WEEKLY_OFF: 'WEEKLY_OFF',
+  HOLIDAY: 'HOLIDAY',
+  PAID_LEAVE: 'PAID_LEAVE',
+  UNPAID_LEAVE: 'UNPAID_LEAVE',
+  ON_DUTY: 'ON_DUTY',
+  WORK_FROM_HOME: 'WORK_FROM_HOME'
+} as const
+
+export type AttendanceStatus = (typeof AttendanceStatus)[keyof typeof AttendanceStatus]
+
+
 export const AttendanceMode = {
   SINGLE: 'SINGLE',
   MULTI: 'MULTI'

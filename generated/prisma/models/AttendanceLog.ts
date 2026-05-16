@@ -54,6 +54,9 @@ export type AttendanceLogMinAggregateOutputType = {
   longitude: number | null
   time: Date | null
   source: string | null
+  shiftName: string | null
+  shiftStartTime: string | null
+  shiftEndTime: string | null
   createdAt: Date | null
 }
 
@@ -67,6 +70,9 @@ export type AttendanceLogMaxAggregateOutputType = {
   longitude: number | null
   time: Date | null
   source: string | null
+  shiftName: string | null
+  shiftStartTime: string | null
+  shiftEndTime: string | null
   createdAt: Date | null
 }
 
@@ -80,6 +86,9 @@ export type AttendanceLogCountAggregateOutputType = {
   longitude: number
   time: number
   source: number
+  shiftName: number
+  shiftStartTime: number
+  shiftEndTime: number
   createdAt: number
   _all: number
 }
@@ -113,6 +122,9 @@ export type AttendanceLogMinAggregateInputType = {
   longitude?: true
   time?: true
   source?: true
+  shiftName?: true
+  shiftStartTime?: true
+  shiftEndTime?: true
   createdAt?: true
 }
 
@@ -126,6 +138,9 @@ export type AttendanceLogMaxAggregateInputType = {
   longitude?: true
   time?: true
   source?: true
+  shiftName?: true
+  shiftStartTime?: true
+  shiftEndTime?: true
   createdAt?: true
 }
 
@@ -139,6 +154,9 @@ export type AttendanceLogCountAggregateInputType = {
   longitude?: true
   time?: true
   source?: true
+  shiftName?: true
+  shiftStartTime?: true
+  shiftEndTime?: true
   createdAt?: true
   _all?: true
 }
@@ -239,6 +257,9 @@ export type AttendanceLogGroupByOutputType = {
   longitude: number | null
   time: Date
   source: string | null
+  shiftName: string | null
+  shiftStartTime: string | null
+  shiftEndTime: string | null
   createdAt: Date
   _count: AttendanceLogCountAggregateOutputType | null
   _avg: AttendanceLogAvgAggregateOutputType | null
@@ -275,6 +296,9 @@ export type AttendanceLogWhereInput = {
   longitude?: Prisma.FloatNullableFilter<"AttendanceLog"> | number | null
   time?: Prisma.DateTimeFilter<"AttendanceLog"> | Date | string
   source?: Prisma.StringNullableFilter<"AttendanceLog"> | string | null
+  shiftName?: Prisma.StringNullableFilter<"AttendanceLog"> | string | null
+  shiftStartTime?: Prisma.StringNullableFilter<"AttendanceLog"> | string | null
+  shiftEndTime?: Prisma.StringNullableFilter<"AttendanceLog"> | string | null
   createdAt?: Prisma.DateTimeFilter<"AttendanceLog"> | Date | string
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
@@ -291,6 +315,9 @@ export type AttendanceLogOrderByWithRelationInput = {
   longitude?: Prisma.SortOrderInput | Prisma.SortOrder
   time?: Prisma.SortOrder
   source?: Prisma.SortOrderInput | Prisma.SortOrder
+  shiftName?: Prisma.SortOrderInput | Prisma.SortOrder
+  shiftStartTime?: Prisma.SortOrderInput | Prisma.SortOrder
+  shiftEndTime?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   employee?: Prisma.EmployeeOrderByWithRelationInput
   company?: Prisma.CompanyOrderByWithRelationInput
@@ -310,6 +337,9 @@ export type AttendanceLogWhereUniqueInput = Prisma.AtLeast<{
   longitude?: Prisma.FloatNullableFilter<"AttendanceLog"> | number | null
   time?: Prisma.DateTimeFilter<"AttendanceLog"> | Date | string
   source?: Prisma.StringNullableFilter<"AttendanceLog"> | string | null
+  shiftName?: Prisma.StringNullableFilter<"AttendanceLog"> | string | null
+  shiftStartTime?: Prisma.StringNullableFilter<"AttendanceLog"> | string | null
+  shiftEndTime?: Prisma.StringNullableFilter<"AttendanceLog"> | string | null
   createdAt?: Prisma.DateTimeFilter<"AttendanceLog"> | Date | string
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
@@ -326,6 +356,9 @@ export type AttendanceLogOrderByWithAggregationInput = {
   longitude?: Prisma.SortOrderInput | Prisma.SortOrder
   time?: Prisma.SortOrder
   source?: Prisma.SortOrderInput | Prisma.SortOrder
+  shiftName?: Prisma.SortOrderInput | Prisma.SortOrder
+  shiftStartTime?: Prisma.SortOrderInput | Prisma.SortOrder
+  shiftEndTime?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.AttendanceLogCountOrderByAggregateInput
   _avg?: Prisma.AttendanceLogAvgOrderByAggregateInput
@@ -347,6 +380,9 @@ export type AttendanceLogScalarWhereWithAggregatesInput = {
   longitude?: Prisma.FloatNullableWithAggregatesFilter<"AttendanceLog"> | number | null
   time?: Prisma.DateTimeWithAggregatesFilter<"AttendanceLog"> | Date | string
   source?: Prisma.StringNullableWithAggregatesFilter<"AttendanceLog"> | string | null
+  shiftName?: Prisma.StringNullableWithAggregatesFilter<"AttendanceLog"> | string | null
+  shiftStartTime?: Prisma.StringNullableWithAggregatesFilter<"AttendanceLog"> | string | null
+  shiftEndTime?: Prisma.StringNullableWithAggregatesFilter<"AttendanceLog"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"AttendanceLog"> | Date | string
 }
 
@@ -356,6 +392,9 @@ export type AttendanceLogCreateInput = {
   longitude?: number | null
   time: Date | string
   source?: string | null
+  shiftName?: string | null
+  shiftStartTime?: string | null
+  shiftEndTime?: string | null
   createdAt?: Date | string
   employee: Prisma.EmployeeCreateNestedOneWithoutAttendanceLogsInput
   company: Prisma.CompanyCreateNestedOneWithoutAttendanceLogsInput
@@ -372,6 +411,9 @@ export type AttendanceLogUncheckedCreateInput = {
   longitude?: number | null
   time: Date | string
   source?: string | null
+  shiftName?: string | null
+  shiftStartTime?: string | null
+  shiftEndTime?: string | null
   createdAt?: Date | string
 }
 
@@ -381,6 +423,9 @@ export type AttendanceLogUpdateInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutAttendanceLogsNestedInput
   company?: Prisma.CompanyUpdateOneRequiredWithoutAttendanceLogsNestedInput
@@ -397,6 +442,9 @@ export type AttendanceLogUncheckedUpdateInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -410,6 +458,9 @@ export type AttendanceLogCreateManyInput = {
   longitude?: number | null
   time: Date | string
   source?: string | null
+  shiftName?: string | null
+  shiftStartTime?: string | null
+  shiftEndTime?: string | null
   createdAt?: Date | string
 }
 
@@ -419,6 +470,9 @@ export type AttendanceLogUpdateManyMutationInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -432,6 +486,9 @@ export type AttendanceLogUncheckedUpdateManyInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -455,6 +512,9 @@ export type AttendanceLogCountOrderByAggregateInput = {
   longitude?: Prisma.SortOrder
   time?: Prisma.SortOrder
   source?: Prisma.SortOrder
+  shiftName?: Prisma.SortOrder
+  shiftStartTime?: Prisma.SortOrder
+  shiftEndTime?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -477,6 +537,9 @@ export type AttendanceLogMaxOrderByAggregateInput = {
   longitude?: Prisma.SortOrder
   time?: Prisma.SortOrder
   source?: Prisma.SortOrder
+  shiftName?: Prisma.SortOrder
+  shiftStartTime?: Prisma.SortOrder
+  shiftEndTime?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -490,6 +553,9 @@ export type AttendanceLogMinOrderByAggregateInput = {
   longitude?: Prisma.SortOrder
   time?: Prisma.SortOrder
   source?: Prisma.SortOrder
+  shiftName?: Prisma.SortOrder
+  shiftStartTime?: Prisma.SortOrder
+  shiftEndTime?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -642,6 +708,9 @@ export type AttendanceLogCreateWithoutCompanyInput = {
   longitude?: number | null
   time: Date | string
   source?: string | null
+  shiftName?: string | null
+  shiftStartTime?: string | null
+  shiftEndTime?: string | null
   createdAt?: Date | string
   employee: Prisma.EmployeeCreateNestedOneWithoutAttendanceLogsInput
   attendance?: Prisma.AttendanceCreateNestedOneWithoutAttendanceLogsInput
@@ -656,6 +725,9 @@ export type AttendanceLogUncheckedCreateWithoutCompanyInput = {
   longitude?: number | null
   time: Date | string
   source?: string | null
+  shiftName?: string | null
+  shiftStartTime?: string | null
+  shiftEndTime?: string | null
   createdAt?: Date | string
 }
 
@@ -698,6 +770,9 @@ export type AttendanceLogScalarWhereInput = {
   longitude?: Prisma.FloatNullableFilter<"AttendanceLog"> | number | null
   time?: Prisma.DateTimeFilter<"AttendanceLog"> | Date | string
   source?: Prisma.StringNullableFilter<"AttendanceLog"> | string | null
+  shiftName?: Prisma.StringNullableFilter<"AttendanceLog"> | string | null
+  shiftStartTime?: Prisma.StringNullableFilter<"AttendanceLog"> | string | null
+  shiftEndTime?: Prisma.StringNullableFilter<"AttendanceLog"> | string | null
   createdAt?: Prisma.DateTimeFilter<"AttendanceLog"> | Date | string
 }
 
@@ -707,6 +782,9 @@ export type AttendanceLogCreateWithoutEmployeeInput = {
   longitude?: number | null
   time: Date | string
   source?: string | null
+  shiftName?: string | null
+  shiftStartTime?: string | null
+  shiftEndTime?: string | null
   createdAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutAttendanceLogsInput
   attendance?: Prisma.AttendanceCreateNestedOneWithoutAttendanceLogsInput
@@ -721,6 +799,9 @@ export type AttendanceLogUncheckedCreateWithoutEmployeeInput = {
   longitude?: number | null
   time: Date | string
   source?: string | null
+  shiftName?: string | null
+  shiftStartTime?: string | null
+  shiftEndTime?: string | null
   createdAt?: Date | string
 }
 
@@ -756,6 +837,9 @@ export type AttendanceLogCreateWithoutAttendanceInput = {
   longitude?: number | null
   time: Date | string
   source?: string | null
+  shiftName?: string | null
+  shiftStartTime?: string | null
+  shiftEndTime?: string | null
   createdAt?: Date | string
   employee: Prisma.EmployeeCreateNestedOneWithoutAttendanceLogsInput
   company: Prisma.CompanyCreateNestedOneWithoutAttendanceLogsInput
@@ -770,6 +854,9 @@ export type AttendanceLogUncheckedCreateWithoutAttendanceInput = {
   longitude?: number | null
   time: Date | string
   source?: string | null
+  shiftName?: string | null
+  shiftStartTime?: string | null
+  shiftEndTime?: string | null
   createdAt?: Date | string
 }
 
@@ -808,6 +895,9 @@ export type AttendanceLogCreateManyCompanyInput = {
   longitude?: number | null
   time: Date | string
   source?: string | null
+  shiftName?: string | null
+  shiftStartTime?: string | null
+  shiftEndTime?: string | null
   createdAt?: Date | string
 }
 
@@ -817,6 +907,9 @@ export type AttendanceLogUpdateWithoutCompanyInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutAttendanceLogsNestedInput
   attendance?: Prisma.AttendanceUpdateOneWithoutAttendanceLogsNestedInput
@@ -831,6 +924,9 @@ export type AttendanceLogUncheckedUpdateWithoutCompanyInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -843,6 +939,9 @@ export type AttendanceLogUncheckedUpdateManyWithoutCompanyInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -855,6 +954,9 @@ export type AttendanceLogCreateManyEmployeeInput = {
   longitude?: number | null
   time: Date | string
   source?: string | null
+  shiftName?: string | null
+  shiftStartTime?: string | null
+  shiftEndTime?: string | null
   createdAt?: Date | string
 }
 
@@ -864,6 +966,9 @@ export type AttendanceLogUpdateWithoutEmployeeInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company?: Prisma.CompanyUpdateOneRequiredWithoutAttendanceLogsNestedInput
   attendance?: Prisma.AttendanceUpdateOneWithoutAttendanceLogsNestedInput
@@ -878,6 +983,9 @@ export type AttendanceLogUncheckedUpdateWithoutEmployeeInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -890,6 +998,9 @@ export type AttendanceLogUncheckedUpdateManyWithoutEmployeeInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -902,6 +1013,9 @@ export type AttendanceLogCreateManyAttendanceInput = {
   longitude?: number | null
   time: Date | string
   source?: string | null
+  shiftName?: string | null
+  shiftStartTime?: string | null
+  shiftEndTime?: string | null
   createdAt?: Date | string
 }
 
@@ -911,6 +1025,9 @@ export type AttendanceLogUpdateWithoutAttendanceInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutAttendanceLogsNestedInput
   company?: Prisma.CompanyUpdateOneRequiredWithoutAttendanceLogsNestedInput
@@ -925,6 +1042,9 @@ export type AttendanceLogUncheckedUpdateWithoutAttendanceInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -937,6 +1057,9 @@ export type AttendanceLogUncheckedUpdateManyWithoutAttendanceInput = {
   longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -952,6 +1075,9 @@ export type AttendanceLogSelect<ExtArgs extends runtime.Types.Extensions.Interna
   longitude?: boolean
   time?: boolean
   source?: boolean
+  shiftName?: boolean
+  shiftStartTime?: boolean
+  shiftEndTime?: boolean
   createdAt?: boolean
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
@@ -968,6 +1094,9 @@ export type AttendanceLogSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   longitude?: boolean
   time?: boolean
   source?: boolean
+  shiftName?: boolean
+  shiftStartTime?: boolean
+  shiftEndTime?: boolean
   createdAt?: boolean
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
@@ -984,6 +1113,9 @@ export type AttendanceLogSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   longitude?: boolean
   time?: boolean
   source?: boolean
+  shiftName?: boolean
+  shiftStartTime?: boolean
+  shiftEndTime?: boolean
   createdAt?: boolean
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
@@ -1000,10 +1132,13 @@ export type AttendanceLogSelectScalar = {
   longitude?: boolean
   time?: boolean
   source?: boolean
+  shiftName?: boolean
+  shiftStartTime?: boolean
+  shiftEndTime?: boolean
   createdAt?: boolean
 }
 
-export type AttendanceLogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "employeeId" | "companyId" | "attendanceId" | "type" | "latitude" | "longitude" | "time" | "source" | "createdAt", ExtArgs["result"]["attendanceLog"]>
+export type AttendanceLogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "employeeId" | "companyId" | "attendanceId" | "type" | "latitude" | "longitude" | "time" | "source" | "shiftName" | "shiftStartTime" | "shiftEndTime" | "createdAt", ExtArgs["result"]["attendanceLog"]>
 export type AttendanceLogInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
@@ -1037,6 +1172,9 @@ export type $AttendanceLogPayload<ExtArgs extends runtime.Types.Extensions.Inter
     longitude: number | null
     time: Date
     source: string | null
+    shiftName: string | null
+    shiftStartTime: string | null
+    shiftEndTime: string | null
     createdAt: Date
   }, ExtArgs["result"]["attendanceLog"]>
   composites: {}
@@ -1473,6 +1611,9 @@ export interface AttendanceLogFieldRefs {
   readonly longitude: Prisma.FieldRef<"AttendanceLog", 'Float'>
   readonly time: Prisma.FieldRef<"AttendanceLog", 'DateTime'>
   readonly source: Prisma.FieldRef<"AttendanceLog", 'String'>
+  readonly shiftName: Prisma.FieldRef<"AttendanceLog", 'String'>
+  readonly shiftStartTime: Prisma.FieldRef<"AttendanceLog", 'String'>
+  readonly shiftEndTime: Prisma.FieldRef<"AttendanceLog", 'String'>
   readonly createdAt: Prisma.FieldRef<"AttendanceLog", 'DateTime'>
 }
     

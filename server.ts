@@ -8,7 +8,7 @@ import userRoutes from "./routes/user.routes.js";
 import roleRoutes from "./routes/role.routes.js";
 // import companyRoutes from "./routes/company.routes.js";
 import attendanceRoutes from "./routes/attendance.routes.js";
-import salaryStructureRoutes from "./routes/salaryStructure.routes.js";
+// import salaryStructureRoutes from "./routes/salaryStructure.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import membershipRoutes from "./routes/membership.routes.js";
 import leaveRoutes from "./routes/leave.route.js";
@@ -156,7 +156,7 @@ app.use(
 );
 app.use("/api/v1/shift", authMiddleware, companyAccessMiddleware, shiftRoutes);
 
-app.use("/api/v1/salary-structure", salaryStructureRoutes);
+// app.use("/api/v1/salary-structure", salaryStructureRoutes);
 // app.use("/api/v1/payroll", payrollRoutes);
 
 // app.use("/api/v1/attendance",attendanceRoutes)

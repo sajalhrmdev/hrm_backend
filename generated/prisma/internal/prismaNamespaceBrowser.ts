@@ -272,6 +272,9 @@ export const AttendanceScalarFieldEnum = {
   companyId: 'companyId',
   date: 'date',
   status: 'status',
+  shiftId: 'shiftId',
+  check_in_time: 'check_in_time',
+  check_out_time: 'check_out_time',
   total_work_minutes: 'total_work_minutes',
   overtime_minutes: 'overtime_minutes',
   late_minutes: 'late_minutes',
@@ -292,6 +295,9 @@ export const AttendanceLogScalarFieldEnum = {
   longitude: 'longitude',
   time: 'time',
   source: 'source',
+  shiftName: 'shiftName',
+  shiftStartTime: 'shiftStartTime',
+  shiftEndTime: 'shiftEndTime',
   createdAt: 'createdAt'
 } as const
 

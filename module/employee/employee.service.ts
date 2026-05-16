@@ -72,6 +72,7 @@ export const createEmployeeService = async (companyId: number, data: any) => {
       departmentId: data.departmentId || null,
 
       designationId: data.designationId || null,
+      shiftId: data.shiftId || null,
 
       employeeCode,
 
@@ -84,6 +85,7 @@ export const createEmployeeService = async (companyId: number, data: any) => {
       department: true,
 
       designation: true,
+      shift: true,
     },
   });
 };
@@ -198,6 +200,7 @@ export const getAllEmployeesService = async (
         department: true,
 
         designation: true,
+        shift: true,
 
         _count: {
           select: {
@@ -251,6 +254,7 @@ export const getEmployeeByIdService = async (companyId: number, id: number) => {
       department: true,
 
       designation: true,
+      shift: true,
 
       employeeSalaryComponents: {
         include: {
@@ -343,6 +347,7 @@ export const updateEmployeeService = async (
       departmentId: data.departmentId,
 
       designationId: data.designationId,
+      shiftId: data.shiftId || null,
 
       employeeCode: data.employeeCode,
 
@@ -357,6 +362,7 @@ export const updateEmployeeService = async (
       department: true,
 
       designation: true,
+      shift: true,
     },
   });
 };
@@ -391,4 +397,56 @@ export const deleteEmployeeService = async (companyId: number, id: number) => {
       status: "INACTIVE",
     },
   });
+};
+
+// assigned shift======================================
+export const assignShiftService = async (
+  companyId: number,
+  employeeId: number,
+  shiftId: number,
+) => {
+  const employee = await prisma.employee.findFirst({
+    where: {
+      id: employeeId,
+      companyId,
+    },
+  });
+
+  if (!employee) {
+    throw new Error("Employee not found");
+  }
+
+  const shift = await prisma.shift.findFirst({
+    where: {
+      id: shiftId,
+
+      companyId,
+
+      status: "ACTIVE",
+
+      deletedAt: null,
+    },
+  });
+
+  if (!shift) {
+    throw new Error("Shift not found");
+  }
+
+  // ASSIGN
+
+  const updated = await prisma.employee.update({
+    where: {
+      id: employeeId,
+    },
+
+    data: {
+      shiftId,
+    },
+
+    include: {
+      shift: true,
+    },
+  });
+
+  return updated;
 };

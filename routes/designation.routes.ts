@@ -1,25 +1,25 @@
-import { Router } from "express";
-import { createDesignation, createManyDesignations, deleteDesignation, getAllDesignations, getDesignationById, updateDesignation } from "../controllers/desgination.controller.js";
+// import { Router } from "express";
+// import { createDesignation, createManyDesignations, deleteDesignation, getAllDesignations, getDesignationById, updateDesignation } from "../controllers/desgination.controller.js";
 
 
-const router = Router();
+// const router = Router();
 
-// ➤ Create
-router.post("/", createDesignation);
+// // ➤ Create
+// router.post("/", createDesignation);
 
-// ➤ Create Multiple
-router.post("/bulk", createManyDesignations);
+// // ➤ Create Multiple
+// router.post("/bulk", createManyDesignations);
 
-// ➤ Get All
-router.get("/", getAllDesignations);
+// // ➤ Get All
+// router.get("/", getAllDesignations);
 
-// ➤ Get One
-router.get("/:id", getDesignationById);
+// // ➤ Get One
+// router.get("/:id", getDesignationById);
 
-// ➤ Update
-router.put("/:id", updateDesignation);
+// // ➤ Update
+// router.put("/:id", updateDesignation);
 
-// ➤ Delete (Soft Delete)
-router.delete("/:id", deleteDesignation);
+// // ➤ Delete (Soft Delete)
+// router.delete("/:id", deleteDesignation);
 
-export default router;
+// export default router;
