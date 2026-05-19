@@ -5,7 +5,7 @@ import express, { Request, Response } from "express";
 // import attendanceRoutes from "./routes/attendance.routes.js";
 import globalRoleRoutes from "./routes/globalRole.routes.js";
 import userRoutes from "./routes/user.routes.js";
-import roleRoutes from "./routes/role.routes.js";
+import rolesRoutes from "./routes/role.routes.js";
 // import companyRoutes from "./routes/company.routes.js";
 import attendanceRoutes from "./routes/attendance.routes.js";
 // import salaryStructureRoutes from "./routes/salaryStructure.routes.js";
@@ -25,6 +25,11 @@ import shiftRoutes from "./module/shift/shift.routes.js";
 import employeePersonalInfoRoutes from "./module/employeePersonalInfo/employeePersonalInfo.routes.js";
 import employeeAddressRoutes from "./module/employeeAddress/employeeAddress.routes.js";
 import employeeDocumentRoutes from "./module/employeeDocument/employeeDocument.routes.js";
+import permissionRoutes from "./module/permission/permission.routes.js"
+import roleRoutes from "./module/role/role.routes.js"
+import rolePermissionRoutes from "./module/rolePermission/rolePermission.routes.js"
+
+
 
 import { verifyToken } from "./controllers/middlewares/auth.middleware.js";
 import cookieParser from "cookie-parser";
@@ -52,7 +57,7 @@ app.use("/api/v1/global-roles", globalRoleRoutes);
 app.use("/api/v1/users", userRoutes);
 // app.use("/api/v1/companies", companyRoutes);
 
-app.use("/api/v1/roles", authMiddleware, companyAccessMiddleware, roleRoutes);
+app.use("/api/v1/roles", authMiddleware, companyAccessMiddleware, rolesRoutes);
 
 // app.use("/api/v1/designations", designationRoutes);
 // app.use("/api/v1/department", deparmentRoutes);
@@ -156,6 +161,9 @@ app.use(
   designationRoutes,
 );
 app.use("/api/v1/shift", authMiddleware, companyAccessMiddleware, shiftRoutes);
+app.use("/api/v1/permission", authMiddleware,  permissionRoutes);
+app.use("/api/v1/role", authMiddleware, companyAccessMiddleware, roleRoutes);
+app.use("/api/v1/role-permission", authMiddleware, companyAccessMiddleware, rolePermissionRoutes);
 
 // app.use("/api/v1/salary-structure", salaryStructureRoutes);
 // app.use("/api/v1/payroll", payrollRoutes);

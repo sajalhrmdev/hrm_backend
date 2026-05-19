@@ -1,5 +1,3 @@
-
-
 import { Request, Response, NextFunction } from "express";
 import { verifyToken } from "../utils/jwt.js";
 
@@ -13,7 +11,6 @@ export const authMiddleware = (req: any, res: Response, next: NextFunction) => {
     }
 
     const token = authHeader.split(" ")[1];
-
     const decoded = verifyToken(token);
 
     req.user = decoded; // ✅ attach user (userId + activeCompanyId)
@@ -23,4 +20,3 @@ export const authMiddleware = (req: any, res: Response, next: NextFunction) => {
     return res.status(401).json({ message: "Invalid token" });
   }
 };
-

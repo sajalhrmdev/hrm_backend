@@ -1,5 +1,3 @@
-
-
 // import { log } from "node:console";
 // import { prisma } from "../lib/prisma.js";
 
@@ -36,10 +34,25 @@
 //   }
 // };
 
-
 import { prisma } from "../lib/prisma.js";
+import { Request, Response, NextFunction } from "express";
+export interface AuthRequest extends Request {
+  user?: any;
 
-export const companyAccessMiddleware = async (req: any, res: any, next: any) => {
+  companyId?: number;
+
+  membership?: any;
+
+  permissions?: string[];
+
+  employee?: any;
+}
+
+export const companyAccessMiddleware = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     // 🔥 token থেকে companyId
     const companyId = req.user.activeCompanyId;
@@ -55,15 +68,33 @@ export const companyAccessMiddleware = async (req: any, res: any, next: any) => 
         companyId: Number(companyId),
         status: "ACTIVE",
       },
+      include: {
+        role: {
+          include: {
+            rolePermissions: {
+              include: {
+                permission: true,
+              },
+            },
+          },
+        },
+      },
     });
 
     if (!membership) {
       return res.status(403).json({ message: "Access Denied" });
     }
-
+    const permissions =
+      membership.role?.rolePermissions?.map((rp: any) => rp.permission.name) ||
+      [];
+      // console.log("per",permissions);
+      console.log('userId:', req.user.userId,);
+      
+      
     // 🔥 cache in request
     req.companyId = companyId;
     req.membership = membership;
+    req.permissions = permissions;
 
     next();
   } catch (err) {

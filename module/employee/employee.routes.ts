@@ -9,11 +9,12 @@ import {
   getEmployeeById,
   updateEmployee,
 } from "./employee.controller.js";
+import requirePermission from "../../middlewares/requirePermission.js";
 
 const router = express.Router();
 
-router.post("/", createEmployee);
-router.get("/", getAllEmployees);
+router.post("/", requirePermission("employee.create"), createEmployee);
+router.get("/",requirePermission("employee.get"), getAllEmployees);
 router.post("/bulk-create", bulkCreateEmployees);
 router.get("/:id", getEmployeeById);
 router.put("/:id", updateEmployee);
