@@ -5,6 +5,7 @@ import {
   finalizePayrollRunController,
   generatePayrollController,
   getAllPayrollRunsController,
+  getEmployeePayrollHistoryController,
   getPayrollsByRunIdController,
   getSinglePayrollController,
   markPayrollPaidController,
@@ -21,6 +22,7 @@ router.patch("/run/:id/finalize", finalizePayrollRunController);
 router.patch("/:id/paid", markPayrollPaidController);
 router.patch("/run/:id/paid", markPayrollRunPaidController);
 router.get("/run/:id", getPayrollsByRunIdController);
+router.get("/employee/:employeeId", getEmployeePayrollHistoryController);
 router.get("/:id", getSinglePayrollController);
 
 export default router;

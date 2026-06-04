@@ -308,6 +308,7 @@ export type AttendanceWhereInput = {
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
   shift?: Prisma.XOR<Prisma.ShiftNullableScalarRelationFilter, Prisma.ShiftWhereInput> | null
   attendanceLogs?: Prisma.AttendanceLogListRelationFilter
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentListRelationFilter
 }
 
 export type AttendanceOrderByWithRelationInput = {
@@ -328,6 +329,7 @@ export type AttendanceOrderByWithRelationInput = {
   company?: Prisma.CompanyOrderByWithRelationInput
   shift?: Prisma.ShiftOrderByWithRelationInput
   attendanceLogs?: Prisma.AttendanceLogOrderByRelationAggregateInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentOrderByRelationAggregateInput
 }
 
 export type AttendanceWhereUniqueInput = Prisma.AtLeast<{
@@ -352,6 +354,7 @@ export type AttendanceWhereUniqueInput = Prisma.AtLeast<{
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
   shift?: Prisma.XOR<Prisma.ShiftNullableScalarRelationFilter, Prisma.ShiftWhereInput> | null
   attendanceLogs?: Prisma.AttendanceLogListRelationFilter
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentListRelationFilter
 }, "id" | "employeeId_date">
 
 export type AttendanceOrderByWithAggregationInput = {
@@ -408,6 +411,7 @@ export type AttendanceCreateInput = {
   company: Prisma.CompanyCreateNestedOneWithoutAttendancesInput
   shift?: Prisma.ShiftCreateNestedOneWithoutAttendancesInput
   attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutAttendanceInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentCreateNestedManyWithoutAttendanceInput
 }
 
 export type AttendanceUncheckedCreateInput = {
@@ -425,6 +429,7 @@ export type AttendanceUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutAttendanceInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedCreateNestedManyWithoutAttendanceInput
 }
 
 export type AttendanceUpdateInput = {
@@ -441,6 +446,7 @@ export type AttendanceUpdateInput = {
   company?: Prisma.CompanyUpdateOneRequiredWithoutAttendancesNestedInput
   shift?: Prisma.ShiftUpdateOneWithoutAttendancesNestedInput
   attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutAttendanceNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUpdateManyWithoutAttendanceNestedInput
 }
 
 export type AttendanceUncheckedUpdateInput = {
@@ -458,6 +464,7 @@ export type AttendanceUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutAttendanceNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedUpdateManyWithoutAttendanceNestedInput
 }
 
 export type AttendanceCreateManyInput = {
@@ -587,6 +594,11 @@ export type AttendanceSumOrderByAggregateInput = {
   late_minutes?: Prisma.SortOrder
 }
 
+export type AttendanceScalarRelationFilter = {
+  is?: Prisma.AttendanceWhereInput
+  isNot?: Prisma.AttendanceWhereInput
+}
+
 export type AttendanceNullableScalarRelationFilter = {
   is?: Prisma.AttendanceWhereInput | null
   isNot?: Prisma.AttendanceWhereInput | null
@@ -680,6 +692,20 @@ export type EnumAttendanceStatusFieldUpdateOperationsInput = {
   set?: $Enums.AttendanceStatus
 }
 
+export type AttendanceCreateNestedOneWithoutAttendanceAdjustmentsInput = {
+  create?: Prisma.XOR<Prisma.AttendanceCreateWithoutAttendanceAdjustmentsInput, Prisma.AttendanceUncheckedCreateWithoutAttendanceAdjustmentsInput>
+  connectOrCreate?: Prisma.AttendanceCreateOrConnectWithoutAttendanceAdjustmentsInput
+  connect?: Prisma.AttendanceWhereUniqueInput
+}
+
+export type AttendanceUpdateOneRequiredWithoutAttendanceAdjustmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.AttendanceCreateWithoutAttendanceAdjustmentsInput, Prisma.AttendanceUncheckedCreateWithoutAttendanceAdjustmentsInput>
+  connectOrCreate?: Prisma.AttendanceCreateOrConnectWithoutAttendanceAdjustmentsInput
+  upsert?: Prisma.AttendanceUpsertWithoutAttendanceAdjustmentsInput
+  connect?: Prisma.AttendanceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AttendanceUpdateToOneWithWhereWithoutAttendanceAdjustmentsInput, Prisma.AttendanceUpdateWithoutAttendanceAdjustmentsInput>, Prisma.AttendanceUncheckedUpdateWithoutAttendanceAdjustmentsInput>
+}
+
 export type AttendanceCreateNestedOneWithoutAttendanceLogsInput = {
   create?: Prisma.XOR<Prisma.AttendanceCreateWithoutAttendanceLogsInput, Prisma.AttendanceUncheckedCreateWithoutAttendanceLogsInput>
   connectOrCreate?: Prisma.AttendanceCreateOrConnectWithoutAttendanceLogsInput
@@ -751,6 +777,7 @@ export type AttendanceCreateWithoutCompanyInput = {
   employee: Prisma.EmployeeCreateNestedOneWithoutAttendancesInput
   shift?: Prisma.ShiftCreateNestedOneWithoutAttendancesInput
   attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutAttendanceInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentCreateNestedManyWithoutAttendanceInput
 }
 
 export type AttendanceUncheckedCreateWithoutCompanyInput = {
@@ -767,6 +794,7 @@ export type AttendanceUncheckedCreateWithoutCompanyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutAttendanceInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedCreateNestedManyWithoutAttendanceInput
 }
 
 export type AttendanceCreateOrConnectWithoutCompanyInput = {
@@ -827,6 +855,7 @@ export type AttendanceCreateWithoutEmployeeInput = {
   company: Prisma.CompanyCreateNestedOneWithoutAttendancesInput
   shift?: Prisma.ShiftCreateNestedOneWithoutAttendancesInput
   attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutAttendanceInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentCreateNestedManyWithoutAttendanceInput
 }
 
 export type AttendanceUncheckedCreateWithoutEmployeeInput = {
@@ -843,6 +872,7 @@ export type AttendanceUncheckedCreateWithoutEmployeeInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutAttendanceInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedCreateNestedManyWithoutAttendanceInput
 }
 
 export type AttendanceCreateOrConnectWithoutEmployeeInput = {
@@ -871,6 +901,88 @@ export type AttendanceUpdateManyWithWhereWithoutEmployeeInput = {
   data: Prisma.XOR<Prisma.AttendanceUpdateManyMutationInput, Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeInput>
 }
 
+export type AttendanceCreateWithoutAttendanceAdjustmentsInput = {
+  date: Date | string
+  status?: $Enums.AttendanceStatus
+  check_in_time?: Date | string | null
+  check_out_time?: Date | string | null
+  total_work_minutes?: number
+  overtime_minutes?: number
+  late_minutes?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employee: Prisma.EmployeeCreateNestedOneWithoutAttendancesInput
+  company: Prisma.CompanyCreateNestedOneWithoutAttendancesInput
+  shift?: Prisma.ShiftCreateNestedOneWithoutAttendancesInput
+  attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutAttendanceInput
+}
+
+export type AttendanceUncheckedCreateWithoutAttendanceAdjustmentsInput = {
+  id?: number
+  employeeId: number
+  companyId: number
+  date: Date | string
+  status?: $Enums.AttendanceStatus
+  shiftId?: number | null
+  check_in_time?: Date | string | null
+  check_out_time?: Date | string | null
+  total_work_minutes?: number
+  overtime_minutes?: number
+  late_minutes?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutAttendanceInput
+}
+
+export type AttendanceCreateOrConnectWithoutAttendanceAdjustmentsInput = {
+  where: Prisma.AttendanceWhereUniqueInput
+  create: Prisma.XOR<Prisma.AttendanceCreateWithoutAttendanceAdjustmentsInput, Prisma.AttendanceUncheckedCreateWithoutAttendanceAdjustmentsInput>
+}
+
+export type AttendanceUpsertWithoutAttendanceAdjustmentsInput = {
+  update: Prisma.XOR<Prisma.AttendanceUpdateWithoutAttendanceAdjustmentsInput, Prisma.AttendanceUncheckedUpdateWithoutAttendanceAdjustmentsInput>
+  create: Prisma.XOR<Prisma.AttendanceCreateWithoutAttendanceAdjustmentsInput, Prisma.AttendanceUncheckedCreateWithoutAttendanceAdjustmentsInput>
+  where?: Prisma.AttendanceWhereInput
+}
+
+export type AttendanceUpdateToOneWithWhereWithoutAttendanceAdjustmentsInput = {
+  where?: Prisma.AttendanceWhereInput
+  data: Prisma.XOR<Prisma.AttendanceUpdateWithoutAttendanceAdjustmentsInput, Prisma.AttendanceUncheckedUpdateWithoutAttendanceAdjustmentsInput>
+}
+
+export type AttendanceUpdateWithoutAttendanceAdjustmentsInput = {
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
+  check_in_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  check_out_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  total_work_minutes?: Prisma.IntFieldUpdateOperationsInput | number
+  overtime_minutes?: Prisma.IntFieldUpdateOperationsInput | number
+  late_minutes?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employee?: Prisma.EmployeeUpdateOneRequiredWithoutAttendancesNestedInput
+  company?: Prisma.CompanyUpdateOneRequiredWithoutAttendancesNestedInput
+  shift?: Prisma.ShiftUpdateOneWithoutAttendancesNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutAttendanceNestedInput
+}
+
+export type AttendanceUncheckedUpdateWithoutAttendanceAdjustmentsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  employeeId?: Prisma.IntFieldUpdateOperationsInput | number
+  companyId?: Prisma.IntFieldUpdateOperationsInput | number
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
+  shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  check_in_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  check_out_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  total_work_minutes?: Prisma.IntFieldUpdateOperationsInput | number
+  overtime_minutes?: Prisma.IntFieldUpdateOperationsInput | number
+  late_minutes?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutAttendanceNestedInput
+}
+
 export type AttendanceCreateWithoutAttendanceLogsInput = {
   date: Date | string
   status?: $Enums.AttendanceStatus
@@ -884,6 +996,7 @@ export type AttendanceCreateWithoutAttendanceLogsInput = {
   employee: Prisma.EmployeeCreateNestedOneWithoutAttendancesInput
   company: Prisma.CompanyCreateNestedOneWithoutAttendancesInput
   shift?: Prisma.ShiftCreateNestedOneWithoutAttendancesInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentCreateNestedManyWithoutAttendanceInput
 }
 
 export type AttendanceUncheckedCreateWithoutAttendanceLogsInput = {
@@ -900,6 +1013,7 @@ export type AttendanceUncheckedCreateWithoutAttendanceLogsInput = {
   late_minutes?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedCreateNestedManyWithoutAttendanceInput
 }
 
 export type AttendanceCreateOrConnectWithoutAttendanceLogsInput = {
@@ -931,6 +1045,7 @@ export type AttendanceUpdateWithoutAttendanceLogsInput = {
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutAttendancesNestedInput
   company?: Prisma.CompanyUpdateOneRequiredWithoutAttendancesNestedInput
   shift?: Prisma.ShiftUpdateOneWithoutAttendancesNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUpdateManyWithoutAttendanceNestedInput
 }
 
 export type AttendanceUncheckedUpdateWithoutAttendanceLogsInput = {
@@ -947,6 +1062,7 @@ export type AttendanceUncheckedUpdateWithoutAttendanceLogsInput = {
   late_minutes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedUpdateManyWithoutAttendanceNestedInput
 }
 
 export type AttendanceCreateWithoutShiftInput = {
@@ -962,6 +1078,7 @@ export type AttendanceCreateWithoutShiftInput = {
   employee: Prisma.EmployeeCreateNestedOneWithoutAttendancesInput
   company: Prisma.CompanyCreateNestedOneWithoutAttendancesInput
   attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutAttendanceInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentCreateNestedManyWithoutAttendanceInput
 }
 
 export type AttendanceUncheckedCreateWithoutShiftInput = {
@@ -978,6 +1095,7 @@ export type AttendanceUncheckedCreateWithoutShiftInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutAttendanceInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedCreateNestedManyWithoutAttendanceInput
 }
 
 export type AttendanceCreateOrConnectWithoutShiftInput = {
@@ -1034,6 +1152,7 @@ export type AttendanceUpdateWithoutCompanyInput = {
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutAttendancesNestedInput
   shift?: Prisma.ShiftUpdateOneWithoutAttendancesNestedInput
   attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutAttendanceNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUpdateManyWithoutAttendanceNestedInput
 }
 
 export type AttendanceUncheckedUpdateWithoutCompanyInput = {
@@ -1050,6 +1169,7 @@ export type AttendanceUncheckedUpdateWithoutCompanyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutAttendanceNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedUpdateManyWithoutAttendanceNestedInput
 }
 
 export type AttendanceUncheckedUpdateManyWithoutCompanyInput = {
@@ -1095,6 +1215,7 @@ export type AttendanceUpdateWithoutEmployeeInput = {
   company?: Prisma.CompanyUpdateOneRequiredWithoutAttendancesNestedInput
   shift?: Prisma.ShiftUpdateOneWithoutAttendancesNestedInput
   attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutAttendanceNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUpdateManyWithoutAttendanceNestedInput
 }
 
 export type AttendanceUncheckedUpdateWithoutEmployeeInput = {
@@ -1111,6 +1232,7 @@ export type AttendanceUncheckedUpdateWithoutEmployeeInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutAttendanceNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedUpdateManyWithoutAttendanceNestedInput
 }
 
 export type AttendanceUncheckedUpdateManyWithoutEmployeeInput = {
@@ -1156,6 +1278,7 @@ export type AttendanceUpdateWithoutShiftInput = {
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutAttendancesNestedInput
   company?: Prisma.CompanyUpdateOneRequiredWithoutAttendancesNestedInput
   attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutAttendanceNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUpdateManyWithoutAttendanceNestedInput
 }
 
 export type AttendanceUncheckedUpdateWithoutShiftInput = {
@@ -1172,6 +1295,7 @@ export type AttendanceUncheckedUpdateWithoutShiftInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutAttendanceNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedUpdateManyWithoutAttendanceNestedInput
 }
 
 export type AttendanceUncheckedUpdateManyWithoutShiftInput = {
@@ -1196,10 +1320,12 @@ export type AttendanceUncheckedUpdateManyWithoutShiftInput = {
 
 export type AttendanceCountOutputType = {
   attendanceLogs: number
+  attendanceAdjustments: number
 }
 
 export type AttendanceCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   attendanceLogs?: boolean | AttendanceCountOutputTypeCountAttendanceLogsArgs
+  attendanceAdjustments?: boolean | AttendanceCountOutputTypeCountAttendanceAdjustmentsArgs
 }
 
 /**
@@ -1217,6 +1343,13 @@ export type AttendanceCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.E
  */
 export type AttendanceCountOutputTypeCountAttendanceLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.AttendanceLogWhereInput
+}
+
+/**
+ * AttendanceCountOutputType without action
+ */
+export type AttendanceCountOutputTypeCountAttendanceAdjustmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AttendanceAdjustmentWhereInput
 }
 
 
@@ -1238,6 +1371,7 @@ export type AttendanceSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   shift?: boolean | Prisma.Attendance$shiftArgs<ExtArgs>
   attendanceLogs?: boolean | Prisma.Attendance$attendanceLogsArgs<ExtArgs>
+  attendanceAdjustments?: boolean | Prisma.Attendance$attendanceAdjustmentsArgs<ExtArgs>
   _count?: boolean | Prisma.AttendanceCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["attendance"]>
 
@@ -1301,6 +1435,7 @@ export type AttendanceInclude<ExtArgs extends runtime.Types.Extensions.InternalA
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   shift?: boolean | Prisma.Attendance$shiftArgs<ExtArgs>
   attendanceLogs?: boolean | Prisma.Attendance$attendanceLogsArgs<ExtArgs>
+  attendanceAdjustments?: boolean | Prisma.Attendance$attendanceAdjustmentsArgs<ExtArgs>
   _count?: boolean | Prisma.AttendanceCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AttendanceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1321,6 +1456,7 @@ export type $AttendancePayload<ExtArgs extends runtime.Types.Extensions.Internal
     company: Prisma.$CompanyPayload<ExtArgs>
     shift: Prisma.$ShiftPayload<ExtArgs> | null
     attendanceLogs: Prisma.$AttendanceLogPayload<ExtArgs>[]
+    attendanceAdjustments: Prisma.$AttendanceAdjustmentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1734,6 +1870,7 @@ export interface Prisma__AttendanceClient<T, Null = never, ExtArgs extends runti
   company<T extends Prisma.CompanyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CompanyDefaultArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   shift<T extends Prisma.Attendance$shiftArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Attendance$shiftArgs<ExtArgs>>): Prisma.Prisma__ShiftClient<runtime.Types.Result.GetResult<Prisma.$ShiftPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   attendanceLogs<T extends Prisma.Attendance$attendanceLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Attendance$attendanceLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendanceLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  attendanceAdjustments<T extends Prisma.Attendance$attendanceAdjustmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Attendance$attendanceAdjustmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendanceAdjustmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2217,6 +2354,30 @@ export type Attendance$attendanceLogsArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   distinct?: Prisma.AttendanceLogScalarFieldEnum | Prisma.AttendanceLogScalarFieldEnum[]
+}
+
+/**
+ * Attendance.attendanceAdjustments
+ */
+export type Attendance$attendanceAdjustmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AttendanceAdjustment
+   */
+  select?: Prisma.AttendanceAdjustmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AttendanceAdjustment
+   */
+  omit?: Prisma.AttendanceAdjustmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AttendanceAdjustmentInclude<ExtArgs> | null
+  where?: Prisma.AttendanceAdjustmentWhereInput
+  orderBy?: Prisma.AttendanceAdjustmentOrderByWithRelationInput | Prisma.AttendanceAdjustmentOrderByWithRelationInput[]
+  cursor?: Prisma.AttendanceAdjustmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AttendanceAdjustmentScalarFieldEnum | Prisma.AttendanceAdjustmentScalarFieldEnum[]
 }
 
 /**

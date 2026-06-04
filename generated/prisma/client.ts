@@ -102,15 +102,35 @@ export type EmployeePersonalInfo = Prisma.EmployeePersonalInfoModel
  */
 export type EmployeeAddress = Prisma.EmployeeAddressModel
 /**
+ * Model EmployeeEmergencyContact
+ * 
+ */
+export type EmployeeEmergencyContact = Prisma.EmployeeEmergencyContactModel
+/**
  * Model EmployeeDocument
  * 
  */
 export type EmployeeDocument = Prisma.EmployeeDocumentModel
 /**
+ * Model EmployeeBankDetail
+ * 
+ */
+export type EmployeeBankDetail = Prisma.EmployeeBankDetailModel
+/**
+ * Model EmployeeExperience
+ * 
+ */
+export type EmployeeExperience = Prisma.EmployeeExperienceModel
+/**
  * Model Attendance
  * 
  */
 export type Attendance = Prisma.AttendanceModel
+/**
+ * Model AttendanceAdjustment
+ * 
+ */
+export type AttendanceAdjustment = Prisma.AttendanceAdjustmentModel
 /**
  * Model AttendanceLog
  * 
@@ -132,6 +152,11 @@ export type CompanySetting = Prisma.CompanySettingModel
  */
 export type Shift = Prisma.ShiftModel
 /**
+ * Model WorkSchedulePolicy
+ * 
+ */
+export type WorkSchedulePolicy = Prisma.WorkSchedulePolicyModel
+/**
  * Model SalaryComponent
  * 
  */
@@ -141,6 +166,11 @@ export type SalaryComponent = Prisma.SalaryComponentModel
  * 
  */
 export type EmployeeSalaryComponent = Prisma.EmployeeSalaryComponentModel
+/**
+ * Model PayrollAdjustment
+ * 
+ */
+export type PayrollAdjustment = Prisma.PayrollAdjustmentModel
 /**
  * Model PayRoll
  * 
@@ -167,6 +197,16 @@ export type LeaveType = Prisma.LeaveTypeModel
  */
 export type LeaveBalance = Prisma.LeaveBalanceModel
 /**
+ * Model LeaveIncrementPolicy
+ * 
+ */
+export type LeaveIncrementPolicy = Prisma.LeaveIncrementPolicyModel
+/**
+ * Model LeaveIncrementLog
+ * 
+ */
+export type LeaveIncrementLog = Prisma.LeaveIncrementLogModel
+/**
  * Model LeaveApplication
  * 
  */
@@ -181,3 +221,8 @@ export type Holiday = Prisma.HolidayModel
  * 
  */
 export type WeeklyOffConfig = Prisma.WeeklyOffConfigModel
+/**
+ * Model Notice
+ * 
+ */
+export type Notice = Prisma.NoticeModel

@@ -49,6 +49,15 @@ model Company{
   holidays Holiday[]
   weeklyOffConfigs WeeklyOffConfig[]
   designations Designation[]
+  payrollAdjustments PayrollAdjustment[]
+  employeeBankDetails EmployeeBankDetail[]
+  employeeEmergencyContacts EmployeeEmergencyContact[]
+  employeeExperiences EmployeeExperience[]
+  attendanceAdjustments AttendanceAdjustment[]
+  workSchedulePolicies WorkSchedulePolicy[]
+  leaveIncrementPolicies LeaveIncrementPolicy[]
+  leaveIncrementLogs LeaveIncrementLog[]
+  notices Notice[]
 
 
 
@@ -126,6 +135,8 @@ model User {
   employees    Employee[]
   // attendances Attendance[]
   memberships Membership[]
+   attendanceAdjustments AttendanceAdjustment[] @relation("AttendanceAdjustedBy")
+  
 }
 
 model GlobalRole{
@@ -224,6 +235,9 @@ model Employee {
   shiftId Int?
   shift Shift? @relation(fields: [shiftId], references: [id])
   joiningDate    DateTime?
+  workSchedulePolicyId Int?
+
+workSchedulePolicy WorkSchedulePolicy? @relation( fields:[workSchedulePolicyId], references:[id])
   // employmentType String? // Permanent, Contractual
   // status         String? // active, resigned
     createdAt DateTime @default(now())
@@ -237,6 +251,13 @@ model Employee {
   employeePersonalInfo EmployeePersonalInfo?
   employeeAddress EmployeeAddress?
   employeeDocuments EmployeeDocument[]
+  payrollAdjustments PayrollAdjustment[]
+  employeeBankDetail EmployeeBankDetail?
+  employeeEmergencyContact EmployeeEmergencyContact?
+  employeeExperiences EmployeeExperience[]
+  attendanceAdjustments AttendanceAdjustment[]
+  leaveIncrementLogs LeaveIncrementLog[]
+  
 @@index([companyId])
  
 }
@@ -271,6 +292,25 @@ model EmployeeAddress {
   createdAt DateTime   @default(now())
   updatedAt DateTime  @updatedAt
 }
+// ======================================================
+// EMPLOYEE EMERGENCY CONTACT
+// ======================================================
+model EmployeeEmergencyContact {
+  id Int @id @default(autoincrement())
+  companyId Int
+  company Company @relation( fields:[companyId],references:[id])
+  employeeId Int @unique
+  employee Employee @relation(fields:[employeeId],references:[id])
+  contactName String?
+  relationship String?
+  phone String?
+  alternatePhone String?
+  email String?
+  address String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([companyId])
+}
 // ===========================================EmployeeDocument===============================================
 enum EmployeeDocumentStatus {
   ACTIVE
@@ -293,25 +333,65 @@ model EmployeeDocument {
   uploadedAt DateTime @default(now())
   updatedAt DateTime  @updatedAt
 }
+
+// ========================================BANK====================================
+model EmployeeBankDetail {
+  id Int @id @default(autoincrement())
+  companyId Int 
+ company Company @relation(fields: [companyId],references: [id])
+  employeeId Int  @unique
+  employee Employee @relation(fields:[employeeId],references:[id])
+  bankName String?
+  accountHolderName String?
+  accountNumber String?
+  ifscCode String?
+  branchName String?
+  upiId String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+// ====================================EXPERIANCE=======================
+model EmployeeExperience {
+  id Int @id @default(autoincrement())
+  companyId Int
+  company Company @relation(fields:[companyId],references:[id])
+  employeeId Int
+  employee Employee @relation( fields:[employeeId], references:[id])
+
+  companyName String
+
+  designation String
+
+  startDate DateTime
+
+  endDate DateTime?
+
+  currentlyWorking Boolean @default(false)
+
+  skills String?
+
+  responsibilities String?
+
+  documentUrl String?
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @updatedAt
+
+  @@index([companyId])
+
+  @@index([employeeId])
+}
 // =================================ATTENDANCE====================================
 enum AttendanceStatus {
-
   PRESENT
-
   ABSENT
-
   HALF_DAY
-
   WEEKLY_OFF
-
   HOLIDAY
-
   PAID_LEAVE
-
   UNPAID_LEAVE
-
   ON_DUTY
-
   WORK_FROM_HOME
 }
 model Attendance{
@@ -327,7 +407,7 @@ model Attendance{
   shift Shift? @relation(fields: [shiftId], references: [id])
   check_in_time DateTime?
 
-check_out_time DateTime?
+  check_out_time DateTime?
 
   total_work_minutes Int @default(0)
   overtime_minutes Int @default(0)
@@ -335,6 +415,7 @@ check_out_time DateTime?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   attendanceLogs AttendanceLog[]
+  attendanceAdjustments AttendanceAdjustment[]
   @@unique([employeeId,date])
   @@index([companyId])
 
@@ -343,6 +424,67 @@ check_out_time DateTime?
 @@index([shiftId])
 }
 // =======================================================================================
+// =======================================ATTENDANCE ADJUSTMENT==========================
+enum AttendanceAdjustmentType {
+
+  MANUAL
+
+  GRACE
+
+  REGULARIZATION
+
+  AUTO_CORRECTION
+
+  SYSTEM
+}
+model AttendanceAdjustment {
+
+  id Int @id @default(autoincrement())
+
+  companyId Int
+
+  attendanceId Int
+
+  employeeId Int
+
+  adjustedBy Int?
+
+  company Company @relation(   fields: [companyId],   references: [id] )
+
+  attendance Attendance @relation(   fields: [attendanceId],   references: [id],   onDelete: Cascade )
+
+  employee Employee @relation(   fields: [employeeId],  references: [id])
+
+  attendanceAdjustedBy User? @relation( "AttendanceAdjustedBy", fields: [adjustedBy],   references: [id] )
+
+  oldStatus AttendanceStatus?
+
+  newStatus AttendanceStatus?
+
+  lateGraceMinutes Int @default(0)
+
+  workGraceMinutes Int @default(0)
+
+  reason String?
+
+  remarks String?
+
+  metadata Json?
+
+  actionType AttendanceAdjustmentType @default(MANUAL)
+
+  createdAt DateTime @default(now())
+
+  @@index([companyId])
+
+  @@index([employeeId])
+
+  @@index([attendanceId])
+
+  @@index([createdAt])
+
+  @@index([actionType])
+}
 
 // ========================================ATTENDANCE LOG====================================
 model AttendanceLog{
@@ -432,11 +574,39 @@ model Shift {
   deletedAt DateTime?
   employees Employee[]
   attendances Attendance[]
+  WorkSchedulePolicies WorkSchedulePolicy[]
    
   @@index([companyId])
   @@unique([  companyId,   title])
 }
 // ===================================================================================================================
+// ================================================WORK SCHEDULE POLICY====================================
+enum AttendanceType {
+  FIXED
+  FLEXIBLE
+}
+model WorkSchedulePolicy {
+  id Int @id @default(autoincrement())
+  companyId Int
+  title String
+  description String?
+  attendanceType AttendanceType @default(FIXED)
+  // FLEXIBLE
+  requiredWorkMinutes Int?
+  enableOvertime Boolean @default(false)
+  overtimeAfterMinutes Int?
+    // FIXED
+    shiftId Int?
+  shift Shift? @relation(  fields:[shiftId],  references:[id] )
+  weeklyOffPattern Json?
+  isActive Boolean  @default(true)
+  company Company @relation( fields:[companyId], references:[id])
+  employees Employee[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([companyId])
+  @@unique([companyId, title])
+}
 // =====================================================salary COMPONENT================================
 enum SalaryComponentType {
   EARNING
@@ -455,6 +625,7 @@ model SalaryComponent {
   company Company @relation(fields: [companyId], references: [id])
 
   employeeSalaryComponents EmployeeSalaryComponent[]
+  payrollAdjustments PayrollAdjustment[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -485,6 +656,29 @@ companyId Int
 
 
 // ====================================================================================================================
+// ====================================================PAYROLL ADJUSTMENT==========================================
+model PayrollAdjustment {
+  id Int @id @default(autoincrement())
+  companyId Int
+  company Company    @relation(fields:[companyId],references:[id])
+  payrollRunId Int
+  payrollRun PayRollRun @relation(fields:[payrollRunId],references:[id])
+  employeeId Int
+  employee Employee @relation(fields:[employeeId],references:[id])
+  salaryComponentId Int
+  salaryComponent SalaryComponent @relation(fields:[salaryComponentId],references:[id])
+  amount Float
+  note String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([companyId])
+  @@index([employeeId])
+  @@index([payrollRunId])
+  @@index([salaryComponentId])
+
+  @@unique([payrollRunId,employeeId,salaryComponentId])
+}
 
 // ===================================================PAYROLL============================================================
 enum PayrollStatus {
@@ -559,6 +753,7 @@ model PayRollRun {
   payrolls PayRoll[]
 
   company Company @relation(fields: [companyId],references: [id])
+  payrollAdjustments PayrollAdjustment[]
   @@index([companyId])
    @@unique([companyId,periodStart,periodEnd])
 }
@@ -582,6 +777,8 @@ model LeaveType{
      updatedAt     DateTime @updatedAt
      leaveApplications LeaveApplication[]
      leaveBalances LeaveBalance[]
+    leaveIncrementPolicies LeaveIncrementPolicy[]
+    leaveIncrementLogs LeaveIncrementLog[]
      company Company @relation(fields: [companyId],references: [id])
      @@unique([companyId, code])
 
@@ -595,9 +792,9 @@ model LeaveBalance{
 companyId Int
   leaveTypeId Int
 
-  total_allocated Float
+  total_allocated Float @default(0)
   used  Float    @default(0)
- 
+ remaining Float  @default(0)
   year Int
   leaveType   LeaveType @relation(fields: [leaveTypeId], references: [id])
   employee    Employee @relation(fields: [employeeId], references: [id])
@@ -607,6 +804,104 @@ company Company @relation(fields: [companyId],references: [id])
 }
 
 // =================================================================================================================
+// ==========================================LEAVE INCRIMENT POLICY===============================
+enum LeaveIncrementFrequency {
+  DAILY
+  WEEKLY
+  MONTHLY
+  YEARLY
+}
+model LeaveIncrementPolicy {
+
+  id Int  @id  @default(autoincrement())
+
+  companyId Int
+
+  leaveTypeId Int
+
+  title String?
+
+  incrementAmount Float
+
+  frequency LeaveIncrementFrequency
+
+  isActive Boolean  @default(true)
+
+  maxLimit Float?
+
+  effectiveFrom DateTime?
+
+  effectiveTo DateTime?
+
+  config Json?
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime  @updatedAt
+
+  company Company @relation(   fields:[companyId],   references:[id] )
+
+  leaveType LeaveType  @relation(   fields:[leaveTypeId],   references:[id] )
+  leaveIncrementLogs LeaveIncrementLog[]
+
+
+  @@index([companyId])
+ @@index([frequency])
+  @@index([leaveTypeId])
+}
+enum LeaveIncrementStatus {
+
+  PENDING
+
+  COMPLETED
+
+  FAILED
+
+  REVERSED
+}
+model LeaveIncrementLog {
+
+  id Int  @id  @default(autoincrement())
+
+  companyId Int
+
+  employeeId Int
+
+  leaveTypeId Int
+
+  leaveIncrementPolicyId Int
+
+  amount Float
+
+  frequency LeaveIncrementFrequency
+
+  incrementDate DateTime
+
+  month Int?
+
+  week Int?
+
+  year Int
+
+ status LeaveIncrementStatus @default(PENDING)
+
+  createdAt DateTime  @default(now())
+
+  company Company  @relation(    fields:[companyId],    references:[id]  )
+
+  employee Employee  @relation(    fields:[employeeId],    references:[id]  )
+
+  leaveType LeaveType  @relation(    fields:[leaveTypeId],    references:[id]  )
+
+  leaveIncrementPolicy LeaveIncrementPolicy  @relation(    fields:[leaveIncrementPolicyId],    references:[id]  )
+  @@unique([  employeeId,  leaveIncrementPolicyId,  month,  week,  year])
+
+  @@index([companyId])
+
+  @@index([employeeId])
+
+  @@index([leaveTypeId])
+}
 
 // ============================================LEAVE APPLICATION================================================
 enum LeaveStatus {
@@ -706,4 +1001,58 @@ model WeeklyOffConfig {
   company Company @relation( fields: [companyId], references: [id])
 
   @@index([companyId])
+}
+
+// ======================================================
+// NOTICE PRIORITY
+// ======================================================
+
+enum NoticePriority {
+
+  LOW
+
+  NORMAL
+
+  HIGH
+
+  URGENT
+}
+
+// ======================================================
+// NOTICE
+// ======================================================
+
+model Notice {
+
+  id Int  @id  @default(autoincrement())
+
+  companyId Int
+
+  title String
+
+  description String
+
+  noticeDate DateTime
+
+  expiryDate DateTime?
+
+  priority NoticePriority  @default(NORMAL)
+
+  isPublished Boolean  @default(true)
+
+  attachmentUrl String?
+
+  createdBy Int?
+
+  createdAt DateTime  @default(now())
+
+  updatedAt DateTime  @updatedAt
+
+  company Company  @relation(    fields:[companyId],    references:[id]  )
+
+  @@index([companyId])
+
+  @@index([noticeDate])
+
+  @@index([isPublished])
 }

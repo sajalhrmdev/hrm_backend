@@ -33,74 +33,139 @@ export const calculateAttendance = (logs: any[]) => {
 //   };
 // };
 
-export const applyPolicy = (
+// ===============================OVERTIME CALCULATION================
+export const overTimeCalculation = (totalMinutes: number, shift?: any) => {
+  const std = shift?.minimumWorkMinutes;
+  const overtimeThreshold = std + (shift?.overtimeAfterMinutes || 0);
+  let overtime = 0;
+  if (totalMinutes > overtimeThreshold) {
+    overtime = totalMinutes - overtimeThreshold;
+  }
+  return {
+    overtime: Math.floor(overtime),
+  };
+};
+// =======================ATTENDANCE STATUS========================
+// export const attendanceStatusFn = (
+//   totalMinutes: number,
+
+//   policy: any,
+
+//   shift?: any,
+// ) => {
+//   // const std = shift?.minimumWorkMinutes;
+//   // // const std = shift?.minimumWorkMinutes || policy?.std_work_minutes || 480;
+//   // // OVERTIME THRESHOLD
+//   // const overtimeThreshold = std + (shift?.overtimeAfterMinutes || 0);
+//   // // OVERTIME
+//   // let overtime = 0;
+//   // if (totalMinutes > overtimeThreshold) {
+//   //   overtime = totalMinutes - overtimeThreshold;
+//   // }
+
+//   // ========================================
+//   // STATUS
+//   // ========================================
+
+//   let status: AttendanceStatus = AttendanceStatus.PRESENT;
+
+//   // ABSENT
+
+//   // if (totalMinutes === 0) {
+//   //   status = AttendanceStatus.ABSENT;
+//   // }
+
+//   // ========================================
+//   // HALF DAY
+//   // ========================================
+//    if (
+//     shift?.halfDayAfterMinutes &&
+//     totalMinutes < shift.halfDayAfterMinutes
+//   ) {
+//     status = AttendanceStatus.HALF_DAY;
+//   }
+
+//   // ========================================
+//   // FALLBACK HALF DAY
+//   // ========================================
+//   // else if (totalMinutes < std / 2) {
+//   //   status = AttendanceStatus.HALF_DAY;
+//   // }
+
+//   return {
+//     status,
+//   };
+// };
+export const attendanceStatusFn = (
   totalMinutes: number,
 
   policy: any,
 
   shift?: any,
+
+  workSchedulePolicy?: any,
 ) => {
-  // ========================================
-  // STANDARD WORK MINUTES
-  // ========================================
 
-  const std = shift?.minimumWorkMinutes || policy?.std_work_minutes || 480;
+  // ==================================================
+  // FLEXIBLE ATTENDANCE
+  // ==================================================
 
-  // ========================================
-  // OVERTIME THRESHOLD
-  // ========================================
-
-  const overtimeThreshold = std + (shift?.overtimeAfterMinutes || 0);
-
-  // ========================================
-  // OVERTIME
-  // ========================================
-
-  let overtime = 0;
-
-  if (totalMinutes > overtimeThreshold) {
-    overtime = totalMinutes - overtimeThreshold;
-  }
-
-  // ========================================
-  // STATUS
-  // ========================================
-
-  let status: AttendanceStatus = AttendanceStatus.PRESENT;
-
-  // ========================================
-  // ABSENT
-  // ========================================
-
-  if (totalMinutes === 0) {
-    status = AttendanceStatus.ABSENT;
-  }
-
-  // ========================================
-  // HALF DAY
-  // ========================================
-  else if (
-    shift?.halfDayAfterMinutes &&
-    totalMinutes < shift.halfDayAfterMinutes
+  if (
+    workSchedulePolicy?.attendanceType ===
+    "FLEXIBLE"
   ) {
-    status = AttendanceStatus.HALF_DAY;
+
+    const required =
+      workSchedulePolicy
+        ?.requiredWorkMinutes || 540;
+
+    let status: AttendanceStatus =
+      AttendanceStatus.ABSENT;
+
+    if (
+      totalMinutes >= required
+    ) {
+
+      status =
+        AttendanceStatus.PRESENT;
+
+    } else if (
+      totalMinutes >=
+      required / 2
+    ) {
+
+      status =
+        AttendanceStatus.HALF_DAY;
+    }
+
+    return {
+      status,
+    };
   }
 
-  // ========================================
-  // FALLBACK HALF DAY
-  // ========================================
-  else if (totalMinutes < std / 2) {
-    status = AttendanceStatus.HALF_DAY;
+  // ==================================================
+  // FIXED ATTENDANCE
+  // ==================================================
+
+  let status: AttendanceStatus =
+    AttendanceStatus.PRESENT;
+
+  if (
+    shift?.halfDayAfterMinutes &&
+    totalMinutes <
+      shift.halfDayAfterMinutes
+  ) {
+
+    status =
+      AttendanceStatus.HALF_DAY;
   }
 
   return {
-    overtime: Math.floor(overtime),
-
     status,
   };
 };
-
-export const validateAttendance = (
+// ========================SINGLE OR MULTI CHECKIN CHECKOUT==============================
+export const singleMultivalidatation = (
   logs: any[],
   type: "IN" | "OUT",
   mode: "SINGLE" | "MULTI",

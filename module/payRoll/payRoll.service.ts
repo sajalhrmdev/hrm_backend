@@ -578,48 +578,33 @@ export const generatePayroll = async (
   companyId: number,
   payrollRunId: number,
 ) => {
-  // ============================================
-  // GET PAYROLL RUN
-  // ============================================
+  // GET PAYROLL RUN----------
 
   const payrollRun = await prisma.payRollRun.findFirst({
     where: {
       id: payrollRunId,
-
       companyId,
     },
   });
-
   if (!payrollRun) {
     throw new Error("Payroll run not found");
   }
 
-  // ============================================
   // CHECK STATUS
-  // ============================================
-
   if (payrollRun.status === "FINALIZED") {
     throw new Error("Payroll already finalized");
   }
-
-  // ============================================
   // TOTAL DAYS
-  // ============================================
-
   const totalDays =
     Math.ceil(
       (payrollRun.periodEnd.getTime() - payrollRun.periodStart.getTime()) /
         (1000 * 60 * 60 * 24),
     ) + 1;
-
-  // ============================================
-  // GET EMPLOYEES
-  // ============================================
+  // GET EMPLOYEES---------------
 
   const employees = await prisma.employee.findMany({
     where: {
       companyId,
-
       status: "ACTIVE",
     },
   });
@@ -630,15 +615,12 @@ export const generatePayroll = async (
 
   const result = await prisma.$transaction(
     async (tx) => {
-      // ======================================
       // DELETE OLD PAYROLL SNAPSHOTS
-      // ======================================
 
       const oldPayrolls = await tx.payRoll.findMany({
         where: {
           payroll_run_id: payrollRunId,
         },
-
         select: {
           id: true,
         },
@@ -656,9 +638,7 @@ export const generatePayroll = async (
         });
       }
 
-      // ======================================
       // DELETE OLD PAYROLLS
-      // ======================================
 
       await tx.payRoll.deleteMany({
         where: {
@@ -666,147 +646,99 @@ export const generatePayroll = async (
         },
       });
 
-      // ======================================
-      // EXTRA PAYABLE DAYS
-      // ======================================
+      const attendanceSummary = await tx.attendance.groupBy({
+        by: ["employeeId", "status"],
 
-      const payableExtraDays = new Set<string>();
-
-      // ======================================
-      // HOLIDAYS
-      // ======================================
-
-      const holidays = await tx.holiday.findMany({
         where: {
           companyId,
-
-          isPaid: true,
 
           date: {
             gte: payrollRun.periodStart,
-
             lte: payrollRun.periodEnd,
           },
         },
+
+        _count: {
+          status: true,
+        },
+      });
+      type AttendanceSummaryMap = {
+        count: number;
+      };
+
+      const attendanceMap = new Map<string, AttendanceSummaryMap>();
+
+      attendanceSummary.forEach((row) => {
+        attendanceMap.set(`${row.employeeId}_${row.status}`, {
+          count: row._count.status,
+        });
       });
 
-      holidays.forEach((holiday) => {
-        payableExtraDays.add(holiday.date.toISOString().split("T")[0]);
-      });
+      const attendanceAggregate = await tx.attendance.groupBy({
+        by: ["employeeId"],
 
-      // ======================================
-      // WEEKLY OFF CONFIG
-      // ======================================
-
-      const weeklyOffConfigs = await tx.weeklyOffConfig.findMany({
         where: {
           companyId,
 
-          isActive: true,
+          date: {
+            gte: payrollRun.periodStart,
+            lte: payrollRun.periodEnd,
+          },
+        },
+
+        _sum: {
+          overtime_minutes: true,
+          late_minutes: true,
+          total_work_minutes: true,
         },
       });
+      const aggregateMap = new Map();
 
-      // ======================================
-      // WEEKLY OFF COUNT
-      // ======================================
+      attendanceAggregate.forEach((row) => {
+        aggregateMap.set(row.employeeId, {
+          overtime: row._sum.overtime_minutes || 0,
 
-      const currentDate = new Date(payrollRun.periodStart);
+          late: row._sum.late_minutes || 0,
 
-      while (currentDate <= payrollRun.periodEnd) {
-        const currentDay = currentDate.getDay();
-
-        // ==================================
-        // WHICH WEEK OF MONTH
-        // ==================================
-
-        const weekNumber = Math.ceil(currentDate.getDate() / 7);
-
-        // ==================================
-        // MATCH CONFIG
-        // ==================================
-
-        const isWeeklyOff = weeklyOffConfigs.some((config) => {
-          const dayMatch = config.dayOfWeek === currentDay;
-
-          const weekMatch =
-            config.weekNumber === null || config.weekNumber === weekNumber;
-
-          return dayMatch && weekMatch;
+          workMinutes: row._sum.total_work_minutes || 0,
         });
-
-        if (isWeeklyOff) {
-          payableExtraDays.add(currentDate.toISOString().split("T")[0]);
-        }
-
-        // ==================================
-        // NEXT DAY
-        // ==================================
-
-        currentDate.setDate(currentDate.getDate() + 1);
-      }
-
-      // ======================================
-      // LOOP EMPLOYEES
-      // ======================================
+      });
 
       for (const employee of employees) {
-        // ==================================
-        // PRESENT DAYS
-        // ==================================
+        const presentDays =
+          attendanceMap.get(`${employee.id}_PRESENT`)?.count || 0;
 
-        const presentDays = await tx.attendance.count({
-          where: {
-            employeeId: employee.id,
+        const weeklyOffDays =
+          attendanceMap.get(`${employee.id}_WEEKLY_OFF`)?.count || 0;
 
-            companyId,
+        const holidayDays =
+          attendanceMap.get(`${employee.id}_HOLIDAY`)?.count || 0;
 
-            status: "PRESENT",
+        const paidLeaveDays =
+          attendanceMap.get(`${employee.id}_PAID_LEAVE`)?.count || 0;
 
-            date: {
-              gte: payrollRun.periodStart,
+        const unpaidLeaveDays =
+          attendanceMap.get(`${employee.id}_UNPAID_LEAVE`)?.count || 0;
 
-              lte: payrollRun.periodEnd,
-            },
-          },
-        });
+        const halfDays =
+          attendanceMap.get(`${employee.id}_HALF_DAY`)?.count || 0;
+        const absentDays =
+          attendanceMap.get(`${employee.id}_ABSENT`)?.count || 0;
+        const overtimeMinutes = aggregateMap.get(employee.id)?.overtime || 0;
 
-        // ==================================
-        // PAID LEAVES
-        // ==================================
+        const lateMinutes = aggregateMap.get(employee.id)?.late || 0;
 
-        const paidLeaveDays = await tx.leaveApplication.aggregate({
-          _sum: {
-            paidDays: true,
-          },
+        const totalWorkMinutes =
+          aggregateMap.get(employee.id)?.workMinutes || 0;
 
-          where: {
-            employeeId: employee.id,
+        const payableDays =
+          presentDays +
+          weeklyOffDays +
+          holidayDays +
+          paidLeaveDays +
+          halfDays * 0.5;
 
-            companyId,
-
-            status: "APPROVED",
-
-            fromDate: {
-              lte: payrollRun.periodEnd,
-            },
-
-            toDate: {
-              gte: payrollRun.periodStart,
-            },
-          },
-        });
-
-        const paidLeaves = Number(paidLeaveDays._sum.paidDays || 0);
-
-        // ==================================
-        // PAYABLE DAYS
-        // ==================================
-
-        const extraPaidDays = payableExtraDays.size;
-
-        const payableDays = presentDays + paidLeaves + extraPaidDays;
-
-        const lopDays = totalDays - payableDays;
+        const lopDays = unpaidLeaveDays + absentDays + halfDays * 0.5;
 
         // ==================================
         // SALARY STRUCTURE
@@ -832,6 +764,8 @@ export const generatePayroll = async (
 
         let totalDeduction = 0;
 
+        let overtimeAmount = 0;
+
         const calculatedComponents = [];
 
         for (const item of salaryComponents) {
@@ -843,10 +777,8 @@ export const generatePayroll = async (
 
           // ================================
           // PAYABLE
-          // ================================
 
           let payableAmount = perDayAmount * payableDays;
-
           // ================================
           // DEDUCTION
           // ================================
@@ -886,6 +818,67 @@ export const generatePayroll = async (
           });
         }
 
+        if (overtimeMinutes > 0 && totalDays > 0) {
+          const perDaySalary = grossSalary / totalDays;
+          const perHourSalary = perDaySalary / 8;
+
+          overtimeAmount = Number(
+            ((overtimeMinutes / 60) * perHourSalary).toFixed(2),
+          );
+          grossSalary += overtimeAmount;
+        }
+
+        // ==================================
+        // PAYROLL ADJUSTMENTS
+        // ==================================
+
+        const adjustments = await tx.payrollAdjustment.findMany({
+          where: {
+            payrollRunId,
+
+            employeeId: employee.id,
+          },
+
+          include: {
+            salaryComponent: true,
+          },
+        });
+
+        // ==================================
+        // MERGE ADJUSTMENTS
+        // ==================================
+
+        for (const adj of adjustments) {
+          const adjustmentAmount = Number(adj.amount.toFixed(2));
+
+          // ================================
+          // TOTALS
+          // ================================
+
+          if (adj.salaryComponent.type === "EARNING") {
+            grossSalary += adjustmentAmount;
+          }
+
+          if (adj.salaryComponent.type === "DEDUCTION") {
+            totalDeduction += adjustmentAmount;
+          }
+
+          // ================================
+          // SNAPSHOT
+          // ================================
+
+          calculatedComponents.push({
+            componentName: adj.salaryComponent.name,
+
+            componentCode: adj.salaryComponent.code,
+
+            type: adj.salaryComponent.type,
+
+            standardAmount: 0,
+
+            amount: adjustmentAmount,
+          });
+        }
         // ==================================
         // NET SALARY
         // ==================================
@@ -912,11 +905,14 @@ export const generatePayroll = async (
 
             present_days: presentDays,
 
-            paid_leave_days: paidLeaves,
+            paid_leave_days: paidLeaveDays,
 
             lop_days: lopDays,
 
             payable_days: payableDays,
+            // overtime_minutes: overtimeMinutes,
+
+            overtime_amount: overtimeAmount,
 
             gross_salary: Number(grossSalary.toFixed(2)),
 
@@ -974,6 +970,13 @@ export const getPayrollsByRunId = async (
       id: payrollRunId,
       companyId,
     },
+    include: {
+      company: {
+        select: {
+          name: true,
+        },
+      },
+    },
   });
 
   if (!payrollRun) {
@@ -999,7 +1002,7 @@ export const getPayrollsByRunId = async (
         },
       },
 
-      // payrollSnapComponents: true,
+      payrollSnapComponents: true,
     },
 
     orderBy: {
@@ -1086,8 +1089,46 @@ export const getSinglePayroll = async (
   if (!payroll) {
     throw new Error("Payroll not found");
   }
+  const attendanceSummary = await prisma.attendance.groupBy({
+    by: ["status"],
 
-  return payroll;
+    where: {
+      employeeId: payroll.employee.id,
+
+      companyId,
+
+      date: {
+        gte: payroll.payrollRun.periodStart,
+
+        lte: payroll.payrollRun.periodEnd,
+      },
+    },
+
+    _count: {
+      status: true,
+    },
+  });
+  const attendance = {
+    PRESENT: 0,
+    ABSENT: 0,
+    HALF_DAY: 0,
+    WEEKLY_OFF: 0,
+    HOLIDAY: 0,
+    PAID_LEAVE: 0,
+    UNPAID_LEAVE: 0,
+    ON_DUTY: 0,
+    WORK_FROM_HOME: 0,
+  };
+
+  attendanceSummary.forEach((row) => {
+    attendance[row.status] = row._count.status;
+  });
+
+  return {
+    ...payroll,
+
+    attendanceSummary: attendance,
+  };
 };
 
 // 6=============================finalizePayrollRun============================
@@ -1294,5 +1335,102 @@ export const markPayrollRunPaid = async (
 
   return {
     totalUpdated: unpaidPayrolls.length,
+  };
+};
+
+// ======================================================
+// 9=================GET EMPLOYEE PAYROLL HISTORY
+// ======================================================
+
+export const getEmployeePayrollHistory = async (
+  companyId: number,
+  employeeId: number,
+) => {
+  // ============================================
+  // CHECK EMPLOYEE
+  // ============================================
+
+  const employee = await prisma.employee.findFirst({
+    where: {
+      id: employeeId,
+
+      companyId,
+    },
+  });
+
+  if (!employee) {
+    throw new Error("Employee not found");
+  }
+
+  // ============================================
+  // FETCH PAYROLLS
+  // ============================================
+
+  const payrolls = await prisma.payRoll.findMany({
+    where: {
+      employeeId,
+
+      payrollRun: {
+        companyId,
+      },
+    },
+
+    include: {
+      payrollRun: {
+        select: {
+          id: true,
+
+          title: true,
+
+          status: true,
+
+          periodStart: true,
+
+          periodEnd: true,
+
+          createdAt: true,
+        },
+      },
+    },
+
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  // ============================================
+  // SUMMARY
+  // ============================================
+
+  const totalNetSalary = payrolls.reduce(
+    (acc, item) => acc + item.net_salary,
+
+    0,
+  );
+
+  const totalGrossSalary = payrolls.reduce(
+    (acc, item) => acc + item.gross_salary,
+
+    0,
+  );
+
+  const totalDeduction = payrolls.reduce(
+    (acc, item) => acc + item.total_deduction,
+
+    0,
+  );
+
+  return {
+    payrolls,
+
+    summary: {
+      totalPayrolls: payrolls.length,
+
+      totalNetSalary,
+
+      totalGrossSalary,
+
+      totalDeduction,
+    },
   };
 };

@@ -270,6 +270,8 @@ export type LeaveTypeWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"LeaveType"> | Date | string
   leaveApplications?: Prisma.LeaveApplicationListRelationFilter
   leaveBalances?: Prisma.LeaveBalanceListRelationFilter
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyListRelationFilter
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogListRelationFilter
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
 }
 
@@ -287,6 +289,8 @@ export type LeaveTypeOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   leaveApplications?: Prisma.LeaveApplicationOrderByRelationAggregateInput
   leaveBalances?: Prisma.LeaveBalanceOrderByRelationAggregateInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyOrderByRelationAggregateInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogOrderByRelationAggregateInput
   company?: Prisma.CompanyOrderByWithRelationInput
 }
 
@@ -308,6 +312,8 @@ export type LeaveTypeWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"LeaveType"> | Date | string
   leaveApplications?: Prisma.LeaveApplicationListRelationFilter
   leaveBalances?: Prisma.LeaveBalanceListRelationFilter
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyListRelationFilter
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogListRelationFilter
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
 }, "id" | "companyId_code">
 
@@ -359,6 +365,8 @@ export type LeaveTypeCreateInput = {
   updatedAt?: Date | string
   leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutLeaveTypeInput
   leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutLeaveTypeInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyCreateNestedManyWithoutLeaveTypeInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogCreateNestedManyWithoutLeaveTypeInput
   company: Prisma.CompanyCreateNestedOneWithoutLeaveTypesInput
 }
 
@@ -376,6 +384,8 @@ export type LeaveTypeUncheckedCreateInput = {
   updatedAt?: Date | string
   leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutLeaveTypeInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutLeaveTypeInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedCreateNestedManyWithoutLeaveTypeInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedCreateNestedManyWithoutLeaveTypeInput
 }
 
 export type LeaveTypeUpdateInput = {
@@ -390,6 +400,8 @@ export type LeaveTypeUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutLeaveTypeNestedInput
   leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutLeaveTypeNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUpdateManyWithoutLeaveTypeNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUpdateManyWithoutLeaveTypeNestedInput
   company?: Prisma.CompanyUpdateOneRequiredWithoutLeaveTypesNestedInput
 }
 
@@ -407,6 +419,8 @@ export type LeaveTypeUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutLeaveTypeNestedInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutLeaveTypeNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedUpdateManyWithoutLeaveTypeNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedUpdateManyWithoutLeaveTypeNestedInput
 }
 
 export type LeaveTypeCreateManyInput = {
@@ -577,6 +591,34 @@ export type LeaveTypeUpdateOneRequiredWithoutLeaveBalancesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.LeaveTypeUpdateToOneWithWhereWithoutLeaveBalancesInput, Prisma.LeaveTypeUpdateWithoutLeaveBalancesInput>, Prisma.LeaveTypeUncheckedUpdateWithoutLeaveBalancesInput>
 }
 
+export type LeaveTypeCreateNestedOneWithoutLeaveIncrementPoliciesInput = {
+  create?: Prisma.XOR<Prisma.LeaveTypeCreateWithoutLeaveIncrementPoliciesInput, Prisma.LeaveTypeUncheckedCreateWithoutLeaveIncrementPoliciesInput>
+  connectOrCreate?: Prisma.LeaveTypeCreateOrConnectWithoutLeaveIncrementPoliciesInput
+  connect?: Prisma.LeaveTypeWhereUniqueInput
+}
+
+export type LeaveTypeUpdateOneRequiredWithoutLeaveIncrementPoliciesNestedInput = {
+  create?: Prisma.XOR<Prisma.LeaveTypeCreateWithoutLeaveIncrementPoliciesInput, Prisma.LeaveTypeUncheckedCreateWithoutLeaveIncrementPoliciesInput>
+  connectOrCreate?: Prisma.LeaveTypeCreateOrConnectWithoutLeaveIncrementPoliciesInput
+  upsert?: Prisma.LeaveTypeUpsertWithoutLeaveIncrementPoliciesInput
+  connect?: Prisma.LeaveTypeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LeaveTypeUpdateToOneWithWhereWithoutLeaveIncrementPoliciesInput, Prisma.LeaveTypeUpdateWithoutLeaveIncrementPoliciesInput>, Prisma.LeaveTypeUncheckedUpdateWithoutLeaveIncrementPoliciesInput>
+}
+
+export type LeaveTypeCreateNestedOneWithoutLeaveIncrementLogsInput = {
+  create?: Prisma.XOR<Prisma.LeaveTypeCreateWithoutLeaveIncrementLogsInput, Prisma.LeaveTypeUncheckedCreateWithoutLeaveIncrementLogsInput>
+  connectOrCreate?: Prisma.LeaveTypeCreateOrConnectWithoutLeaveIncrementLogsInput
+  connect?: Prisma.LeaveTypeWhereUniqueInput
+}
+
+export type LeaveTypeUpdateOneRequiredWithoutLeaveIncrementLogsNestedInput = {
+  create?: Prisma.XOR<Prisma.LeaveTypeCreateWithoutLeaveIncrementLogsInput, Prisma.LeaveTypeUncheckedCreateWithoutLeaveIncrementLogsInput>
+  connectOrCreate?: Prisma.LeaveTypeCreateOrConnectWithoutLeaveIncrementLogsInput
+  upsert?: Prisma.LeaveTypeUpsertWithoutLeaveIncrementLogsInput
+  connect?: Prisma.LeaveTypeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LeaveTypeUpdateToOneWithWhereWithoutLeaveIncrementLogsInput, Prisma.LeaveTypeUpdateWithoutLeaveIncrementLogsInput>, Prisma.LeaveTypeUncheckedUpdateWithoutLeaveIncrementLogsInput>
+}
+
 export type LeaveTypeCreateNestedOneWithoutLeaveApplicationsInput = {
   create?: Prisma.XOR<Prisma.LeaveTypeCreateWithoutLeaveApplicationsInput, Prisma.LeaveTypeUncheckedCreateWithoutLeaveApplicationsInput>
   connectOrCreate?: Prisma.LeaveTypeCreateOrConnectWithoutLeaveApplicationsInput
@@ -603,6 +645,8 @@ export type LeaveTypeCreateWithoutCompanyInput = {
   updatedAt?: Date | string
   leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutLeaveTypeInput
   leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutLeaveTypeInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyCreateNestedManyWithoutLeaveTypeInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogCreateNestedManyWithoutLeaveTypeInput
 }
 
 export type LeaveTypeUncheckedCreateWithoutCompanyInput = {
@@ -618,6 +662,8 @@ export type LeaveTypeUncheckedCreateWithoutCompanyInput = {
   updatedAt?: Date | string
   leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutLeaveTypeInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutLeaveTypeInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedCreateNestedManyWithoutLeaveTypeInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedCreateNestedManyWithoutLeaveTypeInput
 }
 
 export type LeaveTypeCreateOrConnectWithoutCompanyInput = {
@@ -674,6 +720,8 @@ export type LeaveTypeCreateWithoutLeaveBalancesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutLeaveTypeInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyCreateNestedManyWithoutLeaveTypeInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogCreateNestedManyWithoutLeaveTypeInput
   company: Prisma.CompanyCreateNestedOneWithoutLeaveTypesInput
 }
 
@@ -690,6 +738,8 @@ export type LeaveTypeUncheckedCreateWithoutLeaveBalancesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutLeaveTypeInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedCreateNestedManyWithoutLeaveTypeInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedCreateNestedManyWithoutLeaveTypeInput
 }
 
 export type LeaveTypeCreateOrConnectWithoutLeaveBalancesInput = {
@@ -719,6 +769,8 @@ export type LeaveTypeUpdateWithoutLeaveBalancesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutLeaveTypeNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUpdateManyWithoutLeaveTypeNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUpdateManyWithoutLeaveTypeNestedInput
   company?: Prisma.CompanyUpdateOneRequiredWithoutLeaveTypesNestedInput
 }
 
@@ -735,6 +787,172 @@ export type LeaveTypeUncheckedUpdateWithoutLeaveBalancesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutLeaveTypeNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedUpdateManyWithoutLeaveTypeNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedUpdateManyWithoutLeaveTypeNestedInput
+}
+
+export type LeaveTypeCreateWithoutLeaveIncrementPoliciesInput = {
+  name: string
+  code: string
+  is_paid?: boolean
+  is_active?: boolean
+  carryForward?: boolean
+  maxDays?: number | null
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutLeaveTypeInput
+  leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutLeaveTypeInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogCreateNestedManyWithoutLeaveTypeInput
+  company: Prisma.CompanyCreateNestedOneWithoutLeaveTypesInput
+}
+
+export type LeaveTypeUncheckedCreateWithoutLeaveIncrementPoliciesInput = {
+  id?: number
+  companyId: number
+  name: string
+  code: string
+  is_paid?: boolean
+  is_active?: boolean
+  carryForward?: boolean
+  maxDays?: number | null
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutLeaveTypeInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutLeaveTypeInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedCreateNestedManyWithoutLeaveTypeInput
+}
+
+export type LeaveTypeCreateOrConnectWithoutLeaveIncrementPoliciesInput = {
+  where: Prisma.LeaveTypeWhereUniqueInput
+  create: Prisma.XOR<Prisma.LeaveTypeCreateWithoutLeaveIncrementPoliciesInput, Prisma.LeaveTypeUncheckedCreateWithoutLeaveIncrementPoliciesInput>
+}
+
+export type LeaveTypeUpsertWithoutLeaveIncrementPoliciesInput = {
+  update: Prisma.XOR<Prisma.LeaveTypeUpdateWithoutLeaveIncrementPoliciesInput, Prisma.LeaveTypeUncheckedUpdateWithoutLeaveIncrementPoliciesInput>
+  create: Prisma.XOR<Prisma.LeaveTypeCreateWithoutLeaveIncrementPoliciesInput, Prisma.LeaveTypeUncheckedCreateWithoutLeaveIncrementPoliciesInput>
+  where?: Prisma.LeaveTypeWhereInput
+}
+
+export type LeaveTypeUpdateToOneWithWhereWithoutLeaveIncrementPoliciesInput = {
+  where?: Prisma.LeaveTypeWhereInput
+  data: Prisma.XOR<Prisma.LeaveTypeUpdateWithoutLeaveIncrementPoliciesInput, Prisma.LeaveTypeUncheckedUpdateWithoutLeaveIncrementPoliciesInput>
+}
+
+export type LeaveTypeUpdateWithoutLeaveIncrementPoliciesInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  is_paid?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  carryForward?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  maxDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutLeaveTypeNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutLeaveTypeNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUpdateManyWithoutLeaveTypeNestedInput
+  company?: Prisma.CompanyUpdateOneRequiredWithoutLeaveTypesNestedInput
+}
+
+export type LeaveTypeUncheckedUpdateWithoutLeaveIncrementPoliciesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  companyId?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  is_paid?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  carryForward?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  maxDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutLeaveTypeNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutLeaveTypeNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedUpdateManyWithoutLeaveTypeNestedInput
+}
+
+export type LeaveTypeCreateWithoutLeaveIncrementLogsInput = {
+  name: string
+  code: string
+  is_paid?: boolean
+  is_active?: boolean
+  carryForward?: boolean
+  maxDays?: number | null
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutLeaveTypeInput
+  leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutLeaveTypeInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyCreateNestedManyWithoutLeaveTypeInput
+  company: Prisma.CompanyCreateNestedOneWithoutLeaveTypesInput
+}
+
+export type LeaveTypeUncheckedCreateWithoutLeaveIncrementLogsInput = {
+  id?: number
+  companyId: number
+  name: string
+  code: string
+  is_paid?: boolean
+  is_active?: boolean
+  carryForward?: boolean
+  maxDays?: number | null
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutLeaveTypeInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutLeaveTypeInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedCreateNestedManyWithoutLeaveTypeInput
+}
+
+export type LeaveTypeCreateOrConnectWithoutLeaveIncrementLogsInput = {
+  where: Prisma.LeaveTypeWhereUniqueInput
+  create: Prisma.XOR<Prisma.LeaveTypeCreateWithoutLeaveIncrementLogsInput, Prisma.LeaveTypeUncheckedCreateWithoutLeaveIncrementLogsInput>
+}
+
+export type LeaveTypeUpsertWithoutLeaveIncrementLogsInput = {
+  update: Prisma.XOR<Prisma.LeaveTypeUpdateWithoutLeaveIncrementLogsInput, Prisma.LeaveTypeUncheckedUpdateWithoutLeaveIncrementLogsInput>
+  create: Prisma.XOR<Prisma.LeaveTypeCreateWithoutLeaveIncrementLogsInput, Prisma.LeaveTypeUncheckedCreateWithoutLeaveIncrementLogsInput>
+  where?: Prisma.LeaveTypeWhereInput
+}
+
+export type LeaveTypeUpdateToOneWithWhereWithoutLeaveIncrementLogsInput = {
+  where?: Prisma.LeaveTypeWhereInput
+  data: Prisma.XOR<Prisma.LeaveTypeUpdateWithoutLeaveIncrementLogsInput, Prisma.LeaveTypeUncheckedUpdateWithoutLeaveIncrementLogsInput>
+}
+
+export type LeaveTypeUpdateWithoutLeaveIncrementLogsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  is_paid?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  carryForward?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  maxDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutLeaveTypeNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutLeaveTypeNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUpdateManyWithoutLeaveTypeNestedInput
+  company?: Prisma.CompanyUpdateOneRequiredWithoutLeaveTypesNestedInput
+}
+
+export type LeaveTypeUncheckedUpdateWithoutLeaveIncrementLogsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  companyId?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  is_paid?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  carryForward?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  maxDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutLeaveTypeNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutLeaveTypeNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedUpdateManyWithoutLeaveTypeNestedInput
 }
 
 export type LeaveTypeCreateWithoutLeaveApplicationsInput = {
@@ -748,6 +966,8 @@ export type LeaveTypeCreateWithoutLeaveApplicationsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutLeaveTypeInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyCreateNestedManyWithoutLeaveTypeInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogCreateNestedManyWithoutLeaveTypeInput
   company: Prisma.CompanyCreateNestedOneWithoutLeaveTypesInput
 }
 
@@ -764,6 +984,8 @@ export type LeaveTypeUncheckedCreateWithoutLeaveApplicationsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutLeaveTypeInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedCreateNestedManyWithoutLeaveTypeInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedCreateNestedManyWithoutLeaveTypeInput
 }
 
 export type LeaveTypeCreateOrConnectWithoutLeaveApplicationsInput = {
@@ -793,6 +1015,8 @@ export type LeaveTypeUpdateWithoutLeaveApplicationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutLeaveTypeNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUpdateManyWithoutLeaveTypeNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUpdateManyWithoutLeaveTypeNestedInput
   company?: Prisma.CompanyUpdateOneRequiredWithoutLeaveTypesNestedInput
 }
 
@@ -809,6 +1033,8 @@ export type LeaveTypeUncheckedUpdateWithoutLeaveApplicationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutLeaveTypeNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedUpdateManyWithoutLeaveTypeNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedUpdateManyWithoutLeaveTypeNestedInput
 }
 
 export type LeaveTypeCreateManyCompanyInput = {
@@ -836,6 +1062,8 @@ export type LeaveTypeUpdateWithoutCompanyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutLeaveTypeNestedInput
   leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutLeaveTypeNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUpdateManyWithoutLeaveTypeNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUpdateManyWithoutLeaveTypeNestedInput
 }
 
 export type LeaveTypeUncheckedUpdateWithoutCompanyInput = {
@@ -851,6 +1079,8 @@ export type LeaveTypeUncheckedUpdateWithoutCompanyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutLeaveTypeNestedInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutLeaveTypeNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedUpdateManyWithoutLeaveTypeNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedUpdateManyWithoutLeaveTypeNestedInput
 }
 
 export type LeaveTypeUncheckedUpdateManyWithoutCompanyInput = {
@@ -874,11 +1104,15 @@ export type LeaveTypeUncheckedUpdateManyWithoutCompanyInput = {
 export type LeaveTypeCountOutputType = {
   leaveApplications: number
   leaveBalances: number
+  leaveIncrementPolicies: number
+  leaveIncrementLogs: number
 }
 
 export type LeaveTypeCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   leaveApplications?: boolean | LeaveTypeCountOutputTypeCountLeaveApplicationsArgs
   leaveBalances?: boolean | LeaveTypeCountOutputTypeCountLeaveBalancesArgs
+  leaveIncrementPolicies?: boolean | LeaveTypeCountOutputTypeCountLeaveIncrementPoliciesArgs
+  leaveIncrementLogs?: boolean | LeaveTypeCountOutputTypeCountLeaveIncrementLogsArgs
 }
 
 /**
@@ -905,6 +1139,20 @@ export type LeaveTypeCountOutputTypeCountLeaveBalancesArgs<ExtArgs extends runti
   where?: Prisma.LeaveBalanceWhereInput
 }
 
+/**
+ * LeaveTypeCountOutputType without action
+ */
+export type LeaveTypeCountOutputTypeCountLeaveIncrementPoliciesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LeaveIncrementPolicyWhereInput
+}
+
+/**
+ * LeaveTypeCountOutputType without action
+ */
+export type LeaveTypeCountOutputTypeCountLeaveIncrementLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LeaveIncrementLogWhereInput
+}
+
 
 export type LeaveTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -920,6 +1168,8 @@ export type LeaveTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   updatedAt?: boolean
   leaveApplications?: boolean | Prisma.LeaveType$leaveApplicationsArgs<ExtArgs>
   leaveBalances?: boolean | Prisma.LeaveType$leaveBalancesArgs<ExtArgs>
+  leaveIncrementPolicies?: boolean | Prisma.LeaveType$leaveIncrementPoliciesArgs<ExtArgs>
+  leaveIncrementLogs?: boolean | Prisma.LeaveType$leaveIncrementLogsArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.LeaveTypeCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["leaveType"]>
@@ -972,6 +1222,8 @@ export type LeaveTypeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 export type LeaveTypeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   leaveApplications?: boolean | Prisma.LeaveType$leaveApplicationsArgs<ExtArgs>
   leaveBalances?: boolean | Prisma.LeaveType$leaveBalancesArgs<ExtArgs>
+  leaveIncrementPolicies?: boolean | Prisma.LeaveType$leaveIncrementPoliciesArgs<ExtArgs>
+  leaveIncrementLogs?: boolean | Prisma.LeaveType$leaveIncrementLogsArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.LeaveTypeCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -987,6 +1239,8 @@ export type $LeaveTypePayload<ExtArgs extends runtime.Types.Extensions.InternalA
   objects: {
     leaveApplications: Prisma.$LeaveApplicationPayload<ExtArgs>[]
     leaveBalances: Prisma.$LeaveBalancePayload<ExtArgs>[]
+    leaveIncrementPolicies: Prisma.$LeaveIncrementPolicyPayload<ExtArgs>[]
+    leaveIncrementLogs: Prisma.$LeaveIncrementLogPayload<ExtArgs>[]
     company: Prisma.$CompanyPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1397,6 +1651,8 @@ export interface Prisma__LeaveTypeClient<T, Null = never, ExtArgs extends runtim
   readonly [Symbol.toStringTag]: "PrismaPromise"
   leaveApplications<T extends Prisma.LeaveType$leaveApplicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LeaveType$leaveApplicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeaveApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   leaveBalances<T extends Prisma.LeaveType$leaveBalancesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LeaveType$leaveBalancesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeaveBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  leaveIncrementPolicies<T extends Prisma.LeaveType$leaveIncrementPoliciesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LeaveType$leaveIncrementPoliciesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeaveIncrementPolicyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  leaveIncrementLogs<T extends Prisma.LeaveType$leaveIncrementLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LeaveType$leaveIncrementLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeaveIncrementLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   company<T extends Prisma.CompanyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CompanyDefaultArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1884,6 +2140,54 @@ export type LeaveType$leaveBalancesArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.LeaveBalanceScalarFieldEnum | Prisma.LeaveBalanceScalarFieldEnum[]
+}
+
+/**
+ * LeaveType.leaveIncrementPolicies
+ */
+export type LeaveType$leaveIncrementPoliciesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LeaveIncrementPolicy
+   */
+  select?: Prisma.LeaveIncrementPolicySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LeaveIncrementPolicy
+   */
+  omit?: Prisma.LeaveIncrementPolicyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LeaveIncrementPolicyInclude<ExtArgs> | null
+  where?: Prisma.LeaveIncrementPolicyWhereInput
+  orderBy?: Prisma.LeaveIncrementPolicyOrderByWithRelationInput | Prisma.LeaveIncrementPolicyOrderByWithRelationInput[]
+  cursor?: Prisma.LeaveIncrementPolicyWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LeaveIncrementPolicyScalarFieldEnum | Prisma.LeaveIncrementPolicyScalarFieldEnum[]
+}
+
+/**
+ * LeaveType.leaveIncrementLogs
+ */
+export type LeaveType$leaveIncrementLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LeaveIncrementLog
+   */
+  select?: Prisma.LeaveIncrementLogSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LeaveIncrementLog
+   */
+  omit?: Prisma.LeaveIncrementLogOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LeaveIncrementLogInclude<ExtArgs> | null
+  where?: Prisma.LeaveIncrementLogWhereInput
+  orderBy?: Prisma.LeaveIncrementLogOrderByWithRelationInput | Prisma.LeaveIncrementLogOrderByWithRelationInput[]
+  cursor?: Prisma.LeaveIncrementLogWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LeaveIncrementLogScalarFieldEnum | Prisma.LeaveIncrementLogScalarFieldEnum[]
 }
 
 /**

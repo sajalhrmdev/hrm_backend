@@ -26,67 +26,208 @@ export const generateEmployeeCode = async (companyId: number) => {
 // CREATE EMPLOYEE
 // ============================================
 
+// export const createEmployeeService = async (companyId: number, data: any) => {
+//   // ========================================
+//   // CHECK EMAIL
+//   // ========================================
+
+//   const existingEmail = await prisma.employee.findUnique({
+//     where: {
+//       email: data.email,
+//     },
+//   });
+
+//   if (existingEmail) {
+//     throw new Error("Employee email already exists");
+//   }
+
+//   // ========================================
+//   // EMPLOYEE CODE
+//   // ========================================
+
+//   let employeeCode = data.employeeCode;
+
+//   if (!employeeCode) {
+//     employeeCode = await generateEmployeeCode(companyId);
+//   }
+
+//   // ========================================
+//   // CREATE
+//   // ========================================
+
+//   return await prisma.employee.create({
+//     data: {
+//       companyId,
+
+//       userId: data.userId || null,
+
+//       name: data.name,
+
+//       email: data.email,
+
+//       phone: data.phone,
+
+//       roleId: data.roleId || 1,
+
+//       departmentId: data.departmentId || null,
+
+//       designationId: data.designationId || null,
+//       shiftId: data.shiftId || null,
+
+//       employeeCode,
+
+//       joiningDate: data.joiningDate ? new Date(data.joiningDate) : null,
+//     },
+
+//     include: {
+//       role: true,
+
+//       department: true,
+
+//       designation: true,
+//       shift: true,
+//     },
+//   });
+// };
+import bcrypt from "bcryptjs";
+
 export const createEmployeeService = async (companyId: number, data: any) => {
-  // ========================================
-  // CHECK EMAIL
-  // ========================================
+  return await prisma.$transaction(async (tx) => {
+    // ========================================
+    // CHECK EMPLOYEE EMAIL
+    // ========================================
 
-  const existingEmail = await prisma.employee.findUnique({
-    where: {
-      email: data.email,
-    },
-  });
+    const existingEmployee = await tx.employee.findUnique({
+      where: {
+        email: data.email,
+      },
+    });
 
-  if (existingEmail) {
-    throw new Error("Employee email already exists");
-  }
+    if (existingEmployee) {
+      throw new Error("Employee email already exists");
+    }
 
-  // ========================================
-  // EMPLOYEE CODE
-  // ========================================
+    // ========================================
+    // EMPLOYEE CODE
+    // ========================================
 
-  let employeeCode = data.employeeCode;
+    let employeeCode = data.employeeCode;
 
-  if (!employeeCode) {
-    employeeCode = await generateEmployeeCode(companyId);
-  }
+    if (!employeeCode) {
+      employeeCode = await generateEmployeeCode(companyId);
+    }
 
-  // ========================================
-  // CREATE
-  // ========================================
+    // ========================================
+    // CREATE USER (OPTIONAL)
+    // ========================================
 
-  return await prisma.employee.create({
-    data: {
-      companyId,
+    let finalUserId = data.userId || null;
 
-      userId: data.userId || null,
+    if (data.createUser) {
+      if (!data.password) {
+        throw new Error("Password required");
+      }
 
-      name: data.name,
+      if (!data.roleId) {
+        throw new Error("Role required");
+      }
 
-      email: data.email,
+      const existingUser = await tx.user.findUnique({
+        where: {
+          email: data.email,
+        },
+      });
 
-      phone: data.phone,
+      if (existingUser) {
+        throw new Error("User email already exists");
+      }
 
-      roleId: data.roleId || 1,
+      const role = await tx.role.findFirst({
+        where: {
+          id: Number(data.roleId),
 
-      departmentId: data.departmentId || null,
+          companyId,
+        },
+      });
 
-      designationId: data.designationId || null,
-      shiftId: data.shiftId || null,
+      if (!role) {
+        throw new Error("Role not found");
+      }
 
-      employeeCode,
+      const hashedPassword = await bcrypt.hash(data.password, 10);
 
-      joiningDate: data.joiningDate ? new Date(data.joiningDate) : null,
-    },
+      const createdUser = await tx.user.create({
+        data: {
+          name: data.name,
 
-    include: {
-      role: true,
+          email: data.email,
 
-      department: true,
+          phone: data.phone,
 
-      designation: true,
-      shift: true,
-    },
+          password: hashedPassword,
+        },
+      });
+
+      finalUserId = createdUser.id;
+
+      // ============================
+      // MEMBERSHIP
+      // ============================
+
+      await tx.membership.create({
+        data: {
+          userId: createdUser.id,
+
+          companyId,
+
+          roleId: Number(data.roleId),
+
+          status: "ACTIVE",
+        },
+      });
+    }
+
+    // ========================================
+    // CREATE EMPLOYEE
+    // ========================================
+
+    const employee = await tx.employee.create({
+      data: {
+        companyId,
+
+        userId: finalUserId,
+
+        name: data.name,
+
+        email: data.email,
+
+        phone: data.phone,
+
+        roleId: data.roleId || 1,
+
+        departmentId: data.departmentId || null,
+
+        designationId: data.designationId || null,
+
+        shiftId: data.shiftId || null,
+
+        employeeCode,
+
+        joiningDate: data.joiningDate ? new Date(data.joiningDate) : null,
+      },
+
+      include: {
+        role: true,
+
+        department: true,
+
+        designation: true,
+
+        shift: true,
+      },
+    });
+
+    return employee;
   });
 };
 
@@ -201,6 +342,11 @@ export const getAllEmployeesService = async (
 
         designation: true,
         shift: true,
+        workSchedulePolicy: {
+          include: {
+            shift: true,
+          },
+        },
 
         _count: {
           select: {

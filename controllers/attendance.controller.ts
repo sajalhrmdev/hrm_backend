@@ -16,9 +16,10 @@ import getStartEndOfDay from "../utils/getStartEndOfDay.js";
 
 export const checkIn = async (req: Request, res: Response) => {
   try {
-    // const { employeeId } = req.body;
     const { latitude, longitude, accuracy } = req.body;
-    const employee = await getEmployeeFromRequest(req);
+    const employee = req.employee;
+    if (!employee) throw new Error("Employee not found");
+
     const data = await handleAttendance(
       employee.id,
       "IN",
@@ -35,9 +36,10 @@ export const checkIn = async (req: Request, res: Response) => {
 
 export const checkOut = async (req: Request, res: Response) => {
   try {
-    // const { employeeId } = req.body;
+  
     const { latitude, longitude, accuracy } = req.body;
-    const employee = await getEmployeeFromRequest(req);
+       const employee = req.employee;
+    if (!employee) throw new Error("Employee not found");
 
     const data = await handleAttendance(
       employee.id,
@@ -55,7 +57,8 @@ export const checkOut = async (req: Request, res: Response) => {
 
 export const getToday = async (req: Request, res: Response) => {
   try {
-    const employee = await getEmployeeFromRequest(req);
+        const employee = req.employee;
+    if (!employee) throw new Error("Employee not found");
     const data = await getTodayAttendance(employee.id);
 
     res.json({
@@ -93,7 +96,8 @@ export const getToday = async (req: Request, res: Response) => {
 
 export const getCompanyDay = async (req: Request, res: Response) => {
   try {
-    const employee = await getEmployeeFromRequest(req);
+       const employee = req.employee;
+    if (!employee) throw new Error("Employee not found");
 
     const { date } = req.query;
 
@@ -292,7 +296,8 @@ export const getEmployeeMonthlyAttendances = async (
   res: Response,
 ) => {
   try {
-    const employee = await getEmployeeFromRequest(req);
+    const employee = req.employee;
+    if (!employee) throw new Error("Employee not found");
     const companyId = req.companyId;
     const { year, month } = req.query;
 
@@ -348,7 +353,8 @@ export const getMonthlyAttendanceController = async (
   res: Response,
 ) => {
   try {
-    const employee = await getEmployeeFromRequest(req);
+        const employee = req.employee;
+    if (!employee) throw new Error("Employee not found");
     console.log("request:", req.companyId, employee.id);
 
     const { year, month } = req.query;

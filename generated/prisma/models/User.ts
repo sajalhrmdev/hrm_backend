@@ -271,6 +271,7 @@ export type UserWhereInput = {
   globalRole?: Prisma.XOR<Prisma.GlobalRoleNullableScalarRelationFilter, Prisma.GlobalRoleWhereInput> | null
   employees?: Prisma.EmployeeListRelationFilter
   memberships?: Prisma.MembershipListRelationFilter
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -288,6 +289,7 @@ export type UserOrderByWithRelationInput = {
   globalRole?: Prisma.GlobalRoleOrderByWithRelationInput
   employees?: Prisma.EmployeeOrderByRelationAggregateInput
   memberships?: Prisma.MembershipOrderByRelationAggregateInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -308,6 +310,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   globalRole?: Prisma.XOR<Prisma.GlobalRoleNullableScalarRelationFilter, Prisma.GlobalRoleWhereInput> | null
   employees?: Prisma.EmployeeListRelationFilter
   memberships?: Prisma.MembershipListRelationFilter
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -359,6 +362,7 @@ export type UserCreateInput = {
   globalRole?: Prisma.GlobalRoleCreateNestedOneWithoutUsersInput
   employees?: Prisma.EmployeeCreateNestedManyWithoutUserInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentCreateNestedManyWithoutAttendanceAdjustedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -375,6 +379,7 @@ export type UserUncheckedCreateInput = {
   deletedAt?: Date | string | null
   employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutUserInput
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedCreateNestedManyWithoutAttendanceAdjustedByInput
 }
 
 export type UserUpdateInput = {
@@ -390,6 +395,7 @@ export type UserUpdateInput = {
   globalRole?: Prisma.GlobalRoleUpdateOneWithoutUsersNestedInput
   employees?: Prisma.EmployeeUpdateManyWithoutUserNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUpdateManyWithoutAttendanceAdjustedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -406,6 +412,7 @@ export type UserUncheckedUpdateInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employees?: Prisma.EmployeeUncheckedUpdateManyWithoutUserNestedInput
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedUpdateManyWithoutAttendanceAdjustedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -596,6 +603,22 @@ export type UserUpdateOneWithoutEmployeesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutEmployeesInput, Prisma.UserUpdateWithoutEmployeesInput>, Prisma.UserUncheckedUpdateWithoutEmployeesInput>
 }
 
+export type UserCreateNestedOneWithoutAttendanceAdjustmentsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAttendanceAdjustmentsInput, Prisma.UserUncheckedCreateWithoutAttendanceAdjustmentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAttendanceAdjustmentsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutAttendanceAdjustmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAttendanceAdjustmentsInput, Prisma.UserUncheckedCreateWithoutAttendanceAdjustmentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAttendanceAdjustmentsInput
+  upsert?: Prisma.UserUpsertWithoutAttendanceAdjustmentsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAttendanceAdjustmentsInput, Prisma.UserUpdateWithoutAttendanceAdjustmentsInput>, Prisma.UserUncheckedUpdateWithoutAttendanceAdjustmentsInput>
+}
+
 export type UserCreateWithoutGlobalRoleInput = {
   name: string
   email: string
@@ -608,6 +631,7 @@ export type UserCreateWithoutGlobalRoleInput = {
   deletedAt?: Date | string | null
   employees?: Prisma.EmployeeCreateNestedManyWithoutUserInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentCreateNestedManyWithoutAttendanceAdjustedByInput
 }
 
 export type UserUncheckedCreateWithoutGlobalRoleInput = {
@@ -623,6 +647,7 @@ export type UserUncheckedCreateWithoutGlobalRoleInput = {
   deletedAt?: Date | string | null
   employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutUserInput
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedCreateNestedManyWithoutAttendanceAdjustedByInput
 }
 
 export type UserCreateOrConnectWithoutGlobalRoleInput = {
@@ -680,6 +705,7 @@ export type UserCreateWithoutMembershipsInput = {
   deletedAt?: Date | string | null
   globalRole?: Prisma.GlobalRoleCreateNestedOneWithoutUsersInput
   employees?: Prisma.EmployeeCreateNestedManyWithoutUserInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentCreateNestedManyWithoutAttendanceAdjustedByInput
 }
 
 export type UserUncheckedCreateWithoutMembershipsInput = {
@@ -695,6 +721,7 @@ export type UserUncheckedCreateWithoutMembershipsInput = {
   lastLoginAt?: Date | string | null
   deletedAt?: Date | string | null
   employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutUserInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedCreateNestedManyWithoutAttendanceAdjustedByInput
 }
 
 export type UserCreateOrConnectWithoutMembershipsInput = {
@@ -725,6 +752,7 @@ export type UserUpdateWithoutMembershipsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   globalRole?: Prisma.GlobalRoleUpdateOneWithoutUsersNestedInput
   employees?: Prisma.EmployeeUpdateManyWithoutUserNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUpdateManyWithoutAttendanceAdjustedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMembershipsInput = {
@@ -740,6 +768,7 @@ export type UserUncheckedUpdateWithoutMembershipsInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employees?: Prisma.EmployeeUncheckedUpdateManyWithoutUserNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedUpdateManyWithoutAttendanceAdjustedByNestedInput
 }
 
 export type UserCreateWithoutEmployeesInput = {
@@ -754,6 +783,7 @@ export type UserCreateWithoutEmployeesInput = {
   deletedAt?: Date | string | null
   globalRole?: Prisma.GlobalRoleCreateNestedOneWithoutUsersInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentCreateNestedManyWithoutAttendanceAdjustedByInput
 }
 
 export type UserUncheckedCreateWithoutEmployeesInput = {
@@ -769,6 +799,7 @@ export type UserUncheckedCreateWithoutEmployeesInput = {
   lastLoginAt?: Date | string | null
   deletedAt?: Date | string | null
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedCreateNestedManyWithoutAttendanceAdjustedByInput
 }
 
 export type UserCreateOrConnectWithoutEmployeesInput = {
@@ -799,6 +830,7 @@ export type UserUpdateWithoutEmployeesInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   globalRole?: Prisma.GlobalRoleUpdateOneWithoutUsersNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUpdateManyWithoutAttendanceAdjustedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEmployeesInput = {
@@ -813,6 +845,85 @@ export type UserUncheckedUpdateWithoutEmployeesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedUpdateManyWithoutAttendanceAdjustedByNestedInput
+}
+
+export type UserCreateWithoutAttendanceAdjustmentsInput = {
+  name: string
+  email: string
+  phone?: string | null
+  password: string
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  lastLoginAt?: Date | string | null
+  deletedAt?: Date | string | null
+  globalRole?: Prisma.GlobalRoleCreateNestedOneWithoutUsersInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutUserInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutAttendanceAdjustmentsInput = {
+  id?: number
+  name: string
+  email: string
+  phone?: string | null
+  password: string
+  globalRoleId?: number | null
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  lastLoginAt?: Date | string | null
+  deletedAt?: Date | string | null
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutUserInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutAttendanceAdjustmentsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAttendanceAdjustmentsInput, Prisma.UserUncheckedCreateWithoutAttendanceAdjustmentsInput>
+}
+
+export type UserUpsertWithoutAttendanceAdjustmentsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAttendanceAdjustmentsInput, Prisma.UserUncheckedUpdateWithoutAttendanceAdjustmentsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAttendanceAdjustmentsInput, Prisma.UserUncheckedCreateWithoutAttendanceAdjustmentsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAttendanceAdjustmentsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAttendanceAdjustmentsInput, Prisma.UserUncheckedUpdateWithoutAttendanceAdjustmentsInput>
+}
+
+export type UserUpdateWithoutAttendanceAdjustmentsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  globalRole?: Prisma.GlobalRoleUpdateOneWithoutUsersNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutUserNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAttendanceAdjustmentsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  globalRoleId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutUserNestedInput
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -841,6 +952,7 @@ export type UserUpdateWithoutGlobalRoleInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employees?: Prisma.EmployeeUpdateManyWithoutUserNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUpdateManyWithoutAttendanceAdjustedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutGlobalRoleInput = {
@@ -856,6 +968,7 @@ export type UserUncheckedUpdateWithoutGlobalRoleInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   employees?: Prisma.EmployeeUncheckedUpdateManyWithoutUserNestedInput
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedUpdateManyWithoutAttendanceAdjustedByNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutGlobalRoleInput = {
@@ -879,11 +992,13 @@ export type UserUncheckedUpdateManyWithoutGlobalRoleInput = {
 export type UserCountOutputType = {
   employees: number
   memberships: number
+  attendanceAdjustments: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   employees?: boolean | UserCountOutputTypeCountEmployeesArgs
   memberships?: boolean | UserCountOutputTypeCountMembershipsArgs
+  attendanceAdjustments?: boolean | UserCountOutputTypeCountAttendanceAdjustmentsArgs
 }
 
 /**
@@ -910,6 +1025,13 @@ export type UserCountOutputTypeCountMembershipsArgs<ExtArgs extends runtime.Type
   where?: Prisma.MembershipWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAttendanceAdjustmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AttendanceAdjustmentWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -926,6 +1048,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   globalRole?: boolean | Prisma.User$globalRoleArgs<ExtArgs>
   employees?: boolean | Prisma.User$employeesArgs<ExtArgs>
   memberships?: boolean | Prisma.User$membershipsArgs<ExtArgs>
+  attendanceAdjustments?: boolean | Prisma.User$attendanceAdjustmentsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -978,6 +1101,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   globalRole?: boolean | Prisma.User$globalRoleArgs<ExtArgs>
   employees?: boolean | Prisma.User$employeesArgs<ExtArgs>
   memberships?: boolean | Prisma.User$membershipsArgs<ExtArgs>
+  attendanceAdjustments?: boolean | Prisma.User$attendanceAdjustmentsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -993,6 +1117,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     globalRole: Prisma.$GlobalRolePayload<ExtArgs> | null
     employees: Prisma.$EmployeePayload<ExtArgs>[]
     memberships: Prisma.$MembershipPayload<ExtArgs>[]
+    attendanceAdjustments: Prisma.$AttendanceAdjustmentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1403,6 +1528,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   globalRole<T extends Prisma.User$globalRoleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$globalRoleArgs<ExtArgs>>): Prisma.Prisma__GlobalRoleClient<runtime.Types.Result.GetResult<Prisma.$GlobalRolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   employees<T extends Prisma.User$employeesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$employeesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   memberships<T extends Prisma.User$membershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$membershipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MembershipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  attendanceAdjustments<T extends Prisma.User$attendanceAdjustmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$attendanceAdjustmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendanceAdjustmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1908,6 +2034,30 @@ export type User$membershipsArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.MembershipScalarFieldEnum | Prisma.MembershipScalarFieldEnum[]
+}
+
+/**
+ * User.attendanceAdjustments
+ */
+export type User$attendanceAdjustmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AttendanceAdjustment
+   */
+  select?: Prisma.AttendanceAdjustmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AttendanceAdjustment
+   */
+  omit?: Prisma.AttendanceAdjustmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AttendanceAdjustmentInclude<ExtArgs> | null
+  where?: Prisma.AttendanceAdjustmentWhereInput
+  orderBy?: Prisma.AttendanceAdjustmentOrderByWithRelationInput | Prisma.AttendanceAdjustmentOrderByWithRelationInput[]
+  cursor?: Prisma.AttendanceAdjustmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AttendanceAdjustmentScalarFieldEnum | Prisma.AttendanceAdjustmentScalarFieldEnum[]
 }
 
 /**

@@ -33,6 +33,7 @@ export type LeaveBalanceAvgAggregateOutputType = {
   leaveTypeId: number | null
   total_allocated: number | null
   used: number | null
+  remaining: number | null
   year: number | null
 }
 
@@ -43,6 +44,7 @@ export type LeaveBalanceSumAggregateOutputType = {
   leaveTypeId: number | null
   total_allocated: number | null
   used: number | null
+  remaining: number | null
   year: number | null
 }
 
@@ -53,6 +55,7 @@ export type LeaveBalanceMinAggregateOutputType = {
   leaveTypeId: number | null
   total_allocated: number | null
   used: number | null
+  remaining: number | null
   year: number | null
 }
 
@@ -63,6 +66,7 @@ export type LeaveBalanceMaxAggregateOutputType = {
   leaveTypeId: number | null
   total_allocated: number | null
   used: number | null
+  remaining: number | null
   year: number | null
 }
 
@@ -73,6 +77,7 @@ export type LeaveBalanceCountAggregateOutputType = {
   leaveTypeId: number
   total_allocated: number
   used: number
+  remaining: number
   year: number
   _all: number
 }
@@ -85,6 +90,7 @@ export type LeaveBalanceAvgAggregateInputType = {
   leaveTypeId?: true
   total_allocated?: true
   used?: true
+  remaining?: true
   year?: true
 }
 
@@ -95,6 +101,7 @@ export type LeaveBalanceSumAggregateInputType = {
   leaveTypeId?: true
   total_allocated?: true
   used?: true
+  remaining?: true
   year?: true
 }
 
@@ -105,6 +112,7 @@ export type LeaveBalanceMinAggregateInputType = {
   leaveTypeId?: true
   total_allocated?: true
   used?: true
+  remaining?: true
   year?: true
 }
 
@@ -115,6 +123,7 @@ export type LeaveBalanceMaxAggregateInputType = {
   leaveTypeId?: true
   total_allocated?: true
   used?: true
+  remaining?: true
   year?: true
 }
 
@@ -125,6 +134,7 @@ export type LeaveBalanceCountAggregateInputType = {
   leaveTypeId?: true
   total_allocated?: true
   used?: true
+  remaining?: true
   year?: true
   _all?: true
 }
@@ -222,6 +232,7 @@ export type LeaveBalanceGroupByOutputType = {
   leaveTypeId: number
   total_allocated: number
   used: number
+  remaining: number
   year: number
   _count: LeaveBalanceCountAggregateOutputType | null
   _avg: LeaveBalanceAvgAggregateOutputType | null
@@ -255,6 +266,7 @@ export type LeaveBalanceWhereInput = {
   leaveTypeId?: Prisma.IntFilter<"LeaveBalance"> | number
   total_allocated?: Prisma.FloatFilter<"LeaveBalance"> | number
   used?: Prisma.FloatFilter<"LeaveBalance"> | number
+  remaining?: Prisma.FloatFilter<"LeaveBalance"> | number
   year?: Prisma.IntFilter<"LeaveBalance"> | number
   leaveType?: Prisma.XOR<Prisma.LeaveTypeScalarRelationFilter, Prisma.LeaveTypeWhereInput>
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
@@ -268,6 +280,7 @@ export type LeaveBalanceOrderByWithRelationInput = {
   leaveTypeId?: Prisma.SortOrder
   total_allocated?: Prisma.SortOrder
   used?: Prisma.SortOrder
+  remaining?: Prisma.SortOrder
   year?: Prisma.SortOrder
   leaveType?: Prisma.LeaveTypeOrderByWithRelationInput
   employee?: Prisma.EmployeeOrderByWithRelationInput
@@ -285,6 +298,7 @@ export type LeaveBalanceWhereUniqueInput = Prisma.AtLeast<{
   leaveTypeId?: Prisma.IntFilter<"LeaveBalance"> | number
   total_allocated?: Prisma.FloatFilter<"LeaveBalance"> | number
   used?: Prisma.FloatFilter<"LeaveBalance"> | number
+  remaining?: Prisma.FloatFilter<"LeaveBalance"> | number
   year?: Prisma.IntFilter<"LeaveBalance"> | number
   leaveType?: Prisma.XOR<Prisma.LeaveTypeScalarRelationFilter, Prisma.LeaveTypeWhereInput>
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
@@ -298,6 +312,7 @@ export type LeaveBalanceOrderByWithAggregationInput = {
   leaveTypeId?: Prisma.SortOrder
   total_allocated?: Prisma.SortOrder
   used?: Prisma.SortOrder
+  remaining?: Prisma.SortOrder
   year?: Prisma.SortOrder
   _count?: Prisma.LeaveBalanceCountOrderByAggregateInput
   _avg?: Prisma.LeaveBalanceAvgOrderByAggregateInput
@@ -316,12 +331,14 @@ export type LeaveBalanceScalarWhereWithAggregatesInput = {
   leaveTypeId?: Prisma.IntWithAggregatesFilter<"LeaveBalance"> | number
   total_allocated?: Prisma.FloatWithAggregatesFilter<"LeaveBalance"> | number
   used?: Prisma.FloatWithAggregatesFilter<"LeaveBalance"> | number
+  remaining?: Prisma.FloatWithAggregatesFilter<"LeaveBalance"> | number
   year?: Prisma.IntWithAggregatesFilter<"LeaveBalance"> | number
 }
 
 export type LeaveBalanceCreateInput = {
-  total_allocated: number
+  total_allocated?: number
   used?: number
+  remaining?: number
   year: number
   leaveType: Prisma.LeaveTypeCreateNestedOneWithoutLeaveBalancesInput
   employee: Prisma.EmployeeCreateNestedOneWithoutLeaveBalancesInput
@@ -333,14 +350,16 @@ export type LeaveBalanceUncheckedCreateInput = {
   employeeId: number
   companyId: number
   leaveTypeId: number
-  total_allocated: number
+  total_allocated?: number
   used?: number
+  remaining?: number
   year: number
 }
 
 export type LeaveBalanceUpdateInput = {
   total_allocated?: Prisma.FloatFieldUpdateOperationsInput | number
   used?: Prisma.FloatFieldUpdateOperationsInput | number
+  remaining?: Prisma.FloatFieldUpdateOperationsInput | number
   year?: Prisma.IntFieldUpdateOperationsInput | number
   leaveType?: Prisma.LeaveTypeUpdateOneRequiredWithoutLeaveBalancesNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutLeaveBalancesNestedInput
@@ -354,6 +373,7 @@ export type LeaveBalanceUncheckedUpdateInput = {
   leaveTypeId?: Prisma.IntFieldUpdateOperationsInput | number
   total_allocated?: Prisma.FloatFieldUpdateOperationsInput | number
   used?: Prisma.FloatFieldUpdateOperationsInput | number
+  remaining?: Prisma.FloatFieldUpdateOperationsInput | number
   year?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -362,14 +382,16 @@ export type LeaveBalanceCreateManyInput = {
   employeeId: number
   companyId: number
   leaveTypeId: number
-  total_allocated: number
+  total_allocated?: number
   used?: number
+  remaining?: number
   year: number
 }
 
 export type LeaveBalanceUpdateManyMutationInput = {
   total_allocated?: Prisma.FloatFieldUpdateOperationsInput | number
   used?: Prisma.FloatFieldUpdateOperationsInput | number
+  remaining?: Prisma.FloatFieldUpdateOperationsInput | number
   year?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -380,6 +402,7 @@ export type LeaveBalanceUncheckedUpdateManyInput = {
   leaveTypeId?: Prisma.IntFieldUpdateOperationsInput | number
   total_allocated?: Prisma.FloatFieldUpdateOperationsInput | number
   used?: Prisma.FloatFieldUpdateOperationsInput | number
+  remaining?: Prisma.FloatFieldUpdateOperationsInput | number
   year?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -407,6 +430,7 @@ export type LeaveBalanceCountOrderByAggregateInput = {
   leaveTypeId?: Prisma.SortOrder
   total_allocated?: Prisma.SortOrder
   used?: Prisma.SortOrder
+  remaining?: Prisma.SortOrder
   year?: Prisma.SortOrder
 }
 
@@ -417,6 +441,7 @@ export type LeaveBalanceAvgOrderByAggregateInput = {
   leaveTypeId?: Prisma.SortOrder
   total_allocated?: Prisma.SortOrder
   used?: Prisma.SortOrder
+  remaining?: Prisma.SortOrder
   year?: Prisma.SortOrder
 }
 
@@ -427,6 +452,7 @@ export type LeaveBalanceMaxOrderByAggregateInput = {
   leaveTypeId?: Prisma.SortOrder
   total_allocated?: Prisma.SortOrder
   used?: Prisma.SortOrder
+  remaining?: Prisma.SortOrder
   year?: Prisma.SortOrder
 }
 
@@ -437,6 +463,7 @@ export type LeaveBalanceMinOrderByAggregateInput = {
   leaveTypeId?: Prisma.SortOrder
   total_allocated?: Prisma.SortOrder
   used?: Prisma.SortOrder
+  remaining?: Prisma.SortOrder
   year?: Prisma.SortOrder
 }
 
@@ -447,6 +474,7 @@ export type LeaveBalanceSumOrderByAggregateInput = {
   leaveTypeId?: Prisma.SortOrder
   total_allocated?: Prisma.SortOrder
   used?: Prisma.SortOrder
+  remaining?: Prisma.SortOrder
   year?: Prisma.SortOrder
 }
 
@@ -577,8 +605,9 @@ export type LeaveBalanceUncheckedUpdateManyWithoutLeaveTypeNestedInput = {
 }
 
 export type LeaveBalanceCreateWithoutCompanyInput = {
-  total_allocated: number
+  total_allocated?: number
   used?: number
+  remaining?: number
   year: number
   leaveType: Prisma.LeaveTypeCreateNestedOneWithoutLeaveBalancesInput
   employee: Prisma.EmployeeCreateNestedOneWithoutLeaveBalancesInput
@@ -588,8 +617,9 @@ export type LeaveBalanceUncheckedCreateWithoutCompanyInput = {
   id?: number
   employeeId: number
   leaveTypeId: number
-  total_allocated: number
+  total_allocated?: number
   used?: number
+  remaining?: number
   year: number
 }
 
@@ -629,12 +659,14 @@ export type LeaveBalanceScalarWhereInput = {
   leaveTypeId?: Prisma.IntFilter<"LeaveBalance"> | number
   total_allocated?: Prisma.FloatFilter<"LeaveBalance"> | number
   used?: Prisma.FloatFilter<"LeaveBalance"> | number
+  remaining?: Prisma.FloatFilter<"LeaveBalance"> | number
   year?: Prisma.IntFilter<"LeaveBalance"> | number
 }
 
 export type LeaveBalanceCreateWithoutEmployeeInput = {
-  total_allocated: number
+  total_allocated?: number
   used?: number
+  remaining?: number
   year: number
   leaveType: Prisma.LeaveTypeCreateNestedOneWithoutLeaveBalancesInput
   company: Prisma.CompanyCreateNestedOneWithoutLeaveBalancesInput
@@ -644,8 +676,9 @@ export type LeaveBalanceUncheckedCreateWithoutEmployeeInput = {
   id?: number
   companyId: number
   leaveTypeId: number
-  total_allocated: number
+  total_allocated?: number
   used?: number
+  remaining?: number
   year: number
 }
 
@@ -676,8 +709,9 @@ export type LeaveBalanceUpdateManyWithWhereWithoutEmployeeInput = {
 }
 
 export type LeaveBalanceCreateWithoutLeaveTypeInput = {
-  total_allocated: number
+  total_allocated?: number
   used?: number
+  remaining?: number
   year: number
   employee: Prisma.EmployeeCreateNestedOneWithoutLeaveBalancesInput
   company: Prisma.CompanyCreateNestedOneWithoutLeaveBalancesInput
@@ -687,8 +721,9 @@ export type LeaveBalanceUncheckedCreateWithoutLeaveTypeInput = {
   id?: number
   employeeId: number
   companyId: number
-  total_allocated: number
+  total_allocated?: number
   used?: number
+  remaining?: number
   year: number
 }
 
@@ -722,14 +757,16 @@ export type LeaveBalanceCreateManyCompanyInput = {
   id?: number
   employeeId: number
   leaveTypeId: number
-  total_allocated: number
+  total_allocated?: number
   used?: number
+  remaining?: number
   year: number
 }
 
 export type LeaveBalanceUpdateWithoutCompanyInput = {
   total_allocated?: Prisma.FloatFieldUpdateOperationsInput | number
   used?: Prisma.FloatFieldUpdateOperationsInput | number
+  remaining?: Prisma.FloatFieldUpdateOperationsInput | number
   year?: Prisma.IntFieldUpdateOperationsInput | number
   leaveType?: Prisma.LeaveTypeUpdateOneRequiredWithoutLeaveBalancesNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutLeaveBalancesNestedInput
@@ -741,6 +778,7 @@ export type LeaveBalanceUncheckedUpdateWithoutCompanyInput = {
   leaveTypeId?: Prisma.IntFieldUpdateOperationsInput | number
   total_allocated?: Prisma.FloatFieldUpdateOperationsInput | number
   used?: Prisma.FloatFieldUpdateOperationsInput | number
+  remaining?: Prisma.FloatFieldUpdateOperationsInput | number
   year?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -750,6 +788,7 @@ export type LeaveBalanceUncheckedUpdateManyWithoutCompanyInput = {
   leaveTypeId?: Prisma.IntFieldUpdateOperationsInput | number
   total_allocated?: Prisma.FloatFieldUpdateOperationsInput | number
   used?: Prisma.FloatFieldUpdateOperationsInput | number
+  remaining?: Prisma.FloatFieldUpdateOperationsInput | number
   year?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -757,14 +796,16 @@ export type LeaveBalanceCreateManyEmployeeInput = {
   id?: number
   companyId: number
   leaveTypeId: number
-  total_allocated: number
+  total_allocated?: number
   used?: number
+  remaining?: number
   year: number
 }
 
 export type LeaveBalanceUpdateWithoutEmployeeInput = {
   total_allocated?: Prisma.FloatFieldUpdateOperationsInput | number
   used?: Prisma.FloatFieldUpdateOperationsInput | number
+  remaining?: Prisma.FloatFieldUpdateOperationsInput | number
   year?: Prisma.IntFieldUpdateOperationsInput | number
   leaveType?: Prisma.LeaveTypeUpdateOneRequiredWithoutLeaveBalancesNestedInput
   company?: Prisma.CompanyUpdateOneRequiredWithoutLeaveBalancesNestedInput
@@ -776,6 +817,7 @@ export type LeaveBalanceUncheckedUpdateWithoutEmployeeInput = {
   leaveTypeId?: Prisma.IntFieldUpdateOperationsInput | number
   total_allocated?: Prisma.FloatFieldUpdateOperationsInput | number
   used?: Prisma.FloatFieldUpdateOperationsInput | number
+  remaining?: Prisma.FloatFieldUpdateOperationsInput | number
   year?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -785,6 +827,7 @@ export type LeaveBalanceUncheckedUpdateManyWithoutEmployeeInput = {
   leaveTypeId?: Prisma.IntFieldUpdateOperationsInput | number
   total_allocated?: Prisma.FloatFieldUpdateOperationsInput | number
   used?: Prisma.FloatFieldUpdateOperationsInput | number
+  remaining?: Prisma.FloatFieldUpdateOperationsInput | number
   year?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -792,14 +835,16 @@ export type LeaveBalanceCreateManyLeaveTypeInput = {
   id?: number
   employeeId: number
   companyId: number
-  total_allocated: number
+  total_allocated?: number
   used?: number
+  remaining?: number
   year: number
 }
 
 export type LeaveBalanceUpdateWithoutLeaveTypeInput = {
   total_allocated?: Prisma.FloatFieldUpdateOperationsInput | number
   used?: Prisma.FloatFieldUpdateOperationsInput | number
+  remaining?: Prisma.FloatFieldUpdateOperationsInput | number
   year?: Prisma.IntFieldUpdateOperationsInput | number
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutLeaveBalancesNestedInput
   company?: Prisma.CompanyUpdateOneRequiredWithoutLeaveBalancesNestedInput
@@ -811,6 +856,7 @@ export type LeaveBalanceUncheckedUpdateWithoutLeaveTypeInput = {
   companyId?: Prisma.IntFieldUpdateOperationsInput | number
   total_allocated?: Prisma.FloatFieldUpdateOperationsInput | number
   used?: Prisma.FloatFieldUpdateOperationsInput | number
+  remaining?: Prisma.FloatFieldUpdateOperationsInput | number
   year?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -820,6 +866,7 @@ export type LeaveBalanceUncheckedUpdateManyWithoutLeaveTypeInput = {
   companyId?: Prisma.IntFieldUpdateOperationsInput | number
   total_allocated?: Prisma.FloatFieldUpdateOperationsInput | number
   used?: Prisma.FloatFieldUpdateOperationsInput | number
+  remaining?: Prisma.FloatFieldUpdateOperationsInput | number
   year?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -832,6 +879,7 @@ export type LeaveBalanceSelect<ExtArgs extends runtime.Types.Extensions.Internal
   leaveTypeId?: boolean
   total_allocated?: boolean
   used?: boolean
+  remaining?: boolean
   year?: boolean
   leaveType?: boolean | Prisma.LeaveTypeDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
@@ -845,6 +893,7 @@ export type LeaveBalanceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   leaveTypeId?: boolean
   total_allocated?: boolean
   used?: boolean
+  remaining?: boolean
   year?: boolean
   leaveType?: boolean | Prisma.LeaveTypeDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
@@ -858,6 +907,7 @@ export type LeaveBalanceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   leaveTypeId?: boolean
   total_allocated?: boolean
   used?: boolean
+  remaining?: boolean
   year?: boolean
   leaveType?: boolean | Prisma.LeaveTypeDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
@@ -871,10 +921,11 @@ export type LeaveBalanceSelectScalar = {
   leaveTypeId?: boolean
   total_allocated?: boolean
   used?: boolean
+  remaining?: boolean
   year?: boolean
 }
 
-export type LeaveBalanceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "employeeId" | "companyId" | "leaveTypeId" | "total_allocated" | "used" | "year", ExtArgs["result"]["leaveBalance"]>
+export type LeaveBalanceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "employeeId" | "companyId" | "leaveTypeId" | "total_allocated" | "used" | "remaining" | "year", ExtArgs["result"]["leaveBalance"]>
 export type LeaveBalanceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   leaveType?: boolean | Prisma.LeaveTypeDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
@@ -905,6 +956,7 @@ export type $LeaveBalancePayload<ExtArgs extends runtime.Types.Extensions.Intern
     leaveTypeId: number
     total_allocated: number
     used: number
+    remaining: number
     year: number
   }, ExtArgs["result"]["leaveBalance"]>
   composites: {}
@@ -1338,6 +1390,7 @@ export interface LeaveBalanceFieldRefs {
   readonly leaveTypeId: Prisma.FieldRef<"LeaveBalance", 'Int'>
   readonly total_allocated: Prisma.FieldRef<"LeaveBalance", 'Float'>
   readonly used: Prisma.FieldRef<"LeaveBalance", 'Float'>
+  readonly remaining: Prisma.FieldRef<"LeaveBalance", 'Float'>
   readonly year: Prisma.FieldRef<"LeaveBalance", 'Int'>
 }
     

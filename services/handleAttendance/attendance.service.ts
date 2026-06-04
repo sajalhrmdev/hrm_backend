@@ -1,12 +1,14 @@
 import { AttendanceStatus } from "../../generated/prisma/browser.js";
 import { prisma } from "../../lib/prisma.js";
+import getShiftRange from "../../utils/getShiftRange.js";
 import getStartEndOfDay from "../../utils/getStartEndOfDay.js";
 import getStartEndOfMonth from "../../utils/monthlyDate.js";
 import {
   calculateAttendance,
-  applyPolicy,
-  validateAttendance,
   getDistance,
+  singleMultivalidatation,
+  overTimeCalculation,
+  attendanceStatusFn,
 } from "./attendance.helper.js";
 
 // const getStartEndOfDay = () => {
@@ -33,37 +35,67 @@ export const handleAttendance = async (
   const now = new Date();
   const timezone = "Asia/Kolkata";
   const { start, end } = getStartEndOfDay(timezone);
-  const today = start;
+
   const employee = await prisma.employee.findUnique({
     where: { id: employeeId },
+
     include: {
-      shift: true,
+      workSchedulePolicy: {
+        include: {
+          shift: true,
+        },
+      },
     },
   });
 
   if (!employee) throw new Error("Employee not found");
+  const workSchedulePolicy = employee?.workSchedulePolicy;
 
+  const attendanceType = workSchedulePolicy?.attendanceType;
+
+  const isFlexible = attendanceType === "FLEXIBLE";
+
+  const shift = workSchedulePolicy?.shift;
+
+  const shiftRange =
+    !isFlexible && shift
+      ? getShiftRange({
+          startTime: shift.startTime,
+          endTime: shift.endTime,
+          inputDate: now,
+        })
+      : null;
+  const attendanceDate = shiftRange?.attendanceDate || start;
   const companyId = employee.companyId;
 
   const policy = await prisma.workPolicy.findFirst({
     where: { companyId },
   });
 
-  const mode = policy?.attendance_mode || "MULTI";
+  let mode = policy?.attendance_mode || "MULTI";
+
+  if (isFlexible) {
+    mode = "SINGLE";
+  }
 
   const logs = await prisma.attendanceLog.findMany({
     where: {
       employeeId,
-      time: { gte: start, lte: end },
+      // time: { gte: start, lte: end },
+      time: {
+        gte: isFlexible ? start : shiftRange?.windowStart || start,
+
+        lte: isFlexible ? end : shiftRange?.windowEnd || end,
+      },
     },
     orderBy: { time: "asc" },
   });
 
   // 🔥 validation  function
-  validateAttendance(logs, type, mode);
+  singleMultivalidatation(logs, type, mode);
   let attendance: any;
 
-  if (!latitude || !longitude) {
+  if (latitude == null || longitude == null) {
     throw new Error("Location required");
   }
 
@@ -79,23 +111,16 @@ export const handleAttendance = async (
   // }
   let lateMinutes = 0;
 
-  if (type === "IN" && employee.shift) {
-    const [startHour, startMinute] = employee.shift.startTime
-      .split(":")
-      .map(Number);
+  if (type === "IN" && shift && !isFlexible) {
+    const [startHour, startMinute] = shift.startTime.split(":").map(Number);
 
-    const shiftStart = new Date(now);
+    // const shiftStart = new Date(now);
+    const shiftStart = new Date(shiftRange?.shiftStart || now);
 
-    shiftStart.setHours(
-      startHour,
-
-      startMinute +
-        (employee.shift.graceMinutes || 0) +
-        (employee.shift.lateAfterMinutes || 0),
-
-      0,
-
-      0,
+    shiftStart.setMinutes(
+      shiftStart.getMinutes() +
+        (shift.graceMinutes || 0) +
+        (shift.lateAfterMinutes || 0),
     );
 
     if (now > shiftStart) {
@@ -109,7 +134,7 @@ export const handleAttendance = async (
       where: {
         employeeId_date: {
           employeeId,
-          date: today,
+          date: attendanceDate,
         },
       },
       update: {
@@ -118,8 +143,8 @@ export const handleAttendance = async (
       create: {
         employeeId,
         companyId,
-        shiftId: employee.shiftId,
-        date: today,
+        shiftId: isFlexible ? null : shift?.id,
+        date: attendanceDate,
         check_in_time: now,
         total_work_minutes: 0,
         overtime_minutes: 0,
@@ -128,14 +153,27 @@ export const handleAttendance = async (
       },
     });
   } else {
-    attendance = await prisma.attendance.findUnique({
-      where: {
-        employeeId_date: {
+    if (isFlexible) {
+      attendance = await prisma.attendance.findFirst({
+        where: {
           employeeId,
-          date: today,
+          check_out_time: null,
         },
-      },
-    });
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
+    } else {
+      attendance = await prisma.attendance.findUnique({
+        where: {
+          employeeId_date: {
+            employeeId,
+
+            date: attendanceDate,
+          },
+        },
+      });
+    }
 
     if (!attendance) {
       throw new Error("Check-in not found");
@@ -151,11 +189,11 @@ export const handleAttendance = async (
       time: now,
       latitude,
       longitude,
-      shiftName: employee.shift?.title,
+      shiftName: isFlexible ? "Flexible Shift" : shift?.title,
 
-      shiftStartTime: employee.shift?.startTime,
+      shiftStartTime: isFlexible ? null : shift?.startTime,
 
-      shiftEndTime: employee.shift?.endTime,
+      shiftEndTime: isFlexible ? null : shift?.endTime,
     },
   });
 
@@ -165,14 +203,29 @@ export const handleAttendance = async (
 
     const totalMinutes = calculateAttendance(allLogs);
 
-    const { overtime, status } = applyPolicy(totalMinutes, policy,employee.shift);
+    let overtime = 0;
+
+    if (workSchedulePolicy?.attendanceType === "FLEXIBLE") {
+      if (workSchedulePolicy?.enableOvertime) {
+        const otAfter = workSchedulePolicy?.overtimeAfterMinutes || 540;
+
+        if (totalMinutes > otAfter) {
+          overtime = totalMinutes - otAfter;
+        }
+      }
+    } else {
+      overtime = overTimeCalculation(totalMinutes, shift).overtime;
+    }
+    const { status } = attendanceStatusFn(
+      totalMinutes,
+      policy,
+      shift,
+      workSchedulePolicy,
+    );
 
     await prisma.attendance.update({
       where: {
-        employeeId_date: {
-          employeeId,
-          date: today,
-        },
+        id: attendance.id,
       },
       data: {
         total_work_minutes: totalMinutes,
@@ -184,10 +237,11 @@ export const handleAttendance = async (
   }
   const finalAttendance = await prisma.attendance.findUnique({
     where: {
-      employeeId_date: {
-        employeeId,
-        date: today,
-      },
+      // employeeId_date: {
+      //   employeeId,
+      //   date: attendanceDate,
+      // },
+      id: attendance.id,
     },
     include: {
       attendanceLogs: {

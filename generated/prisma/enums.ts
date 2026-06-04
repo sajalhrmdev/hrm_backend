@@ -76,6 +76,17 @@ export const AttendanceStatus = {
 export type AttendanceStatus = (typeof AttendanceStatus)[keyof typeof AttendanceStatus]
 
 
+export const AttendanceAdjustmentType = {
+  MANUAL: 'MANUAL',
+  GRACE: 'GRACE',
+  REGULARIZATION: 'REGULARIZATION',
+  AUTO_CORRECTION: 'AUTO_CORRECTION',
+  SYSTEM: 'SYSTEM'
+} as const
+
+export type AttendanceAdjustmentType = (typeof AttendanceAdjustmentType)[keyof typeof AttendanceAdjustmentType]
+
+
 export const AttendanceMode = {
   SINGLE: 'SINGLE',
   MULTI: 'MULTI'
@@ -90,6 +101,14 @@ export const ShiftStatus = {
 } as const
 
 export type ShiftStatus = (typeof ShiftStatus)[keyof typeof ShiftStatus]
+
+
+export const AttendanceType = {
+  FIXED: 'FIXED',
+  FLEXIBLE: 'FLEXIBLE'
+} as const
+
+export type AttendanceType = (typeof AttendanceType)[keyof typeof AttendanceType]
 
 
 export const SalaryComponentType = {
@@ -117,6 +136,26 @@ export const PayrollRunStatus = {
 export type PayrollRunStatus = (typeof PayrollRunStatus)[keyof typeof PayrollRunStatus]
 
 
+export const LeaveIncrementFrequency = {
+  DAILY: 'DAILY',
+  WEEKLY: 'WEEKLY',
+  MONTHLY: 'MONTHLY',
+  YEARLY: 'YEARLY'
+} as const
+
+export type LeaveIncrementFrequency = (typeof LeaveIncrementFrequency)[keyof typeof LeaveIncrementFrequency]
+
+
+export const LeaveIncrementStatus = {
+  PENDING: 'PENDING',
+  COMPLETED: 'COMPLETED',
+  FAILED: 'FAILED',
+  REVERSED: 'REVERSED'
+} as const
+
+export type LeaveIncrementStatus = (typeof LeaveIncrementStatus)[keyof typeof LeaveIncrementStatus]
+
+
 export const LeaveStatus = {
   PENDING: 'PENDING',
   APPROVED: 'APPROVED',
@@ -134,3 +173,13 @@ export const HolidayType = {
 } as const
 
 export type HolidayType = (typeof HolidayType)[keyof typeof HolidayType]
+
+
+export const NoticePriority = {
+  LOW: 'LOW',
+  NORMAL: 'NORMAL',
+  HIGH: 'HIGH',
+  URGENT: 'URGENT'
+} as const
+
+export type NoticePriority = (typeof NoticePriority)[keyof typeof NoticePriority]

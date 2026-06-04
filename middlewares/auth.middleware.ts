@@ -14,7 +14,7 @@ export const authMiddleware = (req: any, res: Response, next: NextFunction) => {
     const decoded = verifyToken(token);
 
     req.user = decoded; // ✅ attach user (userId + activeCompanyId)
-
+   
     next();
   } catch (err) {
     return res.status(401).json({ message: "Invalid token" });

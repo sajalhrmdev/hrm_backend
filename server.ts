@@ -25,9 +25,27 @@ import shiftRoutes from "./module/shift/shift.routes.js";
 import employeePersonalInfoRoutes from "./module/employeePersonalInfo/employeePersonalInfo.routes.js";
 import employeeAddressRoutes from "./module/employeeAddress/employeeAddress.routes.js";
 import employeeDocumentRoutes from "./module/employeeDocument/employeeDocument.routes.js";
-import permissionRoutes from "./module/permission/permission.routes.js"
-import roleRoutes from "./module/role/role.routes.js"
-import rolePermissionRoutes from "./module/rolePermission/rolePermission.routes.js"
+import permissionRoutes from "./module/permission/permission.routes.js";
+import roleRoutes from "./module/role/role.routes.js";
+import rolePermissionRoutes from "./module/rolePermission/rolePermission.routes.js";
+import payrollAdjustmentRoutes from "./module/payrollAdjustment/payrollAdjustment.routes.js";
+import employeeBankDetailRoutes from "./module/employeeBankDetail/employeeBankDetail.routes.js";
+import employeeEmergencyContactRoutes from "./module/employeeEmergencyContact/employeeEmergencyContact.routes.js";
+import employeeExperianceRoutes from "./module/employeeExperience/employeeExperience.routes.js";
+import attendanceRegularizationRoutes from "./module/attendanceRegularization/attendanceRegularization.routes.js";
+import workScheduleRoutes from "./module/workSchedulePolicy/workSchedulePolicy.routes.js";
+import leaveIncrementRoutes from "./module/processLeaveIncrement/processLeaveIncrement.route.js";
+import leaveIncrementPolicyRoutes from "./module/leaveIncrementPolicy/leaveIncrementPolicy.routes.js";
+import leaveIncrementLog from "./module/leaveIncrementLog/leaveIncrementLog.routes.js"
+import noticeRoutes from "./module/notice/notice.route.js";
+import userRoute from "./module/user/user.routes.js";
+
+
+
+
+
+
+
 
 
 
@@ -41,7 +59,7 @@ import { employeeMiddleware } from "./middlewares/employee.middlewear.js";
 const app = express();
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://hrm-frontend-ashy.vercel.app"],
+    origin: ["http://localhost:3000","http://localhost:8081", "https://hrm-frontend-ashy.vercel.app"],
     credentials: true,
   }),
 );
@@ -55,6 +73,7 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/membership", membershipRoutes);
 app.use("/api/v1/global-roles", globalRoleRoutes);
 app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/user",authMiddleware, companyAccessMiddleware, userRoute);
 // app.use("/api/v1/companies", companyRoutes);
 
 app.use("/api/v1/roles", authMiddleware, companyAccessMiddleware, rolesRoutes);
@@ -75,13 +94,40 @@ app.use(
   attendanceRoutes,
 );
 app.use(
+  "/api/v1/attendance",
+  authMiddleware,
+  companyAccessMiddleware,
+  employeeMiddleware,
+  attendanceRegularizationRoutes,
+);
+app.use(
   "/api/v1/leave",
   authMiddleware,
   companyAccessMiddleware,
   employeeMiddleware,
   leaveRoutes,
 );
-
+app.use(
+  "/api/v1/leave",
+  authMiddleware,
+  companyAccessMiddleware,
+  employeeMiddleware,
+  leaveIncrementRoutes,
+);
+app.use(
+  "/api/v1/leave-increment",
+  authMiddleware,
+  companyAccessMiddleware,
+  employeeMiddleware,
+  leaveIncrementPolicyRoutes,
+);
+app.use(
+  "/api/v1/leave-increment-log",
+  authMiddleware,
+  companyAccessMiddleware,
+  employeeMiddleware,
+  leaveIncrementLog,
+);
 app.use(
   "/api/v1/salary-component",
   authMiddleware,
@@ -99,6 +145,12 @@ app.use(
   authMiddleware,
   companyAccessMiddleware,
   payrollRoutes,
+);
+app.use(
+  "/api/v1/payroll-adjustment",
+  authMiddleware,
+  companyAccessMiddleware,
+  payrollAdjustmentRoutes,
 );
 app.use(
   "/api/v1/holiday",
@@ -149,6 +201,24 @@ app.use(
   employeeDocumentRoutes,
 );
 app.use(
+  "/api/v1/employee-bank-detail",
+  authMiddleware,
+  companyAccessMiddleware,
+  employeeBankDetailRoutes,
+);
+app.use(
+  "/api/v1/employee-emergency-contact",
+  authMiddleware,
+  companyAccessMiddleware,
+  employeeEmergencyContactRoutes,
+);
+app.use(
+  "/api/v1/employee-experience",
+  authMiddleware,
+  companyAccessMiddleware,
+  employeeExperianceRoutes,
+);
+app.use(
   "/api/v1/department",
   authMiddleware,
   companyAccessMiddleware,
@@ -161,9 +231,22 @@ app.use(
   designationRoutes,
 );
 app.use("/api/v1/shift", authMiddleware, companyAccessMiddleware, shiftRoutes);
-app.use("/api/v1/permission", authMiddleware,  permissionRoutes);
+app.use("/api/v1/work-schedule-policy", authMiddleware, companyAccessMiddleware, workScheduleRoutes);
+app.use("/api/v1/permission", authMiddleware, permissionRoutes);
 app.use("/api/v1/role", authMiddleware, companyAccessMiddleware, roleRoutes);
-app.use("/api/v1/role-permission", authMiddleware, companyAccessMiddleware, rolePermissionRoutes);
+app.use(
+  "/api/v1/role-permission",
+  authMiddleware,
+  companyAccessMiddleware,
+  rolePermissionRoutes,
+);
+app.use(
+  "/api/v1/notice",
+  authMiddleware,
+  companyAccessMiddleware,
+  employeeMiddleware,
+  noticeRoutes,
+);
 
 // app.use("/api/v1/salary-structure", salaryStructureRoutes);
 // app.use("/api/v1/payroll", payrollRoutes);

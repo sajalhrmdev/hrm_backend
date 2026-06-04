@@ -113,6 +113,15 @@ export const getShiftsService = async (
             employees: true,
           },
         },
+        WorkSchedulePolicies: {
+          include: {
+            employees: {
+              include:{
+                department:true
+              }
+            }
+          },
+        },
       },
     }),
 
@@ -294,20 +303,16 @@ export const deleteShiftService = async (companyId: number, id: number) => {
   if (!existing) {
     throw new Error("Shift not found");
   }
-  const employeeCount =
-  await prisma.employee.count({
-
+  const employeeCount = await prisma.employee.count({
     where: {
       shiftId: id,
       companyId,
-    }
+    },
   });
 
-if(employeeCount > 0){
-  throw new Error(
-    "Shift assigned to employees"
-  );
-}
+  if (employeeCount > 0) {
+    throw new Error("Shift assigned to employees");
+  }
 
   return await prisma.shift.update({
     where: {

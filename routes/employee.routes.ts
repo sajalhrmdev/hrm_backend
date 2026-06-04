@@ -2,17 +2,18 @@
 
 import express from "express";
 import {
-  createEmployee,
+  // createEmployee,
   getAllEmployees,
   getEmployeeById,
   updateEmployee,
   deleteEmployee,
   bulkCreateEmployees,
+  createEmployeeWithUser,
 } from "../controllers/employee.controller.js";
 
 const router = express.Router();
 
-router.post("/", createEmployee);
+router.post("/", createEmployeeWithUser);
 router.post("/bulkCreate", bulkCreateEmployees);
 router.get("/all", getAllEmployees);
 router.get("/:id", getEmployeeById);
