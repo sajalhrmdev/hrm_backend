@@ -21,7 +21,7 @@ export const companyAccessMiddleware = async (
     if (req.user?.globalRole === "SUPER_ADMIN") {
       req.permissions = ["*"];
       req.membership = null;
-      req.companyId = undefined;
+      req.companyId = req.user.activeCompanyId || null;
       return next();
     }
     const companyId = req.user.activeCompanyId;

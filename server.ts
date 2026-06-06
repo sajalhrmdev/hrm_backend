@@ -39,6 +39,7 @@ import leaveIncrementPolicyRoutes from "./module/leaveIncrementPolicy/leaveIncre
 import leaveIncrementLog from "./module/leaveIncrementLog/leaveIncrementLog.routes.js"
 import noticeRoutes from "./module/notice/notice.route.js";
 import userRoute from "./module/user/user.routes.js";
+import superAdminRoutes from "./module/superAdmin/superAdmin.routes.js";
 
 
 
@@ -79,6 +80,7 @@ app.use("/api/v1/user",authMiddleware, companyAccessMiddleware, userRoute);
 // app.use("/api/v1/companies", companyRoutes);
 
 app.use("/api/v1/roles", authMiddleware, companyAccessMiddleware, rolesRoutes);
+app.use("/api/v1/super-admin", superAdminRoutes);
 
 // app.use("/api/v1/designations", designationRoutes);
 // app.use("/api/v1/department", deparmentRoutes);
