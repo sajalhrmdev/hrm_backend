@@ -1,39 +1,3 @@
-// import { log } from "node:console";
-// import { prisma } from "../lib/prisma.js";
-
-// export const companyAccessMiddleware = async (req: any, res: any, next: any) => {
-//   try {
-//     const companyId = req.headers["x-company-id"];
-
-//     if (!companyId) {
-//       return res.status(400).json({ message: "Company ID required" });
-//     }
-// console.log(req.user)
-//     const membership = await prisma.membership.findFirst({
-//       where: {
-//         userId: req.user.userId,
-//         companyId: Number(companyId),
-//         status: "ACTIVE",
-//       },
-//     //   include: {
-//     //     role: true, // 🔥 future RBAC er jonno useful
-//     //   },
-//     });
-// console.log(membership)
-//     if (!membership) {
-//       return res.status(403).json({ message: "Access Denied" });
-//     }
-
-//     // 🔥 IMPORTANT (cache in request)
-//     req.companyId = Number(companyId);
-//     req.membership = membership;
-
-//     next();
-//   } catch (err) {
-//     return res.status(500).json({ message: "Middleware error" });
-//   }
-// };
-
 import { prisma } from "../lib/prisma.js";
 import { Request, Response, NextFunction } from "express";
 export interface AuthRequest extends Request {
@@ -54,9 +18,13 @@ export const companyAccessMiddleware = async (
   next: NextFunction,
 ) => {
   try {
-    // 🔥 token থেকে companyId
+    if (req.user?.globalRole === "SUPER_ADMIN") {
+      req.permissions = ["*"];
+      req.membership = null;
+      req.companyId = undefined;
+      return next();
+    }
     const companyId = req.user.activeCompanyId;
-
     if (!companyId) {
       return res.status(400).json({ message: "No active company in token" });
     }
@@ -87,10 +55,9 @@ export const companyAccessMiddleware = async (
     const permissions =
       membership.role?.rolePermissions?.map((rp: any) => rp.permission.name) ||
       [];
-      // console.log("per",permissions);
-      console.log('userId:', req.user.userId,);
-      
-      
+    // console.log("per",permissions);
+    console.log("userId:", req.user.userId);
+
     // 🔥 cache in request
     req.companyId = companyId;
     req.membership = membership;

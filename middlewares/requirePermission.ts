@@ -13,12 +13,11 @@ const requirePermission = (permission: string) => {
       // GET PERMISSIONS
 
       const permissions = req.permissions || [];
-      console.log("permissions",permissions);
-      
+      console.log("permissions", permissions);
 
       // CHECK ACCESS
-
-      const hasPermission = permissions.includes(permission);
+      const hasPermission =
+        permissions.includes("*") || permissions.includes(permission);
 
       if (!hasPermission) {
         return res.status(403).json({

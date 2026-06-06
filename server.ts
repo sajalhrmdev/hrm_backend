@@ -55,11 +55,12 @@ import cors from "cors";
 import { authMiddleware } from "./middlewares/auth.middleware.js";
 import { companyAccessMiddleware } from "./middlewares/companyAccess.middleware.js";
 import { employeeMiddleware } from "./middlewares/employee.middlewear.js";
+import { getCurrentUser } from "./controllers/auth.controller.js";
 
 const app = express();
 app.use(
   cors({
-    origin: ["http://localhost:3000","http://localhost:8081", "https://hrm-frontend-ashy.vercel.app"],
+    origin: ["http://localhost:3000","http://localhost:8081", "https://hrm-frontend-ashy.vercel.app","https://2gvbh86w-3000.inc1.devtunnels.ms"],
     credentials: true,
   }),
 );
@@ -70,6 +71,7 @@ app.get("/", (req: Request, res: Response) => {
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/me", authMiddleware, companyAccessMiddleware, getCurrentUser);
 app.use("/api/v1/membership", membershipRoutes);
 app.use("/api/v1/global-roles", globalRoleRoutes);
 app.use("/api/v1/users", userRoutes);

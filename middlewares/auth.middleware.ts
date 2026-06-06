@@ -13,7 +13,7 @@ export const authMiddleware = (req: any, res: Response, next: NextFunction) => {
     const token = authHeader.split(" ")[1];
     const decoded = verifyToken(token);
 
-    req.user = decoded; // ✅ attach user (userId + activeCompanyId)
+    req.user = decoded; // ✅ attach user (userId + activeCompanyId+globalerole)
    
     next();
   } catch (err) {
