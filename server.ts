@@ -36,19 +36,11 @@ import attendanceRegularizationRoutes from "./module/attendanceRegularization/at
 import workScheduleRoutes from "./module/workSchedulePolicy/workSchedulePolicy.routes.js";
 import leaveIncrementRoutes from "./module/processLeaveIncrement/processLeaveIncrement.route.js";
 import leaveIncrementPolicyRoutes from "./module/leaveIncrementPolicy/leaveIncrementPolicy.routes.js";
-import leaveIncrementLog from "./module/leaveIncrementLog/leaveIncrementLog.routes.js"
+import leaveIncrementLog from "./module/leaveIncrementLog/leaveIncrementLog.routes.js";
 import noticeRoutes from "./module/notice/notice.route.js";
 import userRoute from "./module/user/user.routes.js";
 import superAdminRoutes from "./module/superAdmin/superAdmin.routes.js";
-
-
-
-
-
-
-
-
-
+import officeLocationRoutes from "./module/officeLocation/officeLocation.routes.js";
 
 import { verifyToken } from "./controllers/middlewares/auth.middleware.js";
 import cookieParser from "cookie-parser";
@@ -61,7 +53,12 @@ import { getCurrentUser } from "./controllers/auth.controller.js";
 const app = express();
 app.use(
   cors({
-    origin: ["http://localhost:3000","http://localhost:8081", "https://hrm-frontend-ashy.vercel.app","https://2gvbh86w-3000.inc1.devtunnels.ms"],
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:8081",
+      "https://hrm-frontend-ashy.vercel.app",
+      "https://2gvbh86w-3000.inc1.devtunnels.ms",
+    ],
     credentials: true,
   }),
 );
@@ -76,7 +73,7 @@ app.use("/api/v1/me", authMiddleware, companyAccessMiddleware, getCurrentUser);
 app.use("/api/v1/membership", membershipRoutes);
 app.use("/api/v1/global-roles", globalRoleRoutes);
 app.use("/api/v1/users", userRoutes);
-app.use("/api/v1/user",authMiddleware, companyAccessMiddleware, userRoute);
+app.use("/api/v1/user", authMiddleware, companyAccessMiddleware, userRoute);
 // app.use("/api/v1/companies", companyRoutes);
 
 app.use("/api/v1/roles", authMiddleware, companyAccessMiddleware, rolesRoutes);
@@ -94,14 +91,14 @@ app.use(
   "/api/v1/attendance",
   authMiddleware,
   companyAccessMiddleware,
-  employeeMiddleware,
+  // employeeMiddleware,
   attendanceRoutes,
 );
 app.use(
   "/api/v1/attendance",
   authMiddleware,
   companyAccessMiddleware,
-  employeeMiddleware,
+  // employeeMiddleware,
   attendanceRegularizationRoutes,
 );
 app.use(
@@ -171,9 +168,10 @@ app.use(
 app.use(
   "/api/v1/company",
   authMiddleware,
-  companyAccessMiddleware,
+
   companyRoutes,
 );
+app.use("/api/v1/office-location", officeLocationRoutes);
 app.use(
   "/api/v1/employee",
   authMiddleware,
@@ -235,7 +233,12 @@ app.use(
   designationRoutes,
 );
 app.use("/api/v1/shift", authMiddleware, companyAccessMiddleware, shiftRoutes);
-app.use("/api/v1/work-schedule-policy", authMiddleware, companyAccessMiddleware, workScheduleRoutes);
+app.use(
+  "/api/v1/work-schedule-policy",
+  authMiddleware,
+  companyAccessMiddleware,
+  workScheduleRoutes,
+);
 app.use("/api/v1/permission", authMiddleware, permissionRoutes);
 app.use("/api/v1/role", authMiddleware, companyAccessMiddleware, roleRoutes);
 app.use(

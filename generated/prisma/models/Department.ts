@@ -453,14 +453,6 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type DepartmentCreateNestedOneWithoutDesignationsInput = {
   create?: Prisma.XOR<Prisma.DepartmentCreateWithoutDesignationsInput, Prisma.DepartmentUncheckedCreateWithoutDesignationsInput>
   connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutDesignationsInput

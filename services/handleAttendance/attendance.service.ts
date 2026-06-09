@@ -7,8 +7,9 @@ import {
   calculateAttendance,
   getDistance,
   singleMultivalidatation,
-  overTimeCalculation,
   attendanceStatusFn,
+  overTimeCalculation4Shift,
+  overTimeCalculation4Nonshift,
 } from "./attendance.helper.js";
 
 // const getStartEndOfDay = () => {
@@ -206,15 +207,17 @@ export const handleAttendance = async (
     let overtime = 0;
 
     if (workSchedulePolicy?.attendanceType === "FLEXIBLE") {
-      if (workSchedulePolicy?.enableOvertime) {
-        const otAfter = workSchedulePolicy?.overtimeAfterMinutes || 540;
-
-        if (totalMinutes > otAfter) {
-          overtime = totalMinutes - otAfter;
-        }
-      }
+      overtime = overTimeCalculation4Nonshift(
+        totalMinutes,
+        workSchedulePolicy,
+        overtime,
+      ).overtime;
     } else {
-      overtime = overTimeCalculation(totalMinutes, shift).overtime;
+      overtime = overTimeCalculation4Shift(
+        totalMinutes,
+        shift,
+        overtime,
+      ).overtime;
     }
     const { status } = attendanceStatusFn(
       totalMinutes,

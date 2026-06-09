@@ -406,7 +406,8 @@ import {
 import { prisma } from "../../lib/prisma.js";
 import {
   attendanceStatusFn,
-  overTimeCalculation,
+  overTimeCalculation4Nonshift,
+  overTimeCalculation4Shift,
 } from "../../services/handleAttendance/attendance.helper.js";
 import getStartEndOfDay from "../../utils/getStartEndOfDay.js";
 // ======================================================
@@ -535,16 +536,11 @@ export const regularizeAttendance = async (input: RegularizeInput) => {
     updatedCheckIn &&
     attendance.employee.workSchedulePolicy?.shift
   ) {
-   const shift =
-  attendance.employee
-    ?.workSchedulePolicy
-    ?.shift;
+    const shift = attendance.employee?.workSchedulePolicy?.shift;
 
-if (!shift) {
-  throw new Error("Shift not found");
-}
-
-   
+    if (!shift) {
+      throw new Error("Shift not found");
+    }
 
     const [startHour, startMinute] = shift.startTime.split(":").map(Number);
 
@@ -586,16 +582,16 @@ if (!shift) {
   let overtime = 0;
 
   if (isFlexible) {
-    if (policy?.enableOvertime) {
-      const threshold =
-        (policy.requiredWorkMinutes || 0) + (policy.overtimeAfterMinutes || 0);
-
-      overtime = totalMinutes > threshold ? totalMinutes - threshold : 0;
-    }
+    overtime = overTimeCalculation4Nonshift(
+      totalMinutes,
+      attendance.employee.workSchedulePolicy,
+      overtime,
+    ).overtime;
   } else {
-    overtime = overTimeCalculation(
+    overtime = overTimeCalculation4Shift(
       totalMinutes,
       attendance.employee.workSchedulePolicy?.shift,
+      overtime,
     ).overtime;
   }
 

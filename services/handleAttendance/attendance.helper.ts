@@ -33,13 +33,36 @@ export const calculateAttendance = (logs: any[]) => {
 //   };
 // };
 
-// ===============================OVERTIME CALCULATION================
-export const overTimeCalculation = (totalMinutes: number, shift?: any) => {
+// ===============================OVERTIME CALCULATION 4 Shift================
+export const overTimeCalculation4Shift = (
+  totalMinutes: number,
+  shift?: any,
+  overtime: number = 0,
+) => {
   const std = shift?.minimumWorkMinutes;
   const overtimeThreshold = std + (shift?.overtimeAfterMinutes || 0);
-  let overtime = 0;
+
   if (totalMinutes > overtimeThreshold) {
-    overtime = totalMinutes - overtimeThreshold;
+    overtime = totalMinutes - std;
+  }
+  return {
+    overtime: Math.floor(overtime),
+  };
+};
+// ===============================OVERTIME CALCULATION 4 Non Shift================
+export const overTimeCalculation4Nonshift = (
+  totalMinutes: number,
+  workSchedulePolicy: any,
+  overtime: number,
+) => {
+  if (workSchedulePolicy?.enableOvertime) {
+    const std = workSchedulePolicy?.requiredWorkMinutes || 540;
+    const overtimeThreshold =
+      std + (workSchedulePolicy?.overtimeAfterMinutes || 0);
+
+    if (totalMinutes > overtimeThreshold) {
+      overtime = totalMinutes - std;
+    }
   }
   return {
     overtime: Math.floor(overtime),
@@ -105,37 +128,19 @@ export const attendanceStatusFn = (
 
   workSchedulePolicy?: any,
 ) => {
-
   // ==================================================
   // FLEXIBLE ATTENDANCE
   // ==================================================
 
-  if (
-    workSchedulePolicy?.attendanceType ===
-    "FLEXIBLE"
-  ) {
+  if (workSchedulePolicy?.attendanceType === "FLEXIBLE") {
+    const required = workSchedulePolicy?.requiredWorkMinutes || 540;
 
-    const required =
-      workSchedulePolicy
-        ?.requiredWorkMinutes || 540;
+    let status: AttendanceStatus = AttendanceStatus.ABSENT;
 
-    let status: AttendanceStatus =
-      AttendanceStatus.ABSENT;
-
-    if (
-      totalMinutes >= required
-    ) {
-
-      status =
-        AttendanceStatus.PRESENT;
-
-    } else if (
-      totalMinutes >=
-      required / 2
-    ) {
-
-      status =
-        AttendanceStatus.HALF_DAY;
+    if (totalMinutes >= required) {
+      status = AttendanceStatus.PRESENT;
+    } else if (totalMinutes >= required / 2) {
+      status = AttendanceStatus.HALF_DAY;
     }
 
     return {
@@ -147,17 +152,10 @@ export const attendanceStatusFn = (
   // FIXED ATTENDANCE
   // ==================================================
 
-  let status: AttendanceStatus =
-    AttendanceStatus.PRESENT;
+  let status: AttendanceStatus = AttendanceStatus.PRESENT;
 
-  if (
-    shift?.halfDayAfterMinutes &&
-    totalMinutes <
-      shift.halfDayAfterMinutes
-  ) {
-
-    status =
-      AttendanceStatus.HALF_DAY;
+  if (shift?.halfDayAfterMinutes &&  totalMinutes > shift.halfDayAfterMinutes ) {
+    status = AttendanceStatus.HALF_DAY;
   }
 
   return {

@@ -96,8 +96,8 @@ export const getToday = async (req: Request, res: Response) => {
 
 export const getCompanyDay = async (req: Request, res: Response) => {
   try {
-       const employee = req.employee;
-    if (!employee) throw new Error("Employee not found");
+    //    const employee = req.employee;
+    // if (!employee) throw new Error("Employee not found");
 
     const { date } = req.query;
 

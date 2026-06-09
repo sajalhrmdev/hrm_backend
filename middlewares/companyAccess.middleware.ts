@@ -33,7 +33,7 @@ export const companyAccessMiddleware = async (
     const membership = await prisma.membership.findFirst({
       where: {
         userId: req.user.userId,
-        companyId: Number(companyId),
+        companyId: Number(companyId), 
         status: "ACTIVE",
       },
       include: {

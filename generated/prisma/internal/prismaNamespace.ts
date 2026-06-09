@@ -385,6 +385,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   Company: 'Company',
+  OfficeLocation: 'OfficeLocation',
   Department: 'Department',
   Designation: 'Designation',
   User: 'User',
@@ -436,7 +437,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "company" | "department" | "designation" | "user" | "globalRole" | "role" | "permission" | "rolePermission" | "membership" | "employee" | "employeePersonalInfo" | "employeeAddress" | "employeeEmergencyContact" | "employeeDocument" | "employeeBankDetail" | "employeeExperience" | "attendance" | "attendanceAdjustment" | "attendanceLog" | "workPolicy" | "companySetting" | "shift" | "workSchedulePolicy" | "salaryComponent" | "employeeSalaryComponent" | "payrollAdjustment" | "payRoll" | "payrollSnapComponent" | "payRollRun" | "leaveType" | "leaveBalance" | "leaveIncrementPolicy" | "leaveIncrementLog" | "leaveApplication" | "holiday" | "weeklyOffConfig" | "notice"
+    modelProps: "company" | "officeLocation" | "department" | "designation" | "user" | "globalRole" | "role" | "permission" | "rolePermission" | "membership" | "employee" | "employeePersonalInfo" | "employeeAddress" | "employeeEmergencyContact" | "employeeDocument" | "employeeBankDetail" | "employeeExperience" | "attendance" | "attendanceAdjustment" | "attendanceLog" | "workPolicy" | "companySetting" | "shift" | "workSchedulePolicy" | "salaryComponent" | "employeeSalaryComponent" | "payrollAdjustment" | "payRoll" | "payrollSnapComponent" | "payRollRun" | "leaveType" | "leaveBalance" | "leaveIncrementPolicy" | "leaveIncrementLog" | "leaveApplication" | "holiday" | "weeklyOffConfig" | "notice"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -511,6 +512,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.CompanyCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.CompanyCountAggregateOutputType> | number
+        }
+      }
+    }
+    OfficeLocation: {
+      payload: Prisma.$OfficeLocationPayload<ExtArgs>
+      fields: Prisma.OfficeLocationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.OfficeLocationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfficeLocationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.OfficeLocationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfficeLocationPayload>
+        }
+        findFirst: {
+          args: Prisma.OfficeLocationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfficeLocationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.OfficeLocationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfficeLocationPayload>
+        }
+        findMany: {
+          args: Prisma.OfficeLocationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfficeLocationPayload>[]
+        }
+        create: {
+          args: Prisma.OfficeLocationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfficeLocationPayload>
+        }
+        createMany: {
+          args: Prisma.OfficeLocationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.OfficeLocationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfficeLocationPayload>[]
+        }
+        delete: {
+          args: Prisma.OfficeLocationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfficeLocationPayload>
+        }
+        update: {
+          args: Prisma.OfficeLocationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfficeLocationPayload>
+        }
+        deleteMany: {
+          args: Prisma.OfficeLocationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.OfficeLocationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.OfficeLocationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfficeLocationPayload>[]
+        }
+        upsert: {
+          args: Prisma.OfficeLocationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OfficeLocationPayload>
+        }
+        aggregate: {
+          args: Prisma.OfficeLocationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateOfficeLocation>
+        }
+        groupBy: {
+          args: Prisma.OfficeLocationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OfficeLocationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.OfficeLocationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OfficeLocationCountAggregateOutputType> | number
         }
       }
     }
@@ -3232,6 +3307,26 @@ export const CompanyScalarFieldEnum = {
 export type CompanyScalarFieldEnum = (typeof CompanyScalarFieldEnum)[keyof typeof CompanyScalarFieldEnum]
 
 
+export const OfficeLocationScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  name: 'name',
+  address: 'address',
+  city: 'city',
+  state: 'state',
+  country: 'country',
+  pinCode: 'pinCode',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  radius: 'radius',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OfficeLocationScalarFieldEnum = (typeof OfficeLocationScalarFieldEnum)[keyof typeof OfficeLocationScalarFieldEnum]
+
+
 export const DepartmentScalarFieldEnum = {
   id: 'id',
   title: 'title',
@@ -3924,6 +4019,34 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
+ * Reference to a field of type 'OfficeLocationStatus'
+ */
+export type EnumOfficeLocationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OfficeLocationStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'OfficeLocationStatus[]'
+ */
+export type ListEnumOfficeLocationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OfficeLocationStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'DesignationStatus'
  */
 export type EnumDesignationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DesignationStatus'>
@@ -4039,20 +4162,6 @@ export type EnumAttendanceAdjustmentTypeFieldRefInput<$PrismaModel> = FieldRefIn
  * Reference to a field of type 'AttendanceAdjustmentType[]'
  */
 export type ListEnumAttendanceAdjustmentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AttendanceAdjustmentType[]'>
-    
-
-
-/**
- * Reference to a field of type 'Float'
- */
-export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-/**
- * Reference to a field of type 'Float[]'
- */
-export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 
@@ -4305,6 +4414,7 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   company?: Prisma.CompanyOmit
+  officeLocation?: Prisma.OfficeLocationOmit
   department?: Prisma.DepartmentOmit
   designation?: Prisma.DesignationOmit
   user?: Prisma.UserOmit

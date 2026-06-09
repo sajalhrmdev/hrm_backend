@@ -18,6 +18,14 @@ export const CompanyStatus = {
 export type CompanyStatus = (typeof CompanyStatus)[keyof typeof CompanyStatus]
 
 
+export const OfficeLocationStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type OfficeLocationStatus = (typeof OfficeLocationStatus)[keyof typeof OfficeLocationStatus]
+
+
 export const DesignationStatus = {
   ACTIVE: 'ACTIVE',
   INACTIVE: 'INACTIVE'

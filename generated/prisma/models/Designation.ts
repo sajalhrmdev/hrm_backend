@@ -619,10 +619,6 @@ export type DesignationUncheckedUpdateManyWithoutDepartmentNestedInput = {
   deleteMany?: Prisma.DesignationScalarWhereInput | Prisma.DesignationScalarWhereInput[]
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type EnumDesignationStatusFieldUpdateOperationsInput = {
   set?: $Enums.DesignationStatus
 }

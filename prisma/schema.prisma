@@ -58,9 +58,34 @@ model Company{
   leaveIncrementPolicies LeaveIncrementPolicy[]
   leaveIncrementLogs LeaveIncrementLog[]
   notices Notice[]
+  officeLocations OfficeLocation[]
 
 
 
+
+}
+enum OfficeLocationStatus {
+  ACTIVE
+  INACTIVE
+}
+model OfficeLocation {
+  id Int @id @default(autoincrement())
+  companyId Int
+  name String
+  address String?
+  city String?
+  state String?
+  country String?
+  pinCode String?
+  latitude Float?
+  longitude Float?
+  radius Int? @default(100)
+  status OfficeLocationStatus @default(ACTIVE)
+  company Company @relation(   fields: [companyId],   references: [id] )
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([companyId, id])
 }
 // =================================================================================
 

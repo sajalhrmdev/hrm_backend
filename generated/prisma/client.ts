@@ -47,6 +47,11 @@ export { Prisma }
  */
 export type Company = Prisma.CompanyModel
 /**
+ * Model OfficeLocation
+ * 
+ */
+export type OfficeLocation = Prisma.OfficeLocationModel
+/**
  * Model Department
  * 
  */

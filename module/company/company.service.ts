@@ -3,6 +3,7 @@
 // ============================================
 
 import { prisma } from "../../lib/prisma.js";
+import { AuthRequest } from "../../middlewares/companyAccess.middleware.js";
 
 export const createCompanyService = async (data: any) => {
   const slug = data.slug.trim().toLowerCase();
@@ -125,8 +126,6 @@ export const getAllCompaniesService = async (
         _count: {
           select: {
             employees: true,
-
-            
           },
         },
       },
@@ -186,6 +185,44 @@ export const getCompanyByIdService = async (id: number) => {
   return company;
 };
 
+export const getMyCompanyService = async (companyId: number) => {
+  const company = await prisma.company.findUnique({
+    where: {
+      id: companyId,
+    },
+  });
+
+  if (!company) {
+    throw new Error("Company not found");
+  }
+
+  return company;
+};
+
+export const updateMyCompanyService = async (
+  companyId: number,
+  payload: any,
+) => {
+  const company = await prisma.company.update({
+    where: {
+      id: companyId,
+    },
+
+    data: {
+      name: payload.name,
+
+      email: payload.email,
+
+      phone: payload.phone,
+
+      address: payload.address,
+
+      status: payload.status,
+    },
+  });
+
+  return company;
+};
 // ============================================
 // UPDATE COMPANY
 // ============================================
