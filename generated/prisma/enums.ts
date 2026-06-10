@@ -111,12 +111,28 @@ export const ShiftStatus = {
 export type ShiftStatus = (typeof ShiftStatus)[keyof typeof ShiftStatus]
 
 
+export const AttendanceModes = {
+  SINGLE: 'SINGLE',
+  MULTI: 'MULTI'
+} as const
+
+export type AttendanceModes = (typeof AttendanceModes)[keyof typeof AttendanceModes]
+
+
 export const AttendanceType = {
   FIXED: 'FIXED',
   FLEXIBLE: 'FLEXIBLE'
 } as const
 
 export type AttendanceType = (typeof AttendanceType)[keyof typeof AttendanceType]
+
+
+export const AttendanceFrom = {
+  OFFICE: 'OFFICE',
+  REMOTE: 'REMOTE'
+} as const
+
+export type AttendanceFrom = (typeof AttendanceFrom)[keyof typeof AttendanceFrom]
 
 
 export const SalaryComponentType = {

@@ -39,12 +39,15 @@ export const overTimeCalculation4Shift = (
   shift?: any,
   overtime: number = 0,
 ) => {
-  const std = shift?.minimumWorkMinutes;
-  const overtimeThreshold = std + (shift?.overtimeAfterMinutes || 0);
+  if (shift?.enableOvertime) {
+    const std = shift?.minimumWorkMinutes;
+    const overtimeThreshold = std + (shift?.overtimeAfterMinutes || 0);
 
-  if (totalMinutes > overtimeThreshold) {
-    overtime = totalMinutes - std;
+    if (totalMinutes > overtimeThreshold) {
+      overtime = totalMinutes - std;
+    }
   }
+
   return {
     overtime: Math.floor(overtime),
   };
@@ -122,8 +125,6 @@ export const overTimeCalculation4Nonshift = (
 export const attendanceStatusFn = (
   totalMinutes: number,
 
-  policy: any,
-
   shift?: any,
 
   workSchedulePolicy?: any,
@@ -134,12 +135,12 @@ export const attendanceStatusFn = (
 
   if (workSchedulePolicy?.attendanceType === "FLEXIBLE") {
     const required = workSchedulePolicy?.requiredWorkMinutes || 540;
-
+    const halfDay = workSchedulePolicy?.halfDayMinutes || 240;
     let status: AttendanceStatus = AttendanceStatus.ABSENT;
 
     if (totalMinutes >= required) {
       status = AttendanceStatus.PRESENT;
-    } else if (totalMinutes >= required / 2) {
+    } else if (halfDay && totalMinutes >= halfDay) {
       status = AttendanceStatus.HALF_DAY;
     }
 
@@ -152,16 +153,29 @@ export const attendanceStatusFn = (
   // FIXED ATTENDANCE
   // ==================================================
 
-  let status: AttendanceStatus = AttendanceStatus.PRESENT;
+  // let status: AttendanceStatus = AttendanceStatus.PRESENT;
 
-  if (shift?.halfDayAfterMinutes &&  totalMinutes > shift.halfDayAfterMinutes ) {
+  // if (shift?.halfDayAfterMinutes && totalMinutes < shift.halfDayAfterMinutes) {
+  //   status = AttendanceStatus.HALF_DAY;
+  // }
+
+  // return {
+  //   status,
+  // };
+  const halfDay = shift?.halfDayAfterMinutes || 240;
+  const required = shift?.minimumWorkMinutes || 540;
+
+  let status: AttendanceStatus = AttendanceStatus.ABSENT;
+
+  if (totalMinutes >= required) {
+    status = AttendanceStatus.PRESENT;
+  } else if (totalMinutes >= halfDay) {
     status = AttendanceStatus.HALF_DAY;
   }
 
-  return {
-    status,
-  };
+  return { status };
 };
+
 // ========================SINGLE OR MULTI CHECKIN CHECKOUT==============================
 export const singleMultivalidatation = (
   logs: any[],

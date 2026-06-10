@@ -518,11 +518,28 @@ export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
   _max?: Prisma.NestedJsonFilter<$PrismaModel>
 }
 
+export type EnumAttendanceModesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AttendanceModes | Prisma.EnumAttendanceModesFieldRefInput<$PrismaModel>
+  in?: $Enums.AttendanceModes[] | Prisma.ListEnumAttendanceModesFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AttendanceModes[] | Prisma.ListEnumAttendanceModesFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAttendanceModesFilter<$PrismaModel> | $Enums.AttendanceModes
+}
+
 export type EnumShiftStatusFilter<$PrismaModel = never> = {
   equals?: $Enums.ShiftStatus | Prisma.EnumShiftStatusFieldRefInput<$PrismaModel>
   in?: $Enums.ShiftStatus[] | Prisma.ListEnumShiftStatusFieldRefInput<$PrismaModel>
   notIn?: $Enums.ShiftStatus[] | Prisma.ListEnumShiftStatusFieldRefInput<$PrismaModel>
   not?: Prisma.NestedEnumShiftStatusFilter<$PrismaModel> | $Enums.ShiftStatus
+}
+
+export type EnumAttendanceModesWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AttendanceModes | Prisma.EnumAttendanceModesFieldRefInput<$PrismaModel>
+  in?: $Enums.AttendanceModes[] | Prisma.ListEnumAttendanceModesFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AttendanceModes[] | Prisma.ListEnumAttendanceModesFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAttendanceModesWithAggregatesFilter<$PrismaModel> | $Enums.AttendanceModes
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAttendanceModesFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAttendanceModesFilter<$PrismaModel>
 }
 
 export type EnumShiftStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -542,6 +559,13 @@ export type EnumAttendanceTypeFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumAttendanceTypeFilter<$PrismaModel> | $Enums.AttendanceType
 }
 
+export type EnumAttendanceFromFilter<$PrismaModel = never> = {
+  equals?: $Enums.AttendanceFrom | Prisma.EnumAttendanceFromFieldRefInput<$PrismaModel>
+  in?: $Enums.AttendanceFrom[] | Prisma.ListEnumAttendanceFromFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AttendanceFrom[] | Prisma.ListEnumAttendanceFromFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAttendanceFromFilter<$PrismaModel> | $Enums.AttendanceFrom
+}
+
 export type EnumAttendanceTypeWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.AttendanceType | Prisma.EnumAttendanceTypeFieldRefInput<$PrismaModel>
   in?: $Enums.AttendanceType[] | Prisma.ListEnumAttendanceTypeFieldRefInput<$PrismaModel>
@@ -550,6 +574,16 @@ export type EnumAttendanceTypeWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumAttendanceTypeFilter<$PrismaModel>
   _max?: Prisma.NestedEnumAttendanceTypeFilter<$PrismaModel>
+}
+
+export type EnumAttendanceFromWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AttendanceFrom | Prisma.EnumAttendanceFromFieldRefInput<$PrismaModel>
+  in?: $Enums.AttendanceFrom[] | Prisma.ListEnumAttendanceFromFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AttendanceFrom[] | Prisma.ListEnumAttendanceFromFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAttendanceFromWithAggregatesFilter<$PrismaModel> | $Enums.AttendanceFrom
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAttendanceFromFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAttendanceFromFilter<$PrismaModel>
 }
 
 export type EnumSalaryComponentTypeFilter<$PrismaModel = never> = {
@@ -1167,11 +1201,28 @@ export type NestedJsonFilterBase<$PrismaModel = never> = {
   not?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | Prisma.JsonNullValueFilter
 }
 
+export type NestedEnumAttendanceModesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AttendanceModes | Prisma.EnumAttendanceModesFieldRefInput<$PrismaModel>
+  in?: $Enums.AttendanceModes[] | Prisma.ListEnumAttendanceModesFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AttendanceModes[] | Prisma.ListEnumAttendanceModesFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAttendanceModesFilter<$PrismaModel> | $Enums.AttendanceModes
+}
+
 export type NestedEnumShiftStatusFilter<$PrismaModel = never> = {
   equals?: $Enums.ShiftStatus | Prisma.EnumShiftStatusFieldRefInput<$PrismaModel>
   in?: $Enums.ShiftStatus[] | Prisma.ListEnumShiftStatusFieldRefInput<$PrismaModel>
   notIn?: $Enums.ShiftStatus[] | Prisma.ListEnumShiftStatusFieldRefInput<$PrismaModel>
   not?: Prisma.NestedEnumShiftStatusFilter<$PrismaModel> | $Enums.ShiftStatus
+}
+
+export type NestedEnumAttendanceModesWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AttendanceModes | Prisma.EnumAttendanceModesFieldRefInput<$PrismaModel>
+  in?: $Enums.AttendanceModes[] | Prisma.ListEnumAttendanceModesFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AttendanceModes[] | Prisma.ListEnumAttendanceModesFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAttendanceModesWithAggregatesFilter<$PrismaModel> | $Enums.AttendanceModes
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAttendanceModesFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAttendanceModesFilter<$PrismaModel>
 }
 
 export type NestedEnumShiftStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -1191,6 +1242,13 @@ export type NestedEnumAttendanceTypeFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumAttendanceTypeFilter<$PrismaModel> | $Enums.AttendanceType
 }
 
+export type NestedEnumAttendanceFromFilter<$PrismaModel = never> = {
+  equals?: $Enums.AttendanceFrom | Prisma.EnumAttendanceFromFieldRefInput<$PrismaModel>
+  in?: $Enums.AttendanceFrom[] | Prisma.ListEnumAttendanceFromFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AttendanceFrom[] | Prisma.ListEnumAttendanceFromFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAttendanceFromFilter<$PrismaModel> | $Enums.AttendanceFrom
+}
+
 export type NestedEnumAttendanceTypeWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.AttendanceType | Prisma.EnumAttendanceTypeFieldRefInput<$PrismaModel>
   in?: $Enums.AttendanceType[] | Prisma.ListEnumAttendanceTypeFieldRefInput<$PrismaModel>
@@ -1199,6 +1257,16 @@ export type NestedEnumAttendanceTypeWithAggregatesFilter<$PrismaModel = never> =
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumAttendanceTypeFilter<$PrismaModel>
   _max?: Prisma.NestedEnumAttendanceTypeFilter<$PrismaModel>
+}
+
+export type NestedEnumAttendanceFromWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AttendanceFrom | Prisma.EnumAttendanceFromFieldRefInput<$PrismaModel>
+  in?: $Enums.AttendanceFrom[] | Prisma.ListEnumAttendanceFromFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AttendanceFrom[] | Prisma.ListEnumAttendanceFromFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAttendanceFromWithAggregatesFilter<$PrismaModel> | $Enums.AttendanceFrom
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAttendanceFromFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAttendanceFromFilter<$PrismaModel>
 }
 
 export type NestedEnumSalaryComponentTypeFilter<$PrismaModel = never> = {

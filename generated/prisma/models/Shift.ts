@@ -60,8 +60,10 @@ export type ShiftMinAggregateOutputType = {
   graceMinutes: number | null
   lateAfterMinutes: number | null
   halfDayAfterMinutes: number | null
+  enableOvertime: boolean | null
   overtimeAfterMinutes: number | null
   minimumWorkMinutes: number | null
+  attendanceMode: $Enums.AttendanceModes | null
   status: $Enums.ShiftStatus | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -80,8 +82,10 @@ export type ShiftMaxAggregateOutputType = {
   graceMinutes: number | null
   lateAfterMinutes: number | null
   halfDayAfterMinutes: number | null
+  enableOvertime: boolean | null
   overtimeAfterMinutes: number | null
   minimumWorkMinutes: number | null
+  attendanceMode: $Enums.AttendanceModes | null
   status: $Enums.ShiftStatus | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -100,8 +104,10 @@ export type ShiftCountAggregateOutputType = {
   graceMinutes: number
   lateAfterMinutes: number
   halfDayAfterMinutes: number
+  enableOvertime: number
   overtimeAfterMinutes: number
   minimumWorkMinutes: number
+  attendanceMode: number
   status: number
   createdAt: number
   updatedAt: number
@@ -144,8 +150,10 @@ export type ShiftMinAggregateInputType = {
   graceMinutes?: true
   lateAfterMinutes?: true
   halfDayAfterMinutes?: true
+  enableOvertime?: true
   overtimeAfterMinutes?: true
   minimumWorkMinutes?: true
+  attendanceMode?: true
   status?: true
   createdAt?: true
   updatedAt?: true
@@ -164,8 +172,10 @@ export type ShiftMaxAggregateInputType = {
   graceMinutes?: true
   lateAfterMinutes?: true
   halfDayAfterMinutes?: true
+  enableOvertime?: true
   overtimeAfterMinutes?: true
   minimumWorkMinutes?: true
+  attendanceMode?: true
   status?: true
   createdAt?: true
   updatedAt?: true
@@ -184,8 +194,10 @@ export type ShiftCountAggregateInputType = {
   graceMinutes?: true
   lateAfterMinutes?: true
   halfDayAfterMinutes?: true
+  enableOvertime?: true
   overtimeAfterMinutes?: true
   minimumWorkMinutes?: true
+  attendanceMode?: true
   status?: true
   createdAt?: true
   updatedAt?: true
@@ -291,8 +303,10 @@ export type ShiftGroupByOutputType = {
   graceMinutes: number
   lateAfterMinutes: number
   halfDayAfterMinutes: number | null
+  enableOvertime: boolean
   overtimeAfterMinutes: number
   minimumWorkMinutes: number | null
+  attendanceMode: $Enums.AttendanceModes
   status: $Enums.ShiftStatus
   createdAt: Date
   updatedAt: Date
@@ -334,8 +348,10 @@ export type ShiftWhereInput = {
   graceMinutes?: Prisma.IntFilter<"Shift"> | number
   lateAfterMinutes?: Prisma.IntFilter<"Shift"> | number
   halfDayAfterMinutes?: Prisma.IntNullableFilter<"Shift"> | number | null
+  enableOvertime?: Prisma.BoolFilter<"Shift"> | boolean
   overtimeAfterMinutes?: Prisma.IntFilter<"Shift"> | number
   minimumWorkMinutes?: Prisma.IntNullableFilter<"Shift"> | number | null
+  attendanceMode?: Prisma.EnumAttendanceModesFilter<"Shift"> | $Enums.AttendanceModes
   status?: Prisma.EnumShiftStatusFilter<"Shift"> | $Enums.ShiftStatus
   createdAt?: Prisma.DateTimeFilter<"Shift"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Shift"> | Date | string
@@ -358,8 +374,10 @@ export type ShiftOrderByWithRelationInput = {
   graceMinutes?: Prisma.SortOrder
   lateAfterMinutes?: Prisma.SortOrder
   halfDayAfterMinutes?: Prisma.SortOrderInput | Prisma.SortOrder
+  enableOvertime?: Prisma.SortOrder
   overtimeAfterMinutes?: Prisma.SortOrder
   minimumWorkMinutes?: Prisma.SortOrderInput | Prisma.SortOrder
+  attendanceMode?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -386,8 +404,10 @@ export type ShiftWhereUniqueInput = Prisma.AtLeast<{
   graceMinutes?: Prisma.IntFilter<"Shift"> | number
   lateAfterMinutes?: Prisma.IntFilter<"Shift"> | number
   halfDayAfterMinutes?: Prisma.IntNullableFilter<"Shift"> | number | null
+  enableOvertime?: Prisma.BoolFilter<"Shift"> | boolean
   overtimeAfterMinutes?: Prisma.IntFilter<"Shift"> | number
   minimumWorkMinutes?: Prisma.IntNullableFilter<"Shift"> | number | null
+  attendanceMode?: Prisma.EnumAttendanceModesFilter<"Shift"> | $Enums.AttendanceModes
   status?: Prisma.EnumShiftStatusFilter<"Shift"> | $Enums.ShiftStatus
   createdAt?: Prisma.DateTimeFilter<"Shift"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Shift"> | Date | string
@@ -410,8 +430,10 @@ export type ShiftOrderByWithAggregationInput = {
   graceMinutes?: Prisma.SortOrder
   lateAfterMinutes?: Prisma.SortOrder
   halfDayAfterMinutes?: Prisma.SortOrderInput | Prisma.SortOrder
+  enableOvertime?: Prisma.SortOrder
   overtimeAfterMinutes?: Prisma.SortOrder
   minimumWorkMinutes?: Prisma.SortOrderInput | Prisma.SortOrder
+  attendanceMode?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -438,8 +460,10 @@ export type ShiftScalarWhereWithAggregatesInput = {
   graceMinutes?: Prisma.IntWithAggregatesFilter<"Shift"> | number
   lateAfterMinutes?: Prisma.IntWithAggregatesFilter<"Shift"> | number
   halfDayAfterMinutes?: Prisma.IntNullableWithAggregatesFilter<"Shift"> | number | null
+  enableOvertime?: Prisma.BoolWithAggregatesFilter<"Shift"> | boolean
   overtimeAfterMinutes?: Prisma.IntWithAggregatesFilter<"Shift"> | number
   minimumWorkMinutes?: Prisma.IntNullableWithAggregatesFilter<"Shift"> | number | null
+  attendanceMode?: Prisma.EnumAttendanceModesWithAggregatesFilter<"Shift"> | $Enums.AttendanceModes
   status?: Prisma.EnumShiftStatusWithAggregatesFilter<"Shift"> | $Enums.ShiftStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Shift"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Shift"> | Date | string
@@ -456,8 +480,10 @@ export type ShiftCreateInput = {
   graceMinutes?: number
   lateAfterMinutes?: number
   halfDayAfterMinutes?: number | null
+  enableOvertime?: boolean
   overtimeAfterMinutes?: number
   minimumWorkMinutes?: number | null
+  attendanceMode?: $Enums.AttendanceModes
   status?: $Enums.ShiftStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -480,8 +506,10 @@ export type ShiftUncheckedCreateInput = {
   graceMinutes?: number
   lateAfterMinutes?: number
   halfDayAfterMinutes?: number | null
+  enableOvertime?: boolean
   overtimeAfterMinutes?: number
   minimumWorkMinutes?: number | null
+  attendanceMode?: $Enums.AttendanceModes
   status?: $Enums.ShiftStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -501,8 +529,10 @@ export type ShiftUpdateInput = {
   graceMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   lateAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   halfDayAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   minimumWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attendanceMode?: Prisma.EnumAttendanceModesFieldUpdateOperationsInput | $Enums.AttendanceModes
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -525,8 +555,10 @@ export type ShiftUncheckedUpdateInput = {
   graceMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   lateAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   halfDayAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   minimumWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attendanceMode?: Prisma.EnumAttendanceModesFieldUpdateOperationsInput | $Enums.AttendanceModes
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -548,8 +580,10 @@ export type ShiftCreateManyInput = {
   graceMinutes?: number
   lateAfterMinutes?: number
   halfDayAfterMinutes?: number | null
+  enableOvertime?: boolean
   overtimeAfterMinutes?: number
   minimumWorkMinutes?: number | null
+  attendanceMode?: $Enums.AttendanceModes
   status?: $Enums.ShiftStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -566,8 +600,10 @@ export type ShiftUpdateManyMutationInput = {
   graceMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   lateAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   halfDayAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   minimumWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attendanceMode?: Prisma.EnumAttendanceModesFieldUpdateOperationsInput | $Enums.AttendanceModes
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -586,8 +622,10 @@ export type ShiftUncheckedUpdateManyInput = {
   graceMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   lateAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   halfDayAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   minimumWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attendanceMode?: Prisma.EnumAttendanceModesFieldUpdateOperationsInput | $Enums.AttendanceModes
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -626,8 +664,10 @@ export type ShiftCountOrderByAggregateInput = {
   graceMinutes?: Prisma.SortOrder
   lateAfterMinutes?: Prisma.SortOrder
   halfDayAfterMinutes?: Prisma.SortOrder
+  enableOvertime?: Prisma.SortOrder
   overtimeAfterMinutes?: Prisma.SortOrder
   minimumWorkMinutes?: Prisma.SortOrder
+  attendanceMode?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -657,8 +697,10 @@ export type ShiftMaxOrderByAggregateInput = {
   graceMinutes?: Prisma.SortOrder
   lateAfterMinutes?: Prisma.SortOrder
   halfDayAfterMinutes?: Prisma.SortOrder
+  enableOvertime?: Prisma.SortOrder
   overtimeAfterMinutes?: Prisma.SortOrder
   minimumWorkMinutes?: Prisma.SortOrder
+  attendanceMode?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -677,8 +719,10 @@ export type ShiftMinOrderByAggregateInput = {
   graceMinutes?: Prisma.SortOrder
   lateAfterMinutes?: Prisma.SortOrder
   halfDayAfterMinutes?: Prisma.SortOrder
+  enableOvertime?: Prisma.SortOrder
   overtimeAfterMinutes?: Prisma.SortOrder
   minimumWorkMinutes?: Prisma.SortOrder
+  attendanceMode?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -770,6 +814,10 @@ export type ShiftUpdateOneWithoutAttendancesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ShiftUpdateToOneWithWhereWithoutAttendancesInput, Prisma.ShiftUpdateWithoutAttendancesInput>, Prisma.ShiftUncheckedUpdateWithoutAttendancesInput>
 }
 
+export type EnumAttendanceModesFieldUpdateOperationsInput = {
+  set?: $Enums.AttendanceModes
+}
+
 export type EnumShiftStatusFieldUpdateOperationsInput = {
   set?: $Enums.ShiftStatus
 }
@@ -800,8 +848,10 @@ export type ShiftCreateWithoutCompanyInput = {
   graceMinutes?: number
   lateAfterMinutes?: number
   halfDayAfterMinutes?: number | null
+  enableOvertime?: boolean
   overtimeAfterMinutes?: number
   minimumWorkMinutes?: number | null
+  attendanceMode?: $Enums.AttendanceModes
   status?: $Enums.ShiftStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -822,8 +872,10 @@ export type ShiftUncheckedCreateWithoutCompanyInput = {
   graceMinutes?: number
   lateAfterMinutes?: number
   halfDayAfterMinutes?: number | null
+  enableOvertime?: boolean
   overtimeAfterMinutes?: number
   minimumWorkMinutes?: number | null
+  attendanceMode?: $Enums.AttendanceModes
   status?: $Enums.ShiftStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -874,8 +926,10 @@ export type ShiftScalarWhereInput = {
   graceMinutes?: Prisma.IntFilter<"Shift"> | number
   lateAfterMinutes?: Prisma.IntFilter<"Shift"> | number
   halfDayAfterMinutes?: Prisma.IntNullableFilter<"Shift"> | number | null
+  enableOvertime?: Prisma.BoolFilter<"Shift"> | boolean
   overtimeAfterMinutes?: Prisma.IntFilter<"Shift"> | number
   minimumWorkMinutes?: Prisma.IntNullableFilter<"Shift"> | number | null
+  attendanceMode?: Prisma.EnumAttendanceModesFilter<"Shift"> | $Enums.AttendanceModes
   status?: Prisma.EnumShiftStatusFilter<"Shift"> | $Enums.ShiftStatus
   createdAt?: Prisma.DateTimeFilter<"Shift"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Shift"> | Date | string
@@ -892,8 +946,10 @@ export type ShiftCreateWithoutEmployeesInput = {
   graceMinutes?: number
   lateAfterMinutes?: number
   halfDayAfterMinutes?: number | null
+  enableOvertime?: boolean
   overtimeAfterMinutes?: number
   minimumWorkMinutes?: number | null
+  attendanceMode?: $Enums.AttendanceModes
   status?: $Enums.ShiftStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -915,8 +971,10 @@ export type ShiftUncheckedCreateWithoutEmployeesInput = {
   graceMinutes?: number
   lateAfterMinutes?: number
   halfDayAfterMinutes?: number | null
+  enableOvertime?: boolean
   overtimeAfterMinutes?: number
   minimumWorkMinutes?: number | null
+  attendanceMode?: $Enums.AttendanceModes
   status?: $Enums.ShiftStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -951,8 +1009,10 @@ export type ShiftUpdateWithoutEmployeesInput = {
   graceMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   lateAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   halfDayAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   minimumWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attendanceMode?: Prisma.EnumAttendanceModesFieldUpdateOperationsInput | $Enums.AttendanceModes
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -974,8 +1034,10 @@ export type ShiftUncheckedUpdateWithoutEmployeesInput = {
   graceMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   lateAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   halfDayAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   minimumWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attendanceMode?: Prisma.EnumAttendanceModesFieldUpdateOperationsInput | $Enums.AttendanceModes
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -994,8 +1056,10 @@ export type ShiftCreateWithoutAttendancesInput = {
   graceMinutes?: number
   lateAfterMinutes?: number
   halfDayAfterMinutes?: number | null
+  enableOvertime?: boolean
   overtimeAfterMinutes?: number
   minimumWorkMinutes?: number | null
+  attendanceMode?: $Enums.AttendanceModes
   status?: $Enums.ShiftStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1017,8 +1081,10 @@ export type ShiftUncheckedCreateWithoutAttendancesInput = {
   graceMinutes?: number
   lateAfterMinutes?: number
   halfDayAfterMinutes?: number | null
+  enableOvertime?: boolean
   overtimeAfterMinutes?: number
   minimumWorkMinutes?: number | null
+  attendanceMode?: $Enums.AttendanceModes
   status?: $Enums.ShiftStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1053,8 +1119,10 @@ export type ShiftUpdateWithoutAttendancesInput = {
   graceMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   lateAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   halfDayAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   minimumWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attendanceMode?: Prisma.EnumAttendanceModesFieldUpdateOperationsInput | $Enums.AttendanceModes
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1076,8 +1144,10 @@ export type ShiftUncheckedUpdateWithoutAttendancesInput = {
   graceMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   lateAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   halfDayAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   minimumWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attendanceMode?: Prisma.EnumAttendanceModesFieldUpdateOperationsInput | $Enums.AttendanceModes
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1096,8 +1166,10 @@ export type ShiftCreateWithoutWorkSchedulePoliciesInput = {
   graceMinutes?: number
   lateAfterMinutes?: number
   halfDayAfterMinutes?: number | null
+  enableOvertime?: boolean
   overtimeAfterMinutes?: number
   minimumWorkMinutes?: number | null
+  attendanceMode?: $Enums.AttendanceModes
   status?: $Enums.ShiftStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1119,8 +1191,10 @@ export type ShiftUncheckedCreateWithoutWorkSchedulePoliciesInput = {
   graceMinutes?: number
   lateAfterMinutes?: number
   halfDayAfterMinutes?: number | null
+  enableOvertime?: boolean
   overtimeAfterMinutes?: number
   minimumWorkMinutes?: number | null
+  attendanceMode?: $Enums.AttendanceModes
   status?: $Enums.ShiftStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1155,8 +1229,10 @@ export type ShiftUpdateWithoutWorkSchedulePoliciesInput = {
   graceMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   lateAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   halfDayAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   minimumWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attendanceMode?: Prisma.EnumAttendanceModesFieldUpdateOperationsInput | $Enums.AttendanceModes
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1178,8 +1254,10 @@ export type ShiftUncheckedUpdateWithoutWorkSchedulePoliciesInput = {
   graceMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   lateAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   halfDayAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   minimumWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attendanceMode?: Prisma.EnumAttendanceModesFieldUpdateOperationsInput | $Enums.AttendanceModes
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1199,8 +1277,10 @@ export type ShiftCreateManyCompanyInput = {
   graceMinutes?: number
   lateAfterMinutes?: number
   halfDayAfterMinutes?: number | null
+  enableOvertime?: boolean
   overtimeAfterMinutes?: number
   minimumWorkMinutes?: number | null
+  attendanceMode?: $Enums.AttendanceModes
   status?: $Enums.ShiftStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1217,8 +1297,10 @@ export type ShiftUpdateWithoutCompanyInput = {
   graceMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   lateAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   halfDayAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   minimumWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attendanceMode?: Prisma.EnumAttendanceModesFieldUpdateOperationsInput | $Enums.AttendanceModes
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1239,8 +1321,10 @@ export type ShiftUncheckedUpdateWithoutCompanyInput = {
   graceMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   lateAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   halfDayAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   minimumWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attendanceMode?: Prisma.EnumAttendanceModesFieldUpdateOperationsInput | $Enums.AttendanceModes
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1261,8 +1345,10 @@ export type ShiftUncheckedUpdateManyWithoutCompanyInput = {
   graceMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   lateAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   halfDayAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   minimumWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attendanceMode?: Prisma.EnumAttendanceModesFieldUpdateOperationsInput | $Enums.AttendanceModes
   status?: Prisma.EnumShiftStatusFieldUpdateOperationsInput | $Enums.ShiftStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1330,8 +1416,10 @@ export type ShiftSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   graceMinutes?: boolean
   lateAfterMinutes?: boolean
   halfDayAfterMinutes?: boolean
+  enableOvertime?: boolean
   overtimeAfterMinutes?: boolean
   minimumWorkMinutes?: boolean
+  attendanceMode?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1355,8 +1443,10 @@ export type ShiftSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   graceMinutes?: boolean
   lateAfterMinutes?: boolean
   halfDayAfterMinutes?: boolean
+  enableOvertime?: boolean
   overtimeAfterMinutes?: boolean
   minimumWorkMinutes?: boolean
+  attendanceMode?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1376,8 +1466,10 @@ export type ShiftSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   graceMinutes?: boolean
   lateAfterMinutes?: boolean
   halfDayAfterMinutes?: boolean
+  enableOvertime?: boolean
   overtimeAfterMinutes?: boolean
   minimumWorkMinutes?: boolean
+  attendanceMode?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1397,15 +1489,17 @@ export type ShiftSelectScalar = {
   graceMinutes?: boolean
   lateAfterMinutes?: boolean
   halfDayAfterMinutes?: boolean
+  enableOvertime?: boolean
   overtimeAfterMinutes?: boolean
   minimumWorkMinutes?: boolean
+  attendanceMode?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
 }
 
-export type ShiftOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "title" | "code" | "description" | "startTime" | "endTime" | "breakMinutes" | "graceMinutes" | "lateAfterMinutes" | "halfDayAfterMinutes" | "overtimeAfterMinutes" | "minimumWorkMinutes" | "status" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["shift"]>
+export type ShiftOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "title" | "code" | "description" | "startTime" | "endTime" | "breakMinutes" | "graceMinutes" | "lateAfterMinutes" | "halfDayAfterMinutes" | "enableOvertime" | "overtimeAfterMinutes" | "minimumWorkMinutes" | "attendanceMode" | "status" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["shift"]>
 export type ShiftInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   employees?: boolean | Prisma.Shift$employeesArgs<ExtArgs>
@@ -1440,8 +1534,10 @@ export type $ShiftPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     graceMinutes: number
     lateAfterMinutes: number
     halfDayAfterMinutes: number | null
+    enableOvertime: boolean
     overtimeAfterMinutes: number
     minimumWorkMinutes: number | null
+    attendanceMode: $Enums.AttendanceModes
     status: $Enums.ShiftStatus
     createdAt: Date
     updatedAt: Date
@@ -1884,8 +1980,10 @@ export interface ShiftFieldRefs {
   readonly graceMinutes: Prisma.FieldRef<"Shift", 'Int'>
   readonly lateAfterMinutes: Prisma.FieldRef<"Shift", 'Int'>
   readonly halfDayAfterMinutes: Prisma.FieldRef<"Shift", 'Int'>
+  readonly enableOvertime: Prisma.FieldRef<"Shift", 'Boolean'>
   readonly overtimeAfterMinutes: Prisma.FieldRef<"Shift", 'Int'>
   readonly minimumWorkMinutes: Prisma.FieldRef<"Shift", 'Int'>
+  readonly attendanceMode: Prisma.FieldRef<"Shift", 'AttendanceModes'>
   readonly status: Prisma.FieldRef<"Shift", 'ShiftStatus'>
   readonly createdAt: Prisma.FieldRef<"Shift", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Shift", 'DateTime'>

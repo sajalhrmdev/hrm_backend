@@ -327,6 +327,7 @@ export type OfficeLocationOrderByWithRelationInput = {
 
 export type OfficeLocationWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  companyId_id?: Prisma.OfficeLocationCompanyIdIdCompoundUniqueInput
   AND?: Prisma.OfficeLocationWhereInput | Prisma.OfficeLocationWhereInput[]
   OR?: Prisma.OfficeLocationWhereInput[]
   NOT?: Prisma.OfficeLocationWhereInput | Prisma.OfficeLocationWhereInput[]
@@ -344,7 +345,7 @@ export type OfficeLocationWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"OfficeLocation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"OfficeLocation"> | Date | string
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
-}, "id">
+}, "id" | "companyId_id">
 
 export type OfficeLocationOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -511,6 +512,11 @@ export type OfficeLocationListRelationFilter = {
 
 export type OfficeLocationOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type OfficeLocationCompanyIdIdCompoundUniqueInput = {
+  companyId: number
+  id: number
 }
 
 export type OfficeLocationCountOrderByAggregateInput = {

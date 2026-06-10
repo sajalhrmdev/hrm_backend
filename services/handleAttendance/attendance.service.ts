@@ -12,20 +12,6 @@ import {
   overTimeCalculation4Nonshift,
 } from "./attendance.helper.js";
 
-// const getStartEndOfDay = () => {
-//   const start = new Date();
-//   start.setHours(0, 0, 0, 0);
-
-//   const end = new Date();
-//   end.setHours(23, 59, 59, 999);
-
-//   return { start, end };
-// };
-
-const OFFICE_LAT = 22.582792;
-const OFFICE_LNG = 88.338482;
-const MAX_DISTANCE_KM = 0.2; // 200 meter
-
 export const handleAttendance = async (
   employeeId: number,
   type: "IN" | "OUT",
@@ -69,11 +55,11 @@ export const handleAttendance = async (
   const attendanceDate = shiftRange?.attendanceDate || start;
   const companyId = employee.companyId;
 
-  const policy = await prisma.workPolicy.findFirst({
-    where: { companyId },
-  });
+  // const policy = await prisma.workPolicy.findFirst({
+  //   where: { companyId },
+  // });
 
-  let mode = policy?.attendance_mode || "MULTI";
+  let mode = shift?.attendanceMode || "MULTI";
 
   if (isFlexible) {
     mode = "SINGLE";
@@ -99,11 +85,23 @@ export const handleAttendance = async (
   if (latitude == null || longitude == null) {
     throw new Error("Location required");
   }
-
-  const distance = getDistance(latitude, longitude, OFFICE_LAT, OFFICE_LNG);
-
-  if (distance > MAX_DISTANCE_KM) {
-    throw new Error("You are outside office location");
+  const location = await prisma.officeLocation.findFirst({
+    where: { companyId },
+  });
+  if (!location) {
+    throw new Error("company Location Required");
+  }
+  const OFFICE_LAT = location.latitude;
+  const OFFICE_LNG = location.longitude;
+  const MAX_DISTANCE_KM = location.radius;
+  if (workSchedulePolicy?.attendanceFrom === "OFFICE") {
+    if (!OFFICE_LAT || !OFFICE_LNG || !MAX_DISTANCE_KM) {
+      throw new Error("Office location coordinates are not configured");
+    }
+    const distance = getDistance(latitude, longitude, OFFICE_LAT, OFFICE_LNG);
+    if (distance > MAX_DISTANCE_KM) {
+      throw new Error("You are outside office location");
+    }
   }
 
   // accuracy check
@@ -221,7 +219,7 @@ export const handleAttendance = async (
     }
     const { status } = attendanceStatusFn(
       totalMinutes,
-      policy,
+
       shift,
       workSchedulePolicy,
     );

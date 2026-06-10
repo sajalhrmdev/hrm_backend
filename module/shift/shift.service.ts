@@ -41,7 +41,7 @@ export const createShiftService = async (companyId: number, data: any) => {
       code: data.code || null,
 
       description: data.description || null,
-
+      attendanceMode: data.attendanceMode || "MULTI",
       startTime: data.startTime,
 
       endTime: data.endTime,
@@ -55,7 +55,7 @@ export const createShiftService = async (companyId: number, data: any) => {
       halfDayAfterMinutes: data.halfDayAfterMinutes
         ? Number(data.halfDayAfterMinutes)
         : null,
-
+      enableOvertime: data.enableOvertime || false,
       overtimeAfterMinutes: Number(data.overtimeAfterMinutes || 0),
 
       minimumWorkMinutes: data.minimumWorkMinutes
@@ -251,7 +251,7 @@ export const updateShiftService = async (
       code: data.code,
 
       description: data.description,
-
+      attendanceMode: data.attendanceMode,
       startTime: data.startTime,
 
       endTime: data.endTime,
@@ -270,7 +270,7 @@ export const updateShiftService = async (
       halfDayAfterMinutes: data.halfDayAfterMinutes
         ? Number(data.halfDayAfterMinutes)
         : null,
-
+      enableOvertime: data.enableOvertime || false,
       overtimeAfterMinutes:
         data.overtimeAfterMinutes !== undefined
           ? Number(data.overtimeAfterMinutes)

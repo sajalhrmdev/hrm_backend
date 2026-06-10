@@ -3651,8 +3651,10 @@ export const ShiftScalarFieldEnum = {
   graceMinutes: 'graceMinutes',
   lateAfterMinutes: 'lateAfterMinutes',
   halfDayAfterMinutes: 'halfDayAfterMinutes',
+  enableOvertime: 'enableOvertime',
   overtimeAfterMinutes: 'overtimeAfterMinutes',
   minimumWorkMinutes: 'minimumWorkMinutes',
+  attendanceMode: 'attendanceMode',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
@@ -3668,7 +3670,9 @@ export const WorkSchedulePolicyScalarFieldEnum = {
   title: 'title',
   description: 'description',
   attendanceType: 'attendanceType',
+  attendanceFrom: 'attendanceFrom',
   requiredWorkMinutes: 'requiredWorkMinutes',
+  halfDayMinutes: 'halfDayMinutes',
   enableOvertime: 'enableOvertime',
   overtimeAfterMinutes: 'overtimeAfterMinutes',
   shiftId: 'shiftId',
@@ -4180,6 +4184,20 @@ export type ListEnumAttendanceModeFieldRefInput<$PrismaModel> = FieldRefInputTyp
 
 
 /**
+ * Reference to a field of type 'AttendanceModes'
+ */
+export type EnumAttendanceModesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AttendanceModes'>
+    
+
+
+/**
+ * Reference to a field of type 'AttendanceModes[]'
+ */
+export type ListEnumAttendanceModesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AttendanceModes[]'>
+    
+
+
+/**
  * Reference to a field of type 'ShiftStatus'
  */
 export type EnumShiftStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ShiftStatus'>
@@ -4204,6 +4222,20 @@ export type EnumAttendanceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$P
  * Reference to a field of type 'AttendanceType[]'
  */
 export type ListEnumAttendanceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AttendanceType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'AttendanceFrom'
+ */
+export type EnumAttendanceFromFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AttendanceFrom'>
+    
+
+
+/**
+ * Reference to a field of type 'AttendanceFrom[]'
+ */
+export type ListEnumAttendanceFromFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AttendanceFrom[]'>
     
 
 

@@ -577,6 +577,10 @@ enum ShiftStatus {
   ACTIVE
   INACTIVE
 }
+enum AttendanceModes {
+  SINGLE
+  MULTI
+}
 
 model Shift {
   id Int @id @default(autoincrement())
@@ -591,8 +595,10 @@ model Shift {
   graceMinutes Int  @default(0)
   lateAfterMinutes Int  @default(0)
   halfDayAfterMinutes Int?
+  enableOvertime Boolean @default(false)
   overtimeAfterMinutes Int  @default(0)
   minimumWorkMinutes Int?
+  attendanceMode AttendanceModes @default(MULTI)
   status ShiftStatus @default(ACTIVE)
  createdAt DateTime  @default(now())
   updatedAt DateTime   @updatedAt
@@ -610,14 +616,21 @@ enum AttendanceType {
   FIXED
   FLEXIBLE
 }
+enum AttendanceFrom {
+  OFFICE
+  REMOTE
+}
 model WorkSchedulePolicy {
   id Int @id @default(autoincrement())
   companyId Int
   title String
   description String?
   attendanceType AttendanceType @default(FIXED)
+  attendanceFrom AttendanceFrom @default(OFFICE)
   // FLEXIBLE
+
   requiredWorkMinutes Int?
+  halfDayMinutes Int?
   enableOvertime Boolean @default(false)
   overtimeAfterMinutes Int?
     // FIXED

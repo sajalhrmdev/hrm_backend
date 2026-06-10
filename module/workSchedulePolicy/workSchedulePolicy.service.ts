@@ -364,7 +364,7 @@
 
 // services/workSchedulePolicy.service.ts
 
-import { AttendanceType } from "../../generated/prisma/enums.js";
+import { AttendanceFrom, AttendanceType } from "../../generated/prisma/enums.js";
 import { prisma } from "../../lib/prisma.js";
 
 
@@ -380,9 +380,9 @@ type CreateInput = {
   description?: string;
 
   attendanceType: AttendanceType;
-
+  attendanceFrom: AttendanceFrom;
   requiredWorkMinutes?: number;
-
+  halfDayMinutes?:number;
   enableOvertime?: boolean;
 
   overtimeAfterMinutes?: number;
@@ -403,9 +403,10 @@ export const createWorkSchedulePolicy = async (input: CreateInput) => {
     description,
 
     attendanceType,
+    attendanceFrom,
 
     requiredWorkMinutes,
-
+    halfDayMinutes,
     enableOvertime,
 
     overtimeAfterMinutes,
@@ -453,6 +454,7 @@ export const createWorkSchedulePolicy = async (input: CreateInput) => {
     requiredWorkMinutes = null as any;
     enableOvertime = false;
     overtimeAfterMinutes = null as any;
+    halfDayMinutes= null as any;
   }
 
   // ======================================================
@@ -480,9 +482,10 @@ export const createWorkSchedulePolicy = async (input: CreateInput) => {
       description,
 
       attendanceType,
+      attendanceFrom,
 
       requiredWorkMinutes,
-
+      halfDayMinutes,
       enableOvertime,
 
       overtimeAfterMinutes,
@@ -566,9 +569,10 @@ type UpdateInput = {
   description?: string;
 
   attendanceType?: AttendanceType;
+  attendanceFrom?:AttendanceFrom;
 
   requiredWorkMinutes?: number;
-
+  halfDayMinutes?:number;
   enableOvertime?: boolean;
 
   overtimeAfterMinutes?: number;
@@ -593,9 +597,10 @@ export const updateWorkSchedulePolicy = async (input: UpdateInput) => {
     description,
 
     attendanceType,
+    attendanceFrom,
 
     requiredWorkMinutes,
-
+    halfDayMinutes,
     enableOvertime,
 
     overtimeAfterMinutes,
@@ -641,6 +646,7 @@ export const updateWorkSchedulePolicy = async (input: UpdateInput) => {
     requiredWorkMinutes = null as any;
     enableOvertime = false;
     overtimeAfterMinutes = null as any;
+    halfDayMinutes= null as any
   }
 
   // ======================================================
@@ -670,9 +676,10 @@ export const updateWorkSchedulePolicy = async (input: UpdateInput) => {
       description,
 
       attendanceType,
+      attendanceFrom,
 
       requiredWorkMinutes,
-
+      halfDayMinutes,
       enableOvertime,
 
       overtimeAfterMinutes,

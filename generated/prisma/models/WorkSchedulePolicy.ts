@@ -30,6 +30,7 @@ export type WorkSchedulePolicyAvgAggregateOutputType = {
   id: number | null
   companyId: number | null
   requiredWorkMinutes: number | null
+  halfDayMinutes: number | null
   overtimeAfterMinutes: number | null
   shiftId: number | null
 }
@@ -38,6 +39,7 @@ export type WorkSchedulePolicySumAggregateOutputType = {
   id: number | null
   companyId: number | null
   requiredWorkMinutes: number | null
+  halfDayMinutes: number | null
   overtimeAfterMinutes: number | null
   shiftId: number | null
 }
@@ -48,7 +50,9 @@ export type WorkSchedulePolicyMinAggregateOutputType = {
   title: string | null
   description: string | null
   attendanceType: $Enums.AttendanceType | null
+  attendanceFrom: $Enums.AttendanceFrom | null
   requiredWorkMinutes: number | null
+  halfDayMinutes: number | null
   enableOvertime: boolean | null
   overtimeAfterMinutes: number | null
   shiftId: number | null
@@ -63,7 +67,9 @@ export type WorkSchedulePolicyMaxAggregateOutputType = {
   title: string | null
   description: string | null
   attendanceType: $Enums.AttendanceType | null
+  attendanceFrom: $Enums.AttendanceFrom | null
   requiredWorkMinutes: number | null
+  halfDayMinutes: number | null
   enableOvertime: boolean | null
   overtimeAfterMinutes: number | null
   shiftId: number | null
@@ -78,7 +84,9 @@ export type WorkSchedulePolicyCountAggregateOutputType = {
   title: number
   description: number
   attendanceType: number
+  attendanceFrom: number
   requiredWorkMinutes: number
+  halfDayMinutes: number
   enableOvertime: number
   overtimeAfterMinutes: number
   shiftId: number
@@ -94,6 +102,7 @@ export type WorkSchedulePolicyAvgAggregateInputType = {
   id?: true
   companyId?: true
   requiredWorkMinutes?: true
+  halfDayMinutes?: true
   overtimeAfterMinutes?: true
   shiftId?: true
 }
@@ -102,6 +111,7 @@ export type WorkSchedulePolicySumAggregateInputType = {
   id?: true
   companyId?: true
   requiredWorkMinutes?: true
+  halfDayMinutes?: true
   overtimeAfterMinutes?: true
   shiftId?: true
 }
@@ -112,7 +122,9 @@ export type WorkSchedulePolicyMinAggregateInputType = {
   title?: true
   description?: true
   attendanceType?: true
+  attendanceFrom?: true
   requiredWorkMinutes?: true
+  halfDayMinutes?: true
   enableOvertime?: true
   overtimeAfterMinutes?: true
   shiftId?: true
@@ -127,7 +139,9 @@ export type WorkSchedulePolicyMaxAggregateInputType = {
   title?: true
   description?: true
   attendanceType?: true
+  attendanceFrom?: true
   requiredWorkMinutes?: true
+  halfDayMinutes?: true
   enableOvertime?: true
   overtimeAfterMinutes?: true
   shiftId?: true
@@ -142,7 +156,9 @@ export type WorkSchedulePolicyCountAggregateInputType = {
   title?: true
   description?: true
   attendanceType?: true
+  attendanceFrom?: true
   requiredWorkMinutes?: true
+  halfDayMinutes?: true
   enableOvertime?: true
   overtimeAfterMinutes?: true
   shiftId?: true
@@ -245,7 +261,9 @@ export type WorkSchedulePolicyGroupByOutputType = {
   title: string
   description: string | null
   attendanceType: $Enums.AttendanceType
+  attendanceFrom: $Enums.AttendanceFrom
   requiredWorkMinutes: number | null
+  halfDayMinutes: number | null
   enableOvertime: boolean
   overtimeAfterMinutes: number | null
   shiftId: number | null
@@ -284,7 +302,9 @@ export type WorkSchedulePolicyWhereInput = {
   title?: Prisma.StringFilter<"WorkSchedulePolicy"> | string
   description?: Prisma.StringNullableFilter<"WorkSchedulePolicy"> | string | null
   attendanceType?: Prisma.EnumAttendanceTypeFilter<"WorkSchedulePolicy"> | $Enums.AttendanceType
+  attendanceFrom?: Prisma.EnumAttendanceFromFilter<"WorkSchedulePolicy"> | $Enums.AttendanceFrom
   requiredWorkMinutes?: Prisma.IntNullableFilter<"WorkSchedulePolicy"> | number | null
+  halfDayMinutes?: Prisma.IntNullableFilter<"WorkSchedulePolicy"> | number | null
   enableOvertime?: Prisma.BoolFilter<"WorkSchedulePolicy"> | boolean
   overtimeAfterMinutes?: Prisma.IntNullableFilter<"WorkSchedulePolicy"> | number | null
   shiftId?: Prisma.IntNullableFilter<"WorkSchedulePolicy"> | number | null
@@ -303,7 +323,9 @@ export type WorkSchedulePolicyOrderByWithRelationInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   attendanceType?: Prisma.SortOrder
+  attendanceFrom?: Prisma.SortOrder
   requiredWorkMinutes?: Prisma.SortOrderInput | Prisma.SortOrder
+  halfDayMinutes?: Prisma.SortOrderInput | Prisma.SortOrder
   enableOvertime?: Prisma.SortOrder
   overtimeAfterMinutes?: Prisma.SortOrderInput | Prisma.SortOrder
   shiftId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -326,7 +348,9 @@ export type WorkSchedulePolicyWhereUniqueInput = Prisma.AtLeast<{
   title?: Prisma.StringFilter<"WorkSchedulePolicy"> | string
   description?: Prisma.StringNullableFilter<"WorkSchedulePolicy"> | string | null
   attendanceType?: Prisma.EnumAttendanceTypeFilter<"WorkSchedulePolicy"> | $Enums.AttendanceType
+  attendanceFrom?: Prisma.EnumAttendanceFromFilter<"WorkSchedulePolicy"> | $Enums.AttendanceFrom
   requiredWorkMinutes?: Prisma.IntNullableFilter<"WorkSchedulePolicy"> | number | null
+  halfDayMinutes?: Prisma.IntNullableFilter<"WorkSchedulePolicy"> | number | null
   enableOvertime?: Prisma.BoolFilter<"WorkSchedulePolicy"> | boolean
   overtimeAfterMinutes?: Prisma.IntNullableFilter<"WorkSchedulePolicy"> | number | null
   shiftId?: Prisma.IntNullableFilter<"WorkSchedulePolicy"> | number | null
@@ -345,7 +369,9 @@ export type WorkSchedulePolicyOrderByWithAggregationInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   attendanceType?: Prisma.SortOrder
+  attendanceFrom?: Prisma.SortOrder
   requiredWorkMinutes?: Prisma.SortOrderInput | Prisma.SortOrder
+  halfDayMinutes?: Prisma.SortOrderInput | Prisma.SortOrder
   enableOvertime?: Prisma.SortOrder
   overtimeAfterMinutes?: Prisma.SortOrderInput | Prisma.SortOrder
   shiftId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -369,7 +395,9 @@ export type WorkSchedulePolicyScalarWhereWithAggregatesInput = {
   title?: Prisma.StringWithAggregatesFilter<"WorkSchedulePolicy"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"WorkSchedulePolicy"> | string | null
   attendanceType?: Prisma.EnumAttendanceTypeWithAggregatesFilter<"WorkSchedulePolicy"> | $Enums.AttendanceType
+  attendanceFrom?: Prisma.EnumAttendanceFromWithAggregatesFilter<"WorkSchedulePolicy"> | $Enums.AttendanceFrom
   requiredWorkMinutes?: Prisma.IntNullableWithAggregatesFilter<"WorkSchedulePolicy"> | number | null
+  halfDayMinutes?: Prisma.IntNullableWithAggregatesFilter<"WorkSchedulePolicy"> | number | null
   enableOvertime?: Prisma.BoolWithAggregatesFilter<"WorkSchedulePolicy"> | boolean
   overtimeAfterMinutes?: Prisma.IntNullableWithAggregatesFilter<"WorkSchedulePolicy"> | number | null
   shiftId?: Prisma.IntNullableWithAggregatesFilter<"WorkSchedulePolicy"> | number | null
@@ -383,7 +411,9 @@ export type WorkSchedulePolicyCreateInput = {
   title: string
   description?: string | null
   attendanceType?: $Enums.AttendanceType
+  attendanceFrom?: $Enums.AttendanceFrom
   requiredWorkMinutes?: number | null
+  halfDayMinutes?: number | null
   enableOvertime?: boolean
   overtimeAfterMinutes?: number | null
   weeklyOffPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -401,7 +431,9 @@ export type WorkSchedulePolicyUncheckedCreateInput = {
   title: string
   description?: string | null
   attendanceType?: $Enums.AttendanceType
+  attendanceFrom?: $Enums.AttendanceFrom
   requiredWorkMinutes?: number | null
+  halfDayMinutes?: number | null
   enableOvertime?: boolean
   overtimeAfterMinutes?: number | null
   shiftId?: number | null
@@ -416,7 +448,9 @@ export type WorkSchedulePolicyUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendanceType?: Prisma.EnumAttendanceTypeFieldUpdateOperationsInput | $Enums.AttendanceType
+  attendanceFrom?: Prisma.EnumAttendanceFromFieldUpdateOperationsInput | $Enums.AttendanceFrom
   requiredWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  halfDayMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   weeklyOffPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -434,7 +468,9 @@ export type WorkSchedulePolicyUncheckedUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendanceType?: Prisma.EnumAttendanceTypeFieldUpdateOperationsInput | $Enums.AttendanceType
+  attendanceFrom?: Prisma.EnumAttendanceFromFieldUpdateOperationsInput | $Enums.AttendanceFrom
   requiredWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  halfDayMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -451,7 +487,9 @@ export type WorkSchedulePolicyCreateManyInput = {
   title: string
   description?: string | null
   attendanceType?: $Enums.AttendanceType
+  attendanceFrom?: $Enums.AttendanceFrom
   requiredWorkMinutes?: number | null
+  halfDayMinutes?: number | null
   enableOvertime?: boolean
   overtimeAfterMinutes?: number | null
   shiftId?: number | null
@@ -465,7 +503,9 @@ export type WorkSchedulePolicyUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendanceType?: Prisma.EnumAttendanceTypeFieldUpdateOperationsInput | $Enums.AttendanceType
+  attendanceFrom?: Prisma.EnumAttendanceFromFieldUpdateOperationsInput | $Enums.AttendanceFrom
   requiredWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  halfDayMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   weeklyOffPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -480,7 +520,9 @@ export type WorkSchedulePolicyUncheckedUpdateManyInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendanceType?: Prisma.EnumAttendanceTypeFieldUpdateOperationsInput | $Enums.AttendanceType
+  attendanceFrom?: Prisma.EnumAttendanceFromFieldUpdateOperationsInput | $Enums.AttendanceFrom
   requiredWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  halfDayMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -516,7 +558,9 @@ export type WorkSchedulePolicyCountOrderByAggregateInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   attendanceType?: Prisma.SortOrder
+  attendanceFrom?: Prisma.SortOrder
   requiredWorkMinutes?: Prisma.SortOrder
+  halfDayMinutes?: Prisma.SortOrder
   enableOvertime?: Prisma.SortOrder
   overtimeAfterMinutes?: Prisma.SortOrder
   shiftId?: Prisma.SortOrder
@@ -530,6 +574,7 @@ export type WorkSchedulePolicyAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
   requiredWorkMinutes?: Prisma.SortOrder
+  halfDayMinutes?: Prisma.SortOrder
   overtimeAfterMinutes?: Prisma.SortOrder
   shiftId?: Prisma.SortOrder
 }
@@ -540,7 +585,9 @@ export type WorkSchedulePolicyMaxOrderByAggregateInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   attendanceType?: Prisma.SortOrder
+  attendanceFrom?: Prisma.SortOrder
   requiredWorkMinutes?: Prisma.SortOrder
+  halfDayMinutes?: Prisma.SortOrder
   enableOvertime?: Prisma.SortOrder
   overtimeAfterMinutes?: Prisma.SortOrder
   shiftId?: Prisma.SortOrder
@@ -555,7 +602,9 @@ export type WorkSchedulePolicyMinOrderByAggregateInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   attendanceType?: Prisma.SortOrder
+  attendanceFrom?: Prisma.SortOrder
   requiredWorkMinutes?: Prisma.SortOrder
+  halfDayMinutes?: Prisma.SortOrder
   enableOvertime?: Prisma.SortOrder
   overtimeAfterMinutes?: Prisma.SortOrder
   shiftId?: Prisma.SortOrder
@@ -568,6 +617,7 @@ export type WorkSchedulePolicySumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
   requiredWorkMinutes?: Prisma.SortOrder
+  halfDayMinutes?: Prisma.SortOrder
   overtimeAfterMinutes?: Prisma.SortOrder
   shiftId?: Prisma.SortOrder
 }
@@ -676,11 +726,17 @@ export type EnumAttendanceTypeFieldUpdateOperationsInput = {
   set?: $Enums.AttendanceType
 }
 
+export type EnumAttendanceFromFieldUpdateOperationsInput = {
+  set?: $Enums.AttendanceFrom
+}
+
 export type WorkSchedulePolicyCreateWithoutCompanyInput = {
   title: string
   description?: string | null
   attendanceType?: $Enums.AttendanceType
+  attendanceFrom?: $Enums.AttendanceFrom
   requiredWorkMinutes?: number | null
+  halfDayMinutes?: number | null
   enableOvertime?: boolean
   overtimeAfterMinutes?: number | null
   weeklyOffPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -696,7 +752,9 @@ export type WorkSchedulePolicyUncheckedCreateWithoutCompanyInput = {
   title: string
   description?: string | null
   attendanceType?: $Enums.AttendanceType
+  attendanceFrom?: $Enums.AttendanceFrom
   requiredWorkMinutes?: number | null
+  halfDayMinutes?: number | null
   enableOvertime?: boolean
   overtimeAfterMinutes?: number | null
   shiftId?: number | null
@@ -742,7 +800,9 @@ export type WorkSchedulePolicyScalarWhereInput = {
   title?: Prisma.StringFilter<"WorkSchedulePolicy"> | string
   description?: Prisma.StringNullableFilter<"WorkSchedulePolicy"> | string | null
   attendanceType?: Prisma.EnumAttendanceTypeFilter<"WorkSchedulePolicy"> | $Enums.AttendanceType
+  attendanceFrom?: Prisma.EnumAttendanceFromFilter<"WorkSchedulePolicy"> | $Enums.AttendanceFrom
   requiredWorkMinutes?: Prisma.IntNullableFilter<"WorkSchedulePolicy"> | number | null
+  halfDayMinutes?: Prisma.IntNullableFilter<"WorkSchedulePolicy"> | number | null
   enableOvertime?: Prisma.BoolFilter<"WorkSchedulePolicy"> | boolean
   overtimeAfterMinutes?: Prisma.IntNullableFilter<"WorkSchedulePolicy"> | number | null
   shiftId?: Prisma.IntNullableFilter<"WorkSchedulePolicy"> | number | null
@@ -756,7 +816,9 @@ export type WorkSchedulePolicyCreateWithoutEmployeesInput = {
   title: string
   description?: string | null
   attendanceType?: $Enums.AttendanceType
+  attendanceFrom?: $Enums.AttendanceFrom
   requiredWorkMinutes?: number | null
+  halfDayMinutes?: number | null
   enableOvertime?: boolean
   overtimeAfterMinutes?: number | null
   weeklyOffPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -773,7 +835,9 @@ export type WorkSchedulePolicyUncheckedCreateWithoutEmployeesInput = {
   title: string
   description?: string | null
   attendanceType?: $Enums.AttendanceType
+  attendanceFrom?: $Enums.AttendanceFrom
   requiredWorkMinutes?: number | null
+  halfDayMinutes?: number | null
   enableOvertime?: boolean
   overtimeAfterMinutes?: number | null
   shiftId?: number | null
@@ -803,7 +867,9 @@ export type WorkSchedulePolicyUpdateWithoutEmployeesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendanceType?: Prisma.EnumAttendanceTypeFieldUpdateOperationsInput | $Enums.AttendanceType
+  attendanceFrom?: Prisma.EnumAttendanceFromFieldUpdateOperationsInput | $Enums.AttendanceFrom
   requiredWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  halfDayMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   weeklyOffPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -820,7 +886,9 @@ export type WorkSchedulePolicyUncheckedUpdateWithoutEmployeesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendanceType?: Prisma.EnumAttendanceTypeFieldUpdateOperationsInput | $Enums.AttendanceType
+  attendanceFrom?: Prisma.EnumAttendanceFromFieldUpdateOperationsInput | $Enums.AttendanceFrom
   requiredWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  halfDayMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -834,7 +902,9 @@ export type WorkSchedulePolicyCreateWithoutShiftInput = {
   title: string
   description?: string | null
   attendanceType?: $Enums.AttendanceType
+  attendanceFrom?: $Enums.AttendanceFrom
   requiredWorkMinutes?: number | null
+  halfDayMinutes?: number | null
   enableOvertime?: boolean
   overtimeAfterMinutes?: number | null
   weeklyOffPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -851,7 +921,9 @@ export type WorkSchedulePolicyUncheckedCreateWithoutShiftInput = {
   title: string
   description?: string | null
   attendanceType?: $Enums.AttendanceType
+  attendanceFrom?: $Enums.AttendanceFrom
   requiredWorkMinutes?: number | null
+  halfDayMinutes?: number | null
   enableOvertime?: boolean
   overtimeAfterMinutes?: number | null
   weeklyOffPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -892,7 +964,9 @@ export type WorkSchedulePolicyCreateManyCompanyInput = {
   title: string
   description?: string | null
   attendanceType?: $Enums.AttendanceType
+  attendanceFrom?: $Enums.AttendanceFrom
   requiredWorkMinutes?: number | null
+  halfDayMinutes?: number | null
   enableOvertime?: boolean
   overtimeAfterMinutes?: number | null
   shiftId?: number | null
@@ -906,7 +980,9 @@ export type WorkSchedulePolicyUpdateWithoutCompanyInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendanceType?: Prisma.EnumAttendanceTypeFieldUpdateOperationsInput | $Enums.AttendanceType
+  attendanceFrom?: Prisma.EnumAttendanceFromFieldUpdateOperationsInput | $Enums.AttendanceFrom
   requiredWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  halfDayMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   weeklyOffPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -922,7 +998,9 @@ export type WorkSchedulePolicyUncheckedUpdateWithoutCompanyInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendanceType?: Prisma.EnumAttendanceTypeFieldUpdateOperationsInput | $Enums.AttendanceType
+  attendanceFrom?: Prisma.EnumAttendanceFromFieldUpdateOperationsInput | $Enums.AttendanceFrom
   requiredWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  halfDayMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -938,7 +1016,9 @@ export type WorkSchedulePolicyUncheckedUpdateManyWithoutCompanyInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendanceType?: Prisma.EnumAttendanceTypeFieldUpdateOperationsInput | $Enums.AttendanceType
+  attendanceFrom?: Prisma.EnumAttendanceFromFieldUpdateOperationsInput | $Enums.AttendanceFrom
   requiredWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  halfDayMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -954,7 +1034,9 @@ export type WorkSchedulePolicyCreateManyShiftInput = {
   title: string
   description?: string | null
   attendanceType?: $Enums.AttendanceType
+  attendanceFrom?: $Enums.AttendanceFrom
   requiredWorkMinutes?: number | null
+  halfDayMinutes?: number | null
   enableOvertime?: boolean
   overtimeAfterMinutes?: number | null
   weeklyOffPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -967,7 +1049,9 @@ export type WorkSchedulePolicyUpdateWithoutShiftInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendanceType?: Prisma.EnumAttendanceTypeFieldUpdateOperationsInput | $Enums.AttendanceType
+  attendanceFrom?: Prisma.EnumAttendanceFromFieldUpdateOperationsInput | $Enums.AttendanceFrom
   requiredWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  halfDayMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   weeklyOffPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -984,7 +1068,9 @@ export type WorkSchedulePolicyUncheckedUpdateWithoutShiftInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendanceType?: Prisma.EnumAttendanceTypeFieldUpdateOperationsInput | $Enums.AttendanceType
+  attendanceFrom?: Prisma.EnumAttendanceFromFieldUpdateOperationsInput | $Enums.AttendanceFrom
   requiredWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  halfDayMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   weeklyOffPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1000,7 +1086,9 @@ export type WorkSchedulePolicyUncheckedUpdateManyWithoutShiftInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendanceType?: Prisma.EnumAttendanceTypeFieldUpdateOperationsInput | $Enums.AttendanceType
+  attendanceFrom?: Prisma.EnumAttendanceFromFieldUpdateOperationsInput | $Enums.AttendanceFrom
   requiredWorkMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  halfDayMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   enableOvertime?: Prisma.BoolFieldUpdateOperationsInput | boolean
   overtimeAfterMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   weeklyOffPattern?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1046,7 +1134,9 @@ export type WorkSchedulePolicySelect<ExtArgs extends runtime.Types.Extensions.In
   title?: boolean
   description?: boolean
   attendanceType?: boolean
+  attendanceFrom?: boolean
   requiredWorkMinutes?: boolean
+  halfDayMinutes?: boolean
   enableOvertime?: boolean
   overtimeAfterMinutes?: boolean
   shiftId?: boolean
@@ -1066,7 +1156,9 @@ export type WorkSchedulePolicySelectCreateManyAndReturn<ExtArgs extends runtime.
   title?: boolean
   description?: boolean
   attendanceType?: boolean
+  attendanceFrom?: boolean
   requiredWorkMinutes?: boolean
+  halfDayMinutes?: boolean
   enableOvertime?: boolean
   overtimeAfterMinutes?: boolean
   shiftId?: boolean
@@ -1084,7 +1176,9 @@ export type WorkSchedulePolicySelectUpdateManyAndReturn<ExtArgs extends runtime.
   title?: boolean
   description?: boolean
   attendanceType?: boolean
+  attendanceFrom?: boolean
   requiredWorkMinutes?: boolean
+  halfDayMinutes?: boolean
   enableOvertime?: boolean
   overtimeAfterMinutes?: boolean
   shiftId?: boolean
@@ -1102,7 +1196,9 @@ export type WorkSchedulePolicySelectScalar = {
   title?: boolean
   description?: boolean
   attendanceType?: boolean
+  attendanceFrom?: boolean
   requiredWorkMinutes?: boolean
+  halfDayMinutes?: boolean
   enableOvertime?: boolean
   overtimeAfterMinutes?: boolean
   shiftId?: boolean
@@ -1112,7 +1208,7 @@ export type WorkSchedulePolicySelectScalar = {
   updatedAt?: boolean
 }
 
-export type WorkSchedulePolicyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "title" | "description" | "attendanceType" | "requiredWorkMinutes" | "enableOvertime" | "overtimeAfterMinutes" | "shiftId" | "weeklyOffPattern" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["workSchedulePolicy"]>
+export type WorkSchedulePolicyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "title" | "description" | "attendanceType" | "attendanceFrom" | "requiredWorkMinutes" | "halfDayMinutes" | "enableOvertime" | "overtimeAfterMinutes" | "shiftId" | "weeklyOffPattern" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["workSchedulePolicy"]>
 export type WorkSchedulePolicyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   shift?: boolean | Prisma.WorkSchedulePolicy$shiftArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
@@ -1141,7 +1237,9 @@ export type $WorkSchedulePolicyPayload<ExtArgs extends runtime.Types.Extensions.
     title: string
     description: string | null
     attendanceType: $Enums.AttendanceType
+    attendanceFrom: $Enums.AttendanceFrom
     requiredWorkMinutes: number | null
+    halfDayMinutes: number | null
     enableOvertime: boolean
     overtimeAfterMinutes: number | null
     shiftId: number | null
@@ -1580,7 +1678,9 @@ export interface WorkSchedulePolicyFieldRefs {
   readonly title: Prisma.FieldRef<"WorkSchedulePolicy", 'String'>
   readonly description: Prisma.FieldRef<"WorkSchedulePolicy", 'String'>
   readonly attendanceType: Prisma.FieldRef<"WorkSchedulePolicy", 'AttendanceType'>
+  readonly attendanceFrom: Prisma.FieldRef<"WorkSchedulePolicy", 'AttendanceFrom'>
   readonly requiredWorkMinutes: Prisma.FieldRef<"WorkSchedulePolicy", 'Int'>
+  readonly halfDayMinutes: Prisma.FieldRef<"WorkSchedulePolicy", 'Int'>
   readonly enableOvertime: Prisma.FieldRef<"WorkSchedulePolicy", 'Boolean'>
   readonly overtimeAfterMinutes: Prisma.FieldRef<"WorkSchedulePolicy", 'Int'>
   readonly shiftId: Prisma.FieldRef<"WorkSchedulePolicy", 'Int'>
