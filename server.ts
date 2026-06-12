@@ -105,7 +105,7 @@ app.use(
   "/api/v1/leave",
   authMiddleware,
   companyAccessMiddleware,
-  employeeMiddleware,
+  // employeeMiddleware,
   leaveRoutes,
 );
 app.use(

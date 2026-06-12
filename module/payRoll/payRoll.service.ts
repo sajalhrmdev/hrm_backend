@@ -1124,10 +1124,71 @@ export const getSinglePayroll = async (
     attendance[row.status] = row._count.status;
   });
 
+  const leaveSummary = await prisma.leaveApplication.findMany({
+    where: {
+      employeeId: payroll.employee.id,
+
+      companyId,
+
+      status: "APPROVED",
+
+      fromDate: {
+        gte: payroll.payrollRun.periodStart,
+      },
+
+      toDate: {
+        lte: payroll.payrollRun.periodEnd,
+      },
+    },
+
+    select: {
+      totalDays: true,
+
+      paidDays: true,
+
+      unpaidDays: true,
+
+      leaveType: {
+        select: {
+          id: true,
+          name: true,
+          code: true,
+        },
+      },
+    },
+  });
+  const leaveMap = new Map();
+
+leaveSummary.forEach((leave) => {
+  const key = leave.leaveType.id;
+
+  if (!leaveMap.has(key)) {
+    leaveMap.set(key, {
+      leaveTypeId: leave.leaveType.id,
+      leaveTypeName: leave.leaveType.name,
+      leaveTypeCode: leave.leaveType.code,
+      totalDays: 0,
+      paidDays: 0,
+      unpaidDays: 0,
+    });
+  }
+
+  const item = leaveMap.get(key);
+
+  item.totalDays += leave.totalDays;
+  item.paidDays += leave.paidDays;
+  item.unpaidDays += leave.unpaidDays;
+});
+
+const finalLeaveSummary = Array.from(
+  leaveMap.values()
+);
+
   return {
     ...payroll,
 
     attendanceSummary: attendance,
+    leaveSummary: finalLeaveSummary,
   };
 };
 

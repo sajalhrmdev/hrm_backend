@@ -1,12 +1,16 @@
 import { Request, Response } from "express";
 import { applyLeave, getAllLeaves } from "../services/leave.service.js";
 import { getEmployeeFromRequest } from "../utils/getEmployeeFromRequest.js";
-import { approveLeave, rejectLeave } from "../services/leaveApproval.service.js";
+import {
+  approveLeave,
+  cancelLeaveApproval,
+  rejectLeave,
+} from "../services/leaveApproval.service.js";
 // 1======================apply leave========================
 export const applyLeaveController = async (req: Request, res: Response) => {
   try {
     // const employee = await getEmployeeFromRequest(req);
-    const employee = req.employee; 
+    const employee = req.employee;
     if (!employee) {
       throw new Error("Employee not found in request");
     }
@@ -44,7 +48,7 @@ interface AuthRequest extends Request {
 
 export const approveLeaveController = async (
   req: AuthRequest,
-  res: Response
+  res: Response,
 ) => {
   try {
     const { id } = req.params;
@@ -55,7 +59,7 @@ export const approveLeaveController = async (
 
     const data = await approveLeave({
       leaveId: Number(id),
-      approverId: user.id,
+      approverId: user.userId,
       companyId,
     });
 
@@ -67,7 +71,7 @@ export const approveLeaveController = async (
 // 3============================reject leave======================
 export const rejectLeaveController = async (
   req: AuthRequest,
-  res: Response
+  res: Response,
 ) => {
   try {
     const { id } = req.params;
@@ -88,6 +92,38 @@ export const rejectLeaveController = async (
   }
 };
 
+// =========================cancel leave===========================
+export const cancelLeaveApprovalController = async (
+  req: AuthRequest,
+  res: Response,
+) => {
+  try {
+    const companyId = req.companyId;
+
+    const { id } = req.params;
+
+    if (!companyId) {
+      throw new Error("Unauthorized");
+    }
+
+    const data = await cancelLeaveApproval({
+      leaveId: Number(id),
+
+      companyId,
+    });
+
+    return res.json({
+      success: true,
+      data,
+    });
+  } catch (err: any) {
+    return res.status(400).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+
 // 4============================get all applied leave========================
 
 interface AuthRequest extends Request {
@@ -96,7 +132,7 @@ interface AuthRequest extends Request {
 
 export const getAllLeavesController = async (
   req: AuthRequest,
-  res: Response
+  res: Response,
 ) => {
   try {
     const companyId = req.companyId;
@@ -128,89 +164,69 @@ export const getAllLeavesController = async (
 
 import { getEmployeeAllLeaves } from "../services/leave.service.js";
 
-interface AuthRequest
-  extends Request {
+interface AuthRequest extends Request {
   companyId?: number;
 }
 
-export const getEmployeeLeavesController =
-  async (
-    req: AuthRequest,
-    res: Response
-  ) => {
-    try {
-      const companyId =
-        req.companyId;
+export const getEmployeeLeavesController = async (
+  req: AuthRequest,
+  res: Response,
+) => {
+  try {
+    const companyId = req.companyId;
 
-      if (!companyId) {
-        throw new Error(
-          "Company not found"
-        );
-      }
-
-      const employeeId = Number(
-        req.params.employeeId
-      );
-
-      const year = req.query.year
-        ? Number(req.query.year)
-        : undefined;
-
-      const data =
-        await getEmployeeAllLeaves({
-          employeeId,
-          companyId,
-          year,
-        });
-
-      res.json({
-        success: true,
-        data,
-      });
-    } catch (err: any) {
-      res.status(400).json({
-        success: false,
-        message: err.message,
-      });
+    if (!companyId) {
+      throw new Error("Company not found");
     }
-  };
 
-  // 6=============================get my applied leave========================
+    const employeeId = Number(req.params.employeeId);
 
+    const year = req.query.year ? Number(req.query.year) : undefined;
 
+    const data = await getEmployeeAllLeaves({
+      employeeId,
+      companyId,
+      year,
+    });
 
-export const getMyLeavesController =
-  async (
-    req: Request,
-    res: Response
-  ) => {
-    try {
-      // 🔥 token → employee
-      const employee =req.employee
-        if (!employee) {
-          throw new Error("Employee not found");
-        }
+    res.json({
+      success: true,
+      data,
+    });
+  } catch (err: any) {
+    res.status(400).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
 
-      const year = req.query.year
-        ? Number(req.query.year)
-        : undefined;
+// 6=============================get my applied leave========================
 
-      const data =
-        await getEmployeeAllLeaves({
-          employeeId: employee.id,
-          companyId:
-            employee.companyId,
-          year,
-        });
-
-      res.json({
-        success: true,
-        data,
-      });
-    } catch (err: any) {
-      res.status(400).json({
-        success: false,
-        message: err.message,
-      });
+export const getMyLeavesController = async (req: Request, res: Response) => {
+  try {
+    // 🔥 token → employee
+    const employee = req.employee;
+    if (!employee) {
+      throw new Error("Employee not found");
     }
-  };
+
+    const year = req.query.year ? Number(req.query.year) : undefined;
+
+    const data = await getEmployeeAllLeaves({
+      employeeId: employee.id,
+      companyId: employee.companyId,
+      year,
+    });
+
+    res.json({
+      success: true,
+      data,
+    });
+  } catch (err: any) {
+    res.status(400).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};

@@ -9,6 +9,7 @@ import { get } from "node:http";
 import {
   applyLeaveController,
   approveLeaveController,
+  cancelLeaveApprovalController,
   getAllLeavesController,
   getEmployeeLeavesController,
   getMyLeavesController,
@@ -20,6 +21,7 @@ import {
   bulkAllocateLeaveBalanceController,
   getMyLeaveBalanceController,
 } from "../controllers/leaveBalance.controller.js";
+import { employeeMiddleware } from "../middlewares/employee.middlewear.js";
 
 const router = express.Router();
 
@@ -29,16 +31,17 @@ router.put("/type/:id", updateLeaveTypeController);
 //  toggle
 router.patch("/type/:id/toggle", toggleLeaveTypeController);
 
-router.post("/apply", applyLeaveController);
+router.post("/apply", employeeMiddleware, applyLeaveController);
 router.get("/all", getAllLeavesController);
 
 router.get("/employee/:employeeId", getEmployeeLeavesController);
-router.get("/my", getMyLeavesController);
+router.get("/my", employeeMiddleware, getMyLeavesController);
 
 router.patch("/approve/:id", approveLeaveController);
 router.patch("/reject/:id", rejectLeaveController);
+router.patch("/cancel-approval/:id", cancelLeaveApprovalController);
 
-router.get("/balance", getMyLeaveBalanceController);
+router.get("/balance", employeeMiddleware, getMyLeaveBalanceController);
 
 router.post("/allocate", allocateLeaveBalanceController);
 router.post("/allocate/bulk", bulkAllocateLeaveBalanceController);

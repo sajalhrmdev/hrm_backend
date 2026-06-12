@@ -82,9 +82,10 @@ export const approveLeave = async (input: ApproveInput) => {
         paidDays: true,
         unpaidDays: true,
         approvedAt: true,
+        approvedBy: true,
       },
     });
-await markAttendanceAsLeave(tx, leave);
+    // await markAttendanceAsLeave(tx, leave);
     // 6) (Optional 🔥) Attendance sync
     // TODO: mark attendance as LEAVE for each day
 
@@ -129,5 +130,86 @@ export const rejectLeave = async (input: RejectInput) => {
       status: true,
       approvedAt: true,
     },
+  });
+};
+
+type CancelApprovalInput = {
+  leaveId: number;
+  companyId: number;
+};
+// ==========================cancel leave========================
+export const cancelLeaveApproval = async (input: CancelApprovalInput) => {
+  const { leaveId, companyId } = input;
+
+  return prisma.$transaction(async (tx) => {
+    const leave = await tx.leaveApplication.findFirst({
+      where: {
+        id: leaveId,
+        companyId,
+      },
+
+      include: {
+        leaveType: {
+          select: {
+            is_paid: true,
+          },
+        },
+      },
+    });
+
+    if (!leave) {
+      throw new Error("Leave not found");
+    }
+    if (leave.toDate < new Date()) {
+      throw new Error("Past leave cannot be cancelled");
+    }
+
+    if (leave.status !== "APPROVED") {
+      throw new Error("Only approved leave can be cancelled");
+    }
+
+    const year = new Date(leave.fromDate).getFullYear();
+
+    const balance = await tx.leaveBalance.findUnique({
+      where: {
+        employeeId_leaveTypeId_year_companyId: {
+          employeeId: leave.employeeId,
+
+          leaveTypeId: leave.leaveTypeId,
+
+          year,
+
+          companyId,
+        },
+      },
+    });
+
+    if (balance && leave.leaveType.is_paid) {
+      await tx.leaveBalance.update({
+        where: {
+          id: balance.id,
+        },
+
+        data: {
+          used: {
+            decrement: leave.paidDays,
+          },
+        },
+      });
+    }
+
+    return await tx.leaveApplication.update({
+      where: {
+        id: leave.id,
+      },
+
+      data: {
+        status: "PENDING",
+
+        approvedBy: null,
+
+        approvedAt: null,
+      },
+    });
   });
 };

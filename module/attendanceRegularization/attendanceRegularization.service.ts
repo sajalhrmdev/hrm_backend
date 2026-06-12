@@ -798,7 +798,6 @@ export const getCompanyAdjustmentByDay = async (
 
 type GetAdjustmentInput = {
   companyId: number;
-
   attendanceId: number;
 };
 
