@@ -1,36 +1,25 @@
 import { PrismaQuery } from "./chat.types.js";
 import { AI_ALLOWED_MODELS } from "./allowedModels.js";
 
-export const validatePrismaQuery = (
-  companyId: number,
-  query: PrismaQuery
-) => {
+export const validatePrismaQuery = (companyId: number, query: PrismaQuery) => {
   // ==========================
   // Model Validation
   // ==========================
 
   const modelConfig =
-    AI_ALLOWED_MODELS[
-      query.model as keyof typeof AI_ALLOWED_MODELS
-    ];
+    AI_ALLOWED_MODELS[query.model as keyof typeof AI_ALLOWED_MODELS];
 
   if (!modelConfig) {
-    throw new Error(
-      `Model '${query.model}' is not allowed.`
-    );
+    throw new Error(`Model '${query.model}' is not allowed.`);
   }
 
   // ==========================
   // Operation Validation
   // ==========================
 
-  if (
-    !modelConfig.operations.includes(
-      query.operation as any
-    )
-  ) {
+  if (!modelConfig.operations.includes(query.operation as any)) {
     throw new Error(
-      `Operation '${query.operation}' is not allowed for '${query.model}'.`
+      `Operation '${query.operation}' is not allowed for '${query.model}'.`,
     );
   }
 
@@ -54,9 +43,10 @@ export const validatePrismaQuery = (
 
   if (query.include) {
     include = {};
+    const allowedRelations = modelConfig.relations as Record<string, boolean>;
 
     for (const key of Object.keys(query.include)) {
-      if (modelConfig.relations[key]) {
+      if (allowedRelations[key]) {
         include[key] = true;
       }
     }
@@ -76,9 +66,7 @@ export const validatePrismaQuery = (
     select = {};
 
     for (const key of Object.keys(query.select)) {
-      if (
-        modelConfig.fields.includes(key as never)
-      ) {
+      if (modelConfig.fields.includes(key as never)) {
         select[key] = true;
       }
     }
@@ -92,22 +80,14 @@ export const validatePrismaQuery = (
   // ORDER BY
   // ==========================
 
-  let orderBy:
-    | Record<string, any>
-    | undefined;
+  let orderBy: Record<string, any> | undefined;
 
   if (query.orderBy) {
     const key = Object.keys(query.orderBy)[0];
 
-    if (
-      key &&
-      modelConfig.fields.includes(key as never)
-    ) {
+    if (key && modelConfig.fields.includes(key as never)) {
       orderBy = {
-        [key]:
-          query.orderBy[key] === "asc"
-            ? "asc"
-            : "desc",
+        [key]: query.orderBy[key] === "asc" ? "asc" : "desc",
       };
     }
   }
@@ -116,19 +96,13 @@ export const validatePrismaQuery = (
   // TAKE
   // ==========================
 
-  const take =
-    typeof query.take === "number"
-      ? Math.min(query.take, 100)
-      : 20;
+  const take = typeof query.take === "number" ? Math.min(query.take, 100) : 20;
 
   // ==========================
   // SKIP
   // ==========================
 
-  const skip =
-    typeof query.skip === "number"
-      ? query.skip
-      : 0;
+  const skip = typeof query.skip === "number" ? query.skip : 0;
 
   // ==========================
   // RETURN
