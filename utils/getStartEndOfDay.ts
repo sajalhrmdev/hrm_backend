@@ -1,34 +1,6 @@
 
 
 
-// const getStartEndOfDay = (timeZone = "UTC", inputDate?: Date) => {
-//   const base = inputDate ? new Date(inputDate) : new Date();
-
-//   // 1️⃣ Convert to user timezone
-//   const localStr = base.toLocaleString("en-US", { timeZone });
-//   const localDate = new Date(localStr);
-
-//   // 2️⃣ Start of day
-//   const startLocal = new Date(localDate);
-//   startLocal.setHours(0, 0, 0, 0);
-
-//   // 3️⃣ End of day
-//   const endLocal = new Date(localDate);
-//   endLocal.setHours(23, 59, 59, 999);
-
-//   // 4️⃣ Convert back to UTC
-//   const startUTC = new Date(
-//     startLocal.toLocaleString("en-US", { timeZone: "UTC" })
-//   );
-
-//   const endUTC = new Date(
-//     endLocal.toLocaleString("en-US", { timeZone: "UTC" })
-//   );
-
-//   return { start: startUTC, end: endUTC };
-// };
-
-
 const getStartEndOfDay = (timeZone = "Asia/Kolkata", inputDate?: Date) => {
   const base = inputDate ? new Date(inputDate) : new Date();
 

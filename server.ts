@@ -3,6 +3,7 @@ import express, { Request, Response } from "express";
 // import designationRoutes from "./routes/designation.routes.js";
 // import employeeRoutes from "./routes/employee.routes.js";
 // import attendanceRoutes from "./routes/attendance.routes.js";
+import { loadSchemaContext } from "./module/chat/schemaLoader.js";
 import globalRoleRoutes from "./routes/globalRole.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import rolesRoutes from "./routes/role.routes.js";
@@ -41,6 +42,11 @@ import noticeRoutes from "./module/notice/notice.route.js";
 import userRoute from "./module/user/user.routes.js";
 import superAdminRoutes from "./module/superAdmin/superAdmin.routes.js";
 import officeLocationRoutes from "./module/officeLocation/officeLocation.routes.js";
+import employeeFaceRoutes from "./module/employeeFace/employeeFace.route.js";
+import performanceReviewRoutes from "./module/performanceReview/performanceReview.route.js";
+import rewardRoutes from "./module/reward/reward.route.js";
+import chatRoutes from "./module/chat/chat.routes.js";
+
 
 import { verifyToken } from "./controllers/middlewares/auth.middleware.js";
 import cookieParser from "cookie-parser";
@@ -101,6 +107,7 @@ app.use(
   // employeeMiddleware,
   attendanceRegularizationRoutes,
 );
+app.use("/api/v1/employee-face", authMiddleware, employeeFaceRoutes);
 app.use(
   "/api/v1/leave",
   authMiddleware,
@@ -254,11 +261,41 @@ app.use(
   employeeMiddleware,
   noticeRoutes,
 );
+app.use(
+  "/api/v1/performance",
+  authMiddleware,
+  companyAccessMiddleware,
+  
+  performanceReviewRoutes,
+);
+app.use(
+  "/api/v1/rewards",
+  authMiddleware,
+  companyAccessMiddleware,
+  
+  rewardRoutes,
+);
+app.use(
+  "/api/v1/chat",
+  authMiddleware,
+  companyAccessMiddleware,
+  
+  chatRoutes,
+);
 
 // app.use("/api/v1/salary-structure", salaryStructureRoutes);
 // app.use("/api/v1/payroll", payrollRoutes);
 
 // app.use("/api/v1/attendance",attendanceRoutes)
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Server is running at http://localhost:${port}`);
+// });
+async function bootstrap() {
+    await loadSchemaContext();
+
+    app.listen(port, () => {
+        console.log(`Server Started`);
+    });
+}
+
+bootstrap();

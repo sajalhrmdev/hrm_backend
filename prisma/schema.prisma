@@ -8,11 +8,6 @@ datasource db {
 }
 
 
-// User
-// Role
-// Employee
-// Department
-// Designation
 
 
 
@@ -59,6 +54,8 @@ model Company{
   leaveIncrementLogs LeaveIncrementLog[]
   notices Notice[]
   officeLocations OfficeLocation[]
+  performanceReviews PerformanceReview[]
+  employeeRewards EmployeeReward[]
 
 
 
@@ -248,8 +245,8 @@ model Employee {
  name String
  phone String
  email String @unique
- roleId Int @default(1)
- role Role @relation(fields:[roleId], references: [id])
+ roleId Int ?
+ role Role? @relation(fields:[roleId], references: [id])
  status EmployeeStatus @default(ACTIVE)
   employeeCode  String?
   departmentId  Int?
@@ -261,7 +258,6 @@ model Employee {
   shift Shift? @relation(fields: [shiftId], references: [id])
   joiningDate    DateTime?
   workSchedulePolicyId Int?
-
 workSchedulePolicy WorkSchedulePolicy? @relation( fields:[workSchedulePolicyId], references:[id])
   // employmentType String? // Permanent, Contractual
   // status         String? // active, resigned
@@ -282,6 +278,9 @@ workSchedulePolicy WorkSchedulePolicy? @relation( fields:[workSchedulePolicyId],
   employeeExperiences EmployeeExperience[]
   attendanceAdjustments AttendanceAdjustment[]
   leaveIncrementLogs LeaveIncrementLog[]
+  employeeFace EmployeeFace?
+  performanceReviews PerformanceReview[]
+  employeeRewards EmployeeReward[]
   
 @@index([companyId])
  
@@ -449,6 +448,21 @@ model Attendance{
 @@index([shiftId])
 }
 // =======================================================================================
+// ===========================EmployeeFace==============================
+model EmployeeFace {
+  id         Int      @id @default(autoincrement())
+
+  employeeId Int      @unique
+  publicId   String
+  imageUrl   String
+  embedding  Json?
+  
+  createdAt  DateTime @default(now())
+
+  updatedAt  DateTime @updatedAt
+
+  employee Employee @relation(   fields: [employeeId],   references: [id] )
+}
 // =======================================ATTENDANCE ADJUSTMENT==========================
 enum AttendanceAdjustmentType {
 
@@ -1093,4 +1107,50 @@ model Notice {
   @@index([noticeDate])
 
   @@index([isPublished])
+}
+
+// ===============================performance===========================
+model PerformanceReview {
+  id            Int      @id @default(autoincrement())
+
+  companyId     Int
+  employeeId    Int
+
+  punctuality   Int
+  teamwork      Int
+  productivity  Int
+
+  overallRating Float
+
+  comments      String?
+
+  reviewMonth   Int
+  reviewYear    Int
+
+  createdAt     DateTime @default(now())
+
+  company        Company  @relation(fields: [companyId], references: [id])
+  employee       Employee @relation(fields: [employeeId], references: [id])
+  @@unique([employeeId, reviewMonth, reviewYear])
+}
+// ==========================================================================
+model EmployeeReward {
+  id            Int      @id @default(autoincrement())
+
+  companyId     Int
+  employeeId    Int
+
+  title         String
+  description   String?
+
+  rewardType    String
+
+  rewardAmount  Float?
+
+  rewardDate    DateTime
+
+  createdAt     DateTime @default(now())
+
+  company        Company  @relation(fields: [companyId], references: [id])
+  employee       Employee @relation(fields: [employeeId], references: [id])
 }

@@ -3,6 +3,9 @@ import { prisma } from "../../lib/prisma.js";
 import getShiftRange from "../../utils/getShiftRange.js";
 import getStartEndOfDay from "../../utils/getStartEndOfDay.js";
 import getStartEndOfMonth from "../../utils/monthlyDate.js";
+import axios from "axios";
+
+import FormData from "form-data";
 import {
   calculateAttendance,
   getDistance,
@@ -11,14 +14,80 @@ import {
   overTimeCalculation4Shift,
   overTimeCalculation4Nonshift,
 } from "./attendance.helper.js";
+const cosineSimilarity = (a: number[], b: number[]) => {
+  let dot = 0;
+  let normA = 0;
+  let normB = 0;
 
+  for (let i = 0; i < a.length; i++) {
+    dot += a[i] * b[i];
+
+    normA += a[i] * a[i];
+
+    normB += b[i] * b[i];
+  }
+
+  return dot / (Math.sqrt(normA) * Math.sqrt(normB));
+};
+const verifyFace = async (employeeId: number, imageBuffer: Buffer) => {
+  const employeeFace = await prisma.employeeFace.findUnique({
+    where: {
+      employeeId,
+    },
+  });
+
+  if (!employeeFace) {
+    throw new Error("Face not registered");
+  }
+
+  const formData = new FormData();
+
+  formData.append("file", imageBuffer, {
+    filename: "attendance.jpg",
+    contentType: "image/jpeg",
+  });
+
+  const pythonResponse = await axios.post(
+    "http://localhost:8000/embedding",
+    formData,
+    {
+      headers: formData.getHeaders(),
+    },
+  );
+
+  if (!pythonResponse.data?.success) {
+    throw new Error(pythonResponse.data?.message || "Face detection failed");
+  }
+
+  const currentEmbedding = pythonResponse.data.embedding as number[];
+
+  const savedEmbedding = employeeFace.embedding as number[];
+
+  const score = cosineSimilarity(savedEmbedding, currentEmbedding);
+
+  console.log("Face Score:", score);
+
+  const THRESHOLD = 0.65;
+
+  if (score < THRESHOLD) {
+    throw new Error("Face verification failed");
+  }
+
+  return true;
+};
 export const handleAttendance = async (
   employeeId: number,
   type: "IN" | "OUT",
   latitude?: number,
   longitude?: number,
   accuracy?: number,
+  imageBuffer?: Buffer,
 ) => {
+  if (!imageBuffer) {
+    throw new Error("Face image required");
+  }
+
+  await verifyFace(employeeId, imageBuffer);
   const now = new Date();
   const timezone = "Asia/Kolkata";
   const { start, end } = getStartEndOfDay(timezone);
@@ -258,6 +327,108 @@ export const handleAttendance = async (
   };
 };
 
+export const getUserlessAttendanceService = async (
+  companyId: number,
+  date?: string,
+) => {
+  const targetDate = date ? new Date(date) : new Date();
+
+  const { start, end } = getStartEndOfDay("Asia/Kolkata", targetDate);
+
+  // const start = new Date(targetDate);
+  // start.setHours(0, 0, 0, 0);
+
+  // const end = new Date(targetDate);
+  // end.setHours(23, 59, 59, 999);
+
+  return prisma.employee.findMany({
+    where: {
+      companyId,
+      userId: null,
+    },
+
+    include: {
+      workSchedulePolicy: {
+        include: {
+          shift: true,
+        },
+      },
+
+      attendances: {
+        where: {
+          date: {
+            gte: start,
+            lte: end,
+          },
+        },
+
+        take: 1,
+      },
+    },
+
+    orderBy: {
+      employeeCode: "asc",
+    },
+  });
+};
+
+export const adminMarkAttendanceService = async (
+  companyId: number,
+  employeeIds: number[],
+  date?: Date,
+) => {
+  const { start } = getStartEndOfDay("Asia/Kolkata", date);
+
+  const employees = await prisma.employee.findMany({
+    where: {
+      companyId,
+      userId: null,
+      id: {
+        in: employeeIds,
+      },
+    },
+  });
+
+  if (!employees.length) {
+    throw new Error("Employees not found");
+  }
+
+  await prisma.$transaction(
+    employees.map((employee) =>
+      prisma.attendance.upsert({
+        where: {
+          employeeId_date: {
+            employeeId: employee.id,
+            date: start,
+          },
+        },
+
+        update: {},
+
+        create: {
+          employeeId: employee.id,
+
+          companyId: employee.companyId,
+
+          date: start,
+
+          status: "PRESENT",
+
+          total_work_minutes: 0,
+
+          overtime_minutes: 0,
+
+          late_minutes: 0,
+        },
+      }),
+    ),
+  );
+
+  return {
+    totalMarked: employees.length,
+  };
+};
+
 export const getTodayAttendance = async (employeeId: number) => {
   const timezone = "Asia/Kolkata";
   const { start, end } = getStartEndOfDay(timezone);
@@ -365,6 +536,47 @@ export const getMonthlyAttendance = async (
     orderBy: {
       date: "asc",
     },
+  });
+
+  return data;
+};
+
+export const getMonthlyAttendanceAll = async (
+  companyId: number,
+
+  year: number,
+  month: number,
+) => {
+  const { start, end } = getStartEndOfMonth(
+    "Asia/Kolkata", // 🔥 change if needed
+    year,
+    month,
+  );
+
+  const data = await prisma.attendance.findMany({
+    where: {
+      companyId,
+      date: {
+        gte: start,
+        lte: end,
+      },
+    },
+    include: {
+      employee: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+    },
+    orderBy: [
+      {
+        date: "asc",
+      },
+      {
+        employeeId: "asc",
+      },
+    ],
   });
 
   return data;

@@ -1,10 +1,13 @@
 // controllers/attendance.controller.ts
 import { Request, Response } from "express";
 import {
+  adminMarkAttendanceService,
   getAttendanceByRange,
   getCompanyDayAttendance,
   getMonthlyAttendance,
+  getMonthlyAttendanceAll,
   getTodayAttendance,
+  getUserlessAttendanceService,
   handleAttendance,
 } from "../services/handleAttendance/attendance.service.js";
 import { prisma } from "../lib/prisma.js";
@@ -17,47 +20,126 @@ import getStartEndOfDay from "../utils/getStartEndOfDay.js";
 export const checkIn = async (req: Request, res: Response) => {
   try {
     const { latitude, longitude, accuracy } = req.body;
+
     const employee = req.employee;
-    if (!employee) throw new Error("Employee not found");
+
+    if (!employee) {
+      throw new Error("Employee not found");
+    }
+
+    if (!req.file) {
+      throw new Error("Face image required");
+    }
 
     const data = await handleAttendance(
       employee.id,
       "IN",
-      latitude,
-      longitude,
-      accuracy,
+      Number(latitude),
+      Number(longitude),
+      Number(accuracy),
+      req.file.buffer,
     );
 
-    res.json({ success: true, data });
+    res.json({
+      success: true,
+      data,
+    });
   } catch (err: any) {
-    res.status(400).json({ message: err.message });
+    res.status(400).json({
+      success: false,
+      message: err.message,
+    });
   }
 };
 
 export const checkOut = async (req: Request, res: Response) => {
   try {
-  
     const { latitude, longitude, accuracy } = req.body;
-       const employee = req.employee;
-    if (!employee) throw new Error("Employee not found");
+
+    const employee = req.employee;
+
+    if (!employee) {
+      throw new Error("Employee not found");
+    }
+
+  if (!req.file) {
+  throw new Error("Face image required");
+}
 
     const data = await handleAttendance(
       employee.id,
       "OUT",
-      latitude,
-      longitude,
-      accuracy,
+      Number(latitude),
+      Number(longitude),
+      Number(accuracy),
+      req.file.buffer,
     );
 
-    res.json({ success: true, data });
+    res.json({
+      success: true,
+      data,
+    });
   } catch (err: any) {
-    res.status(400).json({ message: err.message });
+    res.status(400).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+
+export const getUserlessAttendanceController = async (
+  req: Request,
+  res: Response,
+) => {
+  try {
+    const companyId = Number(req.companyId);
+    // const employee = req.employee;
+
+    // if (!employee) {
+    //   throw new Error("Employee not found");
+    // }
+    const date = req.query.date as string;
+    const data = await getUserlessAttendanceService(companyId, date);
+
+    return res.json({
+      success: true,
+      data,
+    });
+  } catch (error: any) {
+    return res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+export const adminMarkAttendance = async (req: Request, res: Response) => {
+  try {
+    const { employeeIds, date } = req.body;
+
+    const companyId = Number(req.companyId);
+
+    if (!Array.isArray(employeeIds) || employeeIds.length === 0) {
+      throw new Error("Employee list is required");
+    }
+
+    const data = await adminMarkAttendanceService(companyId, employeeIds, date);
+
+    return res.json({
+      success: true,
+      message: "Attendance marked successfully",
+      data,
+    });
+  } catch (error: any) {
+    return res.status(400).json({
+      success: false,
+      message: error.message,
+    });
   }
 };
 
 export const getToday = async (req: Request, res: Response) => {
   try {
-        const employee = req.employee;
+    const employee = req.employee;
     if (!employee) throw new Error("Employee not found");
     const data = await getTodayAttendance(employee.id);
 
@@ -204,10 +286,6 @@ export const getTodayAttendanceByEmployee = async (
   res: Response,
 ) => {
   try {
-    console.log("companyId", req.companyId);
-    console.log("employeeby", req.employee);
-    console.log("hit today attendance by employee");
-
     // ======================================
     // TODAY RANGE
     // ======================================
@@ -353,7 +431,7 @@ export const getMonthlyAttendanceController = async (
   res: Response,
 ) => {
   try {
-        const employee = req.employee;
+    const employee = req.employee;
     if (!employee) throw new Error("Employee not found");
     console.log("request:", req.companyId, employee.id);
 
@@ -369,6 +447,43 @@ export const getMonthlyAttendanceController = async (
     const data = await getMonthlyAttendance(
       Number(req.companyId),
       employee.id,
+      Number(year),
+      Number(month),
+    );
+
+    res.json({
+      success: true,
+      data,
+    });
+  } catch (err: any) {
+    res.status(400).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+
+export const getMonthlyAttendanceAllController = async (
+  req: Request,
+  res: Response,
+) => {
+  try {
+    // const employee = req.employee;
+    // if (!employee) throw new Error("Employee not found");
+    // console.log("request:", req.companyId, employee.id);
+
+    const { year, month } = req.query;
+
+    if (!year || !month) {
+      return res.status(400).json({
+        success: false,
+        message: "year and month required",
+      });
+    }
+
+    const data = await getMonthlyAttendanceAll(
+      Number(req.companyId),
+
       Number(year),
       Number(month),
     );

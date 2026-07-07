@@ -38,6 +38,7 @@ import {
   Response,
 } from "express";
 import { processAttendance } from "../services/handleAttendance/attendance.processor.js";
+import getStartEndOfDay from "../utils/getStartEndOfDay.js";
 // import { processAttendanceForShift } from "../services/handleAttendance/attendance.processor.js";
 
 
@@ -121,55 +122,116 @@ interface AuthRequest
 //     }
 //   };
 
-  export const processAttendanceController =
-  async (
-    req: AuthRequest,
-    res: Response
-  ) => {
-    try {
+  // export const processAttendanceController =
+  // async (
+  //   req: AuthRequest,
+  //   res: Response
+  // ) => {
+  //   try {
 
-      const companyId =
-        req.companyId;
+  //     const companyId =
+  //       req.companyId;
 
-      if (!companyId) {
+  //     if (!companyId) {
 
-        throw new Error(
-          "Company not found"
-        );
-      }
+  //       throw new Error(
+  //         "Company not found"
+  //       );
+  //     }
 
-      const { date } =
-        req.body;
+  //     const { date } =
+  //       req.body;
 
-      const result =
-        await processAttendance({
 
-          companyId,
+  //     const result =
+  //       await processAttendance({
 
-          date:
-            date
-              ? new Date(date)
-              : new Date(),
-        });
+  //         companyId,
 
-      res.json({
+  //         date:
+  //           date
+  //             ? new Date(date)
+  //             : new Date(),
+  //       });
 
-        success: true,
+  //     res.json({
 
-        message:
-          "Attendance processed successfully",
+  //       success: true,
 
-        data: result,
-      });
+  //       message:
+  //         "Attendance processed successfully",
 
-    } catch (err: any) {
+  //       data: result,
+  //     });
 
-      res.status(400).json({
+  //   } catch (err: any) {
 
-        success: false,
+  //     res.status(400).json({
 
-        message:
-          err.message,
-      });
+  //       success: false,
+
+  //       message:
+  //         err.message,
+  //     });
+  //   }
+  // };
+
+  export const processAttendanceController = async (
+  req: AuthRequest,
+  res: Response
+) => {
+  try {
+    const companyId = req.companyId;
+
+    if (!companyId) {
+      throw new Error("Company not found");
     }
-  };
+
+    const { date } = req.body;
+
+    const attendanceDate = date
+      ? new Date(date)
+      : new Date();
+
+    // Validate date
+    if (isNaN(attendanceDate.getTime())) {
+      throw new Error("Invalid date");
+    }
+
+    // Future date validation (IST)
+    const attendanceStart = getStartEndOfDay(
+      "Asia/Kolkata",
+      attendanceDate
+    ).start;
+
+    const todayStart = getStartEndOfDay(
+      "Asia/Kolkata",
+      new Date()
+    ).start;
+
+    if (attendanceStart > todayStart) {
+      throw new Error(
+        "Attendance cannot be processed for a future date"
+      );
+    }
+
+    const result = await processAttendance({
+      companyId,
+      date: attendanceDate,
+    });
+
+    res.json({
+      success: true,
+      message:
+        "Attendance processed successfully",
+      data: result,
+    });
+  } catch (err: any) {
+    res.status(400).json({
+      success: false,
+      message:
+        err.message ||
+        "Something went wrong",
+    });
+  }
+};

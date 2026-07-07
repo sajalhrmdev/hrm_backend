@@ -108,6 +108,11 @@ export type EmployeeExperience = Prisma.EmployeeExperienceModel
  */
 export type Attendance = Prisma.AttendanceModel
 /**
+ * Model EmployeeFace
+ * 
+ */
+export type EmployeeFace = Prisma.EmployeeFaceModel
+/**
  * Model AttendanceAdjustment
  * 
  */
@@ -207,3 +212,13 @@ export type WeeklyOffConfig = Prisma.WeeklyOffConfigModel
  * 
  */
 export type Notice = Prisma.NoticeModel
+/**
+ * Model PerformanceReview
+ * 
+ */
+export type PerformanceReview = Prisma.PerformanceReviewModel
+/**
+ * Model EmployeeReward
+ * 
+ */
+export type EmployeeReward = Prisma.EmployeeRewardModel

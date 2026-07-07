@@ -1,12 +1,5 @@
-// ============================================
-// services/employee.service.ts
-// ============================================
-
-// import { prisma } from "../lib/prisma.js";
-
 import { Prisma } from "../../generated/prisma/client.js";
 import { prisma } from "../../lib/prisma.js";
-// import { Prisma } from "../generated/prisma/client.js";
 
 // ============================================
 // GENERATE EMPLOYEE CODE
@@ -18,7 +11,6 @@ export const generateEmployeeCode = async (companyId: number) => {
       companyId,
     },
   });
-
   return `EMP${String(total + 1).padStart(4, "0")}`;
 };
 
@@ -93,10 +85,7 @@ import bcrypt from "bcryptjs";
 
 export const createEmployeeService = async (companyId: number, data: any) => {
   return await prisma.$transaction(async (tx) => {
-    // ========================================
     // CHECK EMPLOYEE EMAIL
-    // ========================================
-
     const existingEmployee = await tx.employee.findUnique({
       where: {
         email: data.email,
@@ -107,9 +96,7 @@ export const createEmployeeService = async (companyId: number, data: any) => {
       throw new Error("Employee email already exists");
     }
 
-    // ========================================
     // EMPLOYEE CODE
-    // ========================================
 
     let employeeCode = data.employeeCode;
 
@@ -117,9 +104,7 @@ export const createEmployeeService = async (companyId: number, data: any) => {
       employeeCode = await generateEmployeeCode(companyId);
     }
 
-    // ========================================
     // CREATE USER (OPTIONAL)
-    // ========================================
 
     let finalUserId = data.userId || null;
 
@@ -203,7 +188,7 @@ export const createEmployeeService = async (companyId: number, data: any) => {
 
         phone: data.phone,
 
-        roleId: data.roleId || 1,
+        roleId: data.roleId,
 
         departmentId: data.departmentId || null,
 

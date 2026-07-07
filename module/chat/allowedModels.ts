@@ -1,0 +1,183 @@
+export const AI_ALLOWED_MODELS = {
+  Employee: {
+    prisma: "employee",
+
+    operations: ["findMany", "findFirst", "findUnique", "count"],
+
+    fields: [
+      "id",
+      "name",
+      "phone",
+      "email",
+      "employeeCode",
+      "status",
+      "joiningDate",
+      "departmentId",
+      "designationId",
+      "shiftId",
+      "createdAt",
+    ],
+
+    relations: {
+      department: true,
+      designation: true,
+      shift: true,
+      employeePersonalInfo: true,
+      employeeAddress: true,
+      employeeBankDetail: true,
+    },
+  },
+
+  Attendance: {
+    prisma: "attendance",
+
+    operations: ["findMany", "findFirst", "findUnique", "count", "aggregate"],
+
+    fields: [
+      "id",
+      "employeeId",
+      "date",
+      "status",
+      "check_in_time",
+      "check_out_time",
+      "late_minutes",
+      "overtime_minutes",
+      "total_work_minutes",
+      "createdAt",
+    ],
+
+    relations: {
+      employee: true,
+      shift: true,
+    },
+  },
+
+  Department: {
+    prisma: "department",
+
+    operations: ["findMany", "findFirst", "findUnique", "count"],
+
+    fields: ["id", "title", "statusId", "createdAt"],
+
+    relations: {},
+  },
+
+  Designation: {
+    prisma: "designation",
+
+    operations: ["findMany", "findFirst", "findUnique", "count"],
+
+    fields: ["id", "title", "code", "level", "status", "createdAt"],
+
+    relations: {
+      department: true,
+    },
+  },
+
+  LeaveApplication: {
+    prisma: "leaveApplication",
+
+    operations: ["findMany", "findFirst", "findUnique", "count"],
+
+    fields: [
+      "id",
+      "employeeId",
+      "status",
+      "fromDate",
+      "toDate",
+      "paidDays",
+      "unpaidDays",
+      "applied_at",
+    ],
+
+    relations: {
+      employee: true,
+      leaveType: true,
+    },
+  },
+
+  Holiday: {
+    prisma: "holiday",
+
+    operations: ["findMany", "findFirst", "findUnique", "count"],
+
+    fields: ["id", "title", "date", "type", "isPaid", "description"],
+
+    relations: {},
+  },
+
+  Notice: {
+    prisma: "notice",
+
+    operations: ["findMany", "findFirst", "findUnique", "count"],
+
+    fields: [
+      "id",
+      "title",
+      "description",
+      "noticeDate",
+      "expiryDate",
+      "priority",
+      "isPublished",
+    ],
+
+    relations: {},
+  },
+
+  PerformanceReview: {
+    prisma: "performanceReview",
+
+    operations: ["findMany", "findFirst", "findUnique", "count"],
+
+    fields: [
+      "id",
+      "employeeId",
+      "overallRating",
+      "reviewMonth",
+      "reviewYear",
+      "createdAt",
+    ],
+
+    relations: {
+      employee: true,
+    },
+  },
+
+  EmployeeReward: {
+    prisma: "employeeReward",
+
+    operations: ["findMany", "findFirst", "findUnique", "count"],
+
+    fields: [
+      "id",
+      "title",
+      "rewardType",
+      "rewardAmount",
+      "rewardDate",
+      "createdAt",
+    ],
+
+    relations: {
+      employee: true,
+    },
+  },
+
+  OfficeLocation: {
+    prisma: "officeLocation",
+
+    operations: ["findMany", "findFirst", "findUnique", "count"],
+
+    fields: [
+      "id",
+      "name",
+      "address",
+      "city",
+      "state",
+      "country",
+      "pinCode",
+      "status",
+    ],
+
+    relations: {},
+  },
+} as const;

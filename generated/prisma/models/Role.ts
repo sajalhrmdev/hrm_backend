@@ -418,6 +418,11 @@ export type RoleScalarRelationFilter = {
   isNot?: Prisma.RoleWhereInput
 }
 
+export type RoleNullableScalarRelationFilter = {
+  is?: Prisma.RoleWhereInput | null
+  isNot?: Prisma.RoleWhereInput | null
+}
+
 export type RoleCreateNestedManyWithoutCompanyInput = {
   create?: Prisma.XOR<Prisma.RoleCreateWithoutCompanyInput, Prisma.RoleUncheckedCreateWithoutCompanyInput> | Prisma.RoleCreateWithoutCompanyInput[] | Prisma.RoleUncheckedCreateWithoutCompanyInput[]
   connectOrCreate?: Prisma.RoleCreateOrConnectWithoutCompanyInput | Prisma.RoleCreateOrConnectWithoutCompanyInput[]
@@ -494,10 +499,12 @@ export type RoleCreateNestedOneWithoutEmployeesInput = {
   connect?: Prisma.RoleWhereUniqueInput
 }
 
-export type RoleUpdateOneRequiredWithoutEmployeesNestedInput = {
+export type RoleUpdateOneWithoutEmployeesNestedInput = {
   create?: Prisma.XOR<Prisma.RoleCreateWithoutEmployeesInput, Prisma.RoleUncheckedCreateWithoutEmployeesInput>
   connectOrCreate?: Prisma.RoleCreateOrConnectWithoutEmployeesInput
   upsert?: Prisma.RoleUpsertWithoutEmployeesInput
+  disconnect?: Prisma.RoleWhereInput | boolean
+  delete?: Prisma.RoleWhereInput | boolean
   connect?: Prisma.RoleWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.RoleUpdateToOneWithWhereWithoutEmployeesInput, Prisma.RoleUpdateWithoutEmployeesInput>, Prisma.RoleUncheckedUpdateWithoutEmployeesInput>
 }

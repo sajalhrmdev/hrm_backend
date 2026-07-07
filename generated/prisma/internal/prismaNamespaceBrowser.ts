@@ -69,6 +69,7 @@ export const ModelName = {
   EmployeeBankDetail: 'EmployeeBankDetail',
   EmployeeExperience: 'EmployeeExperience',
   Attendance: 'Attendance',
+  EmployeeFace: 'EmployeeFace',
   AttendanceAdjustment: 'AttendanceAdjustment',
   AttendanceLog: 'AttendanceLog',
   WorkPolicy: 'WorkPolicy',
@@ -88,7 +89,9 @@ export const ModelName = {
   LeaveApplication: 'LeaveApplication',
   Holiday: 'Holiday',
   WeeklyOffConfig: 'WeeklyOffConfig',
-  Notice: 'Notice'
+  Notice: 'Notice',
+  PerformanceReview: 'PerformanceReview',
+  EmployeeReward: 'EmployeeReward'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -388,6 +391,19 @@ export const AttendanceScalarFieldEnum = {
 } as const
 
 export type AttendanceScalarFieldEnum = (typeof AttendanceScalarFieldEnum)[keyof typeof AttendanceScalarFieldEnum]
+
+
+export const EmployeeFaceScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  publicId: 'publicId',
+  imageUrl: 'imageUrl',
+  embedding: 'embedding',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EmployeeFaceScalarFieldEnum = (typeof EmployeeFaceScalarFieldEnum)[keyof typeof EmployeeFaceScalarFieldEnum]
 
 
 export const AttendanceAdjustmentScalarFieldEnum = {
@@ -725,6 +741,38 @@ export const NoticeScalarFieldEnum = {
 } as const
 
 export type NoticeScalarFieldEnum = (typeof NoticeScalarFieldEnum)[keyof typeof NoticeScalarFieldEnum]
+
+
+export const PerformanceReviewScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  employeeId: 'employeeId',
+  punctuality: 'punctuality',
+  teamwork: 'teamwork',
+  productivity: 'productivity',
+  overallRating: 'overallRating',
+  comments: 'comments',
+  reviewMonth: 'reviewMonth',
+  reviewYear: 'reviewYear',
+  createdAt: 'createdAt'
+} as const
+
+export type PerformanceReviewScalarFieldEnum = (typeof PerformanceReviewScalarFieldEnum)[keyof typeof PerformanceReviewScalarFieldEnum]
+
+
+export const EmployeeRewardScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  employeeId: 'employeeId',
+  title: 'title',
+  description: 'description',
+  rewardType: 'rewardType',
+  rewardAmount: 'rewardAmount',
+  rewardDate: 'rewardDate',
+  createdAt: 'createdAt'
+} as const
+
+export type EmployeeRewardScalarFieldEnum = (typeof EmployeeRewardScalarFieldEnum)[keyof typeof EmployeeRewardScalarFieldEnum]
 
 
 export const SortOrder = {
