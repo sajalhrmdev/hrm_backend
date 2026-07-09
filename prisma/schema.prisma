@@ -24,6 +24,12 @@ model Company{
   email  String
   phone  String
   address String
+
+  logo       String?
+  favicon    String?
+  website    String?
+  faviconPublicId String?
+  logoPublicId String?
   status CompanyStatus @default(ACTIVE)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -56,6 +62,8 @@ model Company{
   officeLocations OfficeLocation[]
   performanceReviews PerformanceReview[]
   employeeRewards EmployeeReward[]
+  emailSettings EmailSettings?
+  emailTemplates EmailTemplate[]
 
 
 
@@ -1153,4 +1161,57 @@ model EmployeeReward {
 
   company        Company  @relation(fields: [companyId], references: [id])
   employee       Employee @relation(fields: [employeeId], references: [id])
+}
+
+
+// ================================email setting=======================
+model EmailSettings {
+  id             Int      @id @default(autoincrement())
+
+  companyId      Int      @unique
+  company        Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  provider       String?  // Gmail, Outlook, Zoho, Custom
+
+  smtpHost       String
+  smtpPort       Int
+  smtpUsername   String
+  smtpPassword   String
+
+  encryption     String   @default("TLS") // TLS | SSL | NONE
+
+  fromName       String
+  fromEmail      String
+  replyTo        String?
+
+  isActive       Boolean  @default(true)
+
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([companyId])
+}
+// =====================================email template===============================
+model EmailTemplate {
+  id            Int      @id @default(autoincrement())
+
+  companyId     Int
+  company        Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  name          String
+  slug          String
+
+  subject       String
+
+  htmlContent   String    @db.Text
+
+  description   String?
+
+  isActive      Boolean   @default(true)
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@unique([companyId, slug])
+  @@index([companyId])
 }

@@ -12,9 +12,12 @@ import {
   getMyCompanyService,
   updateCompanyService,
   updateMyCompanyService,
+  updateBrandingService,
 } from "./company.service.js";
 import { AuthRequest } from "../../middlewares/companyAccess.middleware.js";
 import { log } from "console";
+import { uploadToCloudinary } from "../../utils/cloudinaryUpload.js";
+import { deleteImageFromCloudinary } from "../../utils/cloudinaryDelete.js";
 
 // ============================================
 // CREATE
@@ -119,6 +122,42 @@ export const updateMyCompany = async (req: AuthRequest, res: Response) => {
       success: false,
       message: error.message,
     });
+  }
+};
+
+export const updateBranding = async (req: AuthRequest, res: Response) => {
+  try {
+    const companyId = Number(req.companyId);
+    const company = await getMyCompanyService(companyId);
+    const files = req.files as { [fieldname: string]: Express.Multer.File[] };
+    const data: any = {};
+
+    if (files?.logo?.[0]) {
+      if (company.logoPublicId) {
+        await deleteImageFromCloudinary(company.logoPublicId).catch(console.error);
+      }
+      const result = await uploadToCloudinary(files.logo[0].buffer, "company-logos");
+      data.logo = result.secure_url;
+      data.logoPublicId = result.public_id;
+    }
+
+    if (files?.favicon?.[0]) {
+      if (company.faviconPublicId) {
+        await deleteImageFromCloudinary(company.faviconPublicId).catch(console.error);
+      }
+      const result = await uploadToCloudinary(files.favicon[0].buffer, "company-favicons");
+      data.favicon = result.secure_url;
+      data.faviconPublicId = result.public_id;
+    }
+
+    if (req.body.website !== undefined) {
+      data.website = req.body.website;
+    }
+
+    const updated = await updateBrandingService(companyId, data);
+    return res.json({ success: true, data: updated });
+  } catch (error: any) {
+    return res.status(500).json({ success: false, message: error.message });
   }
 };
 // ============================================

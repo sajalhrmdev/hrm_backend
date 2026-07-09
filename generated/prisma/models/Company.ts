@@ -41,6 +41,11 @@ export type CompanyMinAggregateOutputType = {
   email: string | null
   phone: string | null
   address: string | null
+  logo: string | null
+  favicon: string | null
+  website: string | null
+  faviconPublicId: string | null
+  logoPublicId: string | null
   status: $Enums.CompanyStatus | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -53,6 +58,11 @@ export type CompanyMaxAggregateOutputType = {
   email: string | null
   phone: string | null
   address: string | null
+  logo: string | null
+  favicon: string | null
+  website: string | null
+  faviconPublicId: string | null
+  logoPublicId: string | null
   status: $Enums.CompanyStatus | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -65,6 +75,11 @@ export type CompanyCountAggregateOutputType = {
   email: number
   phone: number
   address: number
+  logo: number
+  favicon: number
+  website: number
+  faviconPublicId: number
+  logoPublicId: number
   status: number
   createdAt: number
   updatedAt: number
@@ -87,6 +102,11 @@ export type CompanyMinAggregateInputType = {
   email?: true
   phone?: true
   address?: true
+  logo?: true
+  favicon?: true
+  website?: true
+  faviconPublicId?: true
+  logoPublicId?: true
   status?: true
   createdAt?: true
   updatedAt?: true
@@ -99,6 +119,11 @@ export type CompanyMaxAggregateInputType = {
   email?: true
   phone?: true
   address?: true
+  logo?: true
+  favicon?: true
+  website?: true
+  faviconPublicId?: true
+  logoPublicId?: true
   status?: true
   createdAt?: true
   updatedAt?: true
@@ -111,6 +136,11 @@ export type CompanyCountAggregateInputType = {
   email?: true
   phone?: true
   address?: true
+  logo?: true
+  favicon?: true
+  website?: true
+  faviconPublicId?: true
+  logoPublicId?: true
   status?: true
   createdAt?: true
   updatedAt?: true
@@ -210,6 +240,11 @@ export type CompanyGroupByOutputType = {
   email: string
   phone: string
   address: string
+  logo: string | null
+  favicon: string | null
+  website: string | null
+  faviconPublicId: string | null
+  logoPublicId: string | null
   status: $Enums.CompanyStatus
   createdAt: Date
   updatedAt: Date
@@ -245,6 +280,11 @@ export type CompanyWhereInput = {
   email?: Prisma.StringFilter<"Company"> | string
   phone?: Prisma.StringFilter<"Company"> | string
   address?: Prisma.StringFilter<"Company"> | string
+  logo?: Prisma.StringNullableFilter<"Company"> | string | null
+  favicon?: Prisma.StringNullableFilter<"Company"> | string | null
+  website?: Prisma.StringNullableFilter<"Company"> | string | null
+  faviconPublicId?: Prisma.StringNullableFilter<"Company"> | string | null
+  logoPublicId?: Prisma.StringNullableFilter<"Company"> | string | null
   status?: Prisma.EnumCompanyStatusFilter<"Company"> | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFilter<"Company"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Company"> | Date | string
@@ -277,6 +317,8 @@ export type CompanyWhereInput = {
   officeLocations?: Prisma.OfficeLocationListRelationFilter
   performanceReviews?: Prisma.PerformanceReviewListRelationFilter
   employeeRewards?: Prisma.EmployeeRewardListRelationFilter
+  emailSettings?: Prisma.XOR<Prisma.EmailSettingsNullableScalarRelationFilter, Prisma.EmailSettingsWhereInput> | null
+  emailTemplates?: Prisma.EmailTemplateListRelationFilter
 }
 
 export type CompanyOrderByWithRelationInput = {
@@ -286,6 +328,11 @@ export type CompanyOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  logo?: Prisma.SortOrderInput | Prisma.SortOrder
+  favicon?: Prisma.SortOrderInput | Prisma.SortOrder
+  website?: Prisma.SortOrderInput | Prisma.SortOrder
+  faviconPublicId?: Prisma.SortOrderInput | Prisma.SortOrder
+  logoPublicId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -318,6 +365,8 @@ export type CompanyOrderByWithRelationInput = {
   officeLocations?: Prisma.OfficeLocationOrderByRelationAggregateInput
   performanceReviews?: Prisma.PerformanceReviewOrderByRelationAggregateInput
   employeeRewards?: Prisma.EmployeeRewardOrderByRelationAggregateInput
+  emailSettings?: Prisma.EmailSettingsOrderByWithRelationInput
+  emailTemplates?: Prisma.EmailTemplateOrderByRelationAggregateInput
 }
 
 export type CompanyWhereUniqueInput = Prisma.AtLeast<{
@@ -330,6 +379,11 @@ export type CompanyWhereUniqueInput = Prisma.AtLeast<{
   email?: Prisma.StringFilter<"Company"> | string
   phone?: Prisma.StringFilter<"Company"> | string
   address?: Prisma.StringFilter<"Company"> | string
+  logo?: Prisma.StringNullableFilter<"Company"> | string | null
+  favicon?: Prisma.StringNullableFilter<"Company"> | string | null
+  website?: Prisma.StringNullableFilter<"Company"> | string | null
+  faviconPublicId?: Prisma.StringNullableFilter<"Company"> | string | null
+  logoPublicId?: Prisma.StringNullableFilter<"Company"> | string | null
   status?: Prisma.EnumCompanyStatusFilter<"Company"> | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFilter<"Company"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Company"> | Date | string
@@ -362,6 +416,8 @@ export type CompanyWhereUniqueInput = Prisma.AtLeast<{
   officeLocations?: Prisma.OfficeLocationListRelationFilter
   performanceReviews?: Prisma.PerformanceReviewListRelationFilter
   employeeRewards?: Prisma.EmployeeRewardListRelationFilter
+  emailSettings?: Prisma.XOR<Prisma.EmailSettingsNullableScalarRelationFilter, Prisma.EmailSettingsWhereInput> | null
+  emailTemplates?: Prisma.EmailTemplateListRelationFilter
 }, "id" | "slug">
 
 export type CompanyOrderByWithAggregationInput = {
@@ -371,6 +427,11 @@ export type CompanyOrderByWithAggregationInput = {
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  logo?: Prisma.SortOrderInput | Prisma.SortOrder
+  favicon?: Prisma.SortOrderInput | Prisma.SortOrder
+  website?: Prisma.SortOrderInput | Prisma.SortOrder
+  faviconPublicId?: Prisma.SortOrderInput | Prisma.SortOrder
+  logoPublicId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -391,6 +452,11 @@ export type CompanyScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"Company"> | string
   phone?: Prisma.StringWithAggregatesFilter<"Company"> | string
   address?: Prisma.StringWithAggregatesFilter<"Company"> | string
+  logo?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  favicon?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  website?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  faviconPublicId?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  logoPublicId?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
   status?: Prisma.EnumCompanyStatusWithAggregatesFilter<"Company"> | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Company"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Company"> | Date | string
@@ -402,6 +468,11 @@ export type CompanyCreateInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -434,6 +505,8 @@ export type CompanyCreateInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateInput = {
@@ -443,6 +516,11 @@ export type CompanyUncheckedCreateInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -475,6 +553,8 @@ export type CompanyUncheckedCreateInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUpdateInput = {
@@ -483,6 +563,11 @@ export type CompanyUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -515,6 +600,8 @@ export type CompanyUpdateInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateInput = {
@@ -524,6 +611,11 @@ export type CompanyUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -556,6 +648,8 @@ export type CompanyUncheckedUpdateInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateManyInput = {
@@ -565,6 +659,11 @@ export type CompanyCreateManyInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -576,6 +675,11 @@ export type CompanyUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -588,6 +692,11 @@ export type CompanyUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -600,6 +709,11 @@ export type CompanyCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  logo?: Prisma.SortOrder
+  favicon?: Prisma.SortOrder
+  website?: Prisma.SortOrder
+  faviconPublicId?: Prisma.SortOrder
+  logoPublicId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -616,6 +730,11 @@ export type CompanyMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  logo?: Prisma.SortOrder
+  favicon?: Prisma.SortOrder
+  website?: Prisma.SortOrder
+  faviconPublicId?: Prisma.SortOrder
+  logoPublicId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -628,6 +747,11 @@ export type CompanyMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  logo?: Prisma.SortOrder
+  favicon?: Prisma.SortOrder
+  website?: Prisma.SortOrder
+  faviconPublicId?: Prisma.SortOrder
+  logoPublicId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -644,6 +768,10 @@ export type CompanyScalarRelationFilter = {
 
 export type StringFieldUpdateOperationsInput = {
   set?: string
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
 }
 
 export type EnumCompanyStatusFieldUpdateOperationsInput = {
@@ -1068,12 +1196,45 @@ export type CompanyUpdateOneRequiredWithoutEmployeeRewardsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutEmployeeRewardsInput, Prisma.CompanyUpdateWithoutEmployeeRewardsInput>, Prisma.CompanyUncheckedUpdateWithoutEmployeeRewardsInput>
 }
 
+export type CompanyCreateNestedOneWithoutEmailSettingsInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutEmailSettingsInput, Prisma.CompanyUncheckedCreateWithoutEmailSettingsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutEmailSettingsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutEmailSettingsNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutEmailSettingsInput, Prisma.CompanyUncheckedCreateWithoutEmailSettingsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutEmailSettingsInput
+  upsert?: Prisma.CompanyUpsertWithoutEmailSettingsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutEmailSettingsInput, Prisma.CompanyUpdateWithoutEmailSettingsInput>, Prisma.CompanyUncheckedUpdateWithoutEmailSettingsInput>
+}
+
+export type CompanyCreateNestedOneWithoutEmailTemplatesInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutEmailTemplatesInput, Prisma.CompanyUncheckedCreateWithoutEmailTemplatesInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutEmailTemplatesInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutEmailTemplatesNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutEmailTemplatesInput, Prisma.CompanyUncheckedCreateWithoutEmailTemplatesInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutEmailTemplatesInput
+  upsert?: Prisma.CompanyUpsertWithoutEmailTemplatesInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutEmailTemplatesInput, Prisma.CompanyUpdateWithoutEmailTemplatesInput>, Prisma.CompanyUncheckedUpdateWithoutEmailTemplatesInput>
+}
+
 export type CompanyCreateWithoutOfficeLocationsInput = {
   name: string
   slug: string
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1105,6 +1266,8 @@ export type CompanyCreateWithoutOfficeLocationsInput = {
   notices?: Prisma.NoticeCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutOfficeLocationsInput = {
@@ -1114,6 +1277,11 @@ export type CompanyUncheckedCreateWithoutOfficeLocationsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1145,6 +1313,8 @@ export type CompanyUncheckedCreateWithoutOfficeLocationsInput = {
   notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutOfficeLocationsInput = {
@@ -1169,6 +1339,11 @@ export type CompanyUpdateWithoutOfficeLocationsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1200,6 +1375,8 @@ export type CompanyUpdateWithoutOfficeLocationsInput = {
   notices?: Prisma.NoticeUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutOfficeLocationsInput = {
@@ -1209,6 +1386,11 @@ export type CompanyUncheckedUpdateWithoutOfficeLocationsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1240,6 +1422,8 @@ export type CompanyUncheckedUpdateWithoutOfficeLocationsInput = {
   notices?: Prisma.NoticeUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutDesignationsInput = {
@@ -1248,6 +1432,11 @@ export type CompanyCreateWithoutDesignationsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1279,6 +1468,8 @@ export type CompanyCreateWithoutDesignationsInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutDesignationsInput = {
@@ -1288,6 +1479,11 @@ export type CompanyUncheckedCreateWithoutDesignationsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1319,6 +1515,8 @@ export type CompanyUncheckedCreateWithoutDesignationsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutDesignationsInput = {
@@ -1343,6 +1541,11 @@ export type CompanyUpdateWithoutDesignationsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1374,6 +1577,8 @@ export type CompanyUpdateWithoutDesignationsInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutDesignationsInput = {
@@ -1383,6 +1588,11 @@ export type CompanyUncheckedUpdateWithoutDesignationsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1414,6 +1624,8 @@ export type CompanyUncheckedUpdateWithoutDesignationsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutRolesInput = {
@@ -1422,6 +1634,11 @@ export type CompanyCreateWithoutRolesInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1453,6 +1670,8 @@ export type CompanyCreateWithoutRolesInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutRolesInput = {
@@ -1462,6 +1681,11 @@ export type CompanyUncheckedCreateWithoutRolesInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1493,6 +1717,8 @@ export type CompanyUncheckedCreateWithoutRolesInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutRolesInput = {
@@ -1517,6 +1743,11 @@ export type CompanyUpdateWithoutRolesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1548,6 +1779,8 @@ export type CompanyUpdateWithoutRolesInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutRolesInput = {
@@ -1557,6 +1790,11 @@ export type CompanyUncheckedUpdateWithoutRolesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1588,6 +1826,8 @@ export type CompanyUncheckedUpdateWithoutRolesInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutMembershipsInput = {
@@ -1596,6 +1836,11 @@ export type CompanyCreateWithoutMembershipsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1627,6 +1872,8 @@ export type CompanyCreateWithoutMembershipsInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutMembershipsInput = {
@@ -1636,6 +1883,11 @@ export type CompanyUncheckedCreateWithoutMembershipsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1667,6 +1919,8 @@ export type CompanyUncheckedCreateWithoutMembershipsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutMembershipsInput = {
@@ -1691,6 +1945,11 @@ export type CompanyUpdateWithoutMembershipsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1722,6 +1981,8 @@ export type CompanyUpdateWithoutMembershipsInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutMembershipsInput = {
@@ -1731,6 +1992,11 @@ export type CompanyUncheckedUpdateWithoutMembershipsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1762,6 +2028,8 @@ export type CompanyUncheckedUpdateWithoutMembershipsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmployeesInput = {
@@ -1770,6 +2038,11 @@ export type CompanyCreateWithoutEmployeesInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1801,6 +2074,8 @@ export type CompanyCreateWithoutEmployeesInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmployeesInput = {
@@ -1810,6 +2085,11 @@ export type CompanyUncheckedCreateWithoutEmployeesInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1841,6 +2121,8 @@ export type CompanyUncheckedCreateWithoutEmployeesInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmployeesInput = {
@@ -1865,6 +2147,11 @@ export type CompanyUpdateWithoutEmployeesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1896,6 +2183,8 @@ export type CompanyUpdateWithoutEmployeesInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmployeesInput = {
@@ -1905,6 +2194,11 @@ export type CompanyUncheckedUpdateWithoutEmployeesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1936,6 +2230,8 @@ export type CompanyUncheckedUpdateWithoutEmployeesInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmployeeEmergencyContactsInput = {
@@ -1944,6 +2240,11 @@ export type CompanyCreateWithoutEmployeeEmergencyContactsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1975,6 +2276,8 @@ export type CompanyCreateWithoutEmployeeEmergencyContactsInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmployeeEmergencyContactsInput = {
@@ -1984,6 +2287,11 @@ export type CompanyUncheckedCreateWithoutEmployeeEmergencyContactsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2015,6 +2323,8 @@ export type CompanyUncheckedCreateWithoutEmployeeEmergencyContactsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmployeeEmergencyContactsInput = {
@@ -2039,6 +2349,11 @@ export type CompanyUpdateWithoutEmployeeEmergencyContactsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2070,6 +2385,8 @@ export type CompanyUpdateWithoutEmployeeEmergencyContactsInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmployeeEmergencyContactsInput = {
@@ -2079,6 +2396,11 @@ export type CompanyUncheckedUpdateWithoutEmployeeEmergencyContactsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2110,6 +2432,8 @@ export type CompanyUncheckedUpdateWithoutEmployeeEmergencyContactsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmployeeBankDetailsInput = {
@@ -2118,6 +2442,11 @@ export type CompanyCreateWithoutEmployeeBankDetailsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2149,6 +2478,8 @@ export type CompanyCreateWithoutEmployeeBankDetailsInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmployeeBankDetailsInput = {
@@ -2158,6 +2489,11 @@ export type CompanyUncheckedCreateWithoutEmployeeBankDetailsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2189,6 +2525,8 @@ export type CompanyUncheckedCreateWithoutEmployeeBankDetailsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmployeeBankDetailsInput = {
@@ -2213,6 +2551,11 @@ export type CompanyUpdateWithoutEmployeeBankDetailsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2244,6 +2587,8 @@ export type CompanyUpdateWithoutEmployeeBankDetailsInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmployeeBankDetailsInput = {
@@ -2253,6 +2598,11 @@ export type CompanyUncheckedUpdateWithoutEmployeeBankDetailsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2284,6 +2634,8 @@ export type CompanyUncheckedUpdateWithoutEmployeeBankDetailsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmployeeExperiencesInput = {
@@ -2292,6 +2644,11 @@ export type CompanyCreateWithoutEmployeeExperiencesInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2323,6 +2680,8 @@ export type CompanyCreateWithoutEmployeeExperiencesInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmployeeExperiencesInput = {
@@ -2332,6 +2691,11 @@ export type CompanyUncheckedCreateWithoutEmployeeExperiencesInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2363,6 +2727,8 @@ export type CompanyUncheckedCreateWithoutEmployeeExperiencesInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmployeeExperiencesInput = {
@@ -2387,6 +2753,11 @@ export type CompanyUpdateWithoutEmployeeExperiencesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2418,6 +2789,8 @@ export type CompanyUpdateWithoutEmployeeExperiencesInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmployeeExperiencesInput = {
@@ -2427,6 +2800,11 @@ export type CompanyUncheckedUpdateWithoutEmployeeExperiencesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2458,6 +2836,8 @@ export type CompanyUncheckedUpdateWithoutEmployeeExperiencesInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutAttendancesInput = {
@@ -2466,6 +2846,11 @@ export type CompanyCreateWithoutAttendancesInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2497,6 +2882,8 @@ export type CompanyCreateWithoutAttendancesInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutAttendancesInput = {
@@ -2506,6 +2893,11 @@ export type CompanyUncheckedCreateWithoutAttendancesInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2537,6 +2929,8 @@ export type CompanyUncheckedCreateWithoutAttendancesInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutAttendancesInput = {
@@ -2561,6 +2955,11 @@ export type CompanyUpdateWithoutAttendancesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2592,6 +2991,8 @@ export type CompanyUpdateWithoutAttendancesInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutAttendancesInput = {
@@ -2601,6 +3002,11 @@ export type CompanyUncheckedUpdateWithoutAttendancesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2632,6 +3038,8 @@ export type CompanyUncheckedUpdateWithoutAttendancesInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutAttendanceAdjustmentsInput = {
@@ -2640,6 +3048,11 @@ export type CompanyCreateWithoutAttendanceAdjustmentsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2671,6 +3084,8 @@ export type CompanyCreateWithoutAttendanceAdjustmentsInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutAttendanceAdjustmentsInput = {
@@ -2680,6 +3095,11 @@ export type CompanyUncheckedCreateWithoutAttendanceAdjustmentsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2711,6 +3131,8 @@ export type CompanyUncheckedCreateWithoutAttendanceAdjustmentsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutAttendanceAdjustmentsInput = {
@@ -2735,6 +3157,11 @@ export type CompanyUpdateWithoutAttendanceAdjustmentsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2766,6 +3193,8 @@ export type CompanyUpdateWithoutAttendanceAdjustmentsInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutAttendanceAdjustmentsInput = {
@@ -2775,6 +3204,11 @@ export type CompanyUncheckedUpdateWithoutAttendanceAdjustmentsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2806,6 +3240,8 @@ export type CompanyUncheckedUpdateWithoutAttendanceAdjustmentsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutAttendanceLogsInput = {
@@ -2814,6 +3250,11 @@ export type CompanyCreateWithoutAttendanceLogsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2845,6 +3286,8 @@ export type CompanyCreateWithoutAttendanceLogsInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutAttendanceLogsInput = {
@@ -2854,6 +3297,11 @@ export type CompanyUncheckedCreateWithoutAttendanceLogsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2885,6 +3333,8 @@ export type CompanyUncheckedCreateWithoutAttendanceLogsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutAttendanceLogsInput = {
@@ -2909,6 +3359,11 @@ export type CompanyUpdateWithoutAttendanceLogsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2940,6 +3395,8 @@ export type CompanyUpdateWithoutAttendanceLogsInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutAttendanceLogsInput = {
@@ -2949,6 +3406,11 @@ export type CompanyUncheckedUpdateWithoutAttendanceLogsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2980,6 +3442,8 @@ export type CompanyUncheckedUpdateWithoutAttendanceLogsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutWorkPoliciesInput = {
@@ -2988,6 +3452,11 @@ export type CompanyCreateWithoutWorkPoliciesInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3019,6 +3488,8 @@ export type CompanyCreateWithoutWorkPoliciesInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutWorkPoliciesInput = {
@@ -3028,6 +3499,11 @@ export type CompanyUncheckedCreateWithoutWorkPoliciesInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3059,6 +3535,8 @@ export type CompanyUncheckedCreateWithoutWorkPoliciesInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutWorkPoliciesInput = {
@@ -3083,6 +3561,11 @@ export type CompanyUpdateWithoutWorkPoliciesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3114,6 +3597,8 @@ export type CompanyUpdateWithoutWorkPoliciesInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutWorkPoliciesInput = {
@@ -3123,6 +3608,11 @@ export type CompanyUncheckedUpdateWithoutWorkPoliciesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3154,6 +3644,8 @@ export type CompanyUncheckedUpdateWithoutWorkPoliciesInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutCompanySettingsInput = {
@@ -3162,6 +3654,11 @@ export type CompanyCreateWithoutCompanySettingsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3193,6 +3690,8 @@ export type CompanyCreateWithoutCompanySettingsInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutCompanySettingsInput = {
@@ -3202,6 +3701,11 @@ export type CompanyUncheckedCreateWithoutCompanySettingsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3233,6 +3737,8 @@ export type CompanyUncheckedCreateWithoutCompanySettingsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutCompanySettingsInput = {
@@ -3257,6 +3763,11 @@ export type CompanyUpdateWithoutCompanySettingsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3288,6 +3799,8 @@ export type CompanyUpdateWithoutCompanySettingsInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutCompanySettingsInput = {
@@ -3297,6 +3810,11 @@ export type CompanyUncheckedUpdateWithoutCompanySettingsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3328,6 +3846,8 @@ export type CompanyUncheckedUpdateWithoutCompanySettingsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutShiftsInput = {
@@ -3336,6 +3856,11 @@ export type CompanyCreateWithoutShiftsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3367,6 +3892,8 @@ export type CompanyCreateWithoutShiftsInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutShiftsInput = {
@@ -3376,6 +3903,11 @@ export type CompanyUncheckedCreateWithoutShiftsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3407,6 +3939,8 @@ export type CompanyUncheckedCreateWithoutShiftsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutShiftsInput = {
@@ -3431,6 +3965,11 @@ export type CompanyUpdateWithoutShiftsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3462,6 +4001,8 @@ export type CompanyUpdateWithoutShiftsInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutShiftsInput = {
@@ -3471,6 +4012,11 @@ export type CompanyUncheckedUpdateWithoutShiftsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3502,6 +4048,8 @@ export type CompanyUncheckedUpdateWithoutShiftsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutWorkSchedulePoliciesInput = {
@@ -3510,6 +4058,11 @@ export type CompanyCreateWithoutWorkSchedulePoliciesInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3541,6 +4094,8 @@ export type CompanyCreateWithoutWorkSchedulePoliciesInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutWorkSchedulePoliciesInput = {
@@ -3550,6 +4105,11 @@ export type CompanyUncheckedCreateWithoutWorkSchedulePoliciesInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3581,6 +4141,8 @@ export type CompanyUncheckedCreateWithoutWorkSchedulePoliciesInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutWorkSchedulePoliciesInput = {
@@ -3605,6 +4167,11 @@ export type CompanyUpdateWithoutWorkSchedulePoliciesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3636,6 +4203,8 @@ export type CompanyUpdateWithoutWorkSchedulePoliciesInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutWorkSchedulePoliciesInput = {
@@ -3645,6 +4214,11 @@ export type CompanyUncheckedUpdateWithoutWorkSchedulePoliciesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3676,6 +4250,8 @@ export type CompanyUncheckedUpdateWithoutWorkSchedulePoliciesInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutSalaryComponentsInput = {
@@ -3684,6 +4260,11 @@ export type CompanyCreateWithoutSalaryComponentsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3715,6 +4296,8 @@ export type CompanyCreateWithoutSalaryComponentsInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutSalaryComponentsInput = {
@@ -3724,6 +4307,11 @@ export type CompanyUncheckedCreateWithoutSalaryComponentsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3755,6 +4343,8 @@ export type CompanyUncheckedCreateWithoutSalaryComponentsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutSalaryComponentsInput = {
@@ -3779,6 +4369,11 @@ export type CompanyUpdateWithoutSalaryComponentsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3810,6 +4405,8 @@ export type CompanyUpdateWithoutSalaryComponentsInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutSalaryComponentsInput = {
@@ -3819,6 +4416,11 @@ export type CompanyUncheckedUpdateWithoutSalaryComponentsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3850,6 +4452,8 @@ export type CompanyUncheckedUpdateWithoutSalaryComponentsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmployeeSalaryComponentsInput = {
@@ -3858,6 +4462,11 @@ export type CompanyCreateWithoutEmployeeSalaryComponentsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3889,6 +4498,8 @@ export type CompanyCreateWithoutEmployeeSalaryComponentsInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmployeeSalaryComponentsInput = {
@@ -3898,6 +4509,11 @@ export type CompanyUncheckedCreateWithoutEmployeeSalaryComponentsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3929,6 +4545,8 @@ export type CompanyUncheckedCreateWithoutEmployeeSalaryComponentsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmployeeSalaryComponentsInput = {
@@ -3953,6 +4571,11 @@ export type CompanyUpdateWithoutEmployeeSalaryComponentsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3984,6 +4607,8 @@ export type CompanyUpdateWithoutEmployeeSalaryComponentsInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmployeeSalaryComponentsInput = {
@@ -3993,6 +4618,11 @@ export type CompanyUncheckedUpdateWithoutEmployeeSalaryComponentsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4024,6 +4654,8 @@ export type CompanyUncheckedUpdateWithoutEmployeeSalaryComponentsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutPayrollAdjustmentsInput = {
@@ -4032,6 +4664,11 @@ export type CompanyCreateWithoutPayrollAdjustmentsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -4063,6 +4700,8 @@ export type CompanyCreateWithoutPayrollAdjustmentsInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutPayrollAdjustmentsInput = {
@@ -4072,6 +4711,11 @@ export type CompanyUncheckedCreateWithoutPayrollAdjustmentsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -4103,6 +4747,8 @@ export type CompanyUncheckedCreateWithoutPayrollAdjustmentsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutPayrollAdjustmentsInput = {
@@ -4127,6 +4773,11 @@ export type CompanyUpdateWithoutPayrollAdjustmentsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4158,6 +4809,8 @@ export type CompanyUpdateWithoutPayrollAdjustmentsInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutPayrollAdjustmentsInput = {
@@ -4167,6 +4820,11 @@ export type CompanyUncheckedUpdateWithoutPayrollAdjustmentsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4198,6 +4856,8 @@ export type CompanyUncheckedUpdateWithoutPayrollAdjustmentsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutPayRollRunsInput = {
@@ -4206,6 +4866,11 @@ export type CompanyCreateWithoutPayRollRunsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -4237,6 +4902,8 @@ export type CompanyCreateWithoutPayRollRunsInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutPayRollRunsInput = {
@@ -4246,6 +4913,11 @@ export type CompanyUncheckedCreateWithoutPayRollRunsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -4277,6 +4949,8 @@ export type CompanyUncheckedCreateWithoutPayRollRunsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutPayRollRunsInput = {
@@ -4301,6 +4975,11 @@ export type CompanyUpdateWithoutPayRollRunsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4332,6 +5011,8 @@ export type CompanyUpdateWithoutPayRollRunsInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutPayRollRunsInput = {
@@ -4341,6 +5022,11 @@ export type CompanyUncheckedUpdateWithoutPayRollRunsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4372,6 +5058,8 @@ export type CompanyUncheckedUpdateWithoutPayRollRunsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutLeaveTypesInput = {
@@ -4380,6 +5068,11 @@ export type CompanyCreateWithoutLeaveTypesInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -4411,6 +5104,8 @@ export type CompanyCreateWithoutLeaveTypesInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutLeaveTypesInput = {
@@ -4420,6 +5115,11 @@ export type CompanyUncheckedCreateWithoutLeaveTypesInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -4451,6 +5151,8 @@ export type CompanyUncheckedCreateWithoutLeaveTypesInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutLeaveTypesInput = {
@@ -4475,6 +5177,11 @@ export type CompanyUpdateWithoutLeaveTypesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4506,6 +5213,8 @@ export type CompanyUpdateWithoutLeaveTypesInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutLeaveTypesInput = {
@@ -4515,6 +5224,11 @@ export type CompanyUncheckedUpdateWithoutLeaveTypesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4546,6 +5260,8 @@ export type CompanyUncheckedUpdateWithoutLeaveTypesInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutLeaveBalancesInput = {
@@ -4554,6 +5270,11 @@ export type CompanyCreateWithoutLeaveBalancesInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -4585,6 +5306,8 @@ export type CompanyCreateWithoutLeaveBalancesInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutLeaveBalancesInput = {
@@ -4594,6 +5317,11 @@ export type CompanyUncheckedCreateWithoutLeaveBalancesInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -4625,6 +5353,8 @@ export type CompanyUncheckedCreateWithoutLeaveBalancesInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutLeaveBalancesInput = {
@@ -4649,6 +5379,11 @@ export type CompanyUpdateWithoutLeaveBalancesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4680,6 +5415,8 @@ export type CompanyUpdateWithoutLeaveBalancesInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutLeaveBalancesInput = {
@@ -4689,6 +5426,11 @@ export type CompanyUncheckedUpdateWithoutLeaveBalancesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4720,6 +5462,8 @@ export type CompanyUncheckedUpdateWithoutLeaveBalancesInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutLeaveIncrementPoliciesInput = {
@@ -4728,6 +5472,11 @@ export type CompanyCreateWithoutLeaveIncrementPoliciesInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -4759,6 +5508,8 @@ export type CompanyCreateWithoutLeaveIncrementPoliciesInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutLeaveIncrementPoliciesInput = {
@@ -4768,6 +5519,11 @@ export type CompanyUncheckedCreateWithoutLeaveIncrementPoliciesInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -4799,6 +5555,8 @@ export type CompanyUncheckedCreateWithoutLeaveIncrementPoliciesInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutLeaveIncrementPoliciesInput = {
@@ -4823,6 +5581,11 @@ export type CompanyUpdateWithoutLeaveIncrementPoliciesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4854,6 +5617,8 @@ export type CompanyUpdateWithoutLeaveIncrementPoliciesInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutLeaveIncrementPoliciesInput = {
@@ -4863,6 +5628,11 @@ export type CompanyUncheckedUpdateWithoutLeaveIncrementPoliciesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4894,6 +5664,8 @@ export type CompanyUncheckedUpdateWithoutLeaveIncrementPoliciesInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutLeaveIncrementLogsInput = {
@@ -4902,6 +5674,11 @@ export type CompanyCreateWithoutLeaveIncrementLogsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -4933,6 +5710,8 @@ export type CompanyCreateWithoutLeaveIncrementLogsInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutLeaveIncrementLogsInput = {
@@ -4942,6 +5721,11 @@ export type CompanyUncheckedCreateWithoutLeaveIncrementLogsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -4973,6 +5757,8 @@ export type CompanyUncheckedCreateWithoutLeaveIncrementLogsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutLeaveIncrementLogsInput = {
@@ -4997,6 +5783,11 @@ export type CompanyUpdateWithoutLeaveIncrementLogsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5028,6 +5819,8 @@ export type CompanyUpdateWithoutLeaveIncrementLogsInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutLeaveIncrementLogsInput = {
@@ -5037,6 +5830,11 @@ export type CompanyUncheckedUpdateWithoutLeaveIncrementLogsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5068,6 +5866,8 @@ export type CompanyUncheckedUpdateWithoutLeaveIncrementLogsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutLeaveApplicationsInput = {
@@ -5076,6 +5876,11 @@ export type CompanyCreateWithoutLeaveApplicationsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -5107,6 +5912,8 @@ export type CompanyCreateWithoutLeaveApplicationsInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutLeaveApplicationsInput = {
@@ -5116,6 +5923,11 @@ export type CompanyUncheckedCreateWithoutLeaveApplicationsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -5147,6 +5959,8 @@ export type CompanyUncheckedCreateWithoutLeaveApplicationsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutLeaveApplicationsInput = {
@@ -5171,6 +5985,11 @@ export type CompanyUpdateWithoutLeaveApplicationsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5202,6 +6021,8 @@ export type CompanyUpdateWithoutLeaveApplicationsInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutLeaveApplicationsInput = {
@@ -5211,6 +6032,11 @@ export type CompanyUncheckedUpdateWithoutLeaveApplicationsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5242,6 +6068,8 @@ export type CompanyUncheckedUpdateWithoutLeaveApplicationsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutHolidaysInput = {
@@ -5250,6 +6078,11 @@ export type CompanyCreateWithoutHolidaysInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -5281,6 +6114,8 @@ export type CompanyCreateWithoutHolidaysInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutHolidaysInput = {
@@ -5290,6 +6125,11 @@ export type CompanyUncheckedCreateWithoutHolidaysInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -5321,6 +6161,8 @@ export type CompanyUncheckedCreateWithoutHolidaysInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutHolidaysInput = {
@@ -5345,6 +6187,11 @@ export type CompanyUpdateWithoutHolidaysInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5376,6 +6223,8 @@ export type CompanyUpdateWithoutHolidaysInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutHolidaysInput = {
@@ -5385,6 +6234,11 @@ export type CompanyUncheckedUpdateWithoutHolidaysInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5416,6 +6270,8 @@ export type CompanyUncheckedUpdateWithoutHolidaysInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutWeeklyOffConfigsInput = {
@@ -5424,6 +6280,11 @@ export type CompanyCreateWithoutWeeklyOffConfigsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -5455,6 +6316,8 @@ export type CompanyCreateWithoutWeeklyOffConfigsInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutWeeklyOffConfigsInput = {
@@ -5464,6 +6327,11 @@ export type CompanyUncheckedCreateWithoutWeeklyOffConfigsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -5495,6 +6363,8 @@ export type CompanyUncheckedCreateWithoutWeeklyOffConfigsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutWeeklyOffConfigsInput = {
@@ -5519,6 +6389,11 @@ export type CompanyUpdateWithoutWeeklyOffConfigsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5550,6 +6425,8 @@ export type CompanyUpdateWithoutWeeklyOffConfigsInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutWeeklyOffConfigsInput = {
@@ -5559,6 +6436,11 @@ export type CompanyUncheckedUpdateWithoutWeeklyOffConfigsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5590,6 +6472,8 @@ export type CompanyUncheckedUpdateWithoutWeeklyOffConfigsInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutNoticesInput = {
@@ -5598,6 +6482,11 @@ export type CompanyCreateWithoutNoticesInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -5629,6 +6518,8 @@ export type CompanyCreateWithoutNoticesInput = {
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutNoticesInput = {
@@ -5638,6 +6529,11 @@ export type CompanyUncheckedCreateWithoutNoticesInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -5669,6 +6565,8 @@ export type CompanyUncheckedCreateWithoutNoticesInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutNoticesInput = {
@@ -5693,6 +6591,11 @@ export type CompanyUpdateWithoutNoticesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5724,6 +6627,8 @@ export type CompanyUpdateWithoutNoticesInput = {
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutNoticesInput = {
@@ -5733,6 +6638,11 @@ export type CompanyUncheckedUpdateWithoutNoticesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5764,6 +6674,8 @@ export type CompanyUncheckedUpdateWithoutNoticesInput = {
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutPerformanceReviewsInput = {
@@ -5772,6 +6684,11 @@ export type CompanyCreateWithoutPerformanceReviewsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -5803,6 +6720,8 @@ export type CompanyCreateWithoutPerformanceReviewsInput = {
   notices?: Prisma.NoticeCreateNestedManyWithoutCompanyInput
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutPerformanceReviewsInput = {
@@ -5812,6 +6731,11 @@ export type CompanyUncheckedCreateWithoutPerformanceReviewsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -5843,6 +6767,8 @@ export type CompanyUncheckedCreateWithoutPerformanceReviewsInput = {
   notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutCompanyInput
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutPerformanceReviewsInput = {
@@ -5867,6 +6793,11 @@ export type CompanyUpdateWithoutPerformanceReviewsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5898,6 +6829,8 @@ export type CompanyUpdateWithoutPerformanceReviewsInput = {
   notices?: Prisma.NoticeUpdateManyWithoutCompanyNestedInput
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutPerformanceReviewsInput = {
@@ -5907,6 +6840,11 @@ export type CompanyUncheckedUpdateWithoutPerformanceReviewsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -5938,6 +6876,8 @@ export type CompanyUncheckedUpdateWithoutPerformanceReviewsInput = {
   notices?: Prisma.NoticeUncheckedUpdateManyWithoutCompanyNestedInput
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmployeeRewardsInput = {
@@ -5946,6 +6886,11 @@ export type CompanyCreateWithoutEmployeeRewardsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -5977,6 +6922,8 @@ export type CompanyCreateWithoutEmployeeRewardsInput = {
   notices?: Prisma.NoticeCreateNestedManyWithoutCompanyInput
   officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmployeeRewardsInput = {
@@ -5986,6 +6933,11 @@ export type CompanyUncheckedCreateWithoutEmployeeRewardsInput = {
   email: string
   phone: string
   address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
   status?: $Enums.CompanyStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -6017,6 +6969,8 @@ export type CompanyUncheckedCreateWithoutEmployeeRewardsInput = {
   notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutCompanyInput
   officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmployeeRewardsInput = {
@@ -6041,6 +6995,11 @@ export type CompanyUpdateWithoutEmployeeRewardsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -6072,6 +7031,8 @@ export type CompanyUpdateWithoutEmployeeRewardsInput = {
   notices?: Prisma.NoticeUpdateManyWithoutCompanyNestedInput
   officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmployeeRewardsInput = {
@@ -6081,6 +7042,11 @@ export type CompanyUncheckedUpdateWithoutEmployeeRewardsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -6112,6 +7078,412 @@ export type CompanyUncheckedUpdateWithoutEmployeeRewardsInput = {
   notices?: Prisma.NoticeUncheckedUpdateManyWithoutCompanyNestedInput
   officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutEmailSettingsInput = {
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentCreateNestedManyWithoutCompanyInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailCreateNestedManyWithoutCompanyInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactCreateNestedManyWithoutCompanyInput
+  employeeExperiences?: Prisma.EmployeeExperienceCreateNestedManyWithoutCompanyInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentCreateNestedManyWithoutCompanyInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyCreateNestedManyWithoutCompanyInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyCreateNestedManyWithoutCompanyInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogCreateNestedManyWithoutCompanyInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutCompanyInput
+  officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
+  performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
+  employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutEmailSettingsInput = {
+  id?: number
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUncheckedCreateNestedManyWithoutCompanyInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUncheckedCreateNestedManyWithoutCompanyInput
+  employeeExperiences?: Prisma.EmployeeExperienceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedCreateNestedManyWithoutCompanyInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUncheckedCreateNestedManyWithoutCompanyInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedCreateNestedManyWithoutCompanyInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutCompanyInput
+  officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
+  performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
+  employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutEmailSettingsInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutEmailSettingsInput, Prisma.CompanyUncheckedCreateWithoutEmailSettingsInput>
+}
+
+export type CompanyUpsertWithoutEmailSettingsInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutEmailSettingsInput, Prisma.CompanyUncheckedUpdateWithoutEmailSettingsInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutEmailSettingsInput, Prisma.CompanyUncheckedCreateWithoutEmailSettingsInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutEmailSettingsInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutEmailSettingsInput, Prisma.CompanyUncheckedUpdateWithoutEmailSettingsInput>
+}
+
+export type CompanyUpdateWithoutEmailSettingsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUpdateManyWithoutCompanyNestedInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUpdateManyWithoutCompanyNestedInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUpdateManyWithoutCompanyNestedInput
+  employeeExperiences?: Prisma.EmployeeExperienceUpdateManyWithoutCompanyNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUpdateManyWithoutCompanyNestedInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUpdateManyWithoutCompanyNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUpdateManyWithoutCompanyNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUpdateManyWithoutCompanyNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutCompanyNestedInput
+  officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
+  performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
+  employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutEmailSettingsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeExperiences?: Prisma.EmployeeExperienceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedUpdateManyWithoutCompanyNestedInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedUpdateManyWithoutCompanyNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutCompanyNestedInput
+  officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
+  performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutEmailTemplatesInput = {
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentCreateNestedManyWithoutCompanyInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailCreateNestedManyWithoutCompanyInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactCreateNestedManyWithoutCompanyInput
+  employeeExperiences?: Prisma.EmployeeExperienceCreateNestedManyWithoutCompanyInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentCreateNestedManyWithoutCompanyInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyCreateNestedManyWithoutCompanyInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyCreateNestedManyWithoutCompanyInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogCreateNestedManyWithoutCompanyInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutCompanyInput
+  officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
+  performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
+  employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutEmailTemplatesInput = {
+  id?: number
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUncheckedCreateNestedManyWithoutCompanyInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUncheckedCreateNestedManyWithoutCompanyInput
+  employeeExperiences?: Prisma.EmployeeExperienceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedCreateNestedManyWithoutCompanyInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUncheckedCreateNestedManyWithoutCompanyInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedCreateNestedManyWithoutCompanyInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutCompanyInput
+  officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
+  performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
+  employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutEmailTemplatesInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutEmailTemplatesInput, Prisma.CompanyUncheckedCreateWithoutEmailTemplatesInput>
+}
+
+export type CompanyUpsertWithoutEmailTemplatesInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutEmailTemplatesInput, Prisma.CompanyUncheckedUpdateWithoutEmailTemplatesInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutEmailTemplatesInput, Prisma.CompanyUncheckedCreateWithoutEmailTemplatesInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutEmailTemplatesInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutEmailTemplatesInput, Prisma.CompanyUncheckedUpdateWithoutEmailTemplatesInput>
+}
+
+export type CompanyUpdateWithoutEmailTemplatesInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUpdateManyWithoutCompanyNestedInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUpdateManyWithoutCompanyNestedInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUpdateManyWithoutCompanyNestedInput
+  employeeExperiences?: Prisma.EmployeeExperienceUpdateManyWithoutCompanyNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUpdateManyWithoutCompanyNestedInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUpdateManyWithoutCompanyNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUpdateManyWithoutCompanyNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUpdateManyWithoutCompanyNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutCompanyNestedInput
+  officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
+  performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
+  employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutEmailTemplatesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeExperiences?: Prisma.EmployeeExperienceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedUpdateManyWithoutCompanyNestedInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedUpdateManyWithoutCompanyNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutCompanyNestedInput
+  officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
+  performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
 }
 
 
@@ -6149,6 +7521,7 @@ export type CompanyCountOutputType = {
   officeLocations: number
   performanceReviews: number
   employeeRewards: number
+  emailTemplates: number
 }
 
 export type CompanyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -6181,6 +7554,7 @@ export type CompanyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   officeLocations?: boolean | CompanyCountOutputTypeCountOfficeLocationsArgs
   performanceReviews?: boolean | CompanyCountOutputTypeCountPerformanceReviewsArgs
   employeeRewards?: boolean | CompanyCountOutputTypeCountEmployeeRewardsArgs
+  emailTemplates?: boolean | CompanyCountOutputTypeCountEmailTemplatesArgs
 }
 
 /**
@@ -6396,6 +7770,13 @@ export type CompanyCountOutputTypeCountEmployeeRewardsArgs<ExtArgs extends runti
   where?: Prisma.EmployeeRewardWhereInput
 }
 
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountEmailTemplatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EmailTemplateWhereInput
+}
+
 
 export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -6404,6 +7785,11 @@ export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   email?: boolean
   phone?: boolean
   address?: boolean
+  logo?: boolean
+  favicon?: boolean
+  website?: boolean
+  faviconPublicId?: boolean
+  logoPublicId?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -6436,6 +7822,8 @@ export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   officeLocations?: boolean | Prisma.Company$officeLocationsArgs<ExtArgs>
   performanceReviews?: boolean | Prisma.Company$performanceReviewsArgs<ExtArgs>
   employeeRewards?: boolean | Prisma.Company$employeeRewardsArgs<ExtArgs>
+  emailSettings?: boolean | Prisma.Company$emailSettingsArgs<ExtArgs>
+  emailTemplates?: boolean | Prisma.Company$emailTemplatesArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["company"]>
 
@@ -6446,6 +7834,11 @@ export type CompanySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   email?: boolean
   phone?: boolean
   address?: boolean
+  logo?: boolean
+  favicon?: boolean
+  website?: boolean
+  faviconPublicId?: boolean
+  logoPublicId?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -6458,6 +7851,11 @@ export type CompanySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   email?: boolean
   phone?: boolean
   address?: boolean
+  logo?: boolean
+  favicon?: boolean
+  website?: boolean
+  faviconPublicId?: boolean
+  logoPublicId?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -6470,12 +7868,17 @@ export type CompanySelectScalar = {
   email?: boolean
   phone?: boolean
   address?: boolean
+  logo?: boolean
+  favicon?: boolean
+  website?: boolean
+  faviconPublicId?: boolean
+  logoPublicId?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type CompanyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "email" | "phone" | "address" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["company"]>
+export type CompanyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "email" | "phone" | "address" | "logo" | "favicon" | "website" | "faviconPublicId" | "logoPublicId" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["company"]>
 export type CompanyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   employees?: boolean | Prisma.Company$employeesArgs<ExtArgs>
   roles?: boolean | Prisma.Company$rolesArgs<ExtArgs>
@@ -6506,6 +7909,8 @@ export type CompanyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   officeLocations?: boolean | Prisma.Company$officeLocationsArgs<ExtArgs>
   performanceReviews?: boolean | Prisma.Company$performanceReviewsArgs<ExtArgs>
   employeeRewards?: boolean | Prisma.Company$employeeRewardsArgs<ExtArgs>
+  emailSettings?: boolean | Prisma.Company$emailSettingsArgs<ExtArgs>
+  emailTemplates?: boolean | Prisma.Company$emailTemplatesArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CompanyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -6543,6 +7948,8 @@ export type $CompanyPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     officeLocations: Prisma.$OfficeLocationPayload<ExtArgs>[]
     performanceReviews: Prisma.$PerformanceReviewPayload<ExtArgs>[]
     employeeRewards: Prisma.$EmployeeRewardPayload<ExtArgs>[]
+    emailSettings: Prisma.$EmailSettingsPayload<ExtArgs> | null
+    emailTemplates: Prisma.$EmailTemplatePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -6551,6 +7958,11 @@ export type $CompanyPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     email: string
     phone: string
     address: string
+    logo: string | null
+    favicon: string | null
+    website: string | null
+    faviconPublicId: string | null
+    logoPublicId: string | null
     status: $Enums.CompanyStatus
     createdAt: Date
     updatedAt: Date
@@ -6977,6 +8389,8 @@ export interface Prisma__CompanyClient<T, Null = never, ExtArgs extends runtime.
   officeLocations<T extends Prisma.Company$officeLocationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$officeLocationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OfficeLocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   performanceReviews<T extends Prisma.Company$performanceReviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$performanceReviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PerformanceReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   employeeRewards<T extends Prisma.Company$employeeRewardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$employeeRewardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeeRewardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  emailSettings<T extends Prisma.Company$emailSettingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$emailSettingsArgs<ExtArgs>>): Prisma.Prisma__EmailSettingsClient<runtime.Types.Result.GetResult<Prisma.$EmailSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  emailTemplates<T extends Prisma.Company$emailTemplatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$emailTemplatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmailTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7012,6 +8426,11 @@ export interface CompanyFieldRefs {
   readonly email: Prisma.FieldRef<"Company", 'String'>
   readonly phone: Prisma.FieldRef<"Company", 'String'>
   readonly address: Prisma.FieldRef<"Company", 'String'>
+  readonly logo: Prisma.FieldRef<"Company", 'String'>
+  readonly favicon: Prisma.FieldRef<"Company", 'String'>
+  readonly website: Prisma.FieldRef<"Company", 'String'>
+  readonly faviconPublicId: Prisma.FieldRef<"Company", 'String'>
+  readonly logoPublicId: Prisma.FieldRef<"Company", 'String'>
   readonly status: Prisma.FieldRef<"Company", 'CompanyStatus'>
   readonly createdAt: Prisma.FieldRef<"Company", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Company", 'DateTime'>
@@ -8101,6 +9520,49 @@ export type Company$employeeRewardsArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.EmployeeRewardScalarFieldEnum | Prisma.EmployeeRewardScalarFieldEnum[]
+}
+
+/**
+ * Company.emailSettings
+ */
+export type Company$emailSettingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EmailSettings
+   */
+  select?: Prisma.EmailSettingsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EmailSettings
+   */
+  omit?: Prisma.EmailSettingsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmailSettingsInclude<ExtArgs> | null
+  where?: Prisma.EmailSettingsWhereInput
+}
+
+/**
+ * Company.emailTemplates
+ */
+export type Company$emailTemplatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EmailTemplate
+   */
+  select?: Prisma.EmailTemplateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EmailTemplate
+   */
+  omit?: Prisma.EmailTemplateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmailTemplateInclude<ExtArgs> | null
+  where?: Prisma.EmailTemplateWhereInput
+  orderBy?: Prisma.EmailTemplateOrderByWithRelationInput | Prisma.EmailTemplateOrderByWithRelationInput[]
+  cursor?: Prisma.EmailTemplateWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EmailTemplateScalarFieldEnum | Prisma.EmailTemplateScalarFieldEnum[]
 }
 
 /**

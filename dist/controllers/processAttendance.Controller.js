@@ -1,0 +1,125 @@
+// import { processAttendanceForDate } from "../services/handleAttendance/attendance.processor.js";
+import { processAttendance } from "../services/handleAttendance/attendance.processor.js";
+import getStartEndOfDay from "../utils/getStartEndOfDay.js";
+// ======================================================
+// export const processAttendanceController =
+//   async (
+//     req:AuthRequest,
+//     res:Response
+//   ) => {
+//     try {
+//       const companyId =
+//         req.companyId;
+//       if (!companyId) {
+//         throw new Error(
+//           "Company not found"
+//         );
+//       }
+//       const {
+//         shiftId,
+//         date,
+//       } = req.body;
+//       if (!shiftId) {
+//         throw new Error(
+//           "Shift required"
+//         );
+//       }
+//       const result =
+//         await processAttendanceForShift({
+//           companyId,
+//           shiftId:
+//             Number(shiftId),
+//           date:
+//             date
+//               ? new Date(date)
+//               : new Date(),
+//         });
+//       res.json({
+//         success:true,
+//         message:
+//           "Attendance processed successfully",
+//         data:result,
+//       });
+//     } catch (err:any) {
+//       res.status(400).json({
+//         success:false,
+//         message:
+//           err.message,
+//       });
+//     }
+//   };
+// export const processAttendanceController =
+// async (
+//   req: AuthRequest,
+//   res: Response
+// ) => {
+//   try {
+//     const companyId =
+//       req.companyId;
+//     if (!companyId) {
+//       throw new Error(
+//         "Company not found"
+//       );
+//     }
+//     const { date } =
+//       req.body;
+//     const result =
+//       await processAttendance({
+//         companyId,
+//         date:
+//           date
+//             ? new Date(date)
+//             : new Date(),
+//       });
+//     res.json({
+//       success: true,
+//       message:
+//         "Attendance processed successfully",
+//       data: result,
+//     });
+//   } catch (err: any) {
+//     res.status(400).json({
+//       success: false,
+//       message:
+//         err.message,
+//     });
+//   }
+// };
+export const processAttendanceController = async (req, res) => {
+    try {
+        const companyId = req.companyId;
+        if (!companyId) {
+            throw new Error("Company not found");
+        }
+        const { date } = req.body;
+        const attendanceDate = date
+            ? new Date(date)
+            : new Date();
+        // Validate date
+        if (isNaN(attendanceDate.getTime())) {
+            throw new Error("Invalid date");
+        }
+        // Future date validation (IST)
+        const attendanceStart = getStartEndOfDay("Asia/Kolkata", attendanceDate).start;
+        const todayStart = getStartEndOfDay("Asia/Kolkata", new Date()).start;
+        if (attendanceStart > todayStart) {
+            throw new Error("Attendance cannot be processed for a future date");
+        }
+        const result = await processAttendance({
+            companyId,
+            date: attendanceDate,
+        });
+        res.json({
+            success: true,
+            message: "Attendance processed successfully",
+            data: result,
+        });
+    }
+    catch (err) {
+        res.status(400).json({
+            success: false,
+            message: err.message ||
+                "Something went wrong",
+        });
+    }
+};

@@ -246,3 +246,13 @@ export type PerformanceReview = Prisma.PerformanceReviewModel
  * 
  */
 export type EmployeeReward = Prisma.EmployeeRewardModel
+/**
+ * Model EmailSettings
+ * 
+ */
+export type EmailSettings = Prisma.EmailSettingsModel
+/**
+ * Model EmailTemplate
+ * 
+ */
+export type EmailTemplate = Prisma.EmailTemplateModel

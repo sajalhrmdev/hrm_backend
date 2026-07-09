@@ -91,7 +91,9 @@ export const ModelName = {
   WeeklyOffConfig: 'WeeklyOffConfig',
   Notice: 'Notice',
   PerformanceReview: 'PerformanceReview',
-  EmployeeReward: 'EmployeeReward'
+  EmployeeReward: 'EmployeeReward',
+  EmailSettings: 'EmailSettings',
+  EmailTemplate: 'EmailTemplate'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -117,6 +119,11 @@ export const CompanyScalarFieldEnum = {
   email: 'email',
   phone: 'phone',
   address: 'address',
+  logo: 'logo',
+  favicon: 'favicon',
+  website: 'website',
+  faviconPublicId: 'faviconPublicId',
+  logoPublicId: 'logoPublicId',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -773,6 +780,42 @@ export const EmployeeRewardScalarFieldEnum = {
 } as const
 
 export type EmployeeRewardScalarFieldEnum = (typeof EmployeeRewardScalarFieldEnum)[keyof typeof EmployeeRewardScalarFieldEnum]
+
+
+export const EmailSettingsScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  provider: 'provider',
+  smtpHost: 'smtpHost',
+  smtpPort: 'smtpPort',
+  smtpUsername: 'smtpUsername',
+  smtpPassword: 'smtpPassword',
+  encryption: 'encryption',
+  fromName: 'fromName',
+  fromEmail: 'fromEmail',
+  replyTo: 'replyTo',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EmailSettingsScalarFieldEnum = (typeof EmailSettingsScalarFieldEnum)[keyof typeof EmailSettingsScalarFieldEnum]
+
+
+export const EmailTemplateScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  name: 'name',
+  slug: 'slug',
+  subject: 'subject',
+  htmlContent: 'htmlContent',
+  description: 'description',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EmailTemplateScalarFieldEnum = (typeof EmailTemplateScalarFieldEnum)[keyof typeof EmailTemplateScalarFieldEnum]
 
 
 export const SortOrder = {

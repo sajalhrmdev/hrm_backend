@@ -223,6 +223,22 @@ export const updateMyCompanyService = async (
 
   return company;
 };
+
+export const updateBrandingService = async (
+  companyId: number,
+  data: { logo?: string; logoPublicId?: string; favicon?: string; faviconPublicId?: string; website?: string },
+) => {
+  return await prisma.company.update({
+    where: { id: companyId },
+    data: {
+      ...(data.logo !== undefined && { logo: data.logo }),
+      ...(data.logoPublicId !== undefined && { logoPublicId: data.logoPublicId }),
+      ...(data.favicon !== undefined && { favicon: data.favicon }),
+      ...(data.faviconPublicId !== undefined && { faviconPublicId: data.faviconPublicId }),
+      ...(data.website !== undefined && { website: data.website }),
+    },
+  });
+};
 // ============================================
 // UPDATE COMPANY
 // ============================================

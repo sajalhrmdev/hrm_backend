@@ -46,7 +46,8 @@ import employeeFaceRoutes from "./module/employeeFace/employeeFace.route.js";
 import performanceReviewRoutes from "./module/performanceReview/performanceReview.route.js";
 import rewardRoutes from "./module/reward/reward.route.js";
 import chatRoutes from "./module/chat/chat.routes.js";
-
+import emailSettingsRoutes from "./module/emailSettings/emailSettings.routes.js";
+import emailTemplateRoutes from "./module/emailTemplate/emailTemplate.routes.js";
 
 import { verifyToken } from "./controllers/middlewares/auth.middleware.js";
 import cookieParser from "cookie-parser";
@@ -75,7 +76,7 @@ app.get("/", (req: Request, res: Response) => {
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/me", authMiddleware, companyAccessMiddleware, getCurrentUser);
+app.use("/api/v1/me", authMiddleware, companyAccessMiddleware, employeeMiddleware, getCurrentUser);
 app.use("/api/v1/membership", membershipRoutes);
 app.use("/api/v1/global-roles", globalRoleRoutes);
 app.use("/api/v1/users", userRoutes);
@@ -265,22 +266,34 @@ app.use(
   "/api/v1/performance",
   authMiddleware,
   companyAccessMiddleware,
-  
+
   performanceReviewRoutes,
 );
 app.use(
   "/api/v1/rewards",
   authMiddleware,
   companyAccessMiddleware,
-  
+
   rewardRoutes,
 );
 app.use(
   "/api/v1/chat",
   authMiddleware,
   companyAccessMiddleware,
-  
+
   chatRoutes,
+);
+app.use(
+  "/api/v1/email-settings",
+  authMiddleware,
+  companyAccessMiddleware,
+  emailSettingsRoutes,
+);
+app.use(
+  "/api/v1/email-template",
+  authMiddleware,
+  companyAccessMiddleware,
+  emailTemplateRoutes,
 );
 
 // app.use("/api/v1/salary-structure", salaryStructureRoutes);
@@ -291,11 +304,11 @@ app.use(
 //   console.log(`Server is running at http://localhost:${port}`);
 // });
 async function bootstrap() {
-    await loadSchemaContext();
+  await loadSchemaContext();
 
-    app.listen(port, () => {
-        console.log(`Server Started`);
-    });
+  app.listen(port, () => {
+    console.log(`Server Started`);
+  });
 }
 
 bootstrap();
