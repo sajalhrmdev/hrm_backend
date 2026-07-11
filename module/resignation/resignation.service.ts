@@ -14,7 +14,14 @@ type SubmitResignationInput = {
 };
 
 export const submitResignation = async (input: SubmitResignationInput) => {
-  const { companyId, employeeId, resignationDate, noticePeriodDays, reason, handoverTo } = input;
+  const {
+    companyId,
+    employeeId,
+    resignationDate,
+    noticePeriodDays,
+    reason,
+    handoverTo,
+  } = input;
 
   const existing = await prisma.resignation.findFirst({
     where: {
@@ -43,7 +50,12 @@ export const submitResignation = async (input: SubmitResignationInput) => {
     },
     include: {
       employee: {
-        select: { id: true, name: true, email: true, department: { select: { title: true } } },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          department: { select: { title: true } },
+        },
       },
     },
   });
@@ -53,7 +65,10 @@ export const submitResignation = async (input: SubmitResignationInput) => {
 // GET MY RESIGNATION (Employee view)
 // ======================================================
 
-export const getMyResignations = async (companyId: number, employeeId: number) => {
+export const getMyResignations = async (
+  companyId: number,
+  employeeId: number,
+) => {
   return prisma.resignation.findMany({
     where: {
       employeeId,
@@ -62,7 +77,12 @@ export const getMyResignations = async (companyId: number, employeeId: number) =
     orderBy: { createdAt: "desc" },
     include: {
       employee: {
-        select: { id: true, name: true, email: true, department: { select: { title: true } } },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          department: { select: { title: true } },
+        },
       },
       approver: {
         select: { id: true, name: true },
@@ -80,7 +100,9 @@ type GetCompanyResignationsInput = {
   status?: "PENDING" | "APPROVED" | "REJECTED" | "CANCELLED";
 };
 
-export const getCompanyResignations = async (input: GetCompanyResignationsInput) => {
+export const getCompanyResignations = async (
+  input: GetCompanyResignationsInput,
+) => {
   const { companyId, status } = input;
 
   const where: any = { companyId };
@@ -137,9 +159,7 @@ export const approveResignation = async (input: ApproveResignationInput) => {
   const finalNoticePeriod = noticePeriodDays ?? resignation.noticePeriodDays;
   const finalLastWorkingDay = lastWorkingDay
     ? new Date(lastWorkingDay)
-    : resignation.lastWorkingDay
-      ? new Date(resignation.lastWorkingDay)
-      : null;
+    : new Date(resignation.lastWorkingDay);
 
   const [updated] = await prisma.$transaction([
     prisma.resignation.update({
@@ -260,7 +280,10 @@ export const markInactive = async (input: MarkInactiveInput) => {
     data: { status: "INACTIVE" },
   });
 
-  return { success: true, message: `${employee.name} has been marked inactive` };
+  return {
+    success: true,
+    message: `${employee.name} has been marked inactive`,
+  };
 };
 
 // ======================================================
