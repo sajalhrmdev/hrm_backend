@@ -93,7 +93,9 @@ export const ModelName = {
   PerformanceReview: 'PerformanceReview',
   EmployeeReward: 'EmployeeReward',
   EmailSettings: 'EmailSettings',
-  EmailTemplate: 'EmailTemplate'
+  EmailTemplate: 'EmailTemplate',
+  Resignation: 'Resignation',
+  MobileTheme: 'MobileTheme'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -124,6 +126,7 @@ export const CompanyScalarFieldEnum = {
   website: 'website',
   faviconPublicId: 'faviconPublicId',
   logoPublicId: 'logoPublicId',
+  mobileThemeId: 'mobileThemeId',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -816,6 +819,43 @@ export const EmailTemplateScalarFieldEnum = {
 } as const
 
 export type EmailTemplateScalarFieldEnum = (typeof EmailTemplateScalarFieldEnum)[keyof typeof EmailTemplateScalarFieldEnum]
+
+
+export const ResignationScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  employeeId: 'employeeId',
+  resignationDate: 'resignationDate',
+  lastWorkingDay: 'lastWorkingDay',
+  noticePeriodDays: 'noticePeriodDays',
+  reason: 'reason',
+  handoverTo: 'handoverTo',
+  status: 'status',
+  approvedBy: 'approvedBy',
+  approvedAt: 'approvedAt',
+  rejectionReason: 'rejectionReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ResignationScalarFieldEnum = (typeof ResignationScalarFieldEnum)[keyof typeof ResignationScalarFieldEnum]
+
+
+export const MobileThemeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  primaryColor: 'primaryColor',
+  secondaryColor: 'secondaryColor',
+  backgroundColor: 'backgroundColor',
+  surfaceColor: 'surfaceColor',
+  textColor: 'textColor',
+  isDefault: 'isDefault',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MobileThemeScalarFieldEnum = (typeof MobileThemeScalarFieldEnum)[keyof typeof MobileThemeScalarFieldEnum]
 
 
 export const SortOrder = {

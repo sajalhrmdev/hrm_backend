@@ -48,6 +48,7 @@ import rewardRoutes from "./module/reward/reward.route.js";
 import chatRoutes from "./module/chat/chat.routes.js";
 import emailSettingsRoutes from "./module/emailSettings/emailSettings.routes.js";
 import emailTemplateRoutes from "./module/emailTemplate/emailTemplate.routes.js";
+import resignationRoutes from "./module/resignation/resignation.routes.js";
 
 import { verifyToken } from "./controllers/middlewares/auth.middleware.js";
 import cookieParser from "cookie-parser";
@@ -56,6 +57,7 @@ import { authMiddleware } from "./middlewares/auth.middleware.js";
 import { companyAccessMiddleware } from "./middlewares/companyAccess.middleware.js";
 import { employeeMiddleware } from "./middlewares/employee.middlewear.js";
 import { getCurrentUser } from "./controllers/auth.controller.js";
+import { getMobileThemeByCompanySlug } from "./module/company/company.controller.js";
 
 const app = express();
 app.use(
@@ -179,6 +181,7 @@ app.use(
 
   companyRoutes,
 );
+app.get("/api/v1/public/mobile-theme/:slug", getMobileThemeByCompanySlug);
 app.use("/api/v1/office-location", officeLocationRoutes);
 app.use(
   "/api/v1/employee",
@@ -294,6 +297,12 @@ app.use(
   authMiddleware,
   companyAccessMiddleware,
   emailTemplateRoutes,
+);
+app.use(
+  "/api/v1/resignation",
+  authMiddleware,
+  companyAccessMiddleware,
+  resignationRoutes,
 );
 
 // app.use("/api/v1/salary-structure", salaryStructureRoutes);

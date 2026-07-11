@@ -124,6 +124,8 @@ export const getCurrentUser = async (req: AuthRequest, res: Response) => {
             website: true,
             logoPublicId: true,
             faviconPublicId: true,
+            mobileThemeId: true,
+            mobileTheme: true,
           },
         })
       : null;

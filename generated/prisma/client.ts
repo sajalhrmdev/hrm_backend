@@ -256,3 +256,13 @@ export type EmailSettings = Prisma.EmailSettingsModel
  * 
  */
 export type EmailTemplate = Prisma.EmailTemplateModel
+/**
+ * Model Resignation
+ * 
+ */
+export type Resignation = Prisma.ResignationModel
+/**
+ * Model MobileTheme
+ * 
+ */
+export type MobileTheme = Prisma.MobileThemeModel

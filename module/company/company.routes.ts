@@ -9,6 +9,8 @@ import {
   updateCompany,
   updateMyCompany,
   updateBranding,
+  getAllMobileThemes,
+  updateCompanyMobileTheme,
 } from "./company.controller.js";
 import { companyAccessMiddleware } from "../../middlewares/companyAccess.middleware.js";
 import upload from "../../middlewares/upload.middleware.js";
@@ -31,6 +33,10 @@ router.put(
   ]),
   updateBranding,
 );
+
+// Mobile theme routes (company admin)
+router.get("/mobile-themes", companyAccessMiddleware, getAllMobileThemes);
+router.put("/mobile-theme", companyAccessMiddleware, updateCompanyMobileTheme);
 
 router.get("/:id", getCompanyById);
 

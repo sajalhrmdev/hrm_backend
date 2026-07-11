@@ -13,6 +13,9 @@ import {
   updateCompanyService,
   updateMyCompanyService,
   updateBrandingService,
+  getAllMobileThemesService,
+  updateCompanyMobileThemeService,
+  getCompanyMobileThemeBySlugService,
 } from "./company.service.js";
 import { AuthRequest } from "../../middlewares/companyAccess.middleware.js";
 import { log } from "console";
@@ -160,6 +163,49 @@ export const updateBranding = async (req: AuthRequest, res: Response) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
+
+// ============================================
+// MOBILE THEME - GET ALL (for company admin)
+// ============================================
+export const getAllMobileThemes = async (req: AuthRequest, res: Response) => {
+  try {
+    const data = await getAllMobileThemesService();
+    return res.json({ success: true, data });
+  } catch (error: any) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// ============================================
+// MOBILE THEME - UPDATE COMPANY SELECTION
+// ============================================
+export const updateCompanyMobileTheme = async (req: AuthRequest, res: Response) => {
+  try {
+    const companyId = Number(req.companyId);
+    const { themeId } = req.body;
+    if (!themeId) {
+      return res.status(400).json({ success: false, message: "themeId is required" });
+    }
+    const data = await updateCompanyMobileThemeService(companyId, themeId);
+    return res.json({ success: true, data });
+  } catch (error: any) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// ============================================
+// MOBILE THEME - GET BY COMPANY SLUG (public)
+// ============================================
+export const getMobileThemeByCompanySlug = async (req: Request, res: Response) => {
+  try {
+    const slug = req.params.slug as string;
+    const data = await getCompanyMobileThemeBySlugService(slug);
+    return res.json({ success: true, data });
+  } catch (error: any) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 // ============================================
 // UPDATE
 // ============================================

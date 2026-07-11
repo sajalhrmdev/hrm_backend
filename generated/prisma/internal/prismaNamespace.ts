@@ -426,7 +426,9 @@ export const ModelName = {
   PerformanceReview: 'PerformanceReview',
   EmployeeReward: 'EmployeeReward',
   EmailSettings: 'EmailSettings',
-  EmailTemplate: 'EmailTemplate'
+  EmailTemplate: 'EmailTemplate',
+  Resignation: 'Resignation',
+  MobileTheme: 'MobileTheme'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -442,7 +444,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "company" | "officeLocation" | "department" | "designation" | "user" | "globalRole" | "role" | "permission" | "rolePermission" | "membership" | "employee" | "employeePersonalInfo" | "employeeAddress" | "employeeEmergencyContact" | "employeeDocument" | "employeeBankDetail" | "employeeExperience" | "attendance" | "employeeFace" | "attendanceAdjustment" | "attendanceLog" | "workPolicy" | "companySetting" | "shift" | "workSchedulePolicy" | "salaryComponent" | "employeeSalaryComponent" | "payrollAdjustment" | "payRoll" | "payrollSnapComponent" | "payRollRun" | "leaveType" | "leaveBalance" | "leaveIncrementPolicy" | "leaveIncrementLog" | "leaveApplication" | "holiday" | "weeklyOffConfig" | "notice" | "performanceReview" | "employeeReward" | "emailSettings" | "emailTemplate"
+    modelProps: "company" | "officeLocation" | "department" | "designation" | "user" | "globalRole" | "role" | "permission" | "rolePermission" | "membership" | "employee" | "employeePersonalInfo" | "employeeAddress" | "employeeEmergencyContact" | "employeeDocument" | "employeeBankDetail" | "employeeExperience" | "attendance" | "employeeFace" | "attendanceAdjustment" | "attendanceLog" | "workPolicy" | "companySetting" | "shift" | "workSchedulePolicy" | "salaryComponent" | "employeeSalaryComponent" | "payrollAdjustment" | "payRoll" | "payrollSnapComponent" | "payRollRun" | "leaveType" | "leaveBalance" | "leaveIncrementPolicy" | "leaveIncrementLog" | "leaveApplication" | "holiday" | "weeklyOffConfig" | "notice" | "performanceReview" | "employeeReward" | "emailSettings" | "emailTemplate" | "resignation" | "mobileTheme"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -3628,6 +3630,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Resignation: {
+      payload: Prisma.$ResignationPayload<ExtArgs>
+      fields: Prisma.ResignationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ResignationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ResignationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ResignationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ResignationPayload>
+        }
+        findFirst: {
+          args: Prisma.ResignationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ResignationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ResignationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ResignationPayload>
+        }
+        findMany: {
+          args: Prisma.ResignationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ResignationPayload>[]
+        }
+        create: {
+          args: Prisma.ResignationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ResignationPayload>
+        }
+        createMany: {
+          args: Prisma.ResignationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ResignationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ResignationPayload>[]
+        }
+        delete: {
+          args: Prisma.ResignationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ResignationPayload>
+        }
+        update: {
+          args: Prisma.ResignationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ResignationPayload>
+        }
+        deleteMany: {
+          args: Prisma.ResignationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ResignationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ResignationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ResignationPayload>[]
+        }
+        upsert: {
+          args: Prisma.ResignationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ResignationPayload>
+        }
+        aggregate: {
+          args: Prisma.ResignationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateResignation>
+        }
+        groupBy: {
+          args: Prisma.ResignationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ResignationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ResignationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ResignationCountAggregateOutputType> | number
+        }
+      }
+    }
+    MobileTheme: {
+      payload: Prisma.$MobileThemePayload<ExtArgs>
+      fields: Prisma.MobileThemeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MobileThemeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MobileThemePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MobileThemeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MobileThemePayload>
+        }
+        findFirst: {
+          args: Prisma.MobileThemeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MobileThemePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MobileThemeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MobileThemePayload>
+        }
+        findMany: {
+          args: Prisma.MobileThemeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MobileThemePayload>[]
+        }
+        create: {
+          args: Prisma.MobileThemeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MobileThemePayload>
+        }
+        createMany: {
+          args: Prisma.MobileThemeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MobileThemeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MobileThemePayload>[]
+        }
+        delete: {
+          args: Prisma.MobileThemeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MobileThemePayload>
+        }
+        update: {
+          args: Prisma.MobileThemeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MobileThemePayload>
+        }
+        deleteMany: {
+          args: Prisma.MobileThemeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MobileThemeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MobileThemeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MobileThemePayload>[]
+        }
+        upsert: {
+          args: Prisma.MobileThemeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MobileThemePayload>
+        }
+        aggregate: {
+          args: Prisma.MobileThemeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMobileTheme>
+        }
+        groupBy: {
+          args: Prisma.MobileThemeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MobileThemeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MobileThemeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MobileThemeCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -3679,6 +3829,7 @@ export const CompanyScalarFieldEnum = {
   website: 'website',
   faviconPublicId: 'faviconPublicId',
   logoPublicId: 'logoPublicId',
+  mobileThemeId: 'mobileThemeId',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -4373,6 +4524,43 @@ export const EmailTemplateScalarFieldEnum = {
 export type EmailTemplateScalarFieldEnum = (typeof EmailTemplateScalarFieldEnum)[keyof typeof EmailTemplateScalarFieldEnum]
 
 
+export const ResignationScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  employeeId: 'employeeId',
+  resignationDate: 'resignationDate',
+  lastWorkingDay: 'lastWorkingDay',
+  noticePeriodDays: 'noticePeriodDays',
+  reason: 'reason',
+  handoverTo: 'handoverTo',
+  status: 'status',
+  approvedBy: 'approvedBy',
+  approvedAt: 'approvedAt',
+  rejectionReason: 'rejectionReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ResignationScalarFieldEnum = (typeof ResignationScalarFieldEnum)[keyof typeof ResignationScalarFieldEnum]
+
+
+export const MobileThemeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  primaryColor: 'primaryColor',
+  secondaryColor: 'secondaryColor',
+  backgroundColor: 'backgroundColor',
+  surfaceColor: 'surfaceColor',
+  textColor: 'textColor',
+  isDefault: 'isDefault',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MobileThemeScalarFieldEnum = (typeof MobileThemeScalarFieldEnum)[keyof typeof MobileThemeScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -4811,6 +4999,20 @@ export type EnumNoticePriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$P
 export type ListEnumNoticePriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'NoticePriority[]'>
     
 
+
+/**
+ * Reference to a field of type 'ResignationStatus'
+ */
+export type EnumResignationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ResignationStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'ResignationStatus[]'
+ */
+export type ListEnumResignationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ResignationStatus[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -4949,6 +5151,8 @@ export type GlobalOmitConfig = {
   employeeReward?: Prisma.EmployeeRewardOmit
   emailSettings?: Prisma.EmailSettingsOmit
   emailTemplate?: Prisma.EmailTemplateOmit
+  resignation?: Prisma.ResignationOmit
+  mobileTheme?: Prisma.MobileThemeOmit
 }
 
 /* Types for Logging */

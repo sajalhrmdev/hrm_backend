@@ -30,6 +30,10 @@ model Company{
   website    String?
   faviconPublicId String?
   logoPublicId String?
+
+ mobileThemeId   Int?
+  mobileTheme     MobileTheme? @relation(fields: [mobileThemeId], references: [id])
+
   status CompanyStatus @default(ACTIVE)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -64,6 +68,8 @@ model Company{
   employeeRewards EmployeeReward[]
   emailSettings EmailSettings?
   emailTemplates EmailTemplate[]
+  resignations Resignation[]
+  
 
 
 
@@ -287,8 +293,10 @@ workSchedulePolicy WorkSchedulePolicy? @relation( fields:[workSchedulePolicyId],
   attendanceAdjustments AttendanceAdjustment[]
   leaveIncrementLogs LeaveIncrementLog[]
   employeeFace EmployeeFace?
-  performanceReviews PerformanceReview[]
-  employeeRewards EmployeeReward[]
+   performanceReviews PerformanceReview[]
+   employeeRewards EmployeeReward[]
+   resignations Resignation[]
+   approvedResignations Resignation[] @relation("ApprovedResignations")
   
 @@index([companyId])
  
@@ -1214,4 +1222,53 @@ model EmailTemplate {
 
   @@unique([companyId, slug])
   @@index([companyId])
+}
+
+// =======================================RESIGNATION=================================
+enum ResignationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLED
+}
+
+model Resignation {
+  id               Int              @id @default(autoincrement())
+  companyId        Int
+  employeeId       Int
+  resignationDate  DateTime
+  lastWorkingDay   DateTime
+  noticePeriodDays Int              @default(30)
+  reason           String?
+  handoverTo       String?
+  status           ResignationStatus @default(PENDING)
+  approvedBy       Int?
+  approvedAt       DateTime?
+  rejectionReason  String?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  company  Company  @relation(fields: [companyId], references: [id])
+  employee Employee @relation(fields: [employeeId], references: [id])
+  approver Employee? @relation("ApprovedResignations", fields: [approvedBy], references: [id])
+
+  @@index([companyId])
+  @@index([employeeId])
+}
+
+// =======================================mobile theme=================================
+model MobileTheme {
+  id              Int      @id @default(autoincrement())
+  name            String   
+  slug            String   @unique 
+  primaryColor    String  
+  secondaryColor  String
+  backgroundColor String
+  surfaceColor    String
+  textColor       String
+  isDefault       Boolean  @default(false) 
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  companies       Company[] 
 }

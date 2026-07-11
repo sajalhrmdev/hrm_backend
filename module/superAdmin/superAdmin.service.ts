@@ -3,6 +3,69 @@
 import { prisma } from "../../lib/prisma.js";
 import { generateToken } from "../../utils/jwt.js";
 
+// ============================================
+// MOBILE THEME - CREATE
+// ============================================
+export const createMobileThemeService = async (data: {
+  name: string;
+  slug: string;
+  primaryColor: string;
+  secondaryColor: string;
+  backgroundColor: string;
+  surfaceColor: string;
+  textColor: string;
+  isDefault?: boolean;
+}) => {
+  return await prisma.mobileTheme.create({ data });
+};
+
+// ============================================
+// MOBILE THEME - GET ALL
+// ============================================
+export const getAllMobileThemesService = async () => {
+  return await prisma.mobileTheme.findMany({ orderBy: { name: "asc" } });
+};
+
+// ============================================
+// MOBILE THEME - GET BY ID
+// ============================================
+export const getMobileThemeByIdService = async (id: number) => {
+  const theme = await prisma.mobileTheme.findUnique({ where: { id } });
+  if (!theme) throw new Error("Mobile theme not found");
+  return theme;
+};
+
+// ============================================
+// MOBILE THEME - UPDATE
+// ============================================
+export const updateMobileThemeService = async (
+  id: number,
+  data: {
+    name?: string;
+    slug?: string;
+    primaryColor?: string;
+    secondaryColor?: string;
+    backgroundColor?: string;
+    surfaceColor?: string;
+    textColor?: string;
+    isDefault?: boolean;
+  },
+) => {
+  return await prisma.mobileTheme.update({ where: { id }, data });
+};
+
+// ============================================
+// MOBILE THEME - DELETE
+// ============================================
+export const deleteMobileThemeService = async (id: number) => {
+  // Unlink companies using this theme
+  await prisma.company.updateMany({
+    where: { mobileThemeId: id },
+    data: { mobileThemeId: null },
+  });
+  return await prisma.mobileTheme.delete({ where: { id } });
+};
+
 
 
 export const switchCompanyService = async (user: any, companyId: number) => {

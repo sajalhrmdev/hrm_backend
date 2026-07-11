@@ -207,3 +207,13 @@ export const NoticePriority = {
 } as const
 
 export type NoticePriority = (typeof NoticePriority)[keyof typeof NoticePriority]
+
+
+export const ResignationStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type ResignationStatus = (typeof ResignationStatus)[keyof typeof ResignationStatus]
