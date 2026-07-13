@@ -1,4 +1,5 @@
 import { prisma } from "../lib/prisma.js";
+import getStartEndOfDay from "../utils/getStartEndOfDay.js";
 
 type ApplyLeaveInput = {
   employeeId: number;
@@ -158,20 +159,28 @@ export const applyLeave = async (input: ApplyLeaveInput) => {
 type GetAllLeavesInput = {
   companyId: number;
   status?: "PENDING" | "APPROVED" | "REJECTED";
+  date?: string;
 };
 
 export const getAllLeaves = async (
   input: GetAllLeavesInput
 ) => {
-  const { companyId, status } = input;
+  const { companyId, status, date } = input;
 
   const where: any = {
     companyId,
   };
 
-  // 🔥 optional filter
   if (status) {
     where.status = status;
+  }
+
+  if (date) {
+    const { start, end } = getStartEndOfDay("Asia/Kolkata", new Date(date));
+    where.applied_at = {
+      gte: start,
+      lte: end,
+    };
   }
 
   const leaves =

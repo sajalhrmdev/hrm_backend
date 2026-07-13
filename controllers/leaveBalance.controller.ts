@@ -4,6 +4,7 @@ import {
   allocateLeaveToAllEmployees,
   bulkAllocateLeaveBalance,
   getEmployeeLeaveBalance,
+  getAllCompanyLeaveBalances,
 } from "../services/leaveBalance.service.js";
 import { getEmployeeFromRequest } from "../utils/getEmployeeFromRequest.js";
 
@@ -122,3 +123,24 @@ export const getMyLeaveBalanceController =
       });
     }
   };
+
+// 5 =========================all company leave balance (admin view)===============
+
+export const getAllLeaveBalancesController = async (
+  req: AuthRequest,
+  res: Response
+) => {
+  try {
+    const companyId = req.companyId;
+    if (!companyId) throw new Error("Company not found");
+
+    const year = Number(req.query.year) || new Date().getFullYear();
+    const search = req.query.search as string | undefined;
+
+    const data = await getAllCompanyLeaveBalances(companyId, year, search);
+
+    res.json({ success: true, data });
+  } catch (err: any) {
+    res.status(400).json({ success: false, message: err.message });
+  }
+};

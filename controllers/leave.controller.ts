@@ -141,11 +141,12 @@ export const getAllLeavesController = async (
       throw new Error("Company not found");
     }
 
-    const { status } = req.query;
+    const { status, date } = req.query;
 
     const data = await getAllLeaves({
       companyId,
       status: status as any,
+      date: date as string,
     });
 
     res.json({

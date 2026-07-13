@@ -20,6 +20,7 @@ import {
   allocateLeaveBalanceController,
   bulkAllocateLeaveBalanceController,
   getMyLeaveBalanceController,
+  getAllLeaveBalancesController,
 } from "../controllers/leaveBalance.controller.js";
 import { employeeMiddleware } from "../middlewares/employee.middlewear.js";
 
@@ -41,6 +42,7 @@ router.patch("/approve/:id", approveLeaveController);
 router.patch("/reject/:id", rejectLeaveController);
 router.patch("/cancel-approval/:id", cancelLeaveApprovalController);
 
+router.get("/balance/all", getAllLeaveBalancesController);
 router.get("/balance", employeeMiddleware, getMyLeaveBalanceController);
 
 router.post("/allocate", allocateLeaveBalanceController);
