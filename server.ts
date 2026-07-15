@@ -50,6 +50,8 @@ import emailSettingsRoutes from "./module/emailSettings/emailSettings.routes.js"
 import emailTemplateRoutes from "./module/emailTemplate/emailTemplate.routes.js";
 import resignationRoutes from "./module/resignation/resignation.routes.js";
 import importRoutes from "./module/import/import.routes.js";
+import documentTemplateRoutes from "./module/documentTemplate/documentTemplate.routes.js";
+import documentRoutes from "./module/document/document.routes.js";
 
 import { verifyToken } from "./controllers/middlewares/auth.middleware.js";
 import cookieParser from "cookie-parser";
@@ -310,6 +312,18 @@ app.use(
   authMiddleware,
   companyAccessMiddleware,
   importRoutes,
+);
+app.use(
+  "/api/v1/document-template",
+  authMiddleware,
+  companyAccessMiddleware,
+  documentTemplateRoutes,
+);
+app.use(
+  "/api/v1/document",
+  authMiddleware,
+  companyAccessMiddleware,
+  documentRoutes,
 );
 
 // app.use("/api/v1/salary-structure", salaryStructureRoutes);

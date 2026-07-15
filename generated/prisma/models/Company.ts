@@ -332,6 +332,8 @@ export type CompanyWhereInput = {
   employeeRewards?: Prisma.EmployeeRewardListRelationFilter
   emailSettings?: Prisma.XOR<Prisma.EmailSettingsNullableScalarRelationFilter, Prisma.EmailSettingsWhereInput> | null
   emailTemplates?: Prisma.EmailTemplateListRelationFilter
+  documentTemplates?: Prisma.DocumentTemplateListRelationFilter
+  generatedDocuments?: Prisma.GeneratedDocumentListRelationFilter
   resignations?: Prisma.ResignationListRelationFilter
 }
 
@@ -383,6 +385,8 @@ export type CompanyOrderByWithRelationInput = {
   employeeRewards?: Prisma.EmployeeRewardOrderByRelationAggregateInput
   emailSettings?: Prisma.EmailSettingsOrderByWithRelationInput
   emailTemplates?: Prisma.EmailTemplateOrderByRelationAggregateInput
+  documentTemplates?: Prisma.DocumentTemplateOrderByRelationAggregateInput
+  generatedDocuments?: Prisma.GeneratedDocumentOrderByRelationAggregateInput
   resignations?: Prisma.ResignationOrderByRelationAggregateInput
 }
 
@@ -437,6 +441,8 @@ export type CompanyWhereUniqueInput = Prisma.AtLeast<{
   employeeRewards?: Prisma.EmployeeRewardListRelationFilter
   emailSettings?: Prisma.XOR<Prisma.EmailSettingsNullableScalarRelationFilter, Prisma.EmailSettingsWhereInput> | null
   emailTemplates?: Prisma.EmailTemplateListRelationFilter
+  documentTemplates?: Prisma.DocumentTemplateListRelationFilter
+  generatedDocuments?: Prisma.GeneratedDocumentListRelationFilter
   resignations?: Prisma.ResignationListRelationFilter
 }, "id" | "slug">
 
@@ -530,6 +536,8 @@ export type CompanyCreateInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -580,6 +588,8 @@ export type CompanyUncheckedCreateInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -629,6 +639,8 @@ export type CompanyUpdateInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -679,6 +691,8 @@ export type CompanyUncheckedUpdateInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -1279,6 +1293,34 @@ export type CompanyUpdateOneRequiredWithoutEmailTemplatesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutEmailTemplatesInput, Prisma.CompanyUpdateWithoutEmailTemplatesInput>, Prisma.CompanyUncheckedUpdateWithoutEmailTemplatesInput>
 }
 
+export type CompanyCreateNestedOneWithoutDocumentTemplatesInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutDocumentTemplatesInput, Prisma.CompanyUncheckedCreateWithoutDocumentTemplatesInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutDocumentTemplatesInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutDocumentTemplatesNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutDocumentTemplatesInput, Prisma.CompanyUncheckedCreateWithoutDocumentTemplatesInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutDocumentTemplatesInput
+  upsert?: Prisma.CompanyUpsertWithoutDocumentTemplatesInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutDocumentTemplatesInput, Prisma.CompanyUpdateWithoutDocumentTemplatesInput>, Prisma.CompanyUncheckedUpdateWithoutDocumentTemplatesInput>
+}
+
+export type CompanyCreateNestedOneWithoutGeneratedDocumentsInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutGeneratedDocumentsInput, Prisma.CompanyUncheckedCreateWithoutGeneratedDocumentsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutGeneratedDocumentsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutGeneratedDocumentsNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutGeneratedDocumentsInput, Prisma.CompanyUncheckedCreateWithoutGeneratedDocumentsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutGeneratedDocumentsInput
+  upsert?: Prisma.CompanyUpsertWithoutGeneratedDocumentsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutGeneratedDocumentsInput, Prisma.CompanyUpdateWithoutGeneratedDocumentsInput>, Prisma.CompanyUncheckedUpdateWithoutGeneratedDocumentsInput>
+}
+
 export type CompanyCreateNestedOneWithoutResignationsInput = {
   create?: Prisma.XOR<Prisma.CompanyCreateWithoutResignationsInput, Prisma.CompanyUncheckedCreateWithoutResignationsInput>
   connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutResignationsInput
@@ -1380,6 +1422,8 @@ export type CompanyCreateWithoutOfficeLocationsInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -1429,6 +1473,8 @@ export type CompanyUncheckedCreateWithoutOfficeLocationsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -1493,6 +1539,8 @@ export type CompanyUpdateWithoutOfficeLocationsInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -1542,6 +1590,8 @@ export type CompanyUncheckedUpdateWithoutOfficeLocationsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -1590,6 +1640,8 @@ export type CompanyCreateWithoutDesignationsInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -1639,6 +1691,8 @@ export type CompanyUncheckedCreateWithoutDesignationsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -1703,6 +1757,8 @@ export type CompanyUpdateWithoutDesignationsInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -1752,6 +1808,8 @@ export type CompanyUncheckedUpdateWithoutDesignationsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -1800,6 +1858,8 @@ export type CompanyCreateWithoutRolesInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -1849,6 +1909,8 @@ export type CompanyUncheckedCreateWithoutRolesInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -1913,6 +1975,8 @@ export type CompanyUpdateWithoutRolesInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -1962,6 +2026,8 @@ export type CompanyUncheckedUpdateWithoutRolesInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -2010,6 +2076,8 @@ export type CompanyCreateWithoutMembershipsInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -2059,6 +2127,8 @@ export type CompanyUncheckedCreateWithoutMembershipsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -2123,6 +2193,8 @@ export type CompanyUpdateWithoutMembershipsInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -2172,6 +2244,8 @@ export type CompanyUncheckedUpdateWithoutMembershipsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -2220,6 +2294,8 @@ export type CompanyCreateWithoutEmployeesInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -2269,6 +2345,8 @@ export type CompanyUncheckedCreateWithoutEmployeesInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -2333,6 +2411,8 @@ export type CompanyUpdateWithoutEmployeesInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -2382,6 +2462,8 @@ export type CompanyUncheckedUpdateWithoutEmployeesInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -2430,6 +2512,8 @@ export type CompanyCreateWithoutEmployeeEmergencyContactsInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -2479,6 +2563,8 @@ export type CompanyUncheckedCreateWithoutEmployeeEmergencyContactsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -2543,6 +2629,8 @@ export type CompanyUpdateWithoutEmployeeEmergencyContactsInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -2592,6 +2680,8 @@ export type CompanyUncheckedUpdateWithoutEmployeeEmergencyContactsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -2640,6 +2730,8 @@ export type CompanyCreateWithoutEmployeeBankDetailsInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -2689,6 +2781,8 @@ export type CompanyUncheckedCreateWithoutEmployeeBankDetailsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -2753,6 +2847,8 @@ export type CompanyUpdateWithoutEmployeeBankDetailsInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -2802,6 +2898,8 @@ export type CompanyUncheckedUpdateWithoutEmployeeBankDetailsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -2850,6 +2948,8 @@ export type CompanyCreateWithoutEmployeeExperiencesInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -2899,6 +2999,8 @@ export type CompanyUncheckedCreateWithoutEmployeeExperiencesInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -2963,6 +3065,8 @@ export type CompanyUpdateWithoutEmployeeExperiencesInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -3012,6 +3116,8 @@ export type CompanyUncheckedUpdateWithoutEmployeeExperiencesInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -3060,6 +3166,8 @@ export type CompanyCreateWithoutAttendancesInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -3109,6 +3217,8 @@ export type CompanyUncheckedCreateWithoutAttendancesInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -3173,6 +3283,8 @@ export type CompanyUpdateWithoutAttendancesInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -3222,6 +3334,8 @@ export type CompanyUncheckedUpdateWithoutAttendancesInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -3270,6 +3384,8 @@ export type CompanyCreateWithoutAttendanceAdjustmentsInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -3319,6 +3435,8 @@ export type CompanyUncheckedCreateWithoutAttendanceAdjustmentsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -3383,6 +3501,8 @@ export type CompanyUpdateWithoutAttendanceAdjustmentsInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -3432,6 +3552,8 @@ export type CompanyUncheckedUpdateWithoutAttendanceAdjustmentsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -3480,6 +3602,8 @@ export type CompanyCreateWithoutAttendanceLogsInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -3529,6 +3653,8 @@ export type CompanyUncheckedCreateWithoutAttendanceLogsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -3593,6 +3719,8 @@ export type CompanyUpdateWithoutAttendanceLogsInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -3642,6 +3770,8 @@ export type CompanyUncheckedUpdateWithoutAttendanceLogsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -3690,6 +3820,8 @@ export type CompanyCreateWithoutWorkPoliciesInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -3739,6 +3871,8 @@ export type CompanyUncheckedCreateWithoutWorkPoliciesInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -3803,6 +3937,8 @@ export type CompanyUpdateWithoutWorkPoliciesInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -3852,6 +3988,8 @@ export type CompanyUncheckedUpdateWithoutWorkPoliciesInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -3900,6 +4038,8 @@ export type CompanyCreateWithoutCompanySettingsInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -3949,6 +4089,8 @@ export type CompanyUncheckedCreateWithoutCompanySettingsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -4013,6 +4155,8 @@ export type CompanyUpdateWithoutCompanySettingsInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -4062,6 +4206,8 @@ export type CompanyUncheckedUpdateWithoutCompanySettingsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -4110,6 +4256,8 @@ export type CompanyCreateWithoutShiftsInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -4159,6 +4307,8 @@ export type CompanyUncheckedCreateWithoutShiftsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -4223,6 +4373,8 @@ export type CompanyUpdateWithoutShiftsInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -4272,6 +4424,8 @@ export type CompanyUncheckedUpdateWithoutShiftsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -4320,6 +4474,8 @@ export type CompanyCreateWithoutWorkSchedulePoliciesInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -4369,6 +4525,8 @@ export type CompanyUncheckedCreateWithoutWorkSchedulePoliciesInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -4433,6 +4591,8 @@ export type CompanyUpdateWithoutWorkSchedulePoliciesInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -4482,6 +4642,8 @@ export type CompanyUncheckedUpdateWithoutWorkSchedulePoliciesInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -4530,6 +4692,8 @@ export type CompanyCreateWithoutSalaryComponentsInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -4579,6 +4743,8 @@ export type CompanyUncheckedCreateWithoutSalaryComponentsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -4643,6 +4809,8 @@ export type CompanyUpdateWithoutSalaryComponentsInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -4692,6 +4860,8 @@ export type CompanyUncheckedUpdateWithoutSalaryComponentsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -4740,6 +4910,8 @@ export type CompanyCreateWithoutEmployeeSalaryComponentsInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -4789,6 +4961,8 @@ export type CompanyUncheckedCreateWithoutEmployeeSalaryComponentsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -4853,6 +5027,8 @@ export type CompanyUpdateWithoutEmployeeSalaryComponentsInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -4902,6 +5078,8 @@ export type CompanyUncheckedUpdateWithoutEmployeeSalaryComponentsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -4950,6 +5128,8 @@ export type CompanyCreateWithoutPayrollAdjustmentsInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -4999,6 +5179,8 @@ export type CompanyUncheckedCreateWithoutPayrollAdjustmentsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -5063,6 +5245,8 @@ export type CompanyUpdateWithoutPayrollAdjustmentsInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -5112,6 +5296,8 @@ export type CompanyUncheckedUpdateWithoutPayrollAdjustmentsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -5160,6 +5346,8 @@ export type CompanyCreateWithoutPayRollRunsInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -5209,6 +5397,8 @@ export type CompanyUncheckedCreateWithoutPayRollRunsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -5273,6 +5463,8 @@ export type CompanyUpdateWithoutPayRollRunsInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -5322,6 +5514,8 @@ export type CompanyUncheckedUpdateWithoutPayRollRunsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -5370,6 +5564,8 @@ export type CompanyCreateWithoutLeaveTypesInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -5419,6 +5615,8 @@ export type CompanyUncheckedCreateWithoutLeaveTypesInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -5483,6 +5681,8 @@ export type CompanyUpdateWithoutLeaveTypesInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -5532,6 +5732,8 @@ export type CompanyUncheckedUpdateWithoutLeaveTypesInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -5580,6 +5782,8 @@ export type CompanyCreateWithoutLeaveBalancesInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -5629,6 +5833,8 @@ export type CompanyUncheckedCreateWithoutLeaveBalancesInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -5693,6 +5899,8 @@ export type CompanyUpdateWithoutLeaveBalancesInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -5742,6 +5950,8 @@ export type CompanyUncheckedUpdateWithoutLeaveBalancesInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -5790,6 +6000,8 @@ export type CompanyCreateWithoutLeaveIncrementPoliciesInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -5839,6 +6051,8 @@ export type CompanyUncheckedCreateWithoutLeaveIncrementPoliciesInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -5903,6 +6117,8 @@ export type CompanyUpdateWithoutLeaveIncrementPoliciesInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -5952,6 +6168,8 @@ export type CompanyUncheckedUpdateWithoutLeaveIncrementPoliciesInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -6000,6 +6218,8 @@ export type CompanyCreateWithoutLeaveIncrementLogsInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -6049,6 +6269,8 @@ export type CompanyUncheckedCreateWithoutLeaveIncrementLogsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -6113,6 +6335,8 @@ export type CompanyUpdateWithoutLeaveIncrementLogsInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -6162,6 +6386,8 @@ export type CompanyUncheckedUpdateWithoutLeaveIncrementLogsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -6210,6 +6436,8 @@ export type CompanyCreateWithoutLeaveApplicationsInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -6259,6 +6487,8 @@ export type CompanyUncheckedCreateWithoutLeaveApplicationsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -6323,6 +6553,8 @@ export type CompanyUpdateWithoutLeaveApplicationsInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -6372,6 +6604,8 @@ export type CompanyUncheckedUpdateWithoutLeaveApplicationsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -6420,6 +6654,8 @@ export type CompanyCreateWithoutHolidaysInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -6469,6 +6705,8 @@ export type CompanyUncheckedCreateWithoutHolidaysInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -6533,6 +6771,8 @@ export type CompanyUpdateWithoutHolidaysInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -6582,6 +6822,8 @@ export type CompanyUncheckedUpdateWithoutHolidaysInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -6630,6 +6872,8 @@ export type CompanyCreateWithoutWeeklyOffConfigsInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -6679,6 +6923,8 @@ export type CompanyUncheckedCreateWithoutWeeklyOffConfigsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -6743,6 +6989,8 @@ export type CompanyUpdateWithoutWeeklyOffConfigsInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -6792,6 +7040,8 @@ export type CompanyUncheckedUpdateWithoutWeeklyOffConfigsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -6840,6 +7090,8 @@ export type CompanyCreateWithoutNoticesInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -6889,6 +7141,8 @@ export type CompanyUncheckedCreateWithoutNoticesInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -6953,6 +7207,8 @@ export type CompanyUpdateWithoutNoticesInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -7002,6 +7258,8 @@ export type CompanyUncheckedUpdateWithoutNoticesInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -7050,6 +7308,8 @@ export type CompanyCreateWithoutPerformanceReviewsInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -7099,6 +7359,8 @@ export type CompanyUncheckedCreateWithoutPerformanceReviewsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -7163,6 +7425,8 @@ export type CompanyUpdateWithoutPerformanceReviewsInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -7212,6 +7476,8 @@ export type CompanyUncheckedUpdateWithoutPerformanceReviewsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -7260,6 +7526,8 @@ export type CompanyCreateWithoutEmployeeRewardsInput = {
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -7309,6 +7577,8 @@ export type CompanyUncheckedCreateWithoutEmployeeRewardsInput = {
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -7373,6 +7643,8 @@ export type CompanyUpdateWithoutEmployeeRewardsInput = {
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -7422,6 +7694,8 @@ export type CompanyUncheckedUpdateWithoutEmployeeRewardsInput = {
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -7470,6 +7744,8 @@ export type CompanyCreateWithoutEmailSettingsInput = {
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -7519,6 +7795,8 @@ export type CompanyUncheckedCreateWithoutEmailSettingsInput = {
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -7583,6 +7861,8 @@ export type CompanyUpdateWithoutEmailSettingsInput = {
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -7632,6 +7912,8 @@ export type CompanyUncheckedUpdateWithoutEmailSettingsInput = {
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -7680,6 +7962,8 @@ export type CompanyCreateWithoutEmailTemplatesInput = {
   performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -7729,6 +8013,8 @@ export type CompanyUncheckedCreateWithoutEmailTemplatesInput = {
   performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -7793,6 +8079,8 @@ export type CompanyUpdateWithoutEmailTemplatesInput = {
   performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -7842,6 +8130,444 @@ export type CompanyUncheckedUpdateWithoutEmailTemplatesInput = {
   performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
+  resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutDocumentTemplatesInput = {
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  mobileTheme?: Prisma.MobileThemeCreateNestedOneWithoutCompaniesInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentCreateNestedManyWithoutCompanyInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailCreateNestedManyWithoutCompanyInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactCreateNestedManyWithoutCompanyInput
+  employeeExperiences?: Prisma.EmployeeExperienceCreateNestedManyWithoutCompanyInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentCreateNestedManyWithoutCompanyInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyCreateNestedManyWithoutCompanyInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyCreateNestedManyWithoutCompanyInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogCreateNestedManyWithoutCompanyInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutCompanyInput
+  officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
+  performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
+  employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
+  resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutDocumentTemplatesInput = {
+  id?: number
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
+  mobileThemeId?: number | null
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUncheckedCreateNestedManyWithoutCompanyInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUncheckedCreateNestedManyWithoutCompanyInput
+  employeeExperiences?: Prisma.EmployeeExperienceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedCreateNestedManyWithoutCompanyInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUncheckedCreateNestedManyWithoutCompanyInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedCreateNestedManyWithoutCompanyInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutCompanyInput
+  officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
+  performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
+  employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
+  resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutDocumentTemplatesInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutDocumentTemplatesInput, Prisma.CompanyUncheckedCreateWithoutDocumentTemplatesInput>
+}
+
+export type CompanyUpsertWithoutDocumentTemplatesInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutDocumentTemplatesInput, Prisma.CompanyUncheckedUpdateWithoutDocumentTemplatesInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutDocumentTemplatesInput, Prisma.CompanyUncheckedCreateWithoutDocumentTemplatesInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutDocumentTemplatesInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutDocumentTemplatesInput, Prisma.CompanyUncheckedUpdateWithoutDocumentTemplatesInput>
+}
+
+export type CompanyUpdateWithoutDocumentTemplatesInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mobileTheme?: Prisma.MobileThemeUpdateOneWithoutCompaniesNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUpdateManyWithoutCompanyNestedInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUpdateManyWithoutCompanyNestedInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUpdateManyWithoutCompanyNestedInput
+  employeeExperiences?: Prisma.EmployeeExperienceUpdateManyWithoutCompanyNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUpdateManyWithoutCompanyNestedInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUpdateManyWithoutCompanyNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUpdateManyWithoutCompanyNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUpdateManyWithoutCompanyNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutCompanyNestedInput
+  officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
+  performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
+  employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
+  resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutDocumentTemplatesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobileThemeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeExperiences?: Prisma.EmployeeExperienceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedUpdateManyWithoutCompanyNestedInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedUpdateManyWithoutCompanyNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutCompanyNestedInput
+  officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
+  performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
+  resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutGeneratedDocumentsInput = {
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  mobileTheme?: Prisma.MobileThemeCreateNestedOneWithoutCompaniesInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentCreateNestedManyWithoutCompanyInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailCreateNestedManyWithoutCompanyInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactCreateNestedManyWithoutCompanyInput
+  employeeExperiences?: Prisma.EmployeeExperienceCreateNestedManyWithoutCompanyInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentCreateNestedManyWithoutCompanyInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyCreateNestedManyWithoutCompanyInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyCreateNestedManyWithoutCompanyInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogCreateNestedManyWithoutCompanyInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutCompanyInput
+  officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
+  performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
+  employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutGeneratedDocumentsInput = {
+  id?: number
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
+  mobileThemeId?: number | null
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUncheckedCreateNestedManyWithoutCompanyInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUncheckedCreateNestedManyWithoutCompanyInput
+  employeeExperiences?: Prisma.EmployeeExperienceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedCreateNestedManyWithoutCompanyInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUncheckedCreateNestedManyWithoutCompanyInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedCreateNestedManyWithoutCompanyInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutCompanyInput
+  officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
+  performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
+  employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutGeneratedDocumentsInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutGeneratedDocumentsInput, Prisma.CompanyUncheckedCreateWithoutGeneratedDocumentsInput>
+}
+
+export type CompanyUpsertWithoutGeneratedDocumentsInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutGeneratedDocumentsInput, Prisma.CompanyUncheckedUpdateWithoutGeneratedDocumentsInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutGeneratedDocumentsInput, Prisma.CompanyUncheckedCreateWithoutGeneratedDocumentsInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutGeneratedDocumentsInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutGeneratedDocumentsInput, Prisma.CompanyUncheckedUpdateWithoutGeneratedDocumentsInput>
+}
+
+export type CompanyUpdateWithoutGeneratedDocumentsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mobileTheme?: Prisma.MobileThemeUpdateOneWithoutCompaniesNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUpdateManyWithoutCompanyNestedInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUpdateManyWithoutCompanyNestedInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUpdateManyWithoutCompanyNestedInput
+  employeeExperiences?: Prisma.EmployeeExperienceUpdateManyWithoutCompanyNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUpdateManyWithoutCompanyNestedInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUpdateManyWithoutCompanyNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUpdateManyWithoutCompanyNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUpdateManyWithoutCompanyNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutCompanyNestedInput
+  officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
+  performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
+  employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutGeneratedDocumentsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobileThemeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeExperiences?: Prisma.EmployeeExperienceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedUpdateManyWithoutCompanyNestedInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedUpdateManyWithoutCompanyNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutCompanyNestedInput
+  officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
+  performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -7891,6 +8617,8 @@ export type CompanyCreateWithoutResignationsInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutResignationsInput = {
@@ -7940,6 +8668,8 @@ export type CompanyUncheckedCreateWithoutResignationsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutResignationsInput = {
@@ -8004,6 +8734,8 @@ export type CompanyUpdateWithoutResignationsInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutResignationsInput = {
@@ -8053,6 +8785,8 @@ export type CompanyUncheckedUpdateWithoutResignationsInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutMobileThemeInput = {
@@ -8100,6 +8834,8 @@ export type CompanyCreateWithoutMobileThemeInput = {
   employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
 }
 
@@ -8149,6 +8885,8 @@ export type CompanyUncheckedCreateWithoutMobileThemeInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
   emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
 }
 
@@ -8261,6 +8999,8 @@ export type CompanyUpdateWithoutMobileThemeInput = {
   employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
 }
 
@@ -8310,6 +9050,8 @@ export type CompanyUncheckedUpdateWithoutMobileThemeInput = {
   employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
   emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
@@ -8366,6 +9108,8 @@ export type CompanyCountOutputType = {
   performanceReviews: number
   employeeRewards: number
   emailTemplates: number
+  documentTemplates: number
+  generatedDocuments: number
   resignations: number
 }
 
@@ -8400,6 +9144,8 @@ export type CompanyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   performanceReviews?: boolean | CompanyCountOutputTypeCountPerformanceReviewsArgs
   employeeRewards?: boolean | CompanyCountOutputTypeCountEmployeeRewardsArgs
   emailTemplates?: boolean | CompanyCountOutputTypeCountEmailTemplatesArgs
+  documentTemplates?: boolean | CompanyCountOutputTypeCountDocumentTemplatesArgs
+  generatedDocuments?: boolean | CompanyCountOutputTypeCountGeneratedDocumentsArgs
   resignations?: boolean | CompanyCountOutputTypeCountResignationsArgs
 }
 
@@ -8626,6 +9372,20 @@ export type CompanyCountOutputTypeCountEmailTemplatesArgs<ExtArgs extends runtim
 /**
  * CompanyCountOutputType without action
  */
+export type CompanyCountOutputTypeCountDocumentTemplatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DocumentTemplateWhereInput
+}
+
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountGeneratedDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GeneratedDocumentWhereInput
+}
+
+/**
+ * CompanyCountOutputType without action
+ */
 export type CompanyCountOutputTypeCountResignationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ResignationWhereInput
 }
@@ -8679,6 +9439,8 @@ export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   employeeRewards?: boolean | Prisma.Company$employeeRewardsArgs<ExtArgs>
   emailSettings?: boolean | Prisma.Company$emailSettingsArgs<ExtArgs>
   emailTemplates?: boolean | Prisma.Company$emailTemplatesArgs<ExtArgs>
+  documentTemplates?: boolean | Prisma.Company$documentTemplatesArgs<ExtArgs>
+  generatedDocuments?: boolean | Prisma.Company$generatedDocumentsArgs<ExtArgs>
   resignations?: boolean | Prisma.Company$resignationsArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["company"]>
@@ -8773,6 +9535,8 @@ export type CompanyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   employeeRewards?: boolean | Prisma.Company$employeeRewardsArgs<ExtArgs>
   emailSettings?: boolean | Prisma.Company$emailSettingsArgs<ExtArgs>
   emailTemplates?: boolean | Prisma.Company$emailTemplatesArgs<ExtArgs>
+  documentTemplates?: boolean | Prisma.Company$documentTemplatesArgs<ExtArgs>
+  generatedDocuments?: boolean | Prisma.Company$generatedDocumentsArgs<ExtArgs>
   resignations?: boolean | Prisma.Company$resignationsArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -8818,6 +9582,8 @@ export type $CompanyPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     employeeRewards: Prisma.$EmployeeRewardPayload<ExtArgs>[]
     emailSettings: Prisma.$EmailSettingsPayload<ExtArgs> | null
     emailTemplates: Prisma.$EmailTemplatePayload<ExtArgs>[]
+    documentTemplates: Prisma.$DocumentTemplatePayload<ExtArgs>[]
+    generatedDocuments: Prisma.$GeneratedDocumentPayload<ExtArgs>[]
     resignations: Prisma.$ResignationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -9262,6 +10028,8 @@ export interface Prisma__CompanyClient<T, Null = never, ExtArgs extends runtime.
   employeeRewards<T extends Prisma.Company$employeeRewardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$employeeRewardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeeRewardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   emailSettings<T extends Prisma.Company$emailSettingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$emailSettingsArgs<ExtArgs>>): Prisma.Prisma__EmailSettingsClient<runtime.Types.Result.GetResult<Prisma.$EmailSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   emailTemplates<T extends Prisma.Company$emailTemplatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$emailTemplatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmailTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  documentTemplates<T extends Prisma.Company$documentTemplatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$documentTemplatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DocumentTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  generatedDocuments<T extends Prisma.Company$generatedDocumentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$generatedDocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GeneratedDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   resignations<T extends Prisma.Company$resignationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$resignationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ResignationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -10463,6 +11231,54 @@ export type Company$emailTemplatesArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.EmailTemplateScalarFieldEnum | Prisma.EmailTemplateScalarFieldEnum[]
+}
+
+/**
+ * Company.documentTemplates
+ */
+export type Company$documentTemplatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DocumentTemplate
+   */
+  select?: Prisma.DocumentTemplateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DocumentTemplate
+   */
+  omit?: Prisma.DocumentTemplateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DocumentTemplateInclude<ExtArgs> | null
+  where?: Prisma.DocumentTemplateWhereInput
+  orderBy?: Prisma.DocumentTemplateOrderByWithRelationInput | Prisma.DocumentTemplateOrderByWithRelationInput[]
+  cursor?: Prisma.DocumentTemplateWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DocumentTemplateScalarFieldEnum | Prisma.DocumentTemplateScalarFieldEnum[]
+}
+
+/**
+ * Company.generatedDocuments
+ */
+export type Company$generatedDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the GeneratedDocument
+   */
+  select?: Prisma.GeneratedDocumentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the GeneratedDocument
+   */
+  omit?: Prisma.GeneratedDocumentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GeneratedDocumentInclude<ExtArgs> | null
+  where?: Prisma.GeneratedDocumentWhereInput
+  orderBy?: Prisma.GeneratedDocumentOrderByWithRelationInput | Prisma.GeneratedDocumentOrderByWithRelationInput[]
+  cursor?: Prisma.GeneratedDocumentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GeneratedDocumentScalarFieldEnum | Prisma.GeneratedDocumentScalarFieldEnum[]
 }
 
 /**

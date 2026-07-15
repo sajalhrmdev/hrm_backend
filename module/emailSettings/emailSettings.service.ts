@@ -1,4 +1,5 @@
 import { prisma } from "../../lib/prisma.js";
+import { invalidateTransporter } from "../../services/email.service.js";
 
 export const createEmailSettingsService = async (companyId: number, data: any) => {
   const existing = await prisma.emailSettings.findUnique({ where: { companyId } });
@@ -35,7 +36,7 @@ export const updateEmailSettingsService = async (companyId: number, data: any) =
   if (!existing) {
     throw new Error("Email settings not found");
   }
-  return await prisma.emailSettings.update({
+  const updated = await prisma.emailSettings.update({
     where: { companyId },
     data: {
       ...(data.provider !== undefined && { provider: data.provider }),
@@ -50,6 +51,8 @@ export const updateEmailSettingsService = async (companyId: number, data: any) =
       ...(data.isActive !== undefined && { isActive: data.isActive }),
     },
   });
+  invalidateTransporter(companyId);
+  return updated;
 };
 
 export const deleteEmailSettingsService = async (companyId: number) => {
@@ -57,5 +60,7 @@ export const deleteEmailSettingsService = async (companyId: number) => {
   if (!existing) {
     throw new Error("Email settings not found");
   }
-  return await prisma.emailSettings.delete({ where: { companyId } });
+  const result = await prisma.emailSettings.delete({ where: { companyId } });
+  invalidateTransporter(companyId);
+  return result;
 };

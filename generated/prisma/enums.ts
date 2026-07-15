@@ -209,6 +209,19 @@ export const NoticePriority = {
 export type NoticePriority = (typeof NoticePriority)[keyof typeof NoticePriority]
 
 
+export const DocumentCategory = {
+  APPOINTMENT: 'APPOINTMENT',
+  OFFER: 'OFFER',
+  INTERNSHIP: 'INTERNSHIP',
+  EXPERIENCE: 'EXPERIENCE',
+  RELIEVING: 'RELIEVING',
+  SALARY_SLIP: 'SALARY_SLIP',
+  CUSTOM: 'CUSTOM'
+} as const
+
+export type DocumentCategory = (typeof DocumentCategory)[keyof typeof DocumentCategory]
+
+
 export const ResignationStatus = {
   PENDING: 'PENDING',
   APPROVED: 'APPROVED',

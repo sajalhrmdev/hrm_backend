@@ -68,6 +68,8 @@ model Company{
   employeeRewards EmployeeReward[]
   emailSettings EmailSettings?
   emailTemplates EmailTemplate[]
+  documentTemplates DocumentTemplate[]
+  generatedDocuments GeneratedDocument[]
   resignations Resignation[]
   
 
@@ -296,7 +298,8 @@ workSchedulePolicy WorkSchedulePolicy? @relation( fields:[workSchedulePolicyId],
    performanceReviews PerformanceReview[]
    employeeRewards EmployeeReward[]
    resignations Resignation[]
-   approvedResignations Resignation[] @relation("ApprovedResignations")
+    approvedResignations Resignation[] @relation("ApprovedResignations")
+    generatedDocuments GeneratedDocument[]
   
 @@index([companyId])
  
@@ -1222,6 +1225,58 @@ model EmailTemplate {
 
   @@unique([companyId, slug])
   @@index([companyId])
+}
+
+// =====================================DOCUMENT TEMPLATE===============================
+enum DocumentCategory {
+  APPOINTMENT
+  OFFER
+  INTERNSHIP
+  EXPERIENCE
+  RELIEVING
+  SALARY_SLIP
+  CUSTOM
+}
+
+model DocumentTemplate {
+  id            Int      @id @default(autoincrement())
+  companyId     Int
+  company       Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  name          String
+  slug          String
+  category      DocumentCategory @default(CUSTOM)
+  subject       String
+  htmlContent   String   @db.Text
+  description   String?
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  generatedDocuments GeneratedDocument[]
+
+  @@unique([companyId, slug])
+  @@index([companyId])
+  @@index([category])
+}
+
+model GeneratedDocument {
+  id                   Int      @id @default(autoincrement())
+  companyId            Int
+  company              Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  employeeId           Int?
+  employee             Employee? @relation(fields: [employeeId], references: [id])
+  documentTemplateId   Int
+  documentTemplate     DocumentTemplate @relation(fields: [documentTemplateId], references: [id])
+  recipientEmail       String
+  subject              String
+  renderedHtml         String   @db.Text
+  sentViaEmail         Boolean  @default(false)
+  sentAt               DateTime?
+  createdAt            DateTime @default(now())
+
+  @@index([companyId])
+  @@index([employeeId])
+  @@index([documentTemplateId])
 }
 
 // =======================================RESIGNATION=================================

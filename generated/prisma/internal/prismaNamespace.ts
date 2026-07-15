@@ -427,6 +427,8 @@ export const ModelName = {
   EmployeeReward: 'EmployeeReward',
   EmailSettings: 'EmailSettings',
   EmailTemplate: 'EmailTemplate',
+  DocumentTemplate: 'DocumentTemplate',
+  GeneratedDocument: 'GeneratedDocument',
   Resignation: 'Resignation',
   MobileTheme: 'MobileTheme'
 } as const
@@ -444,7 +446,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "company" | "officeLocation" | "department" | "designation" | "user" | "globalRole" | "role" | "permission" | "rolePermission" | "membership" | "employee" | "employeePersonalInfo" | "employeeAddress" | "employeeEmergencyContact" | "employeeDocument" | "employeeBankDetail" | "employeeExperience" | "attendance" | "employeeFace" | "attendanceAdjustment" | "attendanceLog" | "workPolicy" | "companySetting" | "shift" | "workSchedulePolicy" | "salaryComponent" | "employeeSalaryComponent" | "payrollAdjustment" | "payRoll" | "payrollSnapComponent" | "payRollRun" | "leaveType" | "leaveBalance" | "leaveIncrementPolicy" | "leaveIncrementLog" | "leaveApplication" | "holiday" | "weeklyOffConfig" | "notice" | "performanceReview" | "employeeReward" | "emailSettings" | "emailTemplate" | "resignation" | "mobileTheme"
+    modelProps: "company" | "officeLocation" | "department" | "designation" | "user" | "globalRole" | "role" | "permission" | "rolePermission" | "membership" | "employee" | "employeePersonalInfo" | "employeeAddress" | "employeeEmergencyContact" | "employeeDocument" | "employeeBankDetail" | "employeeExperience" | "attendance" | "employeeFace" | "attendanceAdjustment" | "attendanceLog" | "workPolicy" | "companySetting" | "shift" | "workSchedulePolicy" | "salaryComponent" | "employeeSalaryComponent" | "payrollAdjustment" | "payRoll" | "payrollSnapComponent" | "payRollRun" | "leaveType" | "leaveBalance" | "leaveIncrementPolicy" | "leaveIncrementLog" | "leaveApplication" | "holiday" | "weeklyOffConfig" | "notice" | "performanceReview" | "employeeReward" | "emailSettings" | "emailTemplate" | "documentTemplate" | "generatedDocument" | "resignation" | "mobileTheme"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -3630,6 +3632,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    DocumentTemplate: {
+      payload: Prisma.$DocumentTemplatePayload<ExtArgs>
+      fields: Prisma.DocumentTemplateFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DocumentTemplateFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentTemplatePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DocumentTemplateFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentTemplatePayload>
+        }
+        findFirst: {
+          args: Prisma.DocumentTemplateFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentTemplatePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DocumentTemplateFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentTemplatePayload>
+        }
+        findMany: {
+          args: Prisma.DocumentTemplateFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentTemplatePayload>[]
+        }
+        create: {
+          args: Prisma.DocumentTemplateCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentTemplatePayload>
+        }
+        createMany: {
+          args: Prisma.DocumentTemplateCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DocumentTemplateCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentTemplatePayload>[]
+        }
+        delete: {
+          args: Prisma.DocumentTemplateDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentTemplatePayload>
+        }
+        update: {
+          args: Prisma.DocumentTemplateUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentTemplatePayload>
+        }
+        deleteMany: {
+          args: Prisma.DocumentTemplateDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DocumentTemplateUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DocumentTemplateUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentTemplatePayload>[]
+        }
+        upsert: {
+          args: Prisma.DocumentTemplateUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DocumentTemplatePayload>
+        }
+        aggregate: {
+          args: Prisma.DocumentTemplateAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDocumentTemplate>
+        }
+        groupBy: {
+          args: Prisma.DocumentTemplateGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DocumentTemplateGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DocumentTemplateCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DocumentTemplateCountAggregateOutputType> | number
+        }
+      }
+    }
+    GeneratedDocument: {
+      payload: Prisma.$GeneratedDocumentPayload<ExtArgs>
+      fields: Prisma.GeneratedDocumentFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GeneratedDocumentFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneratedDocumentPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GeneratedDocumentFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneratedDocumentPayload>
+        }
+        findFirst: {
+          args: Prisma.GeneratedDocumentFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneratedDocumentPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GeneratedDocumentFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneratedDocumentPayload>
+        }
+        findMany: {
+          args: Prisma.GeneratedDocumentFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneratedDocumentPayload>[]
+        }
+        create: {
+          args: Prisma.GeneratedDocumentCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneratedDocumentPayload>
+        }
+        createMany: {
+          args: Prisma.GeneratedDocumentCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GeneratedDocumentCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneratedDocumentPayload>[]
+        }
+        delete: {
+          args: Prisma.GeneratedDocumentDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneratedDocumentPayload>
+        }
+        update: {
+          args: Prisma.GeneratedDocumentUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneratedDocumentPayload>
+        }
+        deleteMany: {
+          args: Prisma.GeneratedDocumentDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GeneratedDocumentUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GeneratedDocumentUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneratedDocumentPayload>[]
+        }
+        upsert: {
+          args: Prisma.GeneratedDocumentUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneratedDocumentPayload>
+        }
+        aggregate: {
+          args: Prisma.GeneratedDocumentAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGeneratedDocument>
+        }
+        groupBy: {
+          args: Prisma.GeneratedDocumentGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GeneratedDocumentGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GeneratedDocumentCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GeneratedDocumentCountAggregateOutputType> | number
+        }
+      }
+    }
     Resignation: {
       payload: Prisma.$ResignationPayload<ExtArgs>
       fields: Prisma.ResignationFieldRefs
@@ -4524,6 +4674,39 @@ export const EmailTemplateScalarFieldEnum = {
 export type EmailTemplateScalarFieldEnum = (typeof EmailTemplateScalarFieldEnum)[keyof typeof EmailTemplateScalarFieldEnum]
 
 
+export const DocumentTemplateScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  name: 'name',
+  slug: 'slug',
+  category: 'category',
+  subject: 'subject',
+  htmlContent: 'htmlContent',
+  description: 'description',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DocumentTemplateScalarFieldEnum = (typeof DocumentTemplateScalarFieldEnum)[keyof typeof DocumentTemplateScalarFieldEnum]
+
+
+export const GeneratedDocumentScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  employeeId: 'employeeId',
+  documentTemplateId: 'documentTemplateId',
+  recipientEmail: 'recipientEmail',
+  subject: 'subject',
+  renderedHtml: 'renderedHtml',
+  sentViaEmail: 'sentViaEmail',
+  sentAt: 'sentAt',
+  createdAt: 'createdAt'
+} as const
+
+export type GeneratedDocumentScalarFieldEnum = (typeof GeneratedDocumentScalarFieldEnum)[keyof typeof GeneratedDocumentScalarFieldEnum]
+
+
 export const ResignationScalarFieldEnum = {
   id: 'id',
   companyId: 'companyId',
@@ -5001,6 +5184,20 @@ export type ListEnumNoticePriorityFieldRefInput<$PrismaModel> = FieldRefInputTyp
 
 
 /**
+ * Reference to a field of type 'DocumentCategory'
+ */
+export type EnumDocumentCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DocumentCategory'>
+    
+
+
+/**
+ * Reference to a field of type 'DocumentCategory[]'
+ */
+export type ListEnumDocumentCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DocumentCategory[]'>
+    
+
+
+/**
  * Reference to a field of type 'ResignationStatus'
  */
 export type EnumResignationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ResignationStatus'>
@@ -5151,6 +5348,8 @@ export type GlobalOmitConfig = {
   employeeReward?: Prisma.EmployeeRewardOmit
   emailSettings?: Prisma.EmailSettingsOmit
   emailTemplate?: Prisma.EmailTemplateOmit
+  documentTemplate?: Prisma.DocumentTemplateOmit
+  generatedDocument?: Prisma.GeneratedDocumentOmit
   resignation?: Prisma.ResignationOmit
   mobileTheme?: Prisma.MobileThemeOmit
 }

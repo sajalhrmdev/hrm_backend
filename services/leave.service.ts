@@ -159,56 +159,62 @@ export const applyLeave = async (input: ApplyLeaveInput) => {
 type GetAllLeavesInput = {
   companyId: number;
   status?: "PENDING" | "APPROVED" | "REJECTED";
-  date?: string;
+  appliedFrom?: string;
+  appliedTo?: string;
+  leaveFrom?: string;
+  leaveTo?: string;
+  search?: string;
 };
 
-export const getAllLeaves = async (
-  input: GetAllLeavesInput
-) => {
-  const { companyId, status, date } = input;
+export const getAllLeaves = async (input: GetAllLeavesInput) => {
+  const { companyId, status, appliedFrom, appliedTo, leaveFrom, leaveTo, search } = input;
 
-  const where: any = {
-    companyId,
-  };
+  const where: any = { companyId };
 
   if (status) {
     where.status = status;
   }
 
-  if (date) {
-    const { start, end } = getStartEndOfDay("Asia/Kolkata", new Date(date));
-    where.applied_at = {
-      gte: start,
-      lte: end,
+  if (appliedFrom || appliedTo) {
+    where.applied_at = {};
+    if (appliedFrom) {
+      const { start } = getStartEndOfDay("Asia/Kolkata", new Date(appliedFrom));
+      where.applied_at.gte = start;
+    }
+    if (appliedTo) {
+      const { end } = getStartEndOfDay("Asia/Kolkata", new Date(appliedTo));
+      where.applied_at.lte = end;
+    }
+  }
+
+  if (leaveFrom || leaveTo) {
+    where.fromDate = {};
+    if (leaveFrom) {
+      where.fromDate.gte = new Date(leaveFrom);
+    }
+    if (leaveTo) {
+      where.fromDate.lte = new Date(leaveTo);
+    }
+  }
+
+  if (search) {
+    where.employee = {
+      name: { contains: search, mode: "insensitive" },
     };
   }
 
-  const leaves =
-    await prisma.leaveApplication.findMany({
-      where,
-
-      orderBy: {
-        applied_at: "desc",
+  const leaves = await prisma.leaveApplication.findMany({
+    where,
+    orderBy: { applied_at: "desc" },
+    include: {
+      employee: {
+        select: { id: true, name: true, employeeCode: true },
       },
-
-      include: {
-        employee: {
-          select: {
-            id: true,
-            name: true,
-            employeeCode: true,
-          },
-        },
-
-        leaveType: {
-          select: {
-            id: true,
-            name: true,
-            code: true,
-          },
-        },
+      leaveType: {
+        select: { id: true, name: true, code: true },
       },
-    });
+    },
+  });
 
   return leaves;
 };

@@ -749,6 +749,23 @@ export type EnumNoticePriorityWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumNoticePriorityFilter<$PrismaModel>
 }
 
+export type EnumDocumentCategoryFilter<$PrismaModel = never> = {
+  equals?: $Enums.DocumentCategory | Prisma.EnumDocumentCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.DocumentCategory[] | Prisma.ListEnumDocumentCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DocumentCategory[] | Prisma.ListEnumDocumentCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDocumentCategoryFilter<$PrismaModel> | $Enums.DocumentCategory
+}
+
+export type EnumDocumentCategoryWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DocumentCategory | Prisma.EnumDocumentCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.DocumentCategory[] | Prisma.ListEnumDocumentCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DocumentCategory[] | Prisma.ListEnumDocumentCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDocumentCategoryWithAggregatesFilter<$PrismaModel> | $Enums.DocumentCategory
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDocumentCategoryFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDocumentCategoryFilter<$PrismaModel>
+}
+
 export type EnumResignationStatusFilter<$PrismaModel = never> = {
   equals?: $Enums.ResignationStatus | Prisma.EnumResignationStatusFieldRefInput<$PrismaModel>
   in?: $Enums.ResignationStatus[] | Prisma.ListEnumResignationStatusFieldRefInput<$PrismaModel>
@@ -1436,6 +1453,23 @@ export type NestedEnumNoticePriorityWithAggregatesFilter<$PrismaModel = never> =
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumNoticePriorityFilter<$PrismaModel>
   _max?: Prisma.NestedEnumNoticePriorityFilter<$PrismaModel>
+}
+
+export type NestedEnumDocumentCategoryFilter<$PrismaModel = never> = {
+  equals?: $Enums.DocumentCategory | Prisma.EnumDocumentCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.DocumentCategory[] | Prisma.ListEnumDocumentCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DocumentCategory[] | Prisma.ListEnumDocumentCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDocumentCategoryFilter<$PrismaModel> | $Enums.DocumentCategory
+}
+
+export type NestedEnumDocumentCategoryWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DocumentCategory | Prisma.EnumDocumentCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.DocumentCategory[] | Prisma.ListEnumDocumentCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DocumentCategory[] | Prisma.ListEnumDocumentCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDocumentCategoryWithAggregatesFilter<$PrismaModel> | $Enums.DocumentCategory
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDocumentCategoryFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDocumentCategoryFilter<$PrismaModel>
 }
 
 export type NestedEnumResignationStatusFilter<$PrismaModel = never> = {

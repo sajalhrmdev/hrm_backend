@@ -94,6 +94,8 @@ export const ModelName = {
   EmployeeReward: 'EmployeeReward',
   EmailSettings: 'EmailSettings',
   EmailTemplate: 'EmailTemplate',
+  DocumentTemplate: 'DocumentTemplate',
+  GeneratedDocument: 'GeneratedDocument',
   Resignation: 'Resignation',
   MobileTheme: 'MobileTheme'
 } as const
@@ -819,6 +821,39 @@ export const EmailTemplateScalarFieldEnum = {
 } as const
 
 export type EmailTemplateScalarFieldEnum = (typeof EmailTemplateScalarFieldEnum)[keyof typeof EmailTemplateScalarFieldEnum]
+
+
+export const DocumentTemplateScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  name: 'name',
+  slug: 'slug',
+  category: 'category',
+  subject: 'subject',
+  htmlContent: 'htmlContent',
+  description: 'description',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DocumentTemplateScalarFieldEnum = (typeof DocumentTemplateScalarFieldEnum)[keyof typeof DocumentTemplateScalarFieldEnum]
+
+
+export const GeneratedDocumentScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  employeeId: 'employeeId',
+  documentTemplateId: 'documentTemplateId',
+  recipientEmail: 'recipientEmail',
+  subject: 'subject',
+  renderedHtml: 'renderedHtml',
+  sentViaEmail: 'sentViaEmail',
+  sentAt: 'sentAt',
+  createdAt: 'createdAt'
+} as const
+
+export type GeneratedDocumentScalarFieldEnum = (typeof GeneratedDocumentScalarFieldEnum)[keyof typeof GeneratedDocumentScalarFieldEnum]
 
 
 export const ResignationScalarFieldEnum = {

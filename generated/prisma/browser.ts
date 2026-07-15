@@ -233,6 +233,16 @@ export type EmailSettings = Prisma.EmailSettingsModel
  */
 export type EmailTemplate = Prisma.EmailTemplateModel
 /**
+ * Model DocumentTemplate
+ * 
+ */
+export type DocumentTemplate = Prisma.DocumentTemplateModel
+/**
+ * Model GeneratedDocument
+ * 
+ */
+export type GeneratedDocument = Prisma.GeneratedDocumentModel
+/**
  * Model Resignation
  * 
  */
