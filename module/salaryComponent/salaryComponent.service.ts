@@ -9,18 +9,21 @@ type CreateSalaryComponentInput = {
   code: string;
 
   type: "EARNING" | "DEDUCTION";
+
+  prorated?: boolean;
 };
 // 1==================createSalaryComponent==================
 export const createSalaryComponent =
   async (
     input: CreateSalaryComponentInput
   ) => {
-    const {
-      companyId,
-      name,
-      code,
-      type,
-    } = input;
+      const {
+        companyId,
+        name,
+        code,
+        type,
+        prorated,
+      } = input;
 
     if (
       !companyId ||
@@ -66,6 +69,8 @@ export const createSalaryComponent =
               .toUpperCase(),
 
             type,
+
+            prorated: prorated ?? false,
           },
         }
       );
@@ -104,6 +109,8 @@ type UpdateSalaryComponentInput =
     type?:
       | "EARNING"
       | "DEDUCTION";
+
+    prorated?: boolean;
   };
 
 export const updateSalaryComponent =
@@ -116,6 +123,7 @@ export const updateSalaryComponent =
       name,
       code,
       type,
+      prorated,
     } = input;
 
     const existing =
@@ -178,6 +186,8 @@ export const updateSalaryComponent =
           }),
 
           ...(type && { type }),
+
+          ...(prorated !== undefined && { prorated }),
         },
       }
     );

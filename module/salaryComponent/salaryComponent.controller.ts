@@ -23,13 +23,14 @@ export const createSalaryComponentController = async (
       throw new Error("Company not found");
     }
 
-    const { name, code, type } = req.body;
+    const { name, code, type, prorated } = req.body;
 
     const data = await createSalaryComponent({
       companyId,
       name,
       code,
       type,
+      prorated,
     });
 
     res.status(201).json({
@@ -84,7 +85,7 @@ export const updateSalaryComponentController = async (
 
     const id = Number(req.params.id);
 
-    const { name, code, type } = req.body;
+    const { name, code, type, prorated } = req.body;
 
     const data = await updateSalaryComponent({
       id,
@@ -92,6 +93,7 @@ export const updateSalaryComponentController = async (
       name,
       code,
       type,
+      prorated,
     });
 
     res.json({

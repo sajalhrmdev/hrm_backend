@@ -42,6 +42,7 @@ export type SalaryComponentMinAggregateOutputType = {
   name: string | null
   code: string | null
   type: $Enums.SalaryComponentType | null
+  prorated: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -52,6 +53,7 @@ export type SalaryComponentMaxAggregateOutputType = {
   name: string | null
   code: string | null
   type: $Enums.SalaryComponentType | null
+  prorated: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -62,6 +64,7 @@ export type SalaryComponentCountAggregateOutputType = {
   name: number
   code: number
   type: number
+  prorated: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -84,6 +87,7 @@ export type SalaryComponentMinAggregateInputType = {
   name?: true
   code?: true
   type?: true
+  prorated?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -94,6 +98,7 @@ export type SalaryComponentMaxAggregateInputType = {
   name?: true
   code?: true
   type?: true
+  prorated?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -104,6 +109,7 @@ export type SalaryComponentCountAggregateInputType = {
   name?: true
   code?: true
   type?: true
+  prorated?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -201,6 +207,7 @@ export type SalaryComponentGroupByOutputType = {
   name: string
   code: string
   type: $Enums.SalaryComponentType
+  prorated: boolean
   createdAt: Date
   updatedAt: Date
   _count: SalaryComponentCountAggregateOutputType | null
@@ -234,6 +241,7 @@ export type SalaryComponentWhereInput = {
   name?: Prisma.StringFilter<"SalaryComponent"> | string
   code?: Prisma.StringFilter<"SalaryComponent"> | string
   type?: Prisma.EnumSalaryComponentTypeFilter<"SalaryComponent"> | $Enums.SalaryComponentType
+  prorated?: Prisma.BoolFilter<"SalaryComponent"> | boolean
   createdAt?: Prisma.DateTimeFilter<"SalaryComponent"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"SalaryComponent"> | Date | string
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
@@ -247,6 +255,7 @@ export type SalaryComponentOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  prorated?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   company?: Prisma.CompanyOrderByWithRelationInput
@@ -264,6 +273,7 @@ export type SalaryComponentWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"SalaryComponent"> | string
   code?: Prisma.StringFilter<"SalaryComponent"> | string
   type?: Prisma.EnumSalaryComponentTypeFilter<"SalaryComponent"> | $Enums.SalaryComponentType
+  prorated?: Prisma.BoolFilter<"SalaryComponent"> | boolean
   createdAt?: Prisma.DateTimeFilter<"SalaryComponent"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"SalaryComponent"> | Date | string
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
@@ -277,6 +287,7 @@ export type SalaryComponentOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  prorated?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.SalaryComponentCountOrderByAggregateInput
@@ -295,6 +306,7 @@ export type SalaryComponentScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"SalaryComponent"> | string
   code?: Prisma.StringWithAggregatesFilter<"SalaryComponent"> | string
   type?: Prisma.EnumSalaryComponentTypeWithAggregatesFilter<"SalaryComponent"> | $Enums.SalaryComponentType
+  prorated?: Prisma.BoolWithAggregatesFilter<"SalaryComponent"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"SalaryComponent"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"SalaryComponent"> | Date | string
 }
@@ -303,6 +315,7 @@ export type SalaryComponentCreateInput = {
   name: string
   code: string
   type: $Enums.SalaryComponentType
+  prorated?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutSalaryComponentsInput
@@ -316,6 +329,7 @@ export type SalaryComponentUncheckedCreateInput = {
   name: string
   code: string
   type: $Enums.SalaryComponentType
+  prorated?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutSalaryComponentInput
@@ -326,6 +340,7 @@ export type SalaryComponentUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumSalaryComponentTypeFieldUpdateOperationsInput | $Enums.SalaryComponentType
+  prorated?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company?: Prisma.CompanyUpdateOneRequiredWithoutSalaryComponentsNestedInput
@@ -339,6 +354,7 @@ export type SalaryComponentUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumSalaryComponentTypeFieldUpdateOperationsInput | $Enums.SalaryComponentType
+  prorated?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutSalaryComponentNestedInput
@@ -351,6 +367,7 @@ export type SalaryComponentCreateManyInput = {
   name: string
   code: string
   type: $Enums.SalaryComponentType
+  prorated?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -359,6 +376,7 @@ export type SalaryComponentUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumSalaryComponentTypeFieldUpdateOperationsInput | $Enums.SalaryComponentType
+  prorated?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -369,6 +387,7 @@ export type SalaryComponentUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumSalaryComponentTypeFieldUpdateOperationsInput | $Enums.SalaryComponentType
+  prorated?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -394,6 +413,7 @@ export type SalaryComponentCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  prorated?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -409,6 +429,7 @@ export type SalaryComponentMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  prorated?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -419,6 +440,7 @@ export type SalaryComponentMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  prorated?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -511,6 +533,7 @@ export type SalaryComponentCreateWithoutCompanyInput = {
   name: string
   code: string
   type: $Enums.SalaryComponentType
+  prorated?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutSalaryComponentInput
@@ -522,6 +545,7 @@ export type SalaryComponentUncheckedCreateWithoutCompanyInput = {
   name: string
   code: string
   type: $Enums.SalaryComponentType
+  prorated?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutSalaryComponentInput
@@ -563,6 +587,7 @@ export type SalaryComponentScalarWhereInput = {
   name?: Prisma.StringFilter<"SalaryComponent"> | string
   code?: Prisma.StringFilter<"SalaryComponent"> | string
   type?: Prisma.EnumSalaryComponentTypeFilter<"SalaryComponent"> | $Enums.SalaryComponentType
+  prorated?: Prisma.BoolFilter<"SalaryComponent"> | boolean
   createdAt?: Prisma.DateTimeFilter<"SalaryComponent"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"SalaryComponent"> | Date | string
 }
@@ -571,6 +596,7 @@ export type SalaryComponentCreateWithoutEmployeeSalaryComponentsInput = {
   name: string
   code: string
   type: $Enums.SalaryComponentType
+  prorated?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutSalaryComponentsInput
@@ -583,6 +609,7 @@ export type SalaryComponentUncheckedCreateWithoutEmployeeSalaryComponentsInput =
   name: string
   code: string
   type: $Enums.SalaryComponentType
+  prorated?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   payrollAdjustments?: Prisma.PayrollAdjustmentUncheckedCreateNestedManyWithoutSalaryComponentInput
@@ -608,6 +635,7 @@ export type SalaryComponentUpdateWithoutEmployeeSalaryComponentsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumSalaryComponentTypeFieldUpdateOperationsInput | $Enums.SalaryComponentType
+  prorated?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company?: Prisma.CompanyUpdateOneRequiredWithoutSalaryComponentsNestedInput
@@ -620,6 +648,7 @@ export type SalaryComponentUncheckedUpdateWithoutEmployeeSalaryComponentsInput =
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumSalaryComponentTypeFieldUpdateOperationsInput | $Enums.SalaryComponentType
+  prorated?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payrollAdjustments?: Prisma.PayrollAdjustmentUncheckedUpdateManyWithoutSalaryComponentNestedInput
@@ -629,6 +658,7 @@ export type SalaryComponentCreateWithoutPayrollAdjustmentsInput = {
   name: string
   code: string
   type: $Enums.SalaryComponentType
+  prorated?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutSalaryComponentsInput
@@ -641,6 +671,7 @@ export type SalaryComponentUncheckedCreateWithoutPayrollAdjustmentsInput = {
   name: string
   code: string
   type: $Enums.SalaryComponentType
+  prorated?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutSalaryComponentInput
@@ -666,6 +697,7 @@ export type SalaryComponentUpdateWithoutPayrollAdjustmentsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumSalaryComponentTypeFieldUpdateOperationsInput | $Enums.SalaryComponentType
+  prorated?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company?: Prisma.CompanyUpdateOneRequiredWithoutSalaryComponentsNestedInput
@@ -678,6 +710,7 @@ export type SalaryComponentUncheckedUpdateWithoutPayrollAdjustmentsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumSalaryComponentTypeFieldUpdateOperationsInput | $Enums.SalaryComponentType
+  prorated?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutSalaryComponentNestedInput
@@ -688,6 +721,7 @@ export type SalaryComponentCreateManyCompanyInput = {
   name: string
   code: string
   type: $Enums.SalaryComponentType
+  prorated?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -696,6 +730,7 @@ export type SalaryComponentUpdateWithoutCompanyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumSalaryComponentTypeFieldUpdateOperationsInput | $Enums.SalaryComponentType
+  prorated?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutSalaryComponentNestedInput
@@ -707,6 +742,7 @@ export type SalaryComponentUncheckedUpdateWithoutCompanyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumSalaryComponentTypeFieldUpdateOperationsInput | $Enums.SalaryComponentType
+  prorated?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutSalaryComponentNestedInput
@@ -718,6 +754,7 @@ export type SalaryComponentUncheckedUpdateManyWithoutCompanyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumSalaryComponentTypeFieldUpdateOperationsInput | $Enums.SalaryComponentType
+  prorated?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -768,6 +805,7 @@ export type SalaryComponentSelect<ExtArgs extends runtime.Types.Extensions.Inter
   name?: boolean
   code?: boolean
   type?: boolean
+  prorated?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
@@ -782,6 +820,7 @@ export type SalaryComponentSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   name?: boolean
   code?: boolean
   type?: boolean
+  prorated?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
@@ -793,6 +832,7 @@ export type SalaryComponentSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   name?: boolean
   code?: boolean
   type?: boolean
+  prorated?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
@@ -804,11 +844,12 @@ export type SalaryComponentSelectScalar = {
   name?: boolean
   code?: boolean
   type?: boolean
+  prorated?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type SalaryComponentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "name" | "code" | "type" | "createdAt" | "updatedAt", ExtArgs["result"]["salaryComponent"]>
+export type SalaryComponentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "name" | "code" | "type" | "prorated" | "createdAt" | "updatedAt", ExtArgs["result"]["salaryComponent"]>
 export type SalaryComponentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   employeeSalaryComponents?: boolean | Prisma.SalaryComponent$employeeSalaryComponentsArgs<ExtArgs>
@@ -835,6 +876,7 @@ export type $SalaryComponentPayload<ExtArgs extends runtime.Types.Extensions.Int
     name: string
     code: string
     type: $Enums.SalaryComponentType
+    prorated: boolean
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["salaryComponent"]>
@@ -1268,6 +1310,7 @@ export interface SalaryComponentFieldRefs {
   readonly name: Prisma.FieldRef<"SalaryComponent", 'String'>
   readonly code: Prisma.FieldRef<"SalaryComponent", 'String'>
   readonly type: Prisma.FieldRef<"SalaryComponent", 'SalaryComponentType'>
+  readonly prorated: Prisma.FieldRef<"SalaryComponent", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"SalaryComponent", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"SalaryComponent", 'DateTime'>
 }

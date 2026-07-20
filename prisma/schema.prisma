@@ -693,6 +693,8 @@ model SalaryComponent {
 
   type SalaryComponentType
 
+  prorated Boolean @default(false)
+
   company Company @relation(fields: [companyId], references: [id])
 
   employeeSalaryComponents EmployeeSalaryComponent[]

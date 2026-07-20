@@ -791,13 +791,13 @@ export const generatePayroll = async (
 
           // ================================
           // PAYABLE
-
-          let payableAmount = perDayAmount * payableDays;
-          // ================================
-          // DEDUCTION
           // ================================
 
-          if (item.salaryComponent.type === "DEDUCTION") {
+          let payableAmount;
+
+          if (item.salaryComponent.prorated) {
+            payableAmount = perDayAmount * payableDays;
+          } else {
             payableAmount = item.amount;
           }
 
