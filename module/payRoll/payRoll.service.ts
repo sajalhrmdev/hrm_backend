@@ -1,6 +1,10 @@
 import { prisma } from "../../lib/prisma.js";
 import getStartEndOfDay from "../../utils/getStartEndOfDay.js";
 
+
+
+
+
 // type CreatePayrollRunInput = {
 //   companyId: number;
 
@@ -594,6 +598,16 @@ export const generatePayroll = async (
   if (payrollRun.status === "FINALIZED") {
     throw new Error("Payroll already finalized");
   }
+  // TIMEZONE-AWARE PERIOD DATES
+  const { start: periodStartTz } = getStartEndOfDay(
+    "Asia/Kolkata",
+    payrollRun.periodStart,
+  );
+  const { end: periodEndTz } = getStartEndOfDay(
+    "Asia/Kolkata",
+    payrollRun.periodEnd,
+  );
+
   // TOTAL DAYS
   const totalDays =
     Math.ceil(
@@ -653,8 +667,8 @@ export const generatePayroll = async (
           companyId,
 
           date: {
-            gte: payrollRun.periodStart,
-            lte: payrollRun.periodEnd,
+            gte: periodStartTz,
+            lte: periodEndTz,
           },
         },
 
@@ -681,8 +695,8 @@ export const generatePayroll = async (
           companyId,
 
           date: {
-            gte: payrollRun.periodStart,
-            lte: payrollRun.periodEnd,
+            gte: periodStartTz,
+            lte: periodEndTz,
           },
         },
 
@@ -1089,6 +1103,16 @@ export const getSinglePayroll = async (
   if (!payroll) {
     throw new Error("Payroll not found");
   }
+
+  const { start: periodStartTz } = getStartEndOfDay(
+    "Asia/Kolkata",
+    payroll.payrollRun.periodStart,
+  );
+  const { end: periodEndTz } = getStartEndOfDay(
+    "Asia/Kolkata",
+    payroll.payrollRun.periodEnd,
+  );
+
   const attendanceSummary = await prisma.attendance.groupBy({
     by: ["status"],
 
@@ -1098,9 +1122,9 @@ export const getSinglePayroll = async (
       companyId,
 
       date: {
-        gte: payroll.payrollRun.periodStart,
+        gte: periodStartTz,
 
-        lte: payroll.payrollRun.periodEnd,
+        lte: periodEndTz,
       },
     },
 
@@ -1133,11 +1157,11 @@ export const getSinglePayroll = async (
       status: "APPROVED",
 
       fromDate: {
-        gte: payroll.payrollRun.periodStart,
+        gte: periodStartTz,
       },
 
       toDate: {
-        lte: payroll.payrollRun.periodEnd,
+        lte: periodEndTz,
       },
     },
 
@@ -1159,30 +1183,28 @@ export const getSinglePayroll = async (
   });
   const leaveMap = new Map();
 
-leaveSummary.forEach((leave) => {
-  const key = leave.leaveType.id;
+  leaveSummary.forEach((leave) => {
+    const key = leave.leaveType.id;
 
-  if (!leaveMap.has(key)) {
-    leaveMap.set(key, {
-      leaveTypeId: leave.leaveType.id,
-      leaveTypeName: leave.leaveType.name,
-      leaveTypeCode: leave.leaveType.code,
-      totalDays: 0,
-      paidDays: 0,
-      unpaidDays: 0,
-    });
-  }
+    if (!leaveMap.has(key)) {
+      leaveMap.set(key, {
+        leaveTypeId: leave.leaveType.id,
+        leaveTypeName: leave.leaveType.name,
+        leaveTypeCode: leave.leaveType.code,
+        totalDays: 0,
+        paidDays: 0,
+        unpaidDays: 0,
+      });
+    }
 
-  const item = leaveMap.get(key);
+    const item = leaveMap.get(key);
 
-  item.totalDays += leave.totalDays;
-  item.paidDays += leave.paidDays;
-  item.unpaidDays += leave.unpaidDays;
-});
+    item.totalDays += leave.totalDays;
+    item.paidDays += leave.paidDays;
+    item.unpaidDays += leave.unpaidDays;
+  });
 
-const finalLeaveSummary = Array.from(
-  leaveMap.values()
-);
+  const finalLeaveSummary = Array.from(leaveMap.values());
 
   return {
     ...payroll,

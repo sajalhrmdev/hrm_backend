@@ -164,10 +164,12 @@ type GetAllLeavesInput = {
   leaveFrom?: string;
   leaveTo?: string;
   search?: string;
+  page?: number;
+  limit?: number;
 };
 
 export const getAllLeaves = async (input: GetAllLeavesInput) => {
-  const { companyId, status, appliedFrom, appliedTo, leaveFrom, leaveTo, search } = input;
+  const { companyId, status, appliedFrom, appliedTo, leaveFrom, leaveTo, search, page = 1, limit = 10 } = input;
 
   const where: any = { companyId };
 
@@ -203,20 +205,33 @@ export const getAllLeaves = async (input: GetAllLeavesInput) => {
     };
   }
 
-  const leaves = await prisma.leaveApplication.findMany({
-    where,
-    orderBy: { applied_at: "desc" },
-    include: {
-      employee: {
-        select: { id: true, name: true, employeeCode: true },
-      },
-      leaveType: {
-        select: { id: true, name: true, code: true },
-      },
-    },
-  });
+  const skip = (page - 1) * limit;
 
-  return leaves;
+  const [leaves, total] = await Promise.all([
+    prisma.leaveApplication.findMany({
+      where,
+      orderBy: { applied_at: "desc" },
+      skip,
+      take: limit,
+      include: {
+        employee: {
+          select: { id: true, name: true, employeeCode: true },
+        },
+        leaveType: {
+          select: { id: true, name: true, code: true },
+        },
+      },
+    }),
+    prisma.leaveApplication.count({ where }),
+  ]);
+
+  return {
+    data: leaves,
+    total,
+    page,
+    limit,
+    totalPages: Math.ceil(total / limit),
+  };
 };
 
 // 3============================employeewise leave=================

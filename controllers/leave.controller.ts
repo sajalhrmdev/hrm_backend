@@ -141,7 +141,7 @@ export const getAllLeavesController = async (
       throw new Error("Company not found");
     }
 
-    const { status, appliedFrom, appliedTo, leaveFrom, leaveTo, search } = req.query;
+    const { status, appliedFrom, appliedTo, leaveFrom, leaveTo, search, page, limit } = req.query;
 
     const data = await getAllLeaves({
       companyId,
@@ -151,6 +151,8 @@ export const getAllLeavesController = async (
       leaveFrom: leaveFrom as string,
       leaveTo: leaveTo as string,
       search: search as string,
+      page: page ? Number(page) : 1,
+      limit: limit ? Number(limit) : 10,
     });
 
     res.json({
