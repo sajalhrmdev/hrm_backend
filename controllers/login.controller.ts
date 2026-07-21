@@ -22,6 +22,7 @@ export const loginUser = async (req: Request, res: Response) => {
       where: { email },
       include: {
         globalRole: true,
+        memberships: { take: 1 },
       },
     });
 
@@ -57,6 +58,7 @@ export const loginUser = async (req: Request, res: Response) => {
         userId: user.id,
         email: user.email,
         role: user.globalRole?.name || null,
+        companyId: user.memberships?.[0]?.companyId || null,
       },
       process.env.JWT_SECRET,
       {

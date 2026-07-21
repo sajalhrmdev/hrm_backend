@@ -67,6 +67,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
+      "http://localhost:5001",
       "http://localhost:8081",
       "https://hrm-frontend-ashy.vercel.app",
       "https://2gvbh86w-3000.inc1.devtunnels.ms",
