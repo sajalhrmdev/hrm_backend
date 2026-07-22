@@ -19,16 +19,12 @@ import getStartEndOfDay from "../utils/getStartEndOfDay.js";
 
 export const checkIn = async (req: Request, res: Response) => {
   try {
-    const { latitude, longitude, accuracy } = req.body;
+    const { latitude, longitude, accuracy, method } = req.body;
 
     const employee = req.employee;
 
     if (!employee) {
       throw new Error("Employee not found");
-    }
-
-    if (!req.file) {
-      throw new Error("Face image required");
     }
 
     const data = await handleAttendance(
@@ -37,7 +33,8 @@ export const checkIn = async (req: Request, res: Response) => {
       Number(latitude),
       Number(longitude),
       Number(accuracy),
-      req.file.buffer,
+      req.file?.buffer,
+      method || "FACE",
     );
 
     res.json({
@@ -54,7 +51,7 @@ export const checkIn = async (req: Request, res: Response) => {
 
 export const checkOut = async (req: Request, res: Response) => {
   try {
-    const { latitude, longitude, accuracy } = req.body;
+    const { latitude, longitude, accuracy, method } = req.body;
 
     const employee = req.employee;
 
@@ -62,17 +59,14 @@ export const checkOut = async (req: Request, res: Response) => {
       throw new Error("Employee not found");
     }
 
-  if (!req.file) {
-  throw new Error("Face image required");
-}
-
     const data = await handleAttendance(
       employee.id,
       "OUT",
       Number(latitude),
       Number(longitude),
       Number(accuracy),
-      req.file.buffer,
+      req.file?.buffer,
+      method || "FACE",
     );
 
     res.json({
@@ -316,8 +310,6 @@ export const getTodayAttendanceByEmployee = async (
           },
         },
 
-        employee: true,
-
         company: true,
 
         shift: true,
@@ -355,12 +347,22 @@ export const getTodayAttendanceByEmployee = async (
     // RESPONSE
     // ======================================
 
+    let allowedMethods: string[];
+
+    const emp = await prisma.employee.findUnique({
+      where: { id: Number(req.employee?.id) },
+      include: { workSchedulePolicy: true },
+    });
+    const methods = (emp as any)?.workSchedulePolicy?.allowedMethods;
+    allowedMethods = methods?.length ? methods : ["FACE"];
+
     res.json({
       success: true,
 
       data: attendance,
 
       nextAction,
+      allowedMethods,
     });
   } catch (err: any) {
     res.status(400).json({

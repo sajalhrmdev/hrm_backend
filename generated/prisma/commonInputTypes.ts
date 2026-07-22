@@ -450,6 +450,23 @@ export type EnumAttendanceAdjustmentTypeWithAggregatesFilter<$PrismaModel = neve
   _max?: Prisma.NestedEnumAttendanceAdjustmentTypeFilter<$PrismaModel>
 }
 
+export type EnumAttendanceMethodNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.AttendanceMethod | Prisma.EnumAttendanceMethodFieldRefInput<$PrismaModel> | null
+  in?: $Enums.AttendanceMethod[] | Prisma.ListEnumAttendanceMethodFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.AttendanceMethod[] | Prisma.ListEnumAttendanceMethodFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumAttendanceMethodNullableFilter<$PrismaModel> | $Enums.AttendanceMethod | null
+}
+
+export type EnumAttendanceMethodNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AttendanceMethod | Prisma.EnumAttendanceMethodFieldRefInput<$PrismaModel> | null
+  in?: $Enums.AttendanceMethod[] | Prisma.ListEnumAttendanceMethodFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.AttendanceMethod[] | Prisma.ListEnumAttendanceMethodFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumAttendanceMethodNullableWithAggregatesFilter<$PrismaModel> | $Enums.AttendanceMethod | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAttendanceMethodNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAttendanceMethodNullableFilter<$PrismaModel>
+}
+
 export type EnumAttendanceModeFilter<$PrismaModel = never> = {
   equals?: $Enums.AttendanceMode | Prisma.EnumAttendanceModeFieldRefInput<$PrismaModel>
   in?: $Enums.AttendanceMode[] | Prisma.ListEnumAttendanceModeFieldRefInput<$PrismaModel>
@@ -1192,6 +1209,23 @@ export type NestedEnumAttendanceAdjustmentTypeWithAggregatesFilter<$PrismaModel 
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumAttendanceAdjustmentTypeFilter<$PrismaModel>
   _max?: Prisma.NestedEnumAttendanceAdjustmentTypeFilter<$PrismaModel>
+}
+
+export type NestedEnumAttendanceMethodNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.AttendanceMethod | Prisma.EnumAttendanceMethodFieldRefInput<$PrismaModel> | null
+  in?: $Enums.AttendanceMethod[] | Prisma.ListEnumAttendanceMethodFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.AttendanceMethod[] | Prisma.ListEnumAttendanceMethodFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumAttendanceMethodNullableFilter<$PrismaModel> | $Enums.AttendanceMethod | null
+}
+
+export type NestedEnumAttendanceMethodNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AttendanceMethod | Prisma.EnumAttendanceMethodFieldRefInput<$PrismaModel> | null
+  in?: $Enums.AttendanceMethod[] | Prisma.ListEnumAttendanceMethodFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.AttendanceMethod[] | Prisma.ListEnumAttendanceMethodFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumAttendanceMethodNullableWithAggregatesFilter<$PrismaModel> | $Enums.AttendanceMethod | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAttendanceMethodNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAttendanceMethodNullableFilter<$PrismaModel>
 }
 
 export type NestedEnumAttendanceModeFilter<$PrismaModel = never> = {

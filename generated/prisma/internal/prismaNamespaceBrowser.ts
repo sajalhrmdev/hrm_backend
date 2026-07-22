@@ -451,6 +451,7 @@ export const AttendanceLogScalarFieldEnum = {
   shiftName: 'shiftName',
   shiftStartTime: 'shiftStartTime',
   shiftEndTime: 'shiftEndTime',
+  method: 'method',
   createdAt: 'createdAt'
 } as const
 
@@ -520,6 +521,7 @@ export const WorkSchedulePolicyScalarFieldEnum = {
   overtimeAfterMinutes: 'overtimeAfterMinutes',
   shiftId: 'shiftId',
   weeklyOffPattern: 'weeklyOffPattern',
+  allowedMethods: 'allowedMethods',
   isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

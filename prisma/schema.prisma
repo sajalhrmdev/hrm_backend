@@ -565,6 +565,7 @@ model AttendanceLog{
 shiftStartTime String?
 
 shiftEndTime String?
+  method AttendanceMethod?
   createdAt DateTime @default(now())
   @@index([employeeId])
 
@@ -653,6 +654,10 @@ enum AttendanceFrom {
   OFFICE
   REMOTE
 }
+enum AttendanceMethod {
+  FACE
+  NORMAL
+}
 model WorkSchedulePolicy {
   id Int @id @default(autoincrement())
   companyId Int
@@ -670,6 +675,7 @@ model WorkSchedulePolicy {
     shiftId Int?
   shift Shift? @relation(  fields:[shiftId],  references:[id] )
   weeklyOffPattern Json?
+  allowedMethods AttendanceMethod[] @default([FACE])
   isActive Boolean  @default(true)
   company Company @relation( fields:[companyId], references:[id])
   employees Employee[]

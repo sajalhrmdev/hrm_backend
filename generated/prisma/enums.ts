@@ -135,6 +135,14 @@ export const AttendanceFrom = {
 export type AttendanceFrom = (typeof AttendanceFrom)[keyof typeof AttendanceFrom]
 
 
+export const AttendanceMethod = {
+  FACE: 'FACE',
+  NORMAL: 'NORMAL'
+} as const
+
+export type AttendanceMethod = (typeof AttendanceMethod)[keyof typeof AttendanceMethod]
+
+
 export const SalaryComponentType = {
   EARNING: 'EARNING',
   DEDUCTION: 'DEDUCTION'

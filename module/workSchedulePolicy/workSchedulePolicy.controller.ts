@@ -48,6 +48,7 @@ export const createWorkSchedulePolicyController = async (
       shiftId,
 
       weeklyOffPattern,
+      allowedMethods,
     } = req.body;
 
     const data = await createWorkSchedulePolicy({
@@ -73,6 +74,7 @@ export const createWorkSchedulePolicyController = async (
       shiftId: shiftId ? Number(shiftId) : undefined,
 
       weeklyOffPattern,
+      allowedMethods: allowedMethods || ["FACE"],
     });
 
     res.json({
@@ -192,6 +194,7 @@ export const updateWorkSchedulePolicyController = async (
       weeklyOffPattern,
 
       isActive,
+      allowedMethods,
     } = req.body;
 
     const data = await updateWorkSchedulePolicy({
@@ -221,6 +224,7 @@ export const updateWorkSchedulePolicyController = async (
       weeklyOffPattern,
 
       isActive,
+      allowedMethods,
     });
 
     res.json({

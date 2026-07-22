@@ -390,6 +390,7 @@ type CreateInput = {
   shiftId?: number;
 
   weeklyOffPattern?: any;
+  allowedMethods?: string[];
 };
 
 // ======================================================
@@ -414,6 +415,7 @@ export const createWorkSchedulePolicy = async (input: CreateInput) => {
     shiftId,
 
     weeklyOffPattern,
+    allowedMethods,
   } = input;
 
   // ======================================================
@@ -493,6 +495,7 @@ export const createWorkSchedulePolicy = async (input: CreateInput) => {
       shiftId,
 
       weeklyOffPattern,
+      allowedMethods: (allowedMethods || ["FACE"]) as any,
     },
 
     include: {
@@ -582,6 +585,7 @@ type UpdateInput = {
   weeklyOffPattern?: any;
 
   isActive?: boolean;
+  allowedMethods?: string[];
 };
 
 // ======================================================
@@ -610,6 +614,7 @@ export const updateWorkSchedulePolicy = async (input: UpdateInput) => {
     weeklyOffPattern,
 
     isActive,
+    allowedMethods,
   } = input;
 
   const existing = await prisma.workSchedulePolicy.findFirst({
@@ -689,7 +694,8 @@ export const updateWorkSchedulePolicy = async (input: UpdateInput) => {
       weeklyOffPattern,
 
       isActive,
-    },
+      ...(allowedMethods ? { allowedMethods: allowedMethods as any } : {}),
+    } as any,
 
     include: {
       shift: true,

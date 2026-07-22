@@ -4302,6 +4302,7 @@ export const AttendanceLogScalarFieldEnum = {
   shiftName: 'shiftName',
   shiftStartTime: 'shiftStartTime',
   shiftEndTime: 'shiftEndTime',
+  method: 'method',
   createdAt: 'createdAt'
 } as const
 
@@ -4371,6 +4372,7 @@ export const WorkSchedulePolicyScalarFieldEnum = {
   overtimeAfterMinutes: 'overtimeAfterMinutes',
   shiftId: 'shiftId',
   weeklyOffPattern: 'weeklyOffPattern',
+  allowedMethods: 'allowedMethods',
   isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -4999,6 +5001,20 @@ export type EnumAttendanceAdjustmentTypeFieldRefInput<$PrismaModel> = FieldRefIn
  * Reference to a field of type 'AttendanceAdjustmentType[]'
  */
 export type ListEnumAttendanceAdjustmentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AttendanceAdjustmentType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'AttendanceMethod'
+ */
+export type EnumAttendanceMethodFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AttendanceMethod'>
+    
+
+
+/**
+ * Reference to a field of type 'AttendanceMethod[]'
+ */
+export type ListEnumAttendanceMethodFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AttendanceMethod[]'>
     
 
 

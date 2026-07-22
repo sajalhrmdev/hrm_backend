@@ -82,12 +82,14 @@ export const handleAttendance = async (
   longitude?: number,
   accuracy?: number,
   imageBuffer?: Buffer,
+  method: string = "FACE",
 ) => {
-  if (!imageBuffer) {
-    throw new Error("Face image required");
+  if (method === "FACE") {
+    if (!imageBuffer) {
+      throw new Error("Face image required");
+    }
+    await verifyFace(employeeId, imageBuffer);
   }
-
-  await verifyFace(employeeId, imageBuffer);
   const now = new Date();
   const timezone = "Asia/Kolkata";
   const { start, end } = getStartEndOfDay(timezone);
@@ -106,6 +108,13 @@ export const handleAttendance = async (
 
   if (!employee) throw new Error("Employee not found");
   const workSchedulePolicy = employee?.workSchedulePolicy;
+
+  const allowedMethods = workSchedulePolicy?.allowedMethods?.length
+    ? workSchedulePolicy.allowedMethods
+    : ["FACE"];
+  if (!allowedMethods.includes(method as any)) {
+    throw new Error(`Attendance method "${method}" is not allowed`);
+  }
 
   const attendanceType = workSchedulePolicy?.attendanceType;
 
@@ -257,6 +266,7 @@ export const handleAttendance = async (
       time: now,
       latitude,
       longitude,
+      method: (method === "NORMAL" ? "NORMAL" : "FACE") as any,
       shiftName: isFlexible ? "Flexible Shift" : shift?.title,
 
       shiftStartTime: isFlexible ? null : shift?.startTime,

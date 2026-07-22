@@ -12,7 +12,6 @@ import {
   getTodayAttendanceByEmployee,
   getUserlessAttendanceController
 } from "../controllers/attendance.controller.js";
-import { getTodayAttendance } from "../services/attendance.service.js";
 import { processAttendanceController } from "../controllers/processAttendance.Controller.js";
 import { employeeMiddleware } from "../middlewares/employee.middlewear.js";
 import upload from "../middlewares/upload.middleware.js";

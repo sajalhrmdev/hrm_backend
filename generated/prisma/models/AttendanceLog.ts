@@ -57,6 +57,7 @@ export type AttendanceLogMinAggregateOutputType = {
   shiftName: string | null
   shiftStartTime: string | null
   shiftEndTime: string | null
+  method: $Enums.AttendanceMethod | null
   createdAt: Date | null
 }
 
@@ -73,6 +74,7 @@ export type AttendanceLogMaxAggregateOutputType = {
   shiftName: string | null
   shiftStartTime: string | null
   shiftEndTime: string | null
+  method: $Enums.AttendanceMethod | null
   createdAt: Date | null
 }
 
@@ -89,6 +91,7 @@ export type AttendanceLogCountAggregateOutputType = {
   shiftName: number
   shiftStartTime: number
   shiftEndTime: number
+  method: number
   createdAt: number
   _all: number
 }
@@ -125,6 +128,7 @@ export type AttendanceLogMinAggregateInputType = {
   shiftName?: true
   shiftStartTime?: true
   shiftEndTime?: true
+  method?: true
   createdAt?: true
 }
 
@@ -141,6 +145,7 @@ export type AttendanceLogMaxAggregateInputType = {
   shiftName?: true
   shiftStartTime?: true
   shiftEndTime?: true
+  method?: true
   createdAt?: true
 }
 
@@ -157,6 +162,7 @@ export type AttendanceLogCountAggregateInputType = {
   shiftName?: true
   shiftStartTime?: true
   shiftEndTime?: true
+  method?: true
   createdAt?: true
   _all?: true
 }
@@ -260,6 +266,7 @@ export type AttendanceLogGroupByOutputType = {
   shiftName: string | null
   shiftStartTime: string | null
   shiftEndTime: string | null
+  method: $Enums.AttendanceMethod | null
   createdAt: Date
   _count: AttendanceLogCountAggregateOutputType | null
   _avg: AttendanceLogAvgAggregateOutputType | null
@@ -299,6 +306,7 @@ export type AttendanceLogWhereInput = {
   shiftName?: Prisma.StringNullableFilter<"AttendanceLog"> | string | null
   shiftStartTime?: Prisma.StringNullableFilter<"AttendanceLog"> | string | null
   shiftEndTime?: Prisma.StringNullableFilter<"AttendanceLog"> | string | null
+  method?: Prisma.EnumAttendanceMethodNullableFilter<"AttendanceLog"> | $Enums.AttendanceMethod | null
   createdAt?: Prisma.DateTimeFilter<"AttendanceLog"> | Date | string
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
@@ -318,6 +326,7 @@ export type AttendanceLogOrderByWithRelationInput = {
   shiftName?: Prisma.SortOrderInput | Prisma.SortOrder
   shiftStartTime?: Prisma.SortOrderInput | Prisma.SortOrder
   shiftEndTime?: Prisma.SortOrderInput | Prisma.SortOrder
+  method?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   employee?: Prisma.EmployeeOrderByWithRelationInput
   company?: Prisma.CompanyOrderByWithRelationInput
@@ -340,6 +349,7 @@ export type AttendanceLogWhereUniqueInput = Prisma.AtLeast<{
   shiftName?: Prisma.StringNullableFilter<"AttendanceLog"> | string | null
   shiftStartTime?: Prisma.StringNullableFilter<"AttendanceLog"> | string | null
   shiftEndTime?: Prisma.StringNullableFilter<"AttendanceLog"> | string | null
+  method?: Prisma.EnumAttendanceMethodNullableFilter<"AttendanceLog"> | $Enums.AttendanceMethod | null
   createdAt?: Prisma.DateTimeFilter<"AttendanceLog"> | Date | string
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
@@ -359,6 +369,7 @@ export type AttendanceLogOrderByWithAggregationInput = {
   shiftName?: Prisma.SortOrderInput | Prisma.SortOrder
   shiftStartTime?: Prisma.SortOrderInput | Prisma.SortOrder
   shiftEndTime?: Prisma.SortOrderInput | Prisma.SortOrder
+  method?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.AttendanceLogCountOrderByAggregateInput
   _avg?: Prisma.AttendanceLogAvgOrderByAggregateInput
@@ -383,6 +394,7 @@ export type AttendanceLogScalarWhereWithAggregatesInput = {
   shiftName?: Prisma.StringNullableWithAggregatesFilter<"AttendanceLog"> | string | null
   shiftStartTime?: Prisma.StringNullableWithAggregatesFilter<"AttendanceLog"> | string | null
   shiftEndTime?: Prisma.StringNullableWithAggregatesFilter<"AttendanceLog"> | string | null
+  method?: Prisma.EnumAttendanceMethodNullableWithAggregatesFilter<"AttendanceLog"> | $Enums.AttendanceMethod | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"AttendanceLog"> | Date | string
 }
 
@@ -395,6 +407,7 @@ export type AttendanceLogCreateInput = {
   shiftName?: string | null
   shiftStartTime?: string | null
   shiftEndTime?: string | null
+  method?: $Enums.AttendanceMethod | null
   createdAt?: Date | string
   employee: Prisma.EmployeeCreateNestedOneWithoutAttendanceLogsInput
   company: Prisma.CompanyCreateNestedOneWithoutAttendanceLogsInput
@@ -414,6 +427,7 @@ export type AttendanceLogUncheckedCreateInput = {
   shiftName?: string | null
   shiftStartTime?: string | null
   shiftEndTime?: string | null
+  method?: $Enums.AttendanceMethod | null
   createdAt?: Date | string
 }
 
@@ -426,6 +440,7 @@ export type AttendanceLogUpdateInput = {
   shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  method?: Prisma.NullableEnumAttendanceMethodFieldUpdateOperationsInput | $Enums.AttendanceMethod | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutAttendanceLogsNestedInput
   company?: Prisma.CompanyUpdateOneRequiredWithoutAttendanceLogsNestedInput
@@ -445,6 +460,7 @@ export type AttendanceLogUncheckedUpdateInput = {
   shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  method?: Prisma.NullableEnumAttendanceMethodFieldUpdateOperationsInput | $Enums.AttendanceMethod | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -461,6 +477,7 @@ export type AttendanceLogCreateManyInput = {
   shiftName?: string | null
   shiftStartTime?: string | null
   shiftEndTime?: string | null
+  method?: $Enums.AttendanceMethod | null
   createdAt?: Date | string
 }
 
@@ -473,6 +490,7 @@ export type AttendanceLogUpdateManyMutationInput = {
   shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  method?: Prisma.NullableEnumAttendanceMethodFieldUpdateOperationsInput | $Enums.AttendanceMethod | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -489,6 +507,7 @@ export type AttendanceLogUncheckedUpdateManyInput = {
   shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  method?: Prisma.NullableEnumAttendanceMethodFieldUpdateOperationsInput | $Enums.AttendanceMethod | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -515,6 +534,7 @@ export type AttendanceLogCountOrderByAggregateInput = {
   shiftName?: Prisma.SortOrder
   shiftStartTime?: Prisma.SortOrder
   shiftEndTime?: Prisma.SortOrder
+  method?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -540,6 +560,7 @@ export type AttendanceLogMaxOrderByAggregateInput = {
   shiftName?: Prisma.SortOrder
   shiftStartTime?: Prisma.SortOrder
   shiftEndTime?: Prisma.SortOrder
+  method?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -556,6 +577,7 @@ export type AttendanceLogMinOrderByAggregateInput = {
   shiftName?: Prisma.SortOrder
   shiftStartTime?: Prisma.SortOrder
   shiftEndTime?: Prisma.SortOrder
+  method?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -694,6 +716,10 @@ export type AttendanceLogUncheckedUpdateManyWithoutAttendanceNestedInput = {
   deleteMany?: Prisma.AttendanceLogScalarWhereInput | Prisma.AttendanceLogScalarWhereInput[]
 }
 
+export type NullableEnumAttendanceMethodFieldUpdateOperationsInput = {
+  set?: $Enums.AttendanceMethod | null
+}
+
 export type AttendanceLogCreateWithoutCompanyInput = {
   type: string
   latitude?: number | null
@@ -703,6 +729,7 @@ export type AttendanceLogCreateWithoutCompanyInput = {
   shiftName?: string | null
   shiftStartTime?: string | null
   shiftEndTime?: string | null
+  method?: $Enums.AttendanceMethod | null
   createdAt?: Date | string
   employee: Prisma.EmployeeCreateNestedOneWithoutAttendanceLogsInput
   attendance?: Prisma.AttendanceCreateNestedOneWithoutAttendanceLogsInput
@@ -720,6 +747,7 @@ export type AttendanceLogUncheckedCreateWithoutCompanyInput = {
   shiftName?: string | null
   shiftStartTime?: string | null
   shiftEndTime?: string | null
+  method?: $Enums.AttendanceMethod | null
   createdAt?: Date | string
 }
 
@@ -765,6 +793,7 @@ export type AttendanceLogScalarWhereInput = {
   shiftName?: Prisma.StringNullableFilter<"AttendanceLog"> | string | null
   shiftStartTime?: Prisma.StringNullableFilter<"AttendanceLog"> | string | null
   shiftEndTime?: Prisma.StringNullableFilter<"AttendanceLog"> | string | null
+  method?: Prisma.EnumAttendanceMethodNullableFilter<"AttendanceLog"> | $Enums.AttendanceMethod | null
   createdAt?: Prisma.DateTimeFilter<"AttendanceLog"> | Date | string
 }
 
@@ -777,6 +806,7 @@ export type AttendanceLogCreateWithoutEmployeeInput = {
   shiftName?: string | null
   shiftStartTime?: string | null
   shiftEndTime?: string | null
+  method?: $Enums.AttendanceMethod | null
   createdAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutAttendanceLogsInput
   attendance?: Prisma.AttendanceCreateNestedOneWithoutAttendanceLogsInput
@@ -794,6 +824,7 @@ export type AttendanceLogUncheckedCreateWithoutEmployeeInput = {
   shiftName?: string | null
   shiftStartTime?: string | null
   shiftEndTime?: string | null
+  method?: $Enums.AttendanceMethod | null
   createdAt?: Date | string
 }
 
@@ -832,6 +863,7 @@ export type AttendanceLogCreateWithoutAttendanceInput = {
   shiftName?: string | null
   shiftStartTime?: string | null
   shiftEndTime?: string | null
+  method?: $Enums.AttendanceMethod | null
   createdAt?: Date | string
   employee: Prisma.EmployeeCreateNestedOneWithoutAttendanceLogsInput
   company: Prisma.CompanyCreateNestedOneWithoutAttendanceLogsInput
@@ -849,6 +881,7 @@ export type AttendanceLogUncheckedCreateWithoutAttendanceInput = {
   shiftName?: string | null
   shiftStartTime?: string | null
   shiftEndTime?: string | null
+  method?: $Enums.AttendanceMethod | null
   createdAt?: Date | string
 }
 
@@ -890,6 +923,7 @@ export type AttendanceLogCreateManyCompanyInput = {
   shiftName?: string | null
   shiftStartTime?: string | null
   shiftEndTime?: string | null
+  method?: $Enums.AttendanceMethod | null
   createdAt?: Date | string
 }
 
@@ -902,6 +936,7 @@ export type AttendanceLogUpdateWithoutCompanyInput = {
   shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  method?: Prisma.NullableEnumAttendanceMethodFieldUpdateOperationsInput | $Enums.AttendanceMethod | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutAttendanceLogsNestedInput
   attendance?: Prisma.AttendanceUpdateOneWithoutAttendanceLogsNestedInput
@@ -919,6 +954,7 @@ export type AttendanceLogUncheckedUpdateWithoutCompanyInput = {
   shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  method?: Prisma.NullableEnumAttendanceMethodFieldUpdateOperationsInput | $Enums.AttendanceMethod | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -934,6 +970,7 @@ export type AttendanceLogUncheckedUpdateManyWithoutCompanyInput = {
   shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  method?: Prisma.NullableEnumAttendanceMethodFieldUpdateOperationsInput | $Enums.AttendanceMethod | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -949,6 +986,7 @@ export type AttendanceLogCreateManyEmployeeInput = {
   shiftName?: string | null
   shiftStartTime?: string | null
   shiftEndTime?: string | null
+  method?: $Enums.AttendanceMethod | null
   createdAt?: Date | string
 }
 
@@ -961,6 +999,7 @@ export type AttendanceLogUpdateWithoutEmployeeInput = {
   shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  method?: Prisma.NullableEnumAttendanceMethodFieldUpdateOperationsInput | $Enums.AttendanceMethod | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company?: Prisma.CompanyUpdateOneRequiredWithoutAttendanceLogsNestedInput
   attendance?: Prisma.AttendanceUpdateOneWithoutAttendanceLogsNestedInput
@@ -978,6 +1017,7 @@ export type AttendanceLogUncheckedUpdateWithoutEmployeeInput = {
   shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  method?: Prisma.NullableEnumAttendanceMethodFieldUpdateOperationsInput | $Enums.AttendanceMethod | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -993,6 +1033,7 @@ export type AttendanceLogUncheckedUpdateManyWithoutEmployeeInput = {
   shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  method?: Prisma.NullableEnumAttendanceMethodFieldUpdateOperationsInput | $Enums.AttendanceMethod | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -1008,6 +1049,7 @@ export type AttendanceLogCreateManyAttendanceInput = {
   shiftName?: string | null
   shiftStartTime?: string | null
   shiftEndTime?: string | null
+  method?: $Enums.AttendanceMethod | null
   createdAt?: Date | string
 }
 
@@ -1020,6 +1062,7 @@ export type AttendanceLogUpdateWithoutAttendanceInput = {
   shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  method?: Prisma.NullableEnumAttendanceMethodFieldUpdateOperationsInput | $Enums.AttendanceMethod | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutAttendanceLogsNestedInput
   company?: Prisma.CompanyUpdateOneRequiredWithoutAttendanceLogsNestedInput
@@ -1037,6 +1080,7 @@ export type AttendanceLogUncheckedUpdateWithoutAttendanceInput = {
   shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  method?: Prisma.NullableEnumAttendanceMethodFieldUpdateOperationsInput | $Enums.AttendanceMethod | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -1052,6 +1096,7 @@ export type AttendanceLogUncheckedUpdateManyWithoutAttendanceInput = {
   shiftName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftStartTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shiftEndTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  method?: Prisma.NullableEnumAttendanceMethodFieldUpdateOperationsInput | $Enums.AttendanceMethod | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -1070,6 +1115,7 @@ export type AttendanceLogSelect<ExtArgs extends runtime.Types.Extensions.Interna
   shiftName?: boolean
   shiftStartTime?: boolean
   shiftEndTime?: boolean
+  method?: boolean
   createdAt?: boolean
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
@@ -1089,6 +1135,7 @@ export type AttendanceLogSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   shiftName?: boolean
   shiftStartTime?: boolean
   shiftEndTime?: boolean
+  method?: boolean
   createdAt?: boolean
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
@@ -1108,6 +1155,7 @@ export type AttendanceLogSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   shiftName?: boolean
   shiftStartTime?: boolean
   shiftEndTime?: boolean
+  method?: boolean
   createdAt?: boolean
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
@@ -1127,10 +1175,11 @@ export type AttendanceLogSelectScalar = {
   shiftName?: boolean
   shiftStartTime?: boolean
   shiftEndTime?: boolean
+  method?: boolean
   createdAt?: boolean
 }
 
-export type AttendanceLogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "employeeId" | "companyId" | "attendanceId" | "type" | "latitude" | "longitude" | "time" | "source" | "shiftName" | "shiftStartTime" | "shiftEndTime" | "createdAt", ExtArgs["result"]["attendanceLog"]>
+export type AttendanceLogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "employeeId" | "companyId" | "attendanceId" | "type" | "latitude" | "longitude" | "time" | "source" | "shiftName" | "shiftStartTime" | "shiftEndTime" | "method" | "createdAt", ExtArgs["result"]["attendanceLog"]>
 export type AttendanceLogInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
@@ -1167,6 +1216,7 @@ export type $AttendanceLogPayload<ExtArgs extends runtime.Types.Extensions.Inter
     shiftName: string | null
     shiftStartTime: string | null
     shiftEndTime: string | null
+    method: $Enums.AttendanceMethod | null
     createdAt: Date
   }, ExtArgs["result"]["attendanceLog"]>
   composites: {}
@@ -1606,6 +1656,7 @@ export interface AttendanceLogFieldRefs {
   readonly shiftName: Prisma.FieldRef<"AttendanceLog", 'String'>
   readonly shiftStartTime: Prisma.FieldRef<"AttendanceLog", 'String'>
   readonly shiftEndTime: Prisma.FieldRef<"AttendanceLog", 'String'>
+  readonly method: Prisma.FieldRef<"AttendanceLog", 'AttendanceMethod'>
   readonly createdAt: Prisma.FieldRef<"AttendanceLog", 'DateTime'>
 }
     
