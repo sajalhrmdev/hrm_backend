@@ -4,9 +4,39 @@ import {
   getAllPermissionsService,
   getPermissionByIdService,
   updatePermissionService,
+  bulkCreatePermissionService,
 } from "./permission.service.js";
 
 import { Request, Response } from "express";
+
+// ======================================================
+// BULK CREATE
+// ======================================================
+
+export const bulkCreatePermission = async (req: Request, res: Response) => {
+  try {
+    const { permissions } = req.body;
+
+    if (!Array.isArray(permissions) || permissions.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "permissions array is required",
+      });
+    }
+
+    const data = await bulkCreatePermissionService(permissions);
+
+    return res.status(201).json({
+      success: true,
+      data,
+    });
+  } catch (error: any) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 
 // ======================================================
 // CREATE

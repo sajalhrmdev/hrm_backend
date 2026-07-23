@@ -1,6 +1,7 @@
 import express from "express";
 
 import {
+  bulkCreatePermission,
   createPermission,
   deletePermission,
   getAllPermissions,
@@ -13,6 +14,8 @@ const router = express.Router();
 // ======================================================
 // ROUTES
 // ======================================================
+
+router.post("/bulk", bulkCreatePermission);
 
 router.post("/", createPermission);
 
