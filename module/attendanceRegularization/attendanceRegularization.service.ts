@@ -410,6 +410,36 @@ import {
   overTimeCalculation4Shift,
 } from "../../services/handleAttendance/attendance.helper.js";
 import getStartEndOfDay from "../../utils/getStartEndOfDay.js";
+
+const parseAsIST = (dateStr: string): Date => {
+  if (/[+-]\d{2}:\d{2}$/.test(dateStr) || dateStr.endsWith("Z")) {
+    return new Date(dateStr);
+  }
+  const naive = new Date(dateStr);
+  const dtf = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Kolkata",
+    hour12: false,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
+  const parts = dtf.formatToParts(naive);
+  const m: any = {};
+  for (const p of parts) if (p.type !== "literal") m[p.type] = p.value;
+  const localUTC = Date.UTC(
+    +m.year,
+    +m.month - 1,
+    +m.day,
+    +m.hour,
+    +m.minute,
+    +m.second,
+  );
+  return new Date(naive.getTime() - (localUTC - naive.getTime()));
+};
+
 // ======================================================
 type RegularizeInput = {
   attendanceId: number;
@@ -494,13 +524,13 @@ export const regularizeAttendance = async (input: RegularizeInput) => {
   // ======================================================
 
   const updatedCheckIn = check_in_time
-    ? new Date(check_in_time)
+    ? parseAsIST(check_in_time)
     : attendance.check_in_time;
 
   // ======================================================
 
   const updatedCheckOut = check_out_time
-    ? new Date(check_out_time)
+    ? parseAsIST(check_out_time)
     : attendance.check_out_time;
 
   // ======================================================
