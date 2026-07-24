@@ -82,6 +82,7 @@ export const ModelName = {
   PayRoll: 'PayRoll',
   PayrollSnapComponent: 'PayrollSnapComponent',
   PayRollRun: 'PayRollRun',
+  ProfessionalTaxSlab: 'ProfessionalTaxSlab',
   LeaveType: 'LeaveType',
   LeaveBalance: 'LeaveBalance',
   LeaveIncrementPolicy: 'LeaveIncrementPolicy',
@@ -618,6 +619,19 @@ export const PayRollRunScalarFieldEnum = {
 } as const
 
 export type PayRollRunScalarFieldEnum = (typeof PayRollRunScalarFieldEnum)[keyof typeof PayRollRunScalarFieldEnum]
+
+
+export const ProfessionalTaxSlabScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  minSalary: 'minSalary',
+  maxSalary: 'maxSalary',
+  taxAmount: 'taxAmount',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProfessionalTaxSlabScalarFieldEnum = (typeof ProfessionalTaxSlabScalarFieldEnum)[keyof typeof ProfessionalTaxSlabScalarFieldEnum]
 
 
 export const LeaveTypeScalarFieldEnum = {

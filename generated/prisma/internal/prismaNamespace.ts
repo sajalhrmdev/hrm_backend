@@ -415,6 +415,7 @@ export const ModelName = {
   PayRoll: 'PayRoll',
   PayrollSnapComponent: 'PayrollSnapComponent',
   PayRollRun: 'PayRollRun',
+  ProfessionalTaxSlab: 'ProfessionalTaxSlab',
   LeaveType: 'LeaveType',
   LeaveBalance: 'LeaveBalance',
   LeaveIncrementPolicy: 'LeaveIncrementPolicy',
@@ -446,7 +447,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "company" | "officeLocation" | "department" | "designation" | "user" | "globalRole" | "role" | "permission" | "rolePermission" | "membership" | "employee" | "employeePersonalInfo" | "employeeAddress" | "employeeEmergencyContact" | "employeeDocument" | "employeeBankDetail" | "employeeExperience" | "attendance" | "employeeFace" | "attendanceAdjustment" | "attendanceLog" | "workPolicy" | "companySetting" | "shift" | "workSchedulePolicy" | "salaryComponent" | "employeeSalaryComponent" | "payrollAdjustment" | "payRoll" | "payrollSnapComponent" | "payRollRun" | "leaveType" | "leaveBalance" | "leaveIncrementPolicy" | "leaveIncrementLog" | "leaveApplication" | "holiday" | "weeklyOffConfig" | "notice" | "performanceReview" | "employeeReward" | "emailSettings" | "emailTemplate" | "documentTemplate" | "generatedDocument" | "resignation" | "mobileTheme"
+    modelProps: "company" | "officeLocation" | "department" | "designation" | "user" | "globalRole" | "role" | "permission" | "rolePermission" | "membership" | "employee" | "employeePersonalInfo" | "employeeAddress" | "employeeEmergencyContact" | "employeeDocument" | "employeeBankDetail" | "employeeExperience" | "attendance" | "employeeFace" | "attendanceAdjustment" | "attendanceLog" | "workPolicy" | "companySetting" | "shift" | "workSchedulePolicy" | "salaryComponent" | "employeeSalaryComponent" | "payrollAdjustment" | "payRoll" | "payrollSnapComponent" | "payRollRun" | "professionalTaxSlab" | "leaveType" | "leaveBalance" | "leaveIncrementPolicy" | "leaveIncrementLog" | "leaveApplication" | "holiday" | "weeklyOffConfig" | "notice" | "performanceReview" | "employeeReward" | "emailSettings" | "emailTemplate" | "documentTemplate" | "generatedDocument" | "resignation" | "mobileTheme"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2744,6 +2745,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ProfessionalTaxSlab: {
+      payload: Prisma.$ProfessionalTaxSlabPayload<ExtArgs>
+      fields: Prisma.ProfessionalTaxSlabFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ProfessionalTaxSlabFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfessionalTaxSlabPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ProfessionalTaxSlabFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfessionalTaxSlabPayload>
+        }
+        findFirst: {
+          args: Prisma.ProfessionalTaxSlabFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfessionalTaxSlabPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ProfessionalTaxSlabFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfessionalTaxSlabPayload>
+        }
+        findMany: {
+          args: Prisma.ProfessionalTaxSlabFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfessionalTaxSlabPayload>[]
+        }
+        create: {
+          args: Prisma.ProfessionalTaxSlabCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfessionalTaxSlabPayload>
+        }
+        createMany: {
+          args: Prisma.ProfessionalTaxSlabCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ProfessionalTaxSlabCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfessionalTaxSlabPayload>[]
+        }
+        delete: {
+          args: Prisma.ProfessionalTaxSlabDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfessionalTaxSlabPayload>
+        }
+        update: {
+          args: Prisma.ProfessionalTaxSlabUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfessionalTaxSlabPayload>
+        }
+        deleteMany: {
+          args: Prisma.ProfessionalTaxSlabDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ProfessionalTaxSlabUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ProfessionalTaxSlabUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfessionalTaxSlabPayload>[]
+        }
+        upsert: {
+          args: Prisma.ProfessionalTaxSlabUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfessionalTaxSlabPayload>
+        }
+        aggregate: {
+          args: Prisma.ProfessionalTaxSlabAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateProfessionalTaxSlab>
+        }
+        groupBy: {
+          args: Prisma.ProfessionalTaxSlabGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProfessionalTaxSlabGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ProfessionalTaxSlabCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProfessionalTaxSlabCountAggregateOutputType> | number
+        }
+      }
+    }
     LeaveType: {
       payload: Prisma.$LeaveTypePayload<ExtArgs>
       fields: Prisma.LeaveTypeFieldRefs
@@ -4471,6 +4546,19 @@ export const PayRollRunScalarFieldEnum = {
 export type PayRollRunScalarFieldEnum = (typeof PayRollRunScalarFieldEnum)[keyof typeof PayRollRunScalarFieldEnum]
 
 
+export const ProfessionalTaxSlabScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  minSalary: 'minSalary',
+  maxSalary: 'maxSalary',
+  taxAmount: 'taxAmount',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProfessionalTaxSlabScalarFieldEnum = (typeof ProfessionalTaxSlabScalarFieldEnum)[keyof typeof ProfessionalTaxSlabScalarFieldEnum]
+
+
 export const LeaveTypeScalarFieldEnum = {
   id: 'id',
   companyId: 'companyId',
@@ -5353,6 +5441,7 @@ export type GlobalOmitConfig = {
   payRoll?: Prisma.PayRollOmit
   payrollSnapComponent?: Prisma.PayrollSnapComponentOmit
   payRollRun?: Prisma.PayRollRunOmit
+  professionalTaxSlab?: Prisma.ProfessionalTaxSlabOmit
   leaveType?: Prisma.LeaveTypeOmit
   leaveBalance?: Prisma.LeaveBalanceOmit
   leaveIncrementPolicy?: Prisma.LeaveIncrementPolicyOmit

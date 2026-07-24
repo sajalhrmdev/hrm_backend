@@ -173,6 +173,11 @@ export type PayrollSnapComponent = Prisma.PayrollSnapComponentModel
  */
 export type PayRollRun = Prisma.PayRollRunModel
 /**
+ * Model ProfessionalTaxSlab
+ * 
+ */
+export type ProfessionalTaxSlab = Prisma.ProfessionalTaxSlabModel
+/**
  * Model LeaveType
  * 
  */

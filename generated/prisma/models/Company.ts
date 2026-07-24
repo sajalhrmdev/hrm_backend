@@ -335,6 +335,7 @@ export type CompanyWhereInput = {
   documentTemplates?: Prisma.DocumentTemplateListRelationFilter
   generatedDocuments?: Prisma.GeneratedDocumentListRelationFilter
   resignations?: Prisma.ResignationListRelationFilter
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabListRelationFilter
 }
 
 export type CompanyOrderByWithRelationInput = {
@@ -388,6 +389,7 @@ export type CompanyOrderByWithRelationInput = {
   documentTemplates?: Prisma.DocumentTemplateOrderByRelationAggregateInput
   generatedDocuments?: Prisma.GeneratedDocumentOrderByRelationAggregateInput
   resignations?: Prisma.ResignationOrderByRelationAggregateInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabOrderByRelationAggregateInput
 }
 
 export type CompanyWhereUniqueInput = Prisma.AtLeast<{
@@ -444,6 +446,7 @@ export type CompanyWhereUniqueInput = Prisma.AtLeast<{
   documentTemplates?: Prisma.DocumentTemplateListRelationFilter
   generatedDocuments?: Prisma.GeneratedDocumentListRelationFilter
   resignations?: Prisma.ResignationListRelationFilter
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabListRelationFilter
 }, "id" | "slug">
 
 export type CompanyOrderByWithAggregationInput = {
@@ -539,6 +542,7 @@ export type CompanyCreateInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateInput = {
@@ -591,6 +595,7 @@ export type CompanyUncheckedCreateInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUpdateInput = {
@@ -642,6 +647,7 @@ export type CompanyUpdateInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateInput = {
@@ -694,6 +700,7 @@ export type CompanyUncheckedUpdateInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateManyInput = {
@@ -1125,6 +1132,20 @@ export type CompanyUpdateOneRequiredWithoutPayRollRunsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutPayRollRunsInput, Prisma.CompanyUpdateWithoutPayRollRunsInput>, Prisma.CompanyUncheckedUpdateWithoutPayRollRunsInput>
 }
 
+export type CompanyCreateNestedOneWithoutProfessionalTaxSlabsInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutProfessionalTaxSlabsInput, Prisma.CompanyUncheckedCreateWithoutProfessionalTaxSlabsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutProfessionalTaxSlabsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutProfessionalTaxSlabsNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutProfessionalTaxSlabsInput, Prisma.CompanyUncheckedCreateWithoutProfessionalTaxSlabsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutProfessionalTaxSlabsInput
+  upsert?: Prisma.CompanyUpsertWithoutProfessionalTaxSlabsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutProfessionalTaxSlabsInput, Prisma.CompanyUpdateWithoutProfessionalTaxSlabsInput>, Prisma.CompanyUncheckedUpdateWithoutProfessionalTaxSlabsInput>
+}
+
 export type CompanyCreateNestedOneWithoutLeaveTypesInput = {
   create?: Prisma.XOR<Prisma.CompanyCreateWithoutLeaveTypesInput, Prisma.CompanyUncheckedCreateWithoutLeaveTypesInput>
   connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutLeaveTypesInput
@@ -1425,6 +1446,7 @@ export type CompanyCreateWithoutOfficeLocationsInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutOfficeLocationsInput = {
@@ -1476,6 +1498,7 @@ export type CompanyUncheckedCreateWithoutOfficeLocationsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutOfficeLocationsInput = {
@@ -1542,6 +1565,7 @@ export type CompanyUpdateWithoutOfficeLocationsInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutOfficeLocationsInput = {
@@ -1593,6 +1617,7 @@ export type CompanyUncheckedUpdateWithoutOfficeLocationsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutDesignationsInput = {
@@ -1643,6 +1668,7 @@ export type CompanyCreateWithoutDesignationsInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutDesignationsInput = {
@@ -1694,6 +1720,7 @@ export type CompanyUncheckedCreateWithoutDesignationsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutDesignationsInput = {
@@ -1760,6 +1787,7 @@ export type CompanyUpdateWithoutDesignationsInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutDesignationsInput = {
@@ -1811,6 +1839,7 @@ export type CompanyUncheckedUpdateWithoutDesignationsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutRolesInput = {
@@ -1861,6 +1890,7 @@ export type CompanyCreateWithoutRolesInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutRolesInput = {
@@ -1912,6 +1942,7 @@ export type CompanyUncheckedCreateWithoutRolesInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutRolesInput = {
@@ -1978,6 +2009,7 @@ export type CompanyUpdateWithoutRolesInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutRolesInput = {
@@ -2029,6 +2061,7 @@ export type CompanyUncheckedUpdateWithoutRolesInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutMembershipsInput = {
@@ -2079,6 +2112,7 @@ export type CompanyCreateWithoutMembershipsInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutMembershipsInput = {
@@ -2130,6 +2164,7 @@ export type CompanyUncheckedCreateWithoutMembershipsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutMembershipsInput = {
@@ -2196,6 +2231,7 @@ export type CompanyUpdateWithoutMembershipsInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutMembershipsInput = {
@@ -2247,6 +2283,7 @@ export type CompanyUncheckedUpdateWithoutMembershipsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmployeesInput = {
@@ -2297,6 +2334,7 @@ export type CompanyCreateWithoutEmployeesInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmployeesInput = {
@@ -2348,6 +2386,7 @@ export type CompanyUncheckedCreateWithoutEmployeesInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmployeesInput = {
@@ -2414,6 +2453,7 @@ export type CompanyUpdateWithoutEmployeesInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmployeesInput = {
@@ -2465,6 +2505,7 @@ export type CompanyUncheckedUpdateWithoutEmployeesInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmployeeEmergencyContactsInput = {
@@ -2515,6 +2556,7 @@ export type CompanyCreateWithoutEmployeeEmergencyContactsInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmployeeEmergencyContactsInput = {
@@ -2566,6 +2608,7 @@ export type CompanyUncheckedCreateWithoutEmployeeEmergencyContactsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmployeeEmergencyContactsInput = {
@@ -2632,6 +2675,7 @@ export type CompanyUpdateWithoutEmployeeEmergencyContactsInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmployeeEmergencyContactsInput = {
@@ -2683,6 +2727,7 @@ export type CompanyUncheckedUpdateWithoutEmployeeEmergencyContactsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmployeeBankDetailsInput = {
@@ -2733,6 +2778,7 @@ export type CompanyCreateWithoutEmployeeBankDetailsInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmployeeBankDetailsInput = {
@@ -2784,6 +2830,7 @@ export type CompanyUncheckedCreateWithoutEmployeeBankDetailsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmployeeBankDetailsInput = {
@@ -2850,6 +2897,7 @@ export type CompanyUpdateWithoutEmployeeBankDetailsInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmployeeBankDetailsInput = {
@@ -2901,6 +2949,7 @@ export type CompanyUncheckedUpdateWithoutEmployeeBankDetailsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmployeeExperiencesInput = {
@@ -2951,6 +3000,7 @@ export type CompanyCreateWithoutEmployeeExperiencesInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmployeeExperiencesInput = {
@@ -3002,6 +3052,7 @@ export type CompanyUncheckedCreateWithoutEmployeeExperiencesInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmployeeExperiencesInput = {
@@ -3068,6 +3119,7 @@ export type CompanyUpdateWithoutEmployeeExperiencesInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmployeeExperiencesInput = {
@@ -3119,6 +3171,7 @@ export type CompanyUncheckedUpdateWithoutEmployeeExperiencesInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutAttendancesInput = {
@@ -3169,6 +3222,7 @@ export type CompanyCreateWithoutAttendancesInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutAttendancesInput = {
@@ -3220,6 +3274,7 @@ export type CompanyUncheckedCreateWithoutAttendancesInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutAttendancesInput = {
@@ -3286,6 +3341,7 @@ export type CompanyUpdateWithoutAttendancesInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutAttendancesInput = {
@@ -3337,6 +3393,7 @@ export type CompanyUncheckedUpdateWithoutAttendancesInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutAttendanceAdjustmentsInput = {
@@ -3387,6 +3444,7 @@ export type CompanyCreateWithoutAttendanceAdjustmentsInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutAttendanceAdjustmentsInput = {
@@ -3438,6 +3496,7 @@ export type CompanyUncheckedCreateWithoutAttendanceAdjustmentsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutAttendanceAdjustmentsInput = {
@@ -3504,6 +3563,7 @@ export type CompanyUpdateWithoutAttendanceAdjustmentsInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutAttendanceAdjustmentsInput = {
@@ -3555,6 +3615,7 @@ export type CompanyUncheckedUpdateWithoutAttendanceAdjustmentsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutAttendanceLogsInput = {
@@ -3605,6 +3666,7 @@ export type CompanyCreateWithoutAttendanceLogsInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutAttendanceLogsInput = {
@@ -3656,6 +3718,7 @@ export type CompanyUncheckedCreateWithoutAttendanceLogsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutAttendanceLogsInput = {
@@ -3722,6 +3785,7 @@ export type CompanyUpdateWithoutAttendanceLogsInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutAttendanceLogsInput = {
@@ -3773,6 +3837,7 @@ export type CompanyUncheckedUpdateWithoutAttendanceLogsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutWorkPoliciesInput = {
@@ -3823,6 +3888,7 @@ export type CompanyCreateWithoutWorkPoliciesInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutWorkPoliciesInput = {
@@ -3874,6 +3940,7 @@ export type CompanyUncheckedCreateWithoutWorkPoliciesInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutWorkPoliciesInput = {
@@ -3940,6 +4007,7 @@ export type CompanyUpdateWithoutWorkPoliciesInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutWorkPoliciesInput = {
@@ -3991,6 +4059,7 @@ export type CompanyUncheckedUpdateWithoutWorkPoliciesInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutCompanySettingsInput = {
@@ -4041,6 +4110,7 @@ export type CompanyCreateWithoutCompanySettingsInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutCompanySettingsInput = {
@@ -4092,6 +4162,7 @@ export type CompanyUncheckedCreateWithoutCompanySettingsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutCompanySettingsInput = {
@@ -4158,6 +4229,7 @@ export type CompanyUpdateWithoutCompanySettingsInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutCompanySettingsInput = {
@@ -4209,6 +4281,7 @@ export type CompanyUncheckedUpdateWithoutCompanySettingsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutShiftsInput = {
@@ -4259,6 +4332,7 @@ export type CompanyCreateWithoutShiftsInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutShiftsInput = {
@@ -4310,6 +4384,7 @@ export type CompanyUncheckedCreateWithoutShiftsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutShiftsInput = {
@@ -4376,6 +4451,7 @@ export type CompanyUpdateWithoutShiftsInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutShiftsInput = {
@@ -4427,6 +4503,7 @@ export type CompanyUncheckedUpdateWithoutShiftsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutWorkSchedulePoliciesInput = {
@@ -4477,6 +4554,7 @@ export type CompanyCreateWithoutWorkSchedulePoliciesInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutWorkSchedulePoliciesInput = {
@@ -4528,6 +4606,7 @@ export type CompanyUncheckedCreateWithoutWorkSchedulePoliciesInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutWorkSchedulePoliciesInput = {
@@ -4594,6 +4673,7 @@ export type CompanyUpdateWithoutWorkSchedulePoliciesInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutWorkSchedulePoliciesInput = {
@@ -4645,6 +4725,7 @@ export type CompanyUncheckedUpdateWithoutWorkSchedulePoliciesInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutSalaryComponentsInput = {
@@ -4695,6 +4776,7 @@ export type CompanyCreateWithoutSalaryComponentsInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutSalaryComponentsInput = {
@@ -4746,6 +4828,7 @@ export type CompanyUncheckedCreateWithoutSalaryComponentsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutSalaryComponentsInput = {
@@ -4812,6 +4895,7 @@ export type CompanyUpdateWithoutSalaryComponentsInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutSalaryComponentsInput = {
@@ -4863,6 +4947,7 @@ export type CompanyUncheckedUpdateWithoutSalaryComponentsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmployeeSalaryComponentsInput = {
@@ -4913,6 +4998,7 @@ export type CompanyCreateWithoutEmployeeSalaryComponentsInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmployeeSalaryComponentsInput = {
@@ -4964,6 +5050,7 @@ export type CompanyUncheckedCreateWithoutEmployeeSalaryComponentsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmployeeSalaryComponentsInput = {
@@ -5030,6 +5117,7 @@ export type CompanyUpdateWithoutEmployeeSalaryComponentsInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmployeeSalaryComponentsInput = {
@@ -5081,6 +5169,7 @@ export type CompanyUncheckedUpdateWithoutEmployeeSalaryComponentsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutPayrollAdjustmentsInput = {
@@ -5131,6 +5220,7 @@ export type CompanyCreateWithoutPayrollAdjustmentsInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutPayrollAdjustmentsInput = {
@@ -5182,6 +5272,7 @@ export type CompanyUncheckedCreateWithoutPayrollAdjustmentsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutPayrollAdjustmentsInput = {
@@ -5248,6 +5339,7 @@ export type CompanyUpdateWithoutPayrollAdjustmentsInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutPayrollAdjustmentsInput = {
@@ -5299,6 +5391,7 @@ export type CompanyUncheckedUpdateWithoutPayrollAdjustmentsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutPayRollRunsInput = {
@@ -5349,6 +5442,7 @@ export type CompanyCreateWithoutPayRollRunsInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutPayRollRunsInput = {
@@ -5400,6 +5494,7 @@ export type CompanyUncheckedCreateWithoutPayRollRunsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutPayRollRunsInput = {
@@ -5466,6 +5561,7 @@ export type CompanyUpdateWithoutPayRollRunsInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutPayRollRunsInput = {
@@ -5493,6 +5589,229 @@ export type CompanyUncheckedUpdateWithoutPayRollRunsInput = {
   Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
   salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
   employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeExperiences?: Prisma.EmployeeExperienceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedUpdateManyWithoutCompanyNestedInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedUpdateManyWithoutCompanyNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutCompanyNestedInput
+  officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
+  performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
+  resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutProfessionalTaxSlabsInput = {
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  mobileTheme?: Prisma.MobileThemeCreateNestedOneWithoutCompaniesInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentCreateNestedManyWithoutCompanyInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailCreateNestedManyWithoutCompanyInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactCreateNestedManyWithoutCompanyInput
+  employeeExperiences?: Prisma.EmployeeExperienceCreateNestedManyWithoutCompanyInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentCreateNestedManyWithoutCompanyInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyCreateNestedManyWithoutCompanyInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyCreateNestedManyWithoutCompanyInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogCreateNestedManyWithoutCompanyInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutCompanyInput
+  officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
+  performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
+  employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
+  resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutProfessionalTaxSlabsInput = {
+  id?: number
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
+  mobileThemeId?: number | null
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUncheckedCreateNestedManyWithoutCompanyInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUncheckedCreateNestedManyWithoutCompanyInput
+  employeeExperiences?: Prisma.EmployeeExperienceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedCreateNestedManyWithoutCompanyInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUncheckedCreateNestedManyWithoutCompanyInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedCreateNestedManyWithoutCompanyInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutCompanyInput
+  officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
+  performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
+  employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
+  resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutProfessionalTaxSlabsInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutProfessionalTaxSlabsInput, Prisma.CompanyUncheckedCreateWithoutProfessionalTaxSlabsInput>
+}
+
+export type CompanyUpsertWithoutProfessionalTaxSlabsInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutProfessionalTaxSlabsInput, Prisma.CompanyUncheckedUpdateWithoutProfessionalTaxSlabsInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutProfessionalTaxSlabsInput, Prisma.CompanyUncheckedCreateWithoutProfessionalTaxSlabsInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutProfessionalTaxSlabsInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutProfessionalTaxSlabsInput, Prisma.CompanyUncheckedUpdateWithoutProfessionalTaxSlabsInput>
+}
+
+export type CompanyUpdateWithoutProfessionalTaxSlabsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mobileTheme?: Prisma.MobileThemeUpdateOneWithoutCompaniesNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUpdateManyWithoutCompanyNestedInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUpdateManyWithoutCompanyNestedInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUpdateManyWithoutCompanyNestedInput
+  employeeExperiences?: Prisma.EmployeeExperienceUpdateManyWithoutCompanyNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUpdateManyWithoutCompanyNestedInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUpdateManyWithoutCompanyNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUpdateManyWithoutCompanyNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUpdateManyWithoutCompanyNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutCompanyNestedInput
+  officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
+  performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
+  employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
+  resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutProfessionalTaxSlabsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobileThemeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
   leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
   leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
@@ -5567,6 +5886,7 @@ export type CompanyCreateWithoutLeaveTypesInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutLeaveTypesInput = {
@@ -5618,6 +5938,7 @@ export type CompanyUncheckedCreateWithoutLeaveTypesInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutLeaveTypesInput = {
@@ -5684,6 +6005,7 @@ export type CompanyUpdateWithoutLeaveTypesInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutLeaveTypesInput = {
@@ -5735,6 +6057,7 @@ export type CompanyUncheckedUpdateWithoutLeaveTypesInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutLeaveBalancesInput = {
@@ -5785,6 +6108,7 @@ export type CompanyCreateWithoutLeaveBalancesInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutLeaveBalancesInput = {
@@ -5836,6 +6160,7 @@ export type CompanyUncheckedCreateWithoutLeaveBalancesInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutLeaveBalancesInput = {
@@ -5902,6 +6227,7 @@ export type CompanyUpdateWithoutLeaveBalancesInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutLeaveBalancesInput = {
@@ -5953,6 +6279,7 @@ export type CompanyUncheckedUpdateWithoutLeaveBalancesInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutLeaveIncrementPoliciesInput = {
@@ -6003,6 +6330,7 @@ export type CompanyCreateWithoutLeaveIncrementPoliciesInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutLeaveIncrementPoliciesInput = {
@@ -6054,6 +6382,7 @@ export type CompanyUncheckedCreateWithoutLeaveIncrementPoliciesInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutLeaveIncrementPoliciesInput = {
@@ -6120,6 +6449,7 @@ export type CompanyUpdateWithoutLeaveIncrementPoliciesInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutLeaveIncrementPoliciesInput = {
@@ -6171,6 +6501,7 @@ export type CompanyUncheckedUpdateWithoutLeaveIncrementPoliciesInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutLeaveIncrementLogsInput = {
@@ -6221,6 +6552,7 @@ export type CompanyCreateWithoutLeaveIncrementLogsInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutLeaveIncrementLogsInput = {
@@ -6272,6 +6604,7 @@ export type CompanyUncheckedCreateWithoutLeaveIncrementLogsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutLeaveIncrementLogsInput = {
@@ -6338,6 +6671,7 @@ export type CompanyUpdateWithoutLeaveIncrementLogsInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutLeaveIncrementLogsInput = {
@@ -6389,6 +6723,7 @@ export type CompanyUncheckedUpdateWithoutLeaveIncrementLogsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutLeaveApplicationsInput = {
@@ -6439,6 +6774,7 @@ export type CompanyCreateWithoutLeaveApplicationsInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutLeaveApplicationsInput = {
@@ -6490,6 +6826,7 @@ export type CompanyUncheckedCreateWithoutLeaveApplicationsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutLeaveApplicationsInput = {
@@ -6556,6 +6893,7 @@ export type CompanyUpdateWithoutLeaveApplicationsInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutLeaveApplicationsInput = {
@@ -6607,6 +6945,7 @@ export type CompanyUncheckedUpdateWithoutLeaveApplicationsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutHolidaysInput = {
@@ -6657,6 +6996,7 @@ export type CompanyCreateWithoutHolidaysInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutHolidaysInput = {
@@ -6708,6 +7048,7 @@ export type CompanyUncheckedCreateWithoutHolidaysInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutHolidaysInput = {
@@ -6774,6 +7115,7 @@ export type CompanyUpdateWithoutHolidaysInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutHolidaysInput = {
@@ -6825,6 +7167,7 @@ export type CompanyUncheckedUpdateWithoutHolidaysInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutWeeklyOffConfigsInput = {
@@ -6875,6 +7218,7 @@ export type CompanyCreateWithoutWeeklyOffConfigsInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutWeeklyOffConfigsInput = {
@@ -6926,6 +7270,7 @@ export type CompanyUncheckedCreateWithoutWeeklyOffConfigsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutWeeklyOffConfigsInput = {
@@ -6992,6 +7337,7 @@ export type CompanyUpdateWithoutWeeklyOffConfigsInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutWeeklyOffConfigsInput = {
@@ -7043,6 +7389,7 @@ export type CompanyUncheckedUpdateWithoutWeeklyOffConfigsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutNoticesInput = {
@@ -7093,6 +7440,7 @@ export type CompanyCreateWithoutNoticesInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutNoticesInput = {
@@ -7144,6 +7492,7 @@ export type CompanyUncheckedCreateWithoutNoticesInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutNoticesInput = {
@@ -7210,6 +7559,7 @@ export type CompanyUpdateWithoutNoticesInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutNoticesInput = {
@@ -7261,6 +7611,7 @@ export type CompanyUncheckedUpdateWithoutNoticesInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutPerformanceReviewsInput = {
@@ -7311,6 +7662,7 @@ export type CompanyCreateWithoutPerformanceReviewsInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutPerformanceReviewsInput = {
@@ -7362,6 +7714,7 @@ export type CompanyUncheckedCreateWithoutPerformanceReviewsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutPerformanceReviewsInput = {
@@ -7428,6 +7781,7 @@ export type CompanyUpdateWithoutPerformanceReviewsInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutPerformanceReviewsInput = {
@@ -7479,6 +7833,7 @@ export type CompanyUncheckedUpdateWithoutPerformanceReviewsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmployeeRewardsInput = {
@@ -7529,6 +7884,7 @@ export type CompanyCreateWithoutEmployeeRewardsInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmployeeRewardsInput = {
@@ -7580,6 +7936,7 @@ export type CompanyUncheckedCreateWithoutEmployeeRewardsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmployeeRewardsInput = {
@@ -7646,6 +8003,7 @@ export type CompanyUpdateWithoutEmployeeRewardsInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmployeeRewardsInput = {
@@ -7697,6 +8055,7 @@ export type CompanyUncheckedUpdateWithoutEmployeeRewardsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmailSettingsInput = {
@@ -7747,6 +8106,7 @@ export type CompanyCreateWithoutEmailSettingsInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmailSettingsInput = {
@@ -7798,6 +8158,7 @@ export type CompanyUncheckedCreateWithoutEmailSettingsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmailSettingsInput = {
@@ -7864,6 +8225,7 @@ export type CompanyUpdateWithoutEmailSettingsInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmailSettingsInput = {
@@ -7915,6 +8277,7 @@ export type CompanyUncheckedUpdateWithoutEmailSettingsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmailTemplatesInput = {
@@ -7965,6 +8328,7 @@ export type CompanyCreateWithoutEmailTemplatesInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmailTemplatesInput = {
@@ -8016,6 +8380,7 @@ export type CompanyUncheckedCreateWithoutEmailTemplatesInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmailTemplatesInput = {
@@ -8082,6 +8447,7 @@ export type CompanyUpdateWithoutEmailTemplatesInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmailTemplatesInput = {
@@ -8133,6 +8499,7 @@ export type CompanyUncheckedUpdateWithoutEmailTemplatesInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutDocumentTemplatesInput = {
@@ -8183,6 +8550,7 @@ export type CompanyCreateWithoutDocumentTemplatesInput = {
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutDocumentTemplatesInput = {
@@ -8234,6 +8602,7 @@ export type CompanyUncheckedCreateWithoutDocumentTemplatesInput = {
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutDocumentTemplatesInput = {
@@ -8300,6 +8669,7 @@ export type CompanyUpdateWithoutDocumentTemplatesInput = {
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutDocumentTemplatesInput = {
@@ -8351,6 +8721,7 @@ export type CompanyUncheckedUpdateWithoutDocumentTemplatesInput = {
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutGeneratedDocumentsInput = {
@@ -8401,6 +8772,7 @@ export type CompanyCreateWithoutGeneratedDocumentsInput = {
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutGeneratedDocumentsInput = {
@@ -8452,6 +8824,7 @@ export type CompanyUncheckedCreateWithoutGeneratedDocumentsInput = {
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutGeneratedDocumentsInput = {
@@ -8518,6 +8891,7 @@ export type CompanyUpdateWithoutGeneratedDocumentsInput = {
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutGeneratedDocumentsInput = {
@@ -8569,6 +8943,7 @@ export type CompanyUncheckedUpdateWithoutGeneratedDocumentsInput = {
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutResignationsInput = {
@@ -8619,6 +8994,7 @@ export type CompanyCreateWithoutResignationsInput = {
   emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutResignationsInput = {
@@ -8670,6 +9046,7 @@ export type CompanyUncheckedCreateWithoutResignationsInput = {
   emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutResignationsInput = {
@@ -8736,6 +9113,7 @@ export type CompanyUpdateWithoutResignationsInput = {
   emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutResignationsInput = {
@@ -8787,6 +9165,7 @@ export type CompanyUncheckedUpdateWithoutResignationsInput = {
   emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutMobileThemeInput = {
@@ -8837,6 +9216,7 @@ export type CompanyCreateWithoutMobileThemeInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutMobileThemeInput = {
@@ -8888,6 +9268,7 @@ export type CompanyUncheckedCreateWithoutMobileThemeInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutMobileThemeInput = {
@@ -9002,6 +9383,7 @@ export type CompanyUpdateWithoutMobileThemeInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutMobileThemeInput = {
@@ -9053,6 +9435,7 @@ export type CompanyUncheckedUpdateWithoutMobileThemeInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateManyWithoutMobileThemeInput = {
@@ -9111,6 +9494,7 @@ export type CompanyCountOutputType = {
   documentTemplates: number
   generatedDocuments: number
   resignations: number
+  professionalTaxSlabs: number
 }
 
 export type CompanyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -9147,6 +9531,7 @@ export type CompanyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   documentTemplates?: boolean | CompanyCountOutputTypeCountDocumentTemplatesArgs
   generatedDocuments?: boolean | CompanyCountOutputTypeCountGeneratedDocumentsArgs
   resignations?: boolean | CompanyCountOutputTypeCountResignationsArgs
+  professionalTaxSlabs?: boolean | CompanyCountOutputTypeCountProfessionalTaxSlabsArgs
 }
 
 /**
@@ -9390,6 +9775,13 @@ export type CompanyCountOutputTypeCountResignationsArgs<ExtArgs extends runtime.
   where?: Prisma.ResignationWhereInput
 }
 
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountProfessionalTaxSlabsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProfessionalTaxSlabWhereInput
+}
+
 
 export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -9442,6 +9834,7 @@ export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   documentTemplates?: boolean | Prisma.Company$documentTemplatesArgs<ExtArgs>
   generatedDocuments?: boolean | Prisma.Company$generatedDocumentsArgs<ExtArgs>
   resignations?: boolean | Prisma.Company$resignationsArgs<ExtArgs>
+  professionalTaxSlabs?: boolean | Prisma.Company$professionalTaxSlabsArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["company"]>
 
@@ -9538,6 +9931,7 @@ export type CompanyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   documentTemplates?: boolean | Prisma.Company$documentTemplatesArgs<ExtArgs>
   generatedDocuments?: boolean | Prisma.Company$generatedDocumentsArgs<ExtArgs>
   resignations?: boolean | Prisma.Company$resignationsArgs<ExtArgs>
+  professionalTaxSlabs?: boolean | Prisma.Company$professionalTaxSlabsArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CompanyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -9585,6 +9979,7 @@ export type $CompanyPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     documentTemplates: Prisma.$DocumentTemplatePayload<ExtArgs>[]
     generatedDocuments: Prisma.$GeneratedDocumentPayload<ExtArgs>[]
     resignations: Prisma.$ResignationPayload<ExtArgs>[]
+    professionalTaxSlabs: Prisma.$ProfessionalTaxSlabPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -10031,6 +10426,7 @@ export interface Prisma__CompanyClient<T, Null = never, ExtArgs extends runtime.
   documentTemplates<T extends Prisma.Company$documentTemplatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$documentTemplatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DocumentTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   generatedDocuments<T extends Prisma.Company$generatedDocumentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$generatedDocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GeneratedDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   resignations<T extends Prisma.Company$resignationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$resignationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ResignationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  professionalTaxSlabs<T extends Prisma.Company$professionalTaxSlabsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$professionalTaxSlabsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProfessionalTaxSlabPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11303,6 +11699,30 @@ export type Company$resignationsArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.ResignationScalarFieldEnum | Prisma.ResignationScalarFieldEnum[]
+}
+
+/**
+ * Company.professionalTaxSlabs
+ */
+export type Company$professionalTaxSlabsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProfessionalTaxSlab
+   */
+  select?: Prisma.ProfessionalTaxSlabSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProfessionalTaxSlab
+   */
+  omit?: Prisma.ProfessionalTaxSlabOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProfessionalTaxSlabInclude<ExtArgs> | null
+  where?: Prisma.ProfessionalTaxSlabWhereInput
+  orderBy?: Prisma.ProfessionalTaxSlabOrderByWithRelationInput | Prisma.ProfessionalTaxSlabOrderByWithRelationInput[]
+  cursor?: Prisma.ProfessionalTaxSlabWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProfessionalTaxSlabScalarFieldEnum | Prisma.ProfessionalTaxSlabScalarFieldEnum[]
 }
 
 /**

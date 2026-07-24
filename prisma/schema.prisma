@@ -71,7 +71,8 @@ model Company{
   documentTemplates DocumentTemplate[]
   generatedDocuments GeneratedDocument[]
   resignations Resignation[]
-  
+  professionalTaxSlabs ProfessionalTaxSlab[]
+
 
 
 
@@ -836,6 +837,22 @@ model PayRollRun {
   @@index([companyId])
    @@unique([companyId,periodStart,periodEnd])
 }
+// =====================================================================================================================
+
+// ===================================================PROFESSIONAL TAX SLAB=====================================================
+model ProfessionalTaxSlab {
+  id        Int      @id @default(autoincrement())
+  companyId Int
+  company   Company  @relation(fields: [companyId], references: [id])
+  minSalary Float
+  maxSalary Float?
+  taxAmount Float    @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@unique([companyId, minSalary])
+  @@index([companyId])
+}
+
 // =====================================================================================================================
 
 // ========================================================LEAVE MANAGEMENT=====================

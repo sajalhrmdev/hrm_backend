@@ -1,5 +1,6 @@
 import { prisma } from "../../lib/prisma.js";
 import getStartEndOfDay from "../../utils/getStartEndOfDay.js";
+import { findApplicableSlab } from "../professionalTaxSlab/professionalTaxSlab.service.js";
 
 
 
@@ -894,10 +895,32 @@ export const generatePayroll = async (
           });
         }
         // ==================================
-        // NET SALARY
+        // NET SALARY (before professional tax)
         // ==================================
 
-        const calculatedNetSalary = grossSalary - totalDeduction;
+        let calculatedNetSalary = grossSalary - totalDeduction;
+
+        // ==================================
+        // PROFESSIONAL TAX
+        // ==================================
+
+        const ptSlab = await findApplicableSlab(
+          payrollRun.companyId,
+          Math.max(0, calculatedNetSalary),
+        );
+
+        if (ptSlab && ptSlab.taxAmount > 0) {
+          totalDeduction += ptSlab.taxAmount;
+          calculatedNetSalary = grossSalary - totalDeduction;
+
+          calculatedComponents.push({
+            componentName: "Professional Tax",
+            componentCode: "PROF_TAX",
+            type: "DEDUCTION" as any,
+            standardAmount: ptSlab.taxAmount,
+            amount: ptSlab.taxAmount,
+          });
+        }
 
         const netSalary = Math.max(
           0,

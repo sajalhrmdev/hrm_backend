@@ -3,7 +3,7 @@ import { verifyToken } from "../utils/jwt.js";
 
 export const authMiddleware = (req: any, res: Response, next: NextFunction) => {
   try {
-    // 🔥 Authorization header থেকে token নাও
+  
     const authHeader = req.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {

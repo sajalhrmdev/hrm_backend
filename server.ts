@@ -42,6 +42,7 @@ import noticeRoutes from "./module/notice/notice.route.js";
 import userRoute from "./module/user/user.routes.js";
 import superAdminRoutes from "./module/superAdmin/superAdmin.routes.js";
 import officeLocationRoutes from "./module/officeLocation/officeLocation.routes.js";
+import professionalTaxSlabRoutes from "./module/professionalTaxSlab/professionalTaxSlab.routes.js";
 import employeeFaceRoutes from "./module/employeeFace/employeeFace.route.js";
 import performanceReviewRoutes from "./module/performanceReview/performanceReview.route.js";
 import rewardRoutes from "./module/reward/reward.route.js";
@@ -166,6 +167,12 @@ app.use(
   authMiddleware,
   companyAccessMiddleware,
   payrollAdjustmentRoutes,
+);
+app.use(
+  "/api/v1/professional-tax-slab",
+  authMiddleware,
+  companyAccessMiddleware,
+  professionalTaxSlabRoutes,
 );
 app.use(
   "/api/v1/holiday",
