@@ -866,3 +866,69 @@ export const getAttendanceAdjustments = async (input: GetAdjustmentInput) => {
 
   return adjustments;
 };
+
+// ======================================================
+// GET ADJUSTMENTS BY AUTHORIZED PERSON (paginated)
+// ======================================================
+
+type ByAuthorizedInput = {
+  companyId: number;
+  userId: number;
+  date?: string;
+  page?: number;
+  limit?: number;
+};
+
+export const getAdjustmentsByAuthorized = async (input: ByAuthorizedInput) => {
+  const { companyId, userId, date, page = 1, limit = 10 } = input;
+  const skip = (page - 1) * limit;
+
+  const where: any = {
+    companyId,
+    adjustedBy: userId,
+  };
+
+  if (date) {
+    const { start, end } = getStartEndOfDay("Asia/Kolkata", new Date(date));
+    where.createdAt = { gte: start, lte: end };
+  }
+
+  const [adjustments, total] = await Promise.all([
+    prisma.attendanceAdjustment.findMany({
+      where,
+      include: {
+        employee: {
+          select: { id: true, name: true, employeeCode: true },
+        },
+        attendanceAdjustedBy: {
+          select: { id: true, name: true, email: true },
+        },
+        attendance: {
+          select: {
+            id: true,
+            date: true,
+            check_in_time: true,
+            check_out_time: true,
+            status: true,
+            total_work_minutes: true,
+            late_minutes: true,
+          },
+        },
+      },
+      orderBy: { createdAt: "desc" },
+      skip,
+      take: limit,
+    }),
+    prisma.attendanceAdjustment.count({ where }),
+  ]);
+
+  return {
+    data: adjustments,
+    pagination: {
+      page,
+      limit,
+      total,
+      totalPages: Math.ceil(total / limit),
+    },
+  };
+};

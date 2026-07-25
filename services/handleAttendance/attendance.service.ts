@@ -235,6 +235,7 @@ export const handleAttendance = async (
         where: {
           employeeId,
           check_out_time: null,
+          date: attendanceDate,
         },
         orderBy: {
           createdAt: "desc",
@@ -296,6 +297,18 @@ export const handleAttendance = async (
         overtime,
       ).overtime;
     }
+
+    console.log("[OVERTIME DEBUG]", JSON.stringify({
+      employeeId,
+      attendanceType: workSchedulePolicy?.attendanceType,
+      enableOvertime: workSchedulePolicy?.enableOvertime,
+      requiredWorkMinutes: workSchedulePolicy?.requiredWorkMinutes,
+      overtimeAfterMinutes: workSchedulePolicy?.overtimeAfterMinutes,
+      totalMinutes,
+      overtime,
+      attendanceId: attendance?.id,
+    }));
+
     const { status } = attendanceStatusFn(
       totalMinutes,
 

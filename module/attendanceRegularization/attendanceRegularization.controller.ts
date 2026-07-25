@@ -8,6 +8,7 @@ import { Request, Response } from "express";
 
 import {
   getAttendanceAdjustments,
+  getAdjustmentsByAuthorized,
   getCompanyAdjustmentByDay,
   regularizeAttendance,
 } from "./attendanceRegularization.service.js";
@@ -184,5 +185,40 @@ export const getCompanyAdjustmentByDayController = async (
 
       message: err.message,
     });
+  }
+};
+
+// ======================================================
+
+export const getAdjustmentsByAuthorizedController = async (
+  req: AuthRequest,
+  res: Response,
+) => {
+  try {
+    const companyId = req.companyId;
+    if (!companyId) {
+      throw new Error("Company not found");
+    }
+
+    const userId = Number(req.query.userId);
+    if (!userId) {
+      throw new Error("userId is required");
+    }
+
+    const date = req.query.date as string | undefined;
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 10;
+
+    const data = await getAdjustmentsByAuthorized({
+      companyId,
+      userId,
+      date,
+      page,
+      limit,
+    });
+
+    res.json({ success: true, data: data.data, pagination: data.pagination });
+  } catch (err: any) {
+    res.status(400).json({ success: false, message: err.message });
   }
 };
