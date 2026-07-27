@@ -719,6 +719,23 @@ export const generatePayroll = async (
         });
       });
 
+      const halfDayLeaveDetails = await tx.attendance.findMany({
+        where: {
+          companyId,
+          status: "HALF_DAY_LEAVE",
+          date: { gte: periodStartTz, lte: periodEndTz },
+        },
+        select: { employeeId: true, total_work_minutes: true },
+      });
+
+      const halfDayLeaveMap = new Map<number, { count: number; payable: number }>();
+      for (const r of halfDayLeaveDetails) {
+        const existing = halfDayLeaveMap.get(r.employeeId) || { count: 0, payable: 0 };
+        existing.count += 1;
+        existing.payable += r.total_work_minutes > 0 ? 1.0 : 0.5;
+        halfDayLeaveMap.set(r.employeeId, existing);
+      }
+
       for (const employee of employees) {
         const presentDays =
           attendanceMap.get(`${employee.id}_PRESENT`)?.count || 0;
@@ -737,6 +754,10 @@ export const generatePayroll = async (
 
         const halfDays =
           attendanceMap.get(`${employee.id}_HALF_DAY`)?.count || 0;
+        const halfDayLeaveData = halfDayLeaveMap.get(employee.id);
+        const halfDayLeavePayable = halfDayLeaveData?.payable || 0;
+        const halfDayLeavePortion = (halfDayLeaveData?.count || 0) * 0.5;
+
         const absentDays =
           attendanceMap.get(`${employee.id}_ABSENT`)?.count || 0;
         const overtimeMinutes = aggregateMap.get(employee.id)?.overtime || 0;
@@ -751,7 +772,8 @@ export const generatePayroll = async (
           weeklyOffDays +
           holidayDays +
           paidLeaveDays +
-          halfDays * 0.5;
+          halfDays * 0.5 +
+          halfDayLeavePayable;
 
         const lopDays = unpaidLeaveDays + absentDays + halfDays * 0.5;
 
@@ -942,7 +964,7 @@ export const generatePayroll = async (
 
             present_days: presentDays,
 
-            paid_leave_days: paidLeaveDays,
+            paid_leave_days: paidLeaveDays + halfDayLeavePortion,
 
             lop_days: lopDays,
 
@@ -1159,6 +1181,7 @@ export const getSinglePayroll = async (
     PRESENT: 0,
     ABSENT: 0,
     HALF_DAY: 0,
+    HALF_DAY_LEAVE: 0,
     WEEKLY_OFF: 0,
     HOLIDAY: 0,
     PAID_LEAVE: 0,
@@ -1540,3 +1563,4 @@ export const getEmployeePayrollHistory = async (
     },
   };
 };
+

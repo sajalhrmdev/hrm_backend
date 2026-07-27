@@ -323,9 +323,9 @@ export type PayRollWhereInput = {
   employeeId?: Prisma.IntFilter<"PayRoll"> | number
   total_days?: Prisma.IntFilter<"PayRoll"> | number
   present_days?: Prisma.IntFilter<"PayRoll"> | number
-  paid_leave_days?: Prisma.IntFilter<"PayRoll"> | number
+  paid_leave_days?: Prisma.FloatFilter<"PayRoll"> | number
   lop_days?: Prisma.IntFilter<"PayRoll"> | number
-  payable_days?: Prisma.IntFilter<"PayRoll"> | number
+  payable_days?: Prisma.FloatFilter<"PayRoll"> | number
   gross_salary?: Prisma.FloatFilter<"PayRoll"> | number
   overtime_amount?: Prisma.FloatFilter<"PayRoll"> | number
   total_deduction?: Prisma.FloatFilter<"PayRoll"> | number
@@ -367,9 +367,9 @@ export type PayRollWhereUniqueInput = Prisma.AtLeast<{
   employeeId?: Prisma.IntFilter<"PayRoll"> | number
   total_days?: Prisma.IntFilter<"PayRoll"> | number
   present_days?: Prisma.IntFilter<"PayRoll"> | number
-  paid_leave_days?: Prisma.IntFilter<"PayRoll"> | number
+  paid_leave_days?: Prisma.FloatFilter<"PayRoll"> | number
   lop_days?: Prisma.IntFilter<"PayRoll"> | number
-  payable_days?: Prisma.IntFilter<"PayRoll"> | number
+  payable_days?: Prisma.FloatFilter<"PayRoll"> | number
   gross_salary?: Prisma.FloatFilter<"PayRoll"> | number
   overtime_amount?: Prisma.FloatFilter<"PayRoll"> | number
   total_deduction?: Prisma.FloatFilter<"PayRoll"> | number
@@ -412,9 +412,9 @@ export type PayRollScalarWhereWithAggregatesInput = {
   employeeId?: Prisma.IntWithAggregatesFilter<"PayRoll"> | number
   total_days?: Prisma.IntWithAggregatesFilter<"PayRoll"> | number
   present_days?: Prisma.IntWithAggregatesFilter<"PayRoll"> | number
-  paid_leave_days?: Prisma.IntWithAggregatesFilter<"PayRoll"> | number
+  paid_leave_days?: Prisma.FloatWithAggregatesFilter<"PayRoll"> | number
   lop_days?: Prisma.IntWithAggregatesFilter<"PayRoll"> | number
-  payable_days?: Prisma.IntWithAggregatesFilter<"PayRoll"> | number
+  payable_days?: Prisma.FloatWithAggregatesFilter<"PayRoll"> | number
   gross_salary?: Prisma.FloatWithAggregatesFilter<"PayRoll"> | number
   overtime_amount?: Prisma.FloatWithAggregatesFilter<"PayRoll"> | number
   total_deduction?: Prisma.FloatWithAggregatesFilter<"PayRoll"> | number
@@ -461,9 +461,9 @@ export type PayRollUncheckedCreateInput = {
 export type PayRollUpdateInput = {
   total_days?: Prisma.IntFieldUpdateOperationsInput | number
   present_days?: Prisma.IntFieldUpdateOperationsInput | number
-  paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
+  paid_leave_days?: Prisma.FloatFieldUpdateOperationsInput | number
   lop_days?: Prisma.IntFieldUpdateOperationsInput | number
-  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.FloatFieldUpdateOperationsInput | number
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -481,9 +481,9 @@ export type PayRollUncheckedUpdateInput = {
   employeeId?: Prisma.IntFieldUpdateOperationsInput | number
   total_days?: Prisma.IntFieldUpdateOperationsInput | number
   present_days?: Prisma.IntFieldUpdateOperationsInput | number
-  paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
+  paid_leave_days?: Prisma.FloatFieldUpdateOperationsInput | number
   lop_days?: Prisma.IntFieldUpdateOperationsInput | number
-  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.FloatFieldUpdateOperationsInput | number
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -513,9 +513,9 @@ export type PayRollCreateManyInput = {
 export type PayRollUpdateManyMutationInput = {
   total_days?: Prisma.IntFieldUpdateOperationsInput | number
   present_days?: Prisma.IntFieldUpdateOperationsInput | number
-  paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
+  paid_leave_days?: Prisma.FloatFieldUpdateOperationsInput | number
   lop_days?: Prisma.IntFieldUpdateOperationsInput | number
-  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.FloatFieldUpdateOperationsInput | number
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -530,9 +530,9 @@ export type PayRollUncheckedUpdateManyInput = {
   employeeId?: Prisma.IntFieldUpdateOperationsInput | number
   total_days?: Prisma.IntFieldUpdateOperationsInput | number
   present_days?: Prisma.IntFieldUpdateOperationsInput | number
-  paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
+  paid_leave_days?: Prisma.FloatFieldUpdateOperationsInput | number
   lop_days?: Prisma.IntFieldUpdateOperationsInput | number
-  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.FloatFieldUpdateOperationsInput | number
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -812,9 +812,9 @@ export type PayRollScalarWhereInput = {
   employeeId?: Prisma.IntFilter<"PayRoll"> | number
   total_days?: Prisma.IntFilter<"PayRoll"> | number
   present_days?: Prisma.IntFilter<"PayRoll"> | number
-  paid_leave_days?: Prisma.IntFilter<"PayRoll"> | number
+  paid_leave_days?: Prisma.FloatFilter<"PayRoll"> | number
   lop_days?: Prisma.IntFilter<"PayRoll"> | number
-  payable_days?: Prisma.IntFilter<"PayRoll"> | number
+  payable_days?: Prisma.FloatFilter<"PayRoll"> | number
   gross_salary?: Prisma.FloatFilter<"PayRoll"> | number
   overtime_amount?: Prisma.FloatFilter<"PayRoll"> | number
   total_deduction?: Prisma.FloatFilter<"PayRoll"> | number
@@ -875,9 +875,9 @@ export type PayRollUpdateToOneWithWhereWithoutPayrollSnapComponentsInput = {
 export type PayRollUpdateWithoutPayrollSnapComponentsInput = {
   total_days?: Prisma.IntFieldUpdateOperationsInput | number
   present_days?: Prisma.IntFieldUpdateOperationsInput | number
-  paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
+  paid_leave_days?: Prisma.FloatFieldUpdateOperationsInput | number
   lop_days?: Prisma.IntFieldUpdateOperationsInput | number
-  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.FloatFieldUpdateOperationsInput | number
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -894,9 +894,9 @@ export type PayRollUncheckedUpdateWithoutPayrollSnapComponentsInput = {
   employeeId?: Prisma.IntFieldUpdateOperationsInput | number
   total_days?: Prisma.IntFieldUpdateOperationsInput | number
   present_days?: Prisma.IntFieldUpdateOperationsInput | number
-  paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
+  paid_leave_days?: Prisma.FloatFieldUpdateOperationsInput | number
   lop_days?: Prisma.IntFieldUpdateOperationsInput | number
-  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.FloatFieldUpdateOperationsInput | number
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -983,9 +983,9 @@ export type PayRollCreateManyEmployeeInput = {
 export type PayRollUpdateWithoutEmployeeInput = {
   total_days?: Prisma.IntFieldUpdateOperationsInput | number
   present_days?: Prisma.IntFieldUpdateOperationsInput | number
-  paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
+  paid_leave_days?: Prisma.FloatFieldUpdateOperationsInput | number
   lop_days?: Prisma.IntFieldUpdateOperationsInput | number
-  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.FloatFieldUpdateOperationsInput | number
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1001,9 +1001,9 @@ export type PayRollUncheckedUpdateWithoutEmployeeInput = {
   payroll_run_id?: Prisma.IntFieldUpdateOperationsInput | number
   total_days?: Prisma.IntFieldUpdateOperationsInput | number
   present_days?: Prisma.IntFieldUpdateOperationsInput | number
-  paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
+  paid_leave_days?: Prisma.FloatFieldUpdateOperationsInput | number
   lop_days?: Prisma.IntFieldUpdateOperationsInput | number
-  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.FloatFieldUpdateOperationsInput | number
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1018,9 +1018,9 @@ export type PayRollUncheckedUpdateManyWithoutEmployeeInput = {
   payroll_run_id?: Prisma.IntFieldUpdateOperationsInput | number
   total_days?: Prisma.IntFieldUpdateOperationsInput | number
   present_days?: Prisma.IntFieldUpdateOperationsInput | number
-  paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
+  paid_leave_days?: Prisma.FloatFieldUpdateOperationsInput | number
   lop_days?: Prisma.IntFieldUpdateOperationsInput | number
-  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.FloatFieldUpdateOperationsInput | number
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1048,9 +1048,9 @@ export type PayRollCreateManyPayrollRunInput = {
 export type PayRollUpdateWithoutPayrollRunInput = {
   total_days?: Prisma.IntFieldUpdateOperationsInput | number
   present_days?: Prisma.IntFieldUpdateOperationsInput | number
-  paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
+  paid_leave_days?: Prisma.FloatFieldUpdateOperationsInput | number
   lop_days?: Prisma.IntFieldUpdateOperationsInput | number
-  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.FloatFieldUpdateOperationsInput | number
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1066,9 +1066,9 @@ export type PayRollUncheckedUpdateWithoutPayrollRunInput = {
   employeeId?: Prisma.IntFieldUpdateOperationsInput | number
   total_days?: Prisma.IntFieldUpdateOperationsInput | number
   present_days?: Prisma.IntFieldUpdateOperationsInput | number
-  paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
+  paid_leave_days?: Prisma.FloatFieldUpdateOperationsInput | number
   lop_days?: Prisma.IntFieldUpdateOperationsInput | number
-  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.FloatFieldUpdateOperationsInput | number
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1083,9 +1083,9 @@ export type PayRollUncheckedUpdateManyWithoutPayrollRunInput = {
   employeeId?: Prisma.IntFieldUpdateOperationsInput | number
   total_days?: Prisma.IntFieldUpdateOperationsInput | number
   present_days?: Prisma.IntFieldUpdateOperationsInput | number
-  paid_leave_days?: Prisma.IntFieldUpdateOperationsInput | number
+  paid_leave_days?: Prisma.FloatFieldUpdateOperationsInput | number
   lop_days?: Prisma.IntFieldUpdateOperationsInput | number
-  payable_days?: Prisma.IntFieldUpdateOperationsInput | number
+  payable_days?: Prisma.FloatFieldUpdateOperationsInput | number
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1670,9 +1670,9 @@ export interface PayRollFieldRefs {
   readonly employeeId: Prisma.FieldRef<"PayRoll", 'Int'>
   readonly total_days: Prisma.FieldRef<"PayRoll", 'Int'>
   readonly present_days: Prisma.FieldRef<"PayRoll", 'Int'>
-  readonly paid_leave_days: Prisma.FieldRef<"PayRoll", 'Int'>
+  readonly paid_leave_days: Prisma.FieldRef<"PayRoll", 'Float'>
   readonly lop_days: Prisma.FieldRef<"PayRoll", 'Int'>
-  readonly payable_days: Prisma.FieldRef<"PayRoll", 'Int'>
+  readonly payable_days: Prisma.FieldRef<"PayRoll", 'Float'>
   readonly gross_salary: Prisma.FieldRef<"PayRoll", 'Float'>
   readonly overtime_amount: Prisma.FieldRef<"PayRoll", 'Float'>
   readonly total_deduction: Prisma.FieldRef<"PayRoll", 'Float'>

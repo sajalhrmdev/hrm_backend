@@ -662,6 +662,13 @@ export const processAttendance = async (
           );
 
         if (
+          leave?.leaveMode === "HALF"
+        ) {
+
+          status =
+            AttendanceStatus.HALF_DAY_LEAVE;
+
+        } else if (
           leave?.leaveType
             ?.is_paid
         ) {

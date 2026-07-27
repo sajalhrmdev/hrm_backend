@@ -431,6 +431,7 @@ enum AttendanceStatus {
   PRESENT
   ABSENT
   HALF_DAY
+  HALF_DAY_LEAVE
   WEEKLY_OFF
   HOLIDAY
   PAID_LEAVE
@@ -775,9 +776,9 @@ model PayRoll{
   employee Employee @relation(fields: [employeeId],references: [id])
   total_days Int
   present_days Int
-  paid_leave_days Int
+  paid_leave_days Float
   lop_days Int
-  payable_days Int
+  payable_days Float
   gross_salary Float
 overtime_amount Float @default(0)
   total_deduction Float

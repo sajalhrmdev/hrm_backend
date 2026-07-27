@@ -309,12 +309,30 @@ export const handleAttendance = async (
       attendanceId: attendance?.id,
     }));
 
-    const { status } = attendanceStatusFn(
-      totalMinutes,
+    // Check if employee has approved HALF leave for this day
+    const halfLeave = await prisma.leaveApplication.findFirst({
+      where: {
+        employeeId,
+        companyId,
+        status: "APPROVED",
+        leaveMode: "HALF",
+        fromDate: { lte: attendanceDate },
+        toDate: { gte: attendanceDate },
+      },
+    });
 
-      shift,
-      workSchedulePolicy,
-    );
+    let status: AttendanceStatus;
+
+    if (halfLeave) {
+      status = AttendanceStatus.HALF_DAY_LEAVE;
+    } else {
+      const result = attendanceStatusFn(
+        totalMinutes,
+        shift,
+        workSchedulePolicy,
+      );
+      status = result.status;
+    }
 
     await prisma.attendance.update({
       where: {
