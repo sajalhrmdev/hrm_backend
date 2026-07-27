@@ -863,6 +863,14 @@ export const generatePayroll = async (
             ((overtimeMinutes / 60) * perHourSalary).toFixed(2),
           );
           grossSalary += overtimeAmount;
+
+          calculatedComponents.push({
+            componentName: "Overtime",
+            componentCode: "OVERTIME",
+            type: "EARNING" as any,
+            standardAmount: 0,
+            amount: overtimeAmount,
+          });
         }
 
         // ==================================
