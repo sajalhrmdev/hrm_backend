@@ -1078,6 +1078,13 @@ export const getSinglePayroll = async (
           name: true,
           email: true,
           employeeCode: true,
+          joiningDate: true,
+          designation: {
+            select: { title: true },
+          },
+          department: {
+            select: { title: true },
+          },
         },
       },
 
@@ -1090,13 +1097,10 @@ export const getSinglePayroll = async (
           company: {
             select: {
               id: true,
-
               slug: true,
-
-              // logo: true,
+              logo: true,
               email: true,
               address: true,
-
               phone: true,
             },
           },
@@ -1106,16 +1110,12 @@ export const getSinglePayroll = async (
       payrollSnapComponents: {
         select: {
           id: true,
-
           componentName: true,
-
           componentCode: true,
-
           type: true,
           standardAmount: true,
           amount: true,
         },
-
         orderBy: {
           id: "asc",
         },
