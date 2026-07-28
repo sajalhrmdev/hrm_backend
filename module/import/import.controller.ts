@@ -19,6 +19,7 @@ export const getImportConfigs = async (req: Request, res: Response) => {
       templateName: c.templateName,
       columnCount: c.columns.length,
       duplicateStrategy: c.duplicateStrategy,
+      instructions: c.instructions,
     }));
     return res.status(200).json({ success: true, data: configs });
   } catch (error: any) {

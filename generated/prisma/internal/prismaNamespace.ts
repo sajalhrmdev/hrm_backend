@@ -4198,6 +4198,9 @@ export const EmployeeScalarFieldEnum = {
   shiftId: 'shiftId',
   joiningDate: 'joiningDate',
   workSchedulePolicyId: 'workSchedulePolicyId',
+  pfNumber: 'pfNumber',
+  esiNumber: 'esiNumber',
+  uan: 'uan',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

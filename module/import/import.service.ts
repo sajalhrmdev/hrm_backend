@@ -344,6 +344,205 @@ async function checkDbDuplicates(
 }
 
 // ============================================
+// SALARY HISTORY COMPOSITE IMPORT
+// ============================================
+
+const SALARY_HISTORY_FIXED_COLUMNS = new Set([
+  "Employee Email",
+  "Month",
+  "Year",
+  "Total Days",
+  "Present Days",
+  "Paid Leave Days",
+  "LOP Days",
+  "Payable Days",
+  "Gross Salary",
+  "Total Deduction",
+  "Net Salary",
+  "Status",
+]);
+
+async function processSalaryHistoryImport(
+  companyId: number,
+  fileBuffer: Buffer,
+  dryRun: boolean
+): Promise<ImportResult> {
+  const { headers, rows } = parseExcelBuffer(fileBuffer);
+  if (rows.length === 0) {
+    return { success: false, total: 0, imported: 0, failed: 0, errors: [{ row: 0, field: "file", message: "Excel file is empty" }] };
+  }
+
+  const dynamicColumns = headers.filter((h) => !SALARY_HISTORY_FIXED_COLUMNS.has(h));
+  const previewRows: PreviewRow[] = [];
+  const allErrors: ImportError[] = [];
+
+  const emails = [...new Set(rows.map((r) => String(r["Employee Email"] || "").trim().toLowerCase()).filter(Boolean))];
+  const employeeMap = new Map<string, number>();
+  if (emails.length > 0) {
+    const employees = await prisma.employee.findMany({ where: { companyId, email: { in: emails } }, select: { id: true, email: true } });
+    for (const emp of employees) employeeMap.set(emp.email.toLowerCase(), emp.id);
+  }
+
+  let salaryComponentCache: Map<string, { id: number; name: string; code: string; type: string }> | null = null;
+  async function getSalaryComponentMap() {
+    if (salaryComponentCache) return salaryComponentCache;
+    const components = await prisma.salaryComponent.findMany({ where: { companyId }, select: { id: true, name: true, code: true, type: true } });
+    salaryComponentCache = new Map();
+    for (const c of components) {
+      salaryComponentCache.set(c.name.toLowerCase().trim(), { id: c.id, name: c.name, code: c.code, type: c.type });
+      salaryComponentCache.set(c.code.toLowerCase().trim(), { id: c.id, name: c.name, code: c.code, type: c.type });
+    }
+    return salaryComponentCache;
+  }
+
+  for (let i = 0; i < rows.length; i++) {
+    const row = rows[i];
+    const rowNum = i + 2;
+    const errors: ImportError[] = [];
+    const data: Record<string, any> = {};
+
+    const empEmail = String(row["Employee Email"] || "").trim().toLowerCase();
+    if (!empEmail) {
+      errors.push({ row: rowNum, field: "Employee Email", message: "Employee Email is required", value: "" });
+    } else if (!employeeMap.has(empEmail)) {
+      errors.push({ row: rowNum, field: "Employee Email", message: `Employee with email "${empEmail}" not found`, value: empEmail });
+    } else {
+      data.employeeId = employeeMap.get(empEmail);
+    }
+
+    const month = Number(row["Month"]);
+    if (!month || month < 1 || month > 12) {
+      errors.push({ row: rowNum, field: "Month", message: "Month must be 1-12", value: row["Month"] });
+    } else {
+      data.month = month;
+    }
+
+    const year = Number(row["Year"]);
+    if (!year || year < 2000 || year > 2100) {
+      errors.push({ row: rowNum, field: "Year", message: "Year must be valid (2000-2100)", value: row["Year"] });
+    } else {
+      data.year = year;
+    }
+
+    data.totalDays = Number(row["Total Days"]) || 0;
+    data.presentDays = Number(row["Present Days"]) || 0;
+    data.paidLeaveDays = Number(row["Paid Leave Days"]) || 0;
+    data.lopDays = Number(row["LOP Days"]) || 0;
+    data.payableDays = Number(row["Payable Days"]) || 0;
+    data.grossSalary = Number(row["Gross Salary"]) || 0;
+    data.totalDeduction = Number(row["Total Deduction"]) || 0;
+    data.netSalary = Number(row["Net Salary"]) || 0;
+    data.status = String(row["Status"] || "DRAFT").toUpperCase();
+
+    if (!data.grossSalary && data.grossSalary !== 0) {
+      errors.push({ row: rowNum, field: "Gross Salary", message: "Gross Salary is required", value: row["Gross Salary"] });
+    }
+    if (!data.totalDeduction && data.totalDeduction !== 0) {
+      errors.push({ row: rowNum, field: "Total Deduction", message: "Total Deduction is required", value: row["Total Deduction"] });
+    }
+    if (!data.netSalary && data.netSalary !== 0) {
+      errors.push({ row: rowNum, field: "Net Salary", message: "Net Salary is required", value: row["Net Salary"] });
+    }
+
+    const snapComponents: { componentName: string; componentCode: string; type: string; standardAmount: number; amount: number }[] = [];
+    const compMap = await getSalaryComponentMap();
+    for (const col of dynamicColumns) {
+      const val = Number(row[col]);
+      if (val === 0 || isNaN(val)) continue;
+      const lookup = compMap.get(col.toLowerCase().trim());
+      if (lookup) {
+        snapComponents.push({ componentName: lookup.name, componentCode: lookup.code, type: lookup.type, standardAmount: val, amount: val });
+      } else {
+        snapComponents.push({ componentName: col, componentCode: col.toUpperCase().replace(/\s+/g, "_"), type: "EARNING", standardAmount: val, amount: val });
+      }
+    }
+    data.snapComponents = snapComponents;
+
+    previewRows.push({
+      row: rowNum,
+      status: errors.length > 0 ? "invalid" : "valid",
+      data,
+      errors,
+    });
+
+    if (errors.length > 0) allErrors.push(...errors);
+  }
+
+  if (dryRun) {
+    const validCount = previewRows.filter((r) => r.status === "valid").length;
+    return { success: true, total: rows.length, imported: validCount, failed: rows.length - validCount, errors: allErrors, previewRows };
+  }
+
+  const validRows = previewRows.filter((r) => r.status === "valid");
+  if (validRows.length === 0) {
+    return { success: false, total: rows.length, imported: 0, failed: rows.length, errors: allErrors, previewRows };
+  }
+
+  try {
+    const result = await prisma.$transaction(async (tx) => {
+      const runCache = new Map<string, number>();
+      let importedCount = 0;
+
+      for (const row of validRows) {
+        const d = row.data;
+        const runKey = `${d.year}-${String(d.month).padStart(2, "0")}`;
+        let runId = runCache.get(runKey);
+
+        if (!runId) {
+          const periodStart = new Date(Date.UTC(d.year, d.month - 1, 1));
+          const periodEnd = new Date(Date.UTC(d.year, d.month, 0, 23, 59, 59));
+          const existingRun = await tx.payRollRun.findFirst({ where: { companyId, periodStart, periodEnd } });
+          if (existingRun) {
+            runId = existingRun.id;
+          } else {
+            const newRun = await tx.payRollRun.create({ data: { companyId, title: `Salary History ${d.year}-${String(d.month).padStart(2, "0")}`, periodStart, periodEnd, status: "FINALIZED" } });
+            runId = newRun.id;
+          }
+          runCache.set(runKey, runId);
+        }
+
+        const payroll = await tx.payRoll.create({
+          data: {
+            payroll_run_id: runId,
+            employeeId: d.employeeId,
+            total_days: d.totalDays,
+            present_days: d.presentDays,
+            paid_leave_days: d.paidLeaveDays,
+            lop_days: d.lopDays,
+            payable_days: d.payableDays,
+            gross_salary: d.grossSalary,
+            total_deduction: d.totalDeduction,
+            net_salary: d.netSalary,
+            status: d.status,
+          },
+        });
+
+        if (d.snapComponents && d.snapComponents.length > 0) {
+          await tx.payrollSnapComponent.createMany({
+            data: d.snapComponents.map((sc: any) => ({
+              payrollId: payroll.id,
+              componentName: sc.componentName,
+              componentCode: sc.componentCode,
+              type: sc.type,
+              standardAmount: sc.standardAmount,
+              amount: sc.amount,
+            })),
+          });
+        }
+
+        importedCount++;
+      }
+
+      return importedCount;
+    });
+
+    return { success: true, total: rows.length, imported: result, failed: rows.length - result, errors: allErrors, previewRows };
+  } catch (error: any) {
+    return { success: false, total: rows.length, imported: 0, failed: rows.length, errors: [...allErrors, { row: 0, field: "database", message: `Database error: ${error.message}` }], previewRows };
+  }
+}
+
+// ============================================
 // MAIN: PROCESS IMPORT
 // ============================================
 
@@ -363,6 +562,10 @@ export async function processImport(
       failed: 0,
       errors: [{ row: 0, field: "entity", message: `Unknown entity: ${entity}` }],
     };
+  }
+
+  if (config.isComposite && entity === "salaryHistory") {
+    return processSalaryHistoryImport(companyId, fileBuffer, dryRun);
   }
 
   const { headers, rows } = parseExcelBuffer(fileBuffer);

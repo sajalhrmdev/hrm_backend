@@ -1109,6 +1109,9 @@ export const getSinglePayroll = async (
           email: true,
           employeeCode: true,
           joiningDate: true,
+          pfNumber: true,
+          esiNumber: true,
+          uan: true,
           designation: {
             select: { title: true },
           },

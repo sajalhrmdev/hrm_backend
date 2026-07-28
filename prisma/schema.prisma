@@ -276,6 +276,9 @@ model Employee {
   joiningDate    DateTime?
   workSchedulePolicyId Int?
 workSchedulePolicy WorkSchedulePolicy? @relation( fields:[workSchedulePolicyId], references:[id])
+  pfNumber  String?
+  esiNumber String?
+  uan       String?
   // employmentType String? // Permanent, Contractual
   // status         String? // active, resigned
     createdAt DateTime @default(now())

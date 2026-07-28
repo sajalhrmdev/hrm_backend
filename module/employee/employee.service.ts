@@ -199,6 +199,12 @@ export const createEmployeeService = async (companyId: number, data: any) => {
         employeeCode,
 
         joiningDate: data.joiningDate ? new Date(data.joiningDate) : null,
+
+        pfNumber: data.pfNumber || null,
+
+        esiNumber: data.esiNumber || null,
+
+        uan: data.uan || null,
       },
 
       include: {
@@ -485,6 +491,12 @@ export const updateEmployeeService = async (
       status: data.status,
 
       joiningDate: data.joiningDate ? new Date(data.joiningDate) : null,
+
+      pfNumber: data.pfNumber || null,
+
+      esiNumber: data.esiNumber || null,
+
+      uan: data.uan || null,
     },
 
     include: {

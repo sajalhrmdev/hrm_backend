@@ -326,6 +326,9 @@ export const importConfigs: ImportConfig[] = [
         lookup: { model: "workSchedulePolicy", key: "title", value: "id", scopeByCompany: true },
       },
       { header: "Joining Date", field: "joiningDate", required: false, type: "date" },
+      { header: "PF Number", field: "pfNumber", required: false, type: "string" },
+      { header: "ESIC Number", field: "esiNumber", required: false, type: "string" },
+      { header: "UAN", field: "uan", required: false, type: "string" },
       {
         header: "Status",
         field: "status",
@@ -550,6 +553,409 @@ export const importConfigs: ImportConfig[] = [
       { header: "Review Year", field: "reviewYear", required: true, type: "number" },
     ],
     uniqueCheck: [{ fields: ["employeeId", "reviewMonth", "reviewYear"], message: "Review already exists for this month/year" }],
+  },
+
+  // ============================================
+  // 19. EMPLOYEE EXPERIENCE
+  // ============================================
+  {
+    entity: "employeeExperience",
+    label: "Employee Experience",
+    model: "employeeExperience",
+    templateName: "Employee Experience Import",
+    duplicateStrategy: "skip",
+    dedupeKey: ["employeeId", "companyName"],
+    requiresCompanyId: true,
+    employeeRef: "employeeEmail",
+    columns: [
+      { header: "Employee Email", field: "employeeEmail", required: true, type: "string" },
+      { header: "Company Name", field: "companyName", required: true, type: "string" },
+      { header: "Designation", field: "designation", required: true, type: "string" },
+      { header: "Start Date", field: "startDate", required: true, type: "date" },
+      { header: "End Date", field: "endDate", required: false, type: "date" },
+      { header: "Currently Working", field: "currentlyWorking", required: false, type: "boolean", defaultValue: false },
+      { header: "Skills", field: "skills", required: false, type: "string" },
+      { header: "Responsibilities", field: "responsibilities", required: false, type: "string" },
+      { header: "Document URL", field: "documentUrl", required: false, type: "string" },
+    ],
+    uniqueCheck: [{ fields: ["employeeId", "companyName"], message: "Experience for this company already exists" }],
+  },
+
+  // ============================================
+  // 20. LEAVE APPLICATION
+  // ============================================
+  {
+    entity: "leaveApplication",
+    label: "Leave Application",
+    model: "leaveApplication",
+    templateName: "Leave Application Import",
+    duplicateStrategy: "skip",
+    dedupeKey: ["employeeId", "fromDate"],
+    requiresCompanyId: true,
+    employeeRef: "employeeEmail",
+    columns: [
+      { header: "Employee Email", field: "employeeEmail", required: true, type: "string" },
+      {
+        header: "Leave Type Code",
+        field: "leaveTypeId",
+        required: true,
+        type: "lookup",
+        lookup: { model: "leaveType", key: "code", value: "id", scopeByCompany: true },
+      },
+      { header: "From Date", field: "fromDate", required: true, type: "date" },
+      { header: "To Date", field: "toDate", required: true, type: "date" },
+      { header: "Total Days", field: "totalDays", required: true, type: "number" },
+      { header: "Leave Mode", field: "leaveMode", required: false, type: "string" },
+      { header: "Paid Days", field: "paidDays", required: false, type: "number", defaultValue: 0 },
+      { header: "Unpaid Days", field: "unpaidDays", required: false, type: "number", defaultValue: 0 },
+      { header: "Reason", field: "reason", required: false, type: "string" },
+      {
+        header: "Status",
+        field: "status",
+        required: false,
+        type: "enum",
+        enumValues: ["PENDING", "APPROVED", "REJECTED"],
+        defaultValue: "APPROVED",
+      },
+    ],
+    uniqueCheck: [{ fields: ["employeeId", "fromDate"], message: "Leave application already exists for this date" }],
+  },
+
+  // ============================================
+  // 21. LEAVE INCREMENT POLICY
+  // ============================================
+  {
+    entity: "leaveIncrementPolicy",
+    label: "Leave Increment Policy",
+    model: "leaveIncrementPolicy",
+    templateName: "Leave Increment Policy Import",
+    duplicateStrategy: "upsert",
+    dedupeKey: ["leaveTypeId", "frequency"],
+    requiresCompanyId: true,
+    columns: [
+      {
+        header: "Leave Type Code",
+        field: "leaveTypeId",
+        required: true,
+        type: "lookup",
+        lookup: { model: "leaveType", key: "code", value: "id", scopeByCompany: true },
+      },
+      { header: "Title", field: "title", required: false, type: "string" },
+      { header: "Increment Amount", field: "incrementAmount", required: true, type: "number" },
+      {
+        header: "Frequency",
+        field: "frequency",
+        required: true,
+        type: "enum",
+        enumValues: ["DAILY", "WEEKLY", "MONTHLY", "YEARLY"],
+      },
+      { header: "Is Active", field: "isActive", required: false, type: "boolean", defaultValue: true },
+      { header: "Max Limit", field: "maxLimit", required: false, type: "number" },
+      { header: "Effective From", field: "effectiveFrom", required: false, type: "date" },
+      { header: "Effective To", field: "effectiveTo", required: false, type: "date" },
+    ],
+    uniqueCheck: [{ fields: ["leaveTypeId", "frequency"], message: "Leave increment policy already exists for this leave type and frequency" }],
+  },
+
+  // ============================================
+  // 22. WEEKLY OFF CONFIG
+  // ============================================
+  {
+    entity: "weeklyOffConfig",
+    label: "Weekly Off Config",
+    model: "weeklyOffConfig",
+    templateName: "Weekly Off Config Import",
+    duplicateStrategy: "upsert",
+    dedupeKey: ["dayOfWeek", "weekNumber"],
+    requiresCompanyId: true,
+    columns: [
+      { header: "Day of Week", field: "dayOfWeek", required: true, type: "number" },
+      { header: "Week Number", field: "weekNumber", required: false, type: "number" },
+      { header: "Is Active", field: "isActive", required: false, type: "boolean", defaultValue: true },
+    ],
+    uniqueCheck: [{ fields: ["dayOfWeek", "weekNumber"], message: "Weekly off config already exists for this day" }],
+  },
+
+  // ============================================
+  // 23. NOTICE
+  // ============================================
+  {
+    entity: "notice",
+    label: "Notice",
+    model: "notice",
+    templateName: "Notice Import",
+    duplicateStrategy: "skip",
+    dedupeKey: ["title", "noticeDate"],
+    requiresCompanyId: true,
+    columns: [
+      { header: "Title", field: "title", required: true, type: "string" },
+      { header: "Description", field: "description", required: true, type: "string" },
+      { header: "Notice Date", field: "noticeDate", required: true, type: "date" },
+      { header: "Expiry Date", field: "expiryDate", required: false, type: "date" },
+      {
+        header: "Priority",
+        field: "priority",
+        required: false,
+        type: "enum",
+        enumValues: ["LOW", "NORMAL", "HIGH", "URGENT"],
+        defaultValue: "NORMAL",
+      },
+      { header: "Is Published", field: "isPublished", required: false, type: "boolean", defaultValue: true },
+      { header: "Attachment URL", field: "attachmentUrl", required: false, type: "string" },
+    ],
+    uniqueCheck: [],
+  },
+
+  // ============================================
+  // 24. EMPLOYEE REWARD
+  // ============================================
+  {
+    entity: "employeeReward",
+    label: "Employee Reward",
+    model: "employeeReward",
+    templateName: "Employee Reward Import",
+    duplicateStrategy: "skip",
+    dedupeKey: ["employeeId", "title", "rewardDate"],
+    requiresCompanyId: true,
+    employeeRef: "employeeEmail",
+    columns: [
+      { header: "Employee Email", field: "employeeEmail", required: true, type: "string" },
+      { header: "Title", field: "title", required: true, type: "string" },
+      { header: "Description", field: "description", required: false, type: "string" },
+      { header: "Reward Type", field: "rewardType", required: true, type: "string" },
+      { header: "Reward Amount", field: "rewardAmount", required: false, type: "number" },
+      { header: "Reward Date", field: "rewardDate", required: true, type: "date" },
+    ],
+    uniqueCheck: [{ fields: ["employeeId", "title", "rewardDate"], message: "Reward already exists" }],
+  },
+
+  // ============================================
+  // 25. PROFESSIONAL TAX SLAB
+  // ============================================
+  {
+    entity: "professionalTaxSlab",
+    label: "Professional Tax Slab",
+    model: "professionalTaxSlab",
+    templateName: "Professional Tax Slab Import",
+    duplicateStrategy: "upsert",
+    dedupeKey: ["minSalary"],
+    requiresCompanyId: true,
+    columns: [
+      { header: "Min Salary", field: "minSalary", required: true, type: "number" },
+      { header: "Max Salary", field: "maxSalary", required: false, type: "number" },
+      { header: "Tax Amount", field: "taxAmount", required: false, type: "number", defaultValue: 0 },
+    ],
+    uniqueCheck: [{ fields: ["minSalary"], message: "Professional tax slab already exists for this salary range" }],
+  },
+
+  // ============================================
+  // 26. EMPLOYEE DOCUMENT
+  // ============================================
+  {
+    entity: "employeeDocument",
+    label: "Employee Document",
+    model: "employeeDocument",
+    templateName: "Employee Document Import",
+    duplicateStrategy: "skip",
+    dedupeKey: ["employeeId", "title"],
+    requiresCompanyId: false,
+    employeeRef: "employeeEmail",
+    columns: [
+      { header: "Employee Email", field: "employeeEmail", required: true, type: "string" },
+      { header: "Title", field: "title", required: true, type: "string" },
+      { header: "Document Type", field: "documentType", required: true, type: "string" },
+      { header: "Document Number", field: "documentNumber", required: false, type: "string" },
+      { header: "File URL", field: "fileUrl", required: true, type: "string" },
+      { header: "File Name", field: "fileName", required: false, type: "string" },
+      { header: "MIME Type", field: "mimeType", required: false, type: "string" },
+      { header: "File Size", field: "fileSize", required: false, type: "number" },
+      {
+        header: "Status",
+        field: "status",
+        required: false,
+        type: "enum",
+        enumValues: ["ACTIVE", "INACTIVE"],
+        defaultValue: "ACTIVE",
+      },
+    ],
+    uniqueCheck: [{ fields: ["employeeId", "title"], message: "Document with this title already exists" }],
+  },
+
+  // ============================================
+  // 27. RESIGNATION
+  // ============================================
+  {
+    entity: "resignation",
+    label: "Resignation",
+    model: "resignation",
+    templateName: "Resignation Import",
+    duplicateStrategy: "skip",
+    dedupeKey: ["employeeId"],
+    requiresCompanyId: true,
+    employeeRef: "employeeEmail",
+    columns: [
+      { header: "Employee Email", field: "employeeEmail", required: true, type: "string" },
+      { header: "Resignation Date", field: "resignationDate", required: true, type: "date" },
+      { header: "Last Working Day", field: "lastWorkingDay", required: true, type: "date" },
+      { header: "Notice Period Days", field: "noticePeriodDays", required: false, type: "number", defaultValue: 30 },
+      { header: "Reason", field: "reason", required: false, type: "string" },
+      { header: "Handover To", field: "handoverTo", required: false, type: "string" },
+      {
+        header: "Status",
+        field: "status",
+        required: false,
+        type: "enum",
+        enumValues: ["PENDING", "APPROVED", "REJECTED", "CANCELLED"],
+        defaultValue: "APPROVED",
+      },
+    ],
+    uniqueCheck: [{ fields: ["employeeId"], message: "Resignation already exists for this employee" }],
+  },
+
+  // ============================================
+  // 28. PAYROLL RUN
+  // ============================================
+  {
+    entity: "payRollRun",
+    label: "Payroll Run",
+    model: "payRollRun",
+    templateName: "Payroll Run Import",
+    duplicateStrategy: "upsert",
+    dedupeKey: ["periodStart"],
+    requiresCompanyId: true,
+    columns: [
+      { header: "Title", field: "title", required: false, type: "string" },
+      { header: "Period Start", field: "periodStart", required: true, type: "date" },
+      { header: "Period End", field: "periodEnd", required: true, type: "date" },
+      {
+        header: "Status",
+        field: "status",
+        required: false,
+        type: "enum",
+        enumValues: ["DRAFT", "FINALIZED"],
+        defaultValue: "DRAFT",
+      },
+    ],
+    uniqueCheck: [{ fields: ["periodStart"], message: "Payroll run already exists for this period" }],
+  },
+
+  // ============================================
+  // 29. PAYROLL
+  // ============================================
+  {
+    entity: "payRoll",
+    label: "Payroll",
+    model: "payRoll",
+    templateName: "Payroll Import",
+    duplicateStrategy: "skip",
+    dedupeKey: ["employeeId", "payroll_run_id"],
+    requiresCompanyId: false,
+    employeeRef: "employeeEmail",
+    columns: [
+      { header: "Employee Email", field: "employeeEmail", required: true, type: "string" },
+      {
+        header: "Payroll Run Period Start",
+        field: "payroll_run_id",
+        required: true,
+        type: "lookup",
+        lookup: { model: "payRollRun", key: "periodStart", value: "id", scopeByCompany: true },
+      },
+      { header: "Total Days", field: "total_days", required: true, type: "number" },
+      { header: "Present Days", field: "present_days", required: true, type: "number" },
+      { header: "Paid Leave Days", field: "paid_leave_days", required: false, type: "number", defaultValue: 0 },
+      { header: "LOP Days", field: "lop_days", required: false, type: "number", defaultValue: 0 },
+      { header: "Payable Days", field: "payable_days", required: true, type: "number" },
+      { header: "Gross Salary", field: "gross_salary", required: true, type: "number" },
+      { header: "Overtime Amount", field: "overtime_amount", required: false, type: "number", defaultValue: 0 },
+      { header: "Total Deduction", field: "total_deduction", required: true, type: "number" },
+      { header: "Net Salary", field: "net_salary", required: true, type: "number" },
+      {
+        header: "Status",
+        field: "status",
+        required: false,
+        type: "enum",
+        enumValues: ["DRAFT", "FINALIZED", "PAID"],
+        defaultValue: "DRAFT",
+      },
+    ],
+    uniqueCheck: [{ fields: ["employeeId", "payroll_run_id"], message: "Payroll already exists for this employee in this run" }],
+  },
+
+  // ============================================
+  // 30. PAYROLL SNAP COMPONENT
+  // ============================================
+  {
+    entity: "payrollSnapComponent",
+    label: "Payroll Snap Component",
+    model: "payrollSnapComponent",
+    templateName: "Payroll Snap Component Import",
+    duplicateStrategy: "skip",
+    dedupeKey: ["payrollId", "componentCode"],
+    requiresCompanyId: false,
+    columns: [
+      {
+        header: "Payroll ID",
+        field: "payrollId",
+        required: true,
+        type: "number",
+      },
+      { header: "Component Name", field: "componentName", required: true, type: "string" },
+      { header: "Component Code", field: "componentCode", required: true, type: "string" },
+      {
+        header: "Type",
+        field: "type",
+        required: true,
+        type: "enum",
+        enumValues: ["EARNING", "DEDUCTION"],
+      },
+      { header: "Standard Amount", field: "standardAmount", required: true, type: "number" },
+      { header: "Amount", field: "amount", required: true, type: "number" },
+    ],
+    uniqueCheck: [{ fields: ["payrollId", "componentCode"], message: "Component already exists for this payroll" }],
+  },
+
+  // ============================================
+  // 31. SALARY HISTORY (COMPOSITE)
+  // ============================================
+  {
+    entity: "salaryHistory",
+    label: "Salary History",
+    model: "salaryHistory",
+    templateName: "Salary History Import",
+    duplicateStrategy: "skip",
+    dedupeKey: ["employeeId", "month", "year"],
+    requiresCompanyId: true,
+    isComposite: true,
+    employeeRef: "employeeEmail",
+    instructions:
+      "After the fixed columns (Month, Year, Net Salary, etc.), add extra columns for each salary component from your company's salary structure.\n" +
+      "The column header must match the Salary Component Name exactly (e.g. Basic, HRA, DA, TA, PF, ESI, PT, TDS, Bonus).\n" +
+      "Each cell value should be the amount for that component.\n" +
+      "The system will auto-match columns to your Salary Components table. Unmatched columns default to EARNING type.\n\n" +
+      "Example columns:\n" +
+      "Employee Email, Month, Year, Total Days, Present Days, Paid Leave Days, LOP Days, Payable Days, Gross Salary, Total Deduction, Net Salary, Status, Basic, HRA, DA, PF, ESI",
+    columns: [
+      { header: "Employee Email", field: "employeeEmail", required: true, type: "string" },
+      { header: "Month", field: "month", required: true, type: "number" },
+      { header: "Year", field: "year", required: true, type: "number" },
+      { header: "Total Days", field: "totalDays", required: false, type: "number", defaultValue: 0 },
+      { header: "Present Days", field: "presentDays", required: false, type: "number", defaultValue: 0 },
+      { header: "Paid Leave Days", field: "paidLeaveDays", required: false, type: "number", defaultValue: 0 },
+      { header: "LOP Days", field: "lopDays", required: false, type: "number", defaultValue: 0 },
+      { header: "Payable Days", field: "payableDays", required: false, type: "number", defaultValue: 0 },
+      { header: "Gross Salary", field: "grossSalary", required: true, type: "number" },
+      { header: "Total Deduction", field: "totalDeduction", required: true, type: "number" },
+      { header: "Net Salary", field: "netSalary", required: true, type: "number" },
+      {
+        header: "Status",
+        field: "status",
+        required: false,
+        type: "enum",
+        enumValues: ["DRAFT", "FINALIZED", "PAID"],
+        defaultValue: "FINALIZED",
+      },
+    ],
+    uniqueCheck: [{ fields: ["employeeId", "month", "year"], message: "Salary record already exists for this employee in this month" }],
   },
 ];
 

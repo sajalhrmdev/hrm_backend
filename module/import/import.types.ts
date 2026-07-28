@@ -37,6 +37,8 @@ export interface ImportConfig {
   duplicateStrategy: DuplicateStrategy;
   requiresCompanyId: boolean;
   employeeRef?: string;
+  isComposite?: boolean;
+  instructions?: string;
 }
 
 export interface ImportError {

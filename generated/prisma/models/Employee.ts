@@ -63,6 +63,9 @@ export type EmployeeMinAggregateOutputType = {
   shiftId: number | null
   joiningDate: Date | null
   workSchedulePolicyId: number | null
+  pfNumber: string | null
+  esiNumber: string | null
+  uan: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -82,6 +85,9 @@ export type EmployeeMaxAggregateOutputType = {
   shiftId: number | null
   joiningDate: Date | null
   workSchedulePolicyId: number | null
+  pfNumber: string | null
+  esiNumber: string | null
+  uan: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -101,6 +107,9 @@ export type EmployeeCountAggregateOutputType = {
   shiftId: number
   joiningDate: number
   workSchedulePolicyId: number
+  pfNumber: number
+  esiNumber: number
+  uan: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -144,6 +153,9 @@ export type EmployeeMinAggregateInputType = {
   shiftId?: true
   joiningDate?: true
   workSchedulePolicyId?: true
+  pfNumber?: true
+  esiNumber?: true
+  uan?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -163,6 +175,9 @@ export type EmployeeMaxAggregateInputType = {
   shiftId?: true
   joiningDate?: true
   workSchedulePolicyId?: true
+  pfNumber?: true
+  esiNumber?: true
+  uan?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -182,6 +197,9 @@ export type EmployeeCountAggregateInputType = {
   shiftId?: true
   joiningDate?: true
   workSchedulePolicyId?: true
+  pfNumber?: true
+  esiNumber?: true
+  uan?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -288,6 +306,9 @@ export type EmployeeGroupByOutputType = {
   shiftId: number | null
   joiningDate: Date | null
   workSchedulePolicyId: number | null
+  pfNumber: string | null
+  esiNumber: string | null
+  uan: string | null
   createdAt: Date
   updatedAt: Date
   _count: EmployeeCountAggregateOutputType | null
@@ -330,6 +351,9 @@ export type EmployeeWhereInput = {
   shiftId?: Prisma.IntNullableFilter<"Employee"> | number | null
   joiningDate?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
   workSchedulePolicyId?: Prisma.IntNullableFilter<"Employee"> | number | null
+  pfNumber?: Prisma.StringNullableFilter<"Employee"> | string | null
+  esiNumber?: Prisma.StringNullableFilter<"Employee"> | string | null
+  uan?: Prisma.StringNullableFilter<"Employee"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
@@ -377,6 +401,9 @@ export type EmployeeOrderByWithRelationInput = {
   shiftId?: Prisma.SortOrderInput | Prisma.SortOrder
   joiningDate?: Prisma.SortOrderInput | Prisma.SortOrder
   workSchedulePolicyId?: Prisma.SortOrderInput | Prisma.SortOrder
+  pfNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  esiNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  uan?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
@@ -427,6 +454,9 @@ export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
   shiftId?: Prisma.IntNullableFilter<"Employee"> | number | null
   joiningDate?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
   workSchedulePolicyId?: Prisma.IntNullableFilter<"Employee"> | number | null
+  pfNumber?: Prisma.StringNullableFilter<"Employee"> | string | null
+  esiNumber?: Prisma.StringNullableFilter<"Employee"> | string | null
+  uan?: Prisma.StringNullableFilter<"Employee"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
@@ -474,6 +504,9 @@ export type EmployeeOrderByWithAggregationInput = {
   shiftId?: Prisma.SortOrderInput | Prisma.SortOrder
   joiningDate?: Prisma.SortOrderInput | Prisma.SortOrder
   workSchedulePolicyId?: Prisma.SortOrderInput | Prisma.SortOrder
+  pfNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  esiNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  uan?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.EmployeeCountOrderByAggregateInput
@@ -501,6 +534,9 @@ export type EmployeeScalarWhereWithAggregatesInput = {
   shiftId?: Prisma.IntNullableWithAggregatesFilter<"Employee"> | number | null
   joiningDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Employee"> | Date | string | null
   workSchedulePolicyId?: Prisma.IntNullableWithAggregatesFilter<"Employee"> | number | null
+  pfNumber?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
+  esiNumber?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
+  uan?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Employee"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Employee"> | Date | string
 }
@@ -512,6 +548,9 @@ export type EmployeeCreateInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -559,6 +598,9 @@ export type EmployeeUncheckedCreateInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -591,6 +633,9 @@ export type EmployeeUpdateInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -638,6 +683,9 @@ export type EmployeeUncheckedUpdateInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -678,6 +726,9 @@ export type EmployeeCreateManyInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -689,6 +740,9 @@ export type EmployeeUpdateManyMutationInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -708,6 +762,9 @@ export type EmployeeUncheckedUpdateManyInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -737,6 +794,9 @@ export type EmployeeCountOrderByAggregateInput = {
   shiftId?: Prisma.SortOrder
   joiningDate?: Prisma.SortOrder
   workSchedulePolicyId?: Prisma.SortOrder
+  pfNumber?: Prisma.SortOrder
+  esiNumber?: Prisma.SortOrder
+  uan?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -767,6 +827,9 @@ export type EmployeeMaxOrderByAggregateInput = {
   shiftId?: Prisma.SortOrder
   joiningDate?: Prisma.SortOrder
   workSchedulePolicyId?: Prisma.SortOrder
+  pfNumber?: Prisma.SortOrder
+  esiNumber?: Prisma.SortOrder
+  uan?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -786,6 +849,9 @@ export type EmployeeMinOrderByAggregateInput = {
   shiftId?: Prisma.SortOrder
   joiningDate?: Prisma.SortOrder
   workSchedulePolicyId?: Prisma.SortOrder
+  pfNumber?: Prisma.SortOrder
+  esiNumber?: Prisma.SortOrder
+  uan?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -1414,6 +1480,9 @@ export type EmployeeCreateWithoutCompanyInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -1459,6 +1528,9 @@ export type EmployeeUncheckedCreateWithoutCompanyInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -1528,6 +1600,9 @@ export type EmployeeScalarWhereInput = {
   shiftId?: Prisma.IntNullableFilter<"Employee"> | number | null
   joiningDate?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
   workSchedulePolicyId?: Prisma.IntNullableFilter<"Employee"> | number | null
+  pfNumber?: Prisma.StringNullableFilter<"Employee"> | string | null
+  esiNumber?: Prisma.StringNullableFilter<"Employee"> | string | null
+  uan?: Prisma.StringNullableFilter<"Employee"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
 }
@@ -1539,6 +1614,9 @@ export type EmployeeCreateWithoutDepartmentInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -1584,6 +1662,9 @@ export type EmployeeUncheckedCreateWithoutDepartmentInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -1642,6 +1723,9 @@ export type EmployeeCreateWithoutDesignationInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -1687,6 +1771,9 @@ export type EmployeeUncheckedCreateWithoutDesignationInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -1745,6 +1832,9 @@ export type EmployeeCreateWithoutUserInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutEmployeesInput
@@ -1790,6 +1880,9 @@ export type EmployeeUncheckedCreateWithoutUserInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -1848,6 +1941,9 @@ export type EmployeeCreateWithoutRoleInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -1893,6 +1989,9 @@ export type EmployeeUncheckedCreateWithoutRoleInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -1951,6 +2050,9 @@ export type EmployeeCreateWithoutEmployeePersonalInfoInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -1997,6 +2099,9 @@ export type EmployeeUncheckedCreateWithoutEmployeePersonalInfoInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -2044,6 +2149,9 @@ export type EmployeeUpdateWithoutEmployeePersonalInfoInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -2090,6 +2198,9 @@ export type EmployeeUncheckedUpdateWithoutEmployeePersonalInfoInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -2121,6 +2232,9 @@ export type EmployeeCreateWithoutEmployeeAddressInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -2167,6 +2281,9 @@ export type EmployeeUncheckedCreateWithoutEmployeeAddressInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -2214,6 +2331,9 @@ export type EmployeeUpdateWithoutEmployeeAddressInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -2260,6 +2380,9 @@ export type EmployeeUncheckedUpdateWithoutEmployeeAddressInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -2291,6 +2414,9 @@ export type EmployeeCreateWithoutEmployeeEmergencyContactInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -2337,6 +2463,9 @@ export type EmployeeUncheckedCreateWithoutEmployeeEmergencyContactInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -2384,6 +2513,9 @@ export type EmployeeUpdateWithoutEmployeeEmergencyContactInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -2430,6 +2562,9 @@ export type EmployeeUncheckedUpdateWithoutEmployeeEmergencyContactInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -2461,6 +2596,9 @@ export type EmployeeCreateWithoutEmployeeDocumentsInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -2507,6 +2645,9 @@ export type EmployeeUncheckedCreateWithoutEmployeeDocumentsInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -2554,6 +2695,9 @@ export type EmployeeUpdateWithoutEmployeeDocumentsInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -2600,6 +2744,9 @@ export type EmployeeUncheckedUpdateWithoutEmployeeDocumentsInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -2631,6 +2778,9 @@ export type EmployeeCreateWithoutEmployeeBankDetailInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -2677,6 +2827,9 @@ export type EmployeeUncheckedCreateWithoutEmployeeBankDetailInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -2724,6 +2877,9 @@ export type EmployeeUpdateWithoutEmployeeBankDetailInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -2770,6 +2926,9 @@ export type EmployeeUncheckedUpdateWithoutEmployeeBankDetailInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -2801,6 +2960,9 @@ export type EmployeeCreateWithoutEmployeeExperiencesInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -2847,6 +3009,9 @@ export type EmployeeUncheckedCreateWithoutEmployeeExperiencesInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -2894,6 +3059,9 @@ export type EmployeeUpdateWithoutEmployeeExperiencesInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -2940,6 +3108,9 @@ export type EmployeeUncheckedUpdateWithoutEmployeeExperiencesInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -2971,6 +3142,9 @@ export type EmployeeCreateWithoutAttendancesInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -3017,6 +3191,9 @@ export type EmployeeUncheckedCreateWithoutAttendancesInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutEmployeeInput
@@ -3064,6 +3241,9 @@ export type EmployeeUpdateWithoutAttendancesInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -3110,6 +3290,9 @@ export type EmployeeUncheckedUpdateWithoutAttendancesInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -3141,6 +3324,9 @@ export type EmployeeCreateWithoutEmployeeFaceInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -3187,6 +3373,9 @@ export type EmployeeUncheckedCreateWithoutEmployeeFaceInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -3234,6 +3423,9 @@ export type EmployeeUpdateWithoutEmployeeFaceInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -3280,6 +3472,9 @@ export type EmployeeUncheckedUpdateWithoutEmployeeFaceInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -3311,6 +3506,9 @@ export type EmployeeCreateWithoutAttendanceAdjustmentsInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -3357,6 +3555,9 @@ export type EmployeeUncheckedCreateWithoutAttendanceAdjustmentsInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -3404,6 +3605,9 @@ export type EmployeeUpdateWithoutAttendanceAdjustmentsInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -3450,6 +3654,9 @@ export type EmployeeUncheckedUpdateWithoutAttendanceAdjustmentsInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -3481,6 +3688,9 @@ export type EmployeeCreateWithoutAttendanceLogsInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -3527,6 +3737,9 @@ export type EmployeeUncheckedCreateWithoutAttendanceLogsInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -3574,6 +3787,9 @@ export type EmployeeUpdateWithoutAttendanceLogsInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -3620,6 +3836,9 @@ export type EmployeeUncheckedUpdateWithoutAttendanceLogsInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -3651,6 +3870,9 @@ export type EmployeeCreateWithoutShiftInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -3696,6 +3918,9 @@ export type EmployeeUncheckedCreateWithoutShiftInput = {
   designationId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -3754,6 +3979,9 @@ export type EmployeeCreateWithoutWorkSchedulePolicyInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -3799,6 +4027,9 @@ export type EmployeeUncheckedCreateWithoutWorkSchedulePolicyInput = {
   designationId?: number | null
   shiftId?: number | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -3857,6 +4088,9 @@ export type EmployeeCreateWithoutEmployeeSalaryComponentsInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -3903,6 +4137,9 @@ export type EmployeeUncheckedCreateWithoutEmployeeSalaryComponentsInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -3950,6 +4187,9 @@ export type EmployeeUpdateWithoutEmployeeSalaryComponentsInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -3996,6 +4236,9 @@ export type EmployeeUncheckedUpdateWithoutEmployeeSalaryComponentsInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -4027,6 +4270,9 @@ export type EmployeeCreateWithoutPayrollAdjustmentsInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -4073,6 +4319,9 @@ export type EmployeeUncheckedCreateWithoutPayrollAdjustmentsInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -4120,6 +4369,9 @@ export type EmployeeUpdateWithoutPayrollAdjustmentsInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -4166,6 +4418,9 @@ export type EmployeeUncheckedUpdateWithoutPayrollAdjustmentsInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -4197,6 +4452,9 @@ export type EmployeeCreateWithoutPayRollsInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -4243,6 +4501,9 @@ export type EmployeeUncheckedCreateWithoutPayRollsInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -4290,6 +4551,9 @@ export type EmployeeUpdateWithoutPayRollsInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -4336,6 +4600,9 @@ export type EmployeeUncheckedUpdateWithoutPayRollsInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -4367,6 +4634,9 @@ export type EmployeeCreateWithoutLeaveBalancesInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -4413,6 +4683,9 @@ export type EmployeeUncheckedCreateWithoutLeaveBalancesInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -4460,6 +4733,9 @@ export type EmployeeUpdateWithoutLeaveBalancesInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -4506,6 +4782,9 @@ export type EmployeeUncheckedUpdateWithoutLeaveBalancesInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -4537,6 +4816,9 @@ export type EmployeeCreateWithoutLeaveIncrementLogsInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -4583,6 +4865,9 @@ export type EmployeeUncheckedCreateWithoutLeaveIncrementLogsInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -4630,6 +4915,9 @@ export type EmployeeUpdateWithoutLeaveIncrementLogsInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -4676,6 +4964,9 @@ export type EmployeeUncheckedUpdateWithoutLeaveIncrementLogsInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -4707,6 +4998,9 @@ export type EmployeeCreateWithoutLeaveApplicationsInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -4753,6 +5047,9 @@ export type EmployeeUncheckedCreateWithoutLeaveApplicationsInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -4800,6 +5097,9 @@ export type EmployeeUpdateWithoutLeaveApplicationsInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -4846,6 +5146,9 @@ export type EmployeeUncheckedUpdateWithoutLeaveApplicationsInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -4877,6 +5180,9 @@ export type EmployeeCreateWithoutPerformanceReviewsInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -4923,6 +5229,9 @@ export type EmployeeUncheckedCreateWithoutPerformanceReviewsInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -4970,6 +5279,9 @@ export type EmployeeUpdateWithoutPerformanceReviewsInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -5016,6 +5328,9 @@ export type EmployeeUncheckedUpdateWithoutPerformanceReviewsInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -5047,6 +5362,9 @@ export type EmployeeCreateWithoutEmployeeRewardsInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -5093,6 +5411,9 @@ export type EmployeeUncheckedCreateWithoutEmployeeRewardsInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -5140,6 +5461,9 @@ export type EmployeeUpdateWithoutEmployeeRewardsInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -5186,6 +5510,9 @@ export type EmployeeUncheckedUpdateWithoutEmployeeRewardsInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -5217,6 +5544,9 @@ export type EmployeeCreateWithoutGeneratedDocumentsInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -5263,6 +5593,9 @@ export type EmployeeUncheckedCreateWithoutGeneratedDocumentsInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -5310,6 +5643,9 @@ export type EmployeeUpdateWithoutGeneratedDocumentsInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -5356,6 +5692,9 @@ export type EmployeeUncheckedUpdateWithoutGeneratedDocumentsInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -5387,6 +5726,9 @@ export type EmployeeCreateWithoutResignationsInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -5433,6 +5775,9 @@ export type EmployeeUncheckedCreateWithoutResignationsInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -5469,6 +5814,9 @@ export type EmployeeCreateWithoutApprovedResignationsInput = {
   status?: $Enums.EmployeeStatus
   employeeCode?: string | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutEmployeesInput
@@ -5515,6 +5863,9 @@ export type EmployeeUncheckedCreateWithoutApprovedResignationsInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
@@ -5562,6 +5913,9 @@ export type EmployeeUpdateWithoutResignationsInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -5608,6 +5962,9 @@ export type EmployeeUncheckedUpdateWithoutResignationsInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -5650,6 +6007,9 @@ export type EmployeeUpdateWithoutApprovedResignationsInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -5696,6 +6056,9 @@ export type EmployeeUncheckedUpdateWithoutApprovedResignationsInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -5734,6 +6097,9 @@ export type EmployeeCreateManyCompanyInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -5745,6 +6111,9 @@ export type EmployeeUpdateWithoutCompanyInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -5790,6 +6159,9 @@ export type EmployeeUncheckedUpdateWithoutCompanyInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -5829,6 +6201,9 @@ export type EmployeeUncheckedUpdateManyWithoutCompanyInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -5847,6 +6222,9 @@ export type EmployeeCreateManyDepartmentInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -5858,6 +6236,9 @@ export type EmployeeUpdateWithoutDepartmentInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -5903,6 +6284,9 @@ export type EmployeeUncheckedUpdateWithoutDepartmentInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -5942,6 +6326,9 @@ export type EmployeeUncheckedUpdateManyWithoutDepartmentInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -5960,6 +6347,9 @@ export type EmployeeCreateManyDesignationInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -5971,6 +6361,9 @@ export type EmployeeUpdateWithoutDesignationInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -6016,6 +6409,9 @@ export type EmployeeUncheckedUpdateWithoutDesignationInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -6055,6 +6451,9 @@ export type EmployeeUncheckedUpdateManyWithoutDesignationInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -6073,6 +6472,9 @@ export type EmployeeCreateManyUserInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -6084,6 +6486,9 @@ export type EmployeeUpdateWithoutUserInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company?: Prisma.CompanyUpdateOneRequiredWithoutEmployeesNestedInput
@@ -6129,6 +6534,9 @@ export type EmployeeUncheckedUpdateWithoutUserInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -6168,6 +6576,9 @@ export type EmployeeUncheckedUpdateManyWithoutUserInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -6186,6 +6597,9 @@ export type EmployeeCreateManyRoleInput = {
   shiftId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -6197,6 +6611,9 @@ export type EmployeeUpdateWithoutRoleInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -6242,6 +6659,9 @@ export type EmployeeUncheckedUpdateWithoutRoleInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -6281,6 +6701,9 @@ export type EmployeeUncheckedUpdateManyWithoutRoleInput = {
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -6299,6 +6722,9 @@ export type EmployeeCreateManyShiftInput = {
   designationId?: number | null
   joiningDate?: Date | string | null
   workSchedulePolicyId?: number | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -6310,6 +6736,9 @@ export type EmployeeUpdateWithoutShiftInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -6355,6 +6784,9 @@ export type EmployeeUncheckedUpdateWithoutShiftInput = {
   designationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -6394,6 +6826,9 @@ export type EmployeeUncheckedUpdateManyWithoutShiftInput = {
   designationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   workSchedulePolicyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -6412,6 +6847,9 @@ export type EmployeeCreateManyWorkSchedulePolicyInput = {
   designationId?: number | null
   shiftId?: number | null
   joiningDate?: Date | string | null
+  pfNumber?: string | null
+  esiNumber?: string | null
+  uan?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -6423,6 +6861,9 @@ export type EmployeeUpdateWithoutWorkSchedulePolicyInput = {
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
   employeeCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutEmployeesNestedInput
@@ -6468,6 +6909,9 @@ export type EmployeeUncheckedUpdateWithoutWorkSchedulePolicyInput = {
   designationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -6507,6 +6951,9 @@ export type EmployeeUncheckedUpdateManyWithoutWorkSchedulePolicyInput = {
   designationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   shiftId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   joiningDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pfNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esiNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -6692,6 +7139,9 @@ export type EmployeeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   shiftId?: boolean
   joiningDate?: boolean
   workSchedulePolicyId?: boolean
+  pfNumber?: boolean
+  esiNumber?: boolean
+  uan?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.Employee$userArgs<ExtArgs>
@@ -6740,6 +7190,9 @@ export type EmployeeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   shiftId?: boolean
   joiningDate?: boolean
   workSchedulePolicyId?: boolean
+  pfNumber?: boolean
+  esiNumber?: boolean
+  uan?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.Employee$userArgs<ExtArgs>
@@ -6766,6 +7219,9 @@ export type EmployeeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   shiftId?: boolean
   joiningDate?: boolean
   workSchedulePolicyId?: boolean
+  pfNumber?: boolean
+  esiNumber?: boolean
+  uan?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.Employee$userArgs<ExtArgs>
@@ -6792,11 +7248,14 @@ export type EmployeeSelectScalar = {
   shiftId?: boolean
   joiningDate?: boolean
   workSchedulePolicyId?: boolean
+  pfNumber?: boolean
+  esiNumber?: boolean
+  uan?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type EmployeeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "companyId" | "name" | "phone" | "email" | "roleId" | "status" | "employeeCode" | "departmentId" | "designationId" | "shiftId" | "joiningDate" | "workSchedulePolicyId" | "createdAt" | "updatedAt", ExtArgs["result"]["employee"]>
+export type EmployeeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "companyId" | "name" | "phone" | "email" | "roleId" | "status" | "employeeCode" | "departmentId" | "designationId" | "shiftId" | "joiningDate" | "workSchedulePolicyId" | "pfNumber" | "esiNumber" | "uan" | "createdAt" | "updatedAt", ExtArgs["result"]["employee"]>
 export type EmployeeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.Employee$userArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
@@ -6894,6 +7353,9 @@ export type $EmployeePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     shiftId: number | null
     joiningDate: Date | null
     workSchedulePolicyId: number | null
+    pfNumber: string | null
+    esiNumber: string | null
+    uan: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["employee"]>
@@ -7361,6 +7823,9 @@ export interface EmployeeFieldRefs {
   readonly shiftId: Prisma.FieldRef<"Employee", 'Int'>
   readonly joiningDate: Prisma.FieldRef<"Employee", 'DateTime'>
   readonly workSchedulePolicyId: Prisma.FieldRef<"Employee", 'Int'>
+  readonly pfNumber: Prisma.FieldRef<"Employee", 'String'>
+  readonly esiNumber: Prisma.FieldRef<"Employee", 'String'>
+  readonly uan: Prisma.FieldRef<"Employee", 'String'>
   readonly createdAt: Prisma.FieldRef<"Employee", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Employee", 'DateTime'>
 }
