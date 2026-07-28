@@ -273,6 +273,8 @@ function transformForInsert(
   const result: Record<string, any> = {};
 
   for (const col of config.columns) {
+    if (config.employeeRef && col.field === config.employeeRef) continue;
+
     let value = data[col.field];
 
     if (col.type === "lookup" && col.lookup) {
