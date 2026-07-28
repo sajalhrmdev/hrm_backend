@@ -432,9 +432,11 @@ export async function processImport(
   let importedCount = 0;
   if (rowsToInsert.length > 0) {
     try {
-      const result = await (prisma as any)[config.model].createMany({
-        data: rowsToInsert,
-        skipDuplicates: true,
+      const result = await prisma.$transaction(async (tx) => {
+        return await (tx as any)[config.model].createMany({
+          data: rowsToInsert,
+          skipDuplicates: true,
+        });
       });
       importedCount = result.count;
     } catch (error: any) {
