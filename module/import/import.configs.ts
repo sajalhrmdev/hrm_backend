@@ -928,12 +928,15 @@ export const importConfigs: ImportConfig[] = [
     isComposite: true,
     employeeRef: "employeeEmail",
     instructions:
-      "After the fixed columns (Month, Year, Net Salary, etc.), add extra columns for each salary component from your company's salary structure.\n" +
-      "The column header must match the Salary Component Name exactly (e.g. Basic, HRA, DA, TA, PF, ESI, PT, TDS, Bonus).\n" +
-      "Each cell value should be the amount for that component.\n" +
+      "After the fixed columns (Month, Year, Net Salary, etc.), add columns for each salary component.\n" +
+      "For each component, use TWO columns:\n" +
+      "  \"ComponentName Standard\" - the standard amount (e.g. Basic Standard)\n" +
+      "  \"ComponentName\" - the actual amount (e.g. Basic)\n" +
+      "If only the actual column is provided, it applies to both.\n" +
+      "The column header must match the Salary Component Name exactly (e.g. Basic, HRA, DA, TA, PF, ESI).\n" +
       "The system will auto-match columns to your Salary Components table. Unmatched columns default to EARNING type.\n\n" +
       "Example columns:\n" +
-      "Employee Email, Month, Year, Total Days, Present Days, Paid Leave Days, LOP Days, Payable Days, Gross Salary, Total Deduction, Net Salary, Status, Basic, HRA, DA, PF, ESI",
+      "Employee Email, Month, Year, Total Days, Present Days, Paid Leave Days, LOP Days, Payable Days, Gross Salary, Total Deduction, Net Salary, Status, Basic Standard, Basic, HRA Standard, HRA, PF Standard, PF",
     columns: [
       { header: "Employee Email", field: "employeeEmail", required: true, type: "string" },
       { header: "Month", field: "month", required: true, type: "number" },

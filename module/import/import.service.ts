@@ -446,18 +446,35 @@ async function processSalaryHistoryImport(
 
     const snapComponents: { componentName: string; componentCode: string; type: string; standardAmount: number; amount: number }[] = [];
     const compMap = await getSalaryComponentMap();
+
+    const dynamicValues: Record<string, { standard?: number; actual?: number }> = {};
     for (const col of dynamicColumns) {
       const val = Number(row[col]);
-      if (val === 0 || isNaN(val)) continue;
-      const lookup = compMap.get(col.toLowerCase().trim());
-      if (lookup) {
-        snapComponents.push({ componentName: lookup.name, componentCode: lookup.code, type: lookup.type, standardAmount: val, amount: val });
+      if (isNaN(val)) continue;
+      if (col.endsWith(" Standard")) {
+        const baseName = col.slice(0, -9).trim();
+        if (!dynamicValues[baseName]) dynamicValues[baseName] = {};
+        dynamicValues[baseName].standard = val;
       } else {
-        snapComponents.push({ componentName: col, componentCode: col.toUpperCase().replace(/\s+/g, "_"), type: "EARNING", standardAmount: val, amount: val });
+        if (!dynamicValues[col]) dynamicValues[col] = {};
+        dynamicValues[col].actual = val;
       }
     }
+
+    for (const [name, vals] of Object.entries(dynamicValues)) {
+      const lookup = compMap.get(name.toLowerCase().trim());
+      snapComponents.push({
+        componentName: lookup ? lookup.name : name,
+        componentCode: lookup ? lookup.code : name.toUpperCase().replace(/\s+/g, "_"),
+        type: lookup ? lookup.type : "EARNING",
+        standardAmount: vals.standard ?? vals.actual ?? 0,
+        amount: vals.actual ?? vals.standard ?? 0,
+      });
+    }
+
     data.snapComponents = snapComponents;
     for (const sc of snapComponents) {
+      data[`${sc.componentName} Standard`] = sc.standardAmount;
       data[sc.componentName] = sc.amount;
     }
 
