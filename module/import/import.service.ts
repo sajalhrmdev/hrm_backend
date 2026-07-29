@@ -399,7 +399,7 @@ async function processSalaryHistoryImport(
     const row = rows[i];
     const rowNum = i + 2;
     const errors: ImportError[] = [];
-    const data: Record<string, any> = {};
+    const data: Record<string, any> = { ...row };
 
     const empEmail = String(row["Employee Email"] || "").trim().toLowerCase();
     if (!empEmail) {
@@ -457,6 +457,9 @@ async function processSalaryHistoryImport(
       }
     }
     data.snapComponents = snapComponents;
+    for (const sc of snapComponents) {
+      data[sc.componentName] = sc.amount;
+    }
 
     previewRows.push({
       row: rowNum,
