@@ -824,7 +824,7 @@ export const generatePayroll = async (
             payableAmount = item.amount;
           }
 
-          payableAmount = Number(payableAmount.toFixed(2));
+          payableAmount = Math.round(payableAmount);
 
           // ================================
           // TOTALS
@@ -859,8 +859,8 @@ export const generatePayroll = async (
           const perDaySalary = grossSalary / totalDays;
           const perHourSalary = perDaySalary / 8;
 
-          overtimeAmount = Number(
-            ((overtimeMinutes / 60) * perHourSalary).toFixed(2),
+          overtimeAmount = Math.round(
+            (overtimeMinutes / 60) * perHourSalary,
           );
           grossSalary += overtimeAmount;
 
@@ -894,7 +894,7 @@ export const generatePayroll = async (
         // ==================================
 
         for (const adj of adjustments) {
-          const adjustmentAmount = Number(adj.amount.toFixed(2));
+          const adjustmentAmount = Math.round(adj.amount);
 
           // ================================
           // TOTALS
@@ -983,7 +983,7 @@ export const generatePayroll = async (
         const netSalary = Math.max(
           0,
 
-          Number(calculatedNetSalary.toFixed(2)),
+          Math.round(calculatedNetSalary),
         );
 
         // ==================================
@@ -1009,9 +1009,9 @@ export const generatePayroll = async (
 
             overtime_amount: overtimeAmount,
 
-            gross_salary: Number(grossSalary.toFixed(2)),
+            gross_salary: Math.round(grossSalary),
 
-            total_deduction: Number(totalDeduction.toFixed(2)),
+            total_deduction: Math.round(totalDeduction),
 
             net_salary: netSalary,
           },
