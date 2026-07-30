@@ -253,6 +253,7 @@ export type PayrollSnapComponentWhereInput = {
   amount?: Prisma.FloatFilter<"PayrollSnapComponent"> | number
   createdAt?: Prisma.DateTimeFilter<"PayrollSnapComponent"> | Date | string
   payroll?: Prisma.XOR<Prisma.PayRollScalarRelationFilter, Prisma.PayRollWhereInput>
+  goals?: Prisma.GoalListRelationFilter
 }
 
 export type PayrollSnapComponentOrderByWithRelationInput = {
@@ -265,6 +266,7 @@ export type PayrollSnapComponentOrderByWithRelationInput = {
   amount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   payroll?: Prisma.PayRollOrderByWithRelationInput
+  goals?: Prisma.GoalOrderByRelationAggregateInput
 }
 
 export type PayrollSnapComponentWhereUniqueInput = Prisma.AtLeast<{
@@ -280,6 +282,7 @@ export type PayrollSnapComponentWhereUniqueInput = Prisma.AtLeast<{
   amount?: Prisma.FloatFilter<"PayrollSnapComponent"> | number
   createdAt?: Prisma.DateTimeFilter<"PayrollSnapComponent"> | Date | string
   payroll?: Prisma.XOR<Prisma.PayRollScalarRelationFilter, Prisma.PayRollWhereInput>
+  goals?: Prisma.GoalListRelationFilter
 }, "id">
 
 export type PayrollSnapComponentOrderByWithAggregationInput = {
@@ -320,6 +323,7 @@ export type PayrollSnapComponentCreateInput = {
   amount: number
   createdAt?: Date | string
   payroll: Prisma.PayRollCreateNestedOneWithoutPayrollSnapComponentsInput
+  goals?: Prisma.GoalCreateNestedManyWithoutPayrollSnapComponentInput
 }
 
 export type PayrollSnapComponentUncheckedCreateInput = {
@@ -331,6 +335,7 @@ export type PayrollSnapComponentUncheckedCreateInput = {
   standardAmount: number
   amount: number
   createdAt?: Date | string
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutPayrollSnapComponentInput
 }
 
 export type PayrollSnapComponentUpdateInput = {
@@ -341,6 +346,7 @@ export type PayrollSnapComponentUpdateInput = {
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payroll?: Prisma.PayRollUpdateOneRequiredWithoutPayrollSnapComponentsNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutPayrollSnapComponentNestedInput
 }
 
 export type PayrollSnapComponentUncheckedUpdateInput = {
@@ -352,6 +358,7 @@ export type PayrollSnapComponentUncheckedUpdateInput = {
   standardAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutPayrollSnapComponentNestedInput
 }
 
 export type PayrollSnapComponentCreateManyInput = {
@@ -442,6 +449,11 @@ export type PayrollSnapComponentSumOrderByAggregateInput = {
   amount?: Prisma.SortOrder
 }
 
+export type PayrollSnapComponentNullableScalarRelationFilter = {
+  is?: Prisma.PayrollSnapComponentWhereInput | null
+  isNot?: Prisma.PayrollSnapComponentWhereInput | null
+}
+
 export type PayrollSnapComponentCreateNestedManyWithoutPayrollInput = {
   create?: Prisma.XOR<Prisma.PayrollSnapComponentCreateWithoutPayrollInput, Prisma.PayrollSnapComponentUncheckedCreateWithoutPayrollInput> | Prisma.PayrollSnapComponentCreateWithoutPayrollInput[] | Prisma.PayrollSnapComponentUncheckedCreateWithoutPayrollInput[]
   connectOrCreate?: Prisma.PayrollSnapComponentCreateOrConnectWithoutPayrollInput | Prisma.PayrollSnapComponentCreateOrConnectWithoutPayrollInput[]
@@ -484,6 +496,22 @@ export type PayrollSnapComponentUncheckedUpdateManyWithoutPayrollNestedInput = {
   deleteMany?: Prisma.PayrollSnapComponentScalarWhereInput | Prisma.PayrollSnapComponentScalarWhereInput[]
 }
 
+export type PayrollSnapComponentCreateNestedOneWithoutGoalsInput = {
+  create?: Prisma.XOR<Prisma.PayrollSnapComponentCreateWithoutGoalsInput, Prisma.PayrollSnapComponentUncheckedCreateWithoutGoalsInput>
+  connectOrCreate?: Prisma.PayrollSnapComponentCreateOrConnectWithoutGoalsInput
+  connect?: Prisma.PayrollSnapComponentWhereUniqueInput
+}
+
+export type PayrollSnapComponentUpdateOneWithoutGoalsNestedInput = {
+  create?: Prisma.XOR<Prisma.PayrollSnapComponentCreateWithoutGoalsInput, Prisma.PayrollSnapComponentUncheckedCreateWithoutGoalsInput>
+  connectOrCreate?: Prisma.PayrollSnapComponentCreateOrConnectWithoutGoalsInput
+  upsert?: Prisma.PayrollSnapComponentUpsertWithoutGoalsInput
+  disconnect?: Prisma.PayrollSnapComponentWhereInput | boolean
+  delete?: Prisma.PayrollSnapComponentWhereInput | boolean
+  connect?: Prisma.PayrollSnapComponentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PayrollSnapComponentUpdateToOneWithWhereWithoutGoalsInput, Prisma.PayrollSnapComponentUpdateWithoutGoalsInput>, Prisma.PayrollSnapComponentUncheckedUpdateWithoutGoalsInput>
+}
+
 export type PayrollSnapComponentCreateWithoutPayrollInput = {
   componentName: string
   componentCode: string
@@ -491,6 +519,7 @@ export type PayrollSnapComponentCreateWithoutPayrollInput = {
   standardAmount: number
   amount: number
   createdAt?: Date | string
+  goals?: Prisma.GoalCreateNestedManyWithoutPayrollSnapComponentInput
 }
 
 export type PayrollSnapComponentUncheckedCreateWithoutPayrollInput = {
@@ -501,6 +530,7 @@ export type PayrollSnapComponentUncheckedCreateWithoutPayrollInput = {
   standardAmount: number
   amount: number
   createdAt?: Date | string
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutPayrollSnapComponentInput
 }
 
 export type PayrollSnapComponentCreateOrConnectWithoutPayrollInput = {
@@ -543,6 +573,64 @@ export type PayrollSnapComponentScalarWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"PayrollSnapComponent"> | Date | string
 }
 
+export type PayrollSnapComponentCreateWithoutGoalsInput = {
+  componentName: string
+  componentCode: string
+  type: $Enums.SalaryComponentType
+  standardAmount: number
+  amount: number
+  createdAt?: Date | string
+  payroll: Prisma.PayRollCreateNestedOneWithoutPayrollSnapComponentsInput
+}
+
+export type PayrollSnapComponentUncheckedCreateWithoutGoalsInput = {
+  id?: number
+  payrollId: number
+  componentName: string
+  componentCode: string
+  type: $Enums.SalaryComponentType
+  standardAmount: number
+  amount: number
+  createdAt?: Date | string
+}
+
+export type PayrollSnapComponentCreateOrConnectWithoutGoalsInput = {
+  where: Prisma.PayrollSnapComponentWhereUniqueInput
+  create: Prisma.XOR<Prisma.PayrollSnapComponentCreateWithoutGoalsInput, Prisma.PayrollSnapComponentUncheckedCreateWithoutGoalsInput>
+}
+
+export type PayrollSnapComponentUpsertWithoutGoalsInput = {
+  update: Prisma.XOR<Prisma.PayrollSnapComponentUpdateWithoutGoalsInput, Prisma.PayrollSnapComponentUncheckedUpdateWithoutGoalsInput>
+  create: Prisma.XOR<Prisma.PayrollSnapComponentCreateWithoutGoalsInput, Prisma.PayrollSnapComponentUncheckedCreateWithoutGoalsInput>
+  where?: Prisma.PayrollSnapComponentWhereInput
+}
+
+export type PayrollSnapComponentUpdateToOneWithWhereWithoutGoalsInput = {
+  where?: Prisma.PayrollSnapComponentWhereInput
+  data: Prisma.XOR<Prisma.PayrollSnapComponentUpdateWithoutGoalsInput, Prisma.PayrollSnapComponentUncheckedUpdateWithoutGoalsInput>
+}
+
+export type PayrollSnapComponentUpdateWithoutGoalsInput = {
+  componentName?: Prisma.StringFieldUpdateOperationsInput | string
+  componentCode?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumSalaryComponentTypeFieldUpdateOperationsInput | $Enums.SalaryComponentType
+  standardAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  payroll?: Prisma.PayRollUpdateOneRequiredWithoutPayrollSnapComponentsNestedInput
+}
+
+export type PayrollSnapComponentUncheckedUpdateWithoutGoalsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  payrollId?: Prisma.IntFieldUpdateOperationsInput | number
+  componentName?: Prisma.StringFieldUpdateOperationsInput | string
+  componentCode?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumSalaryComponentTypeFieldUpdateOperationsInput | $Enums.SalaryComponentType
+  standardAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type PayrollSnapComponentCreateManyPayrollInput = {
   id?: number
   componentName: string
@@ -560,6 +648,7 @@ export type PayrollSnapComponentUpdateWithoutPayrollInput = {
   standardAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  goals?: Prisma.GoalUpdateManyWithoutPayrollSnapComponentNestedInput
 }
 
 export type PayrollSnapComponentUncheckedUpdateWithoutPayrollInput = {
@@ -570,6 +659,7 @@ export type PayrollSnapComponentUncheckedUpdateWithoutPayrollInput = {
   standardAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutPayrollSnapComponentNestedInput
 }
 
 export type PayrollSnapComponentUncheckedUpdateManyWithoutPayrollInput = {
@@ -583,6 +673,35 @@ export type PayrollSnapComponentUncheckedUpdateManyWithoutPayrollInput = {
 }
 
 
+/**
+ * Count Type PayrollSnapComponentCountOutputType
+ */
+
+export type PayrollSnapComponentCountOutputType = {
+  goals: number
+}
+
+export type PayrollSnapComponentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  goals?: boolean | PayrollSnapComponentCountOutputTypeCountGoalsArgs
+}
+
+/**
+ * PayrollSnapComponentCountOutputType without action
+ */
+export type PayrollSnapComponentCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PayrollSnapComponentCountOutputType
+   */
+  select?: Prisma.PayrollSnapComponentCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * PayrollSnapComponentCountOutputType without action
+ */
+export type PayrollSnapComponentCountOutputTypeCountGoalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GoalWhereInput
+}
+
 
 export type PayrollSnapComponentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -594,6 +713,8 @@ export type PayrollSnapComponentSelect<ExtArgs extends runtime.Types.Extensions.
   amount?: boolean
   createdAt?: boolean
   payroll?: boolean | Prisma.PayRollDefaultArgs<ExtArgs>
+  goals?: boolean | Prisma.PayrollSnapComponent$goalsArgs<ExtArgs>
+  _count?: boolean | Prisma.PayrollSnapComponentCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["payrollSnapComponent"]>
 
 export type PayrollSnapComponentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -634,6 +755,8 @@ export type PayrollSnapComponentSelectScalar = {
 export type PayrollSnapComponentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "payrollId" | "componentName" | "componentCode" | "type" | "standardAmount" | "amount" | "createdAt", ExtArgs["result"]["payrollSnapComponent"]>
 export type PayrollSnapComponentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   payroll?: boolean | Prisma.PayRollDefaultArgs<ExtArgs>
+  goals?: boolean | Prisma.PayrollSnapComponent$goalsArgs<ExtArgs>
+  _count?: boolean | Prisma.PayrollSnapComponentCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PayrollSnapComponentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   payroll?: boolean | Prisma.PayRollDefaultArgs<ExtArgs>
@@ -646,6 +769,7 @@ export type $PayrollSnapComponentPayload<ExtArgs extends runtime.Types.Extension
   name: "PayrollSnapComponent"
   objects: {
     payroll: Prisma.$PayRollPayload<ExtArgs>
+    goals: Prisma.$GoalPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1051,6 +1175,7 @@ readonly fields: PayrollSnapComponentFieldRefs;
 export interface Prisma__PayrollSnapComponentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   payroll<T extends Prisma.PayRollDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PayRollDefaultArgs<ExtArgs>>): Prisma.Prisma__PayRollClient<runtime.Types.Result.GetResult<Prisma.$PayRollPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  goals<T extends Prisma.PayrollSnapComponent$goalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PayrollSnapComponent$goalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GoalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1486,6 +1611,30 @@ export type PayrollSnapComponentDeleteManyArgs<ExtArgs extends runtime.Types.Ext
    * Limit how many PayrollSnapComponents to delete.
    */
   limit?: number
+}
+
+/**
+ * PayrollSnapComponent.goals
+ */
+export type PayrollSnapComponent$goalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Goal
+   */
+  select?: Prisma.GoalSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Goal
+   */
+  omit?: Prisma.GoalOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GoalInclude<ExtArgs> | null
+  where?: Prisma.GoalWhereInput
+  orderBy?: Prisma.GoalOrderByWithRelationInput | Prisma.GoalOrderByWithRelationInput[]
+  cursor?: Prisma.GoalWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GoalScalarFieldEnum | Prisma.GoalScalarFieldEnum[]
 }
 
 /**

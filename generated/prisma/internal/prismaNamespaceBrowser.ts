@@ -93,6 +93,7 @@ export const ModelName = {
   Notice: 'Notice',
   PerformanceReview: 'PerformanceReview',
   EmployeeReward: 'EmployeeReward',
+  Goal: 'Goal',
   EmailSettings: 'EmailSettings',
   EmailTemplate: 'EmailTemplate',
   DocumentTemplate: 'DocumentTemplate',
@@ -805,6 +806,32 @@ export const EmployeeRewardScalarFieldEnum = {
 } as const
 
 export type EmployeeRewardScalarFieldEnum = (typeof EmployeeRewardScalarFieldEnum)[keyof typeof EmployeeRewardScalarFieldEnum]
+
+
+export const GoalScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  employeeId: 'employeeId',
+  title: 'title',
+  description: 'description',
+  targetValue: 'targetValue',
+  targetUnit: 'targetUnit',
+  achievedValue: 'achievedValue',
+  rating: 'rating',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  status: 'status',
+  incentiveType: 'incentiveType',
+  incentiveValue: 'incentiveValue',
+  calculatedAmount: 'calculatedAmount',
+  incentiveMonth: 'incentiveMonth',
+  incentiveYear: 'incentiveYear',
+  payrollSnapComponentId: 'payrollSnapComponentId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type GoalScalarFieldEnum = (typeof GoalScalarFieldEnum)[keyof typeof GoalScalarFieldEnum]
 
 
 export const EmailSettingsScalarFieldEnum = {

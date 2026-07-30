@@ -64,9 +64,10 @@ model Company{
   leaveIncrementLogs LeaveIncrementLog[]
   notices Notice[]
   officeLocations OfficeLocation[]
-  performanceReviews PerformanceReview[]
-  employeeRewards EmployeeReward[]
-  emailSettings EmailSettings?
+   performanceReviews PerformanceReview[]
+   employeeRewards EmployeeReward[]
+   goals Goal[]
+   emailSettings EmailSettings?
   emailTemplates EmailTemplate[]
   documentTemplates DocumentTemplate[]
   generatedDocuments GeneratedDocument[]
@@ -300,8 +301,9 @@ workSchedulePolicy WorkSchedulePolicy? @relation( fields:[workSchedulePolicyId],
   leaveIncrementLogs LeaveIncrementLog[]
   employeeFace EmployeeFace?
    performanceReviews PerformanceReview[]
-   employeeRewards EmployeeReward[]
-   resignations Resignation[]
+    employeeRewards EmployeeReward[]
+    goals Goal[]
+    resignations Resignation[]
     approvedResignations Resignation[] @relation("ApprovedResignations")
     generatedDocuments GeneratedDocument[]
   
@@ -809,6 +811,7 @@ model PayrollSnapComponent {
   amount Float
 
   payroll PayRoll @relation(fields: [payrollId], references: [id])
+  goals Goal[]
 
   createdAt DateTime @default(now())
   @@index([payrollId])
@@ -1203,6 +1206,40 @@ model EmployeeReward {
   employee       Employee @relation(fields: [employeeId], references: [id])
 }
 
+// =======================================GOAL=================================
+model Goal {
+  id            Int      @id @default(autoincrement())
+  companyId     Int
+  employeeId    Int
+  title         String
+  description   String?
+  targetValue   Float
+  targetUnit    String   @default("INR")
+  achievedValue Float?
+  rating        Float?
+  startDate     DateTime
+  endDate       DateTime
+  status        String   @default("PENDING")
+  // PENDING -> IN_PROGRESS -> SUBMITTED -> APPROVED/CANCELLED
+
+  incentiveType  String   // FIXED | PERCENTAGE_OF_CTC | PERCENTAGE_OF_TARGET
+  incentiveValue Float    // amount if FIXED, percentage if others
+  calculatedAmount  Float?
+  incentiveMonth    Int?
+  incentiveYear     Int?
+  payrollSnapComponentId Int? @unique
+
+  payrollSnapComponent PayrollSnapComponent? @relation(fields: [payrollSnapComponentId], references: [id])
+  employee   Employee @relation(fields: [employeeId], references: [id])
+  company    Company  @relation(fields: [companyId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([companyId])
+  @@index([employeeId])
+  @@index([status])
+}
 
 // ================================email setting=======================
 model EmailSettings {

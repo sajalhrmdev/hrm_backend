@@ -952,6 +952,34 @@ export const generatePayroll = async (
           });
         }
 
+        // ==================================
+        // GOAL INCENTIVES
+        // ==================================
+
+        const payrollPeriodMonth = payrollRun.periodStart.getMonth() + 1;
+        const payrollPeriodYear = payrollRun.periodStart.getFullYear();
+
+        const approvedGoals = await tx.goal.findMany({
+          where: {
+            employeeId: employee.id,
+            status: "APPROVED",
+            incentiveMonth: payrollPeriodMonth,
+            incentiveYear: payrollPeriodYear,
+            payrollSnapComponentId: null,
+          },
+        });
+
+        for (const goal of approvedGoals) {
+          calculatedNetSalary += goal.calculatedAmount!;
+          calculatedComponents.push({
+            componentName: `Goal: ${goal.title}`,
+            componentCode: `GOAL_${goal.id}`,
+            type: "EARNING",
+            standardAmount: 0,
+            amount: goal.calculatedAmount!,
+          });
+        }
+
         const netSalary = Math.max(
           0,
 
@@ -1009,6 +1037,28 @@ export const generatePayroll = async (
               amount: item.amount,
             })),
           });
+        }
+
+        // ==================================
+        // LINK GOALS TO SNAP COMPONENTS
+        // ==================================
+
+        if (approvedGoals.length) {
+          const goalComponents = await tx.payrollSnapComponent.findMany({
+            where: {
+              payrollId: payroll.id,
+              componentCode: { startsWith: "GOAL_" },
+            },
+            select: { id: true, componentCode: true },
+          });
+
+          for (const gc of goalComponents) {
+            const goalId = Number(gc.componentCode.replace("GOAL_", ""));
+            await tx.goal.update({
+              where: { id: goalId },
+              data: { payrollSnapComponentId: gc.id },
+            });
+          }
         }
       }
 
