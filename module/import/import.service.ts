@@ -156,8 +156,13 @@ function validateRows(
     const errors: ImportError[] = [];
     const processedData: Record<string, any> = {};
 
+    const rowMap: Record<string, any> = {};
+    for (const key of Object.keys(row)) {
+      rowMap[key.toLowerCase().trim()] = row[key];
+    }
+
     for (const col of config.columns) {
-      const rawValue = row[col.header] ?? row[col.header.replace(/\s*\*$/, "").trim()];
+      const rawValue = rowMap[col.header.toLowerCase().trim()] ?? rowMap[col.header.replace(/\s*\*$/, "").trim().toLowerCase()];
       const parsed = parseCellValue(rawValue, col);
 
       if (col.required && (parsed === null || parsed === undefined || parsed === "")) {
@@ -173,7 +178,7 @@ function validateRows(
     }
 
     if (config.employeeRef) {
-      const empEmail = String(row[config.employeeRef] || row["Employee Email"] || "")
+      const empEmail = String(rowMap[String(config.employeeRef).toLowerCase().trim()] || rowMap["employee email"] || "")
         .trim()
         .toLowerCase();
       const empId = employeeMap.get(empEmail);
@@ -191,7 +196,7 @@ function validateRows(
 
     for (const col of config.columns) {
       if (col.type === "lookup" && col.lookup) {
-        const rawValue = row[col.header] ?? "";
+        const rawValue = rowMap[col.header.toLowerCase().trim()] ?? "";
         const str = String(rawValue).trim().toLowerCase();
         const keyMap = lookupMap.get(col.field);
         if (str && keyMap) {
@@ -376,7 +381,7 @@ async function processSalaryHistoryImport(
   const previewRows: PreviewRow[] = [];
   const allErrors: ImportError[] = [];
 
-  const emails = [...new Set(rows.map((r) => String(r["Employee Email"] || "").trim().toLowerCase()).filter(Boolean))];
+  const emails = [...new Set(rows.map((r) => { const k = Object.keys(r).find(k => k.toLowerCase().trim() === "employee email"); return String(k ? r[k] : "").trim().toLowerCase(); }).filter(Boolean))];
   const employeeMap = new Map<string, number>();
   if (emails.length > 0) {
     const employees = await prisma.employee.findMany({ where: { companyId, email: { in: emails } }, select: { id: true, email: true } });
@@ -401,7 +406,12 @@ async function processSalaryHistoryImport(
     const errors: ImportError[] = [];
     const data: Record<string, any> = { ...row };
 
-    const empEmail = String(row["Employee Email"] || "").trim().toLowerCase();
+    const rowMap: Record<string, any> = {};
+    for (const key of Object.keys(row)) {
+      rowMap[key.toLowerCase().trim()] = row[key];
+    }
+
+    const empEmail = String(rowMap["employee email"] || "").trim().toLowerCase();
     if (!empEmail) {
       errors.push({ row: rowNum, field: "Employee Email", message: "Employee Email is required", value: "" });
     } else if (!employeeMap.has(empEmail)) {
@@ -410,38 +420,38 @@ async function processSalaryHistoryImport(
       data.employeeId = employeeMap.get(empEmail);
     }
 
-    const month = Number(row["Month"]);
+    const month = Number(rowMap["month"]);
     if (!month || month < 1 || month > 12) {
-      errors.push({ row: rowNum, field: "Month", message: "Month must be 1-12", value: row["Month"] });
+      errors.push({ row: rowNum, field: "Month", message: "Month must be 1-12", value: rowMap["month"] });
     } else {
       data.month = month;
     }
 
-    const year = Number(row["Year"]);
+    const year = Number(rowMap["year"]);
     if (!year || year < 2000 || year > 2100) {
-      errors.push({ row: rowNum, field: "Year", message: "Year must be valid (2000-2100)", value: row["Year"] });
+      errors.push({ row: rowNum, field: "Year", message: "Year must be valid (2000-2100)", value: rowMap["year"] });
     } else {
       data.year = year;
     }
 
-    data.totalDays = Number(row["Total Days"]) || 0;
-    data.presentDays = Number(row["Present Days"]) || 0;
-    data.paidLeaveDays = Number(row["Paid Leave Days"]) || 0;
-    data.lopDays = Number(row["LOP Days"]) || 0;
-    data.payableDays = Number(row["Payable Days"]) || 0;
-    data.grossSalary = Number(row["Gross Salary"]) || 0;
-    data.totalDeduction = Number(row["Total Deduction"]) || 0;
-    data.netSalary = Number(row["Net Salary"]) || 0;
-    data.status = String(row["Status"] || "DRAFT").toUpperCase();
+    data.totalDays = Number(rowMap["total days"]) || 0;
+    data.presentDays = Number(rowMap["present days"]) || 0;
+    data.paidLeaveDays = Number(rowMap["paid leave days"]) || 0;
+    data.lopDays = Number(rowMap["lop days"]) || 0;
+    data.payableDays = Number(rowMap["payable days"]) || 0;
+    data.grossSalary = Number(rowMap["gross salary"]) || 0;
+    data.totalDeduction = Number(rowMap["total deduction"]) || 0;
+    data.netSalary = Number(rowMap["net salary"]) || 0;
+    data.status = String(rowMap["status"] || "DRAFT").toUpperCase();
 
     if (!data.grossSalary && data.grossSalary !== 0) {
-      errors.push({ row: rowNum, field: "Gross Salary", message: "Gross Salary is required", value: row["Gross Salary"] });
+      errors.push({ row: rowNum, field: "Gross Salary", message: "Gross Salary is required", value: rowMap["gross salary"] });
     }
     if (!data.totalDeduction && data.totalDeduction !== 0) {
-      errors.push({ row: rowNum, field: "Total Deduction", message: "Total Deduction is required", value: row["Total Deduction"] });
+      errors.push({ row: rowNum, field: "Total Deduction", message: "Total Deduction is required", value: rowMap["total deduction"] });
     }
     if (!data.netSalary && data.netSalary !== 0) {
-      errors.push({ row: rowNum, field: "Net Salary", message: "Net Salary is required", value: row["Net Salary"] });
+      errors.push({ row: rowNum, field: "Net Salary", message: "Net Salary is required", value: rowMap["net salary"] });
     }
 
     const snapComponents: { componentName: string; componentCode: string; type: string; standardAmount: number; amount: number }[] = [];
@@ -449,7 +459,7 @@ async function processSalaryHistoryImport(
 
     const dynamicValues: Record<string, { standard?: number; actual?: number }> = {};
     for (const col of dynamicColumns) {
-      const val = Number(row[col]);
+      const val = Number(rowMap[col.toLowerCase().trim()]);
       if (isNaN(val)) continue;
       if (col.endsWith(" Standard")) {
         const baseName = col.slice(0, -9).trim();
