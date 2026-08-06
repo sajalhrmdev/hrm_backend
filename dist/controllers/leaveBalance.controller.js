@@ -1,4 +1,4 @@
-import { allocateLeaveBalance, allocateLeaveToAllEmployees, bulkAllocateLeaveBalance, getEmployeeLeaveBalance, } from "../services/leaveBalance.service.js";
+import { allocateLeaveBalance, allocateLeaveToAllEmployees, bulkAllocateLeaveBalance, getEmployeeLeaveBalance, getAllCompanyLeaveBalances, } from "../services/leaveBalance.service.js";
 // 1========================= allocate leave balance employee wise =================
 export const allocateLeaveBalanceController = async (req, res) => {
     try {
@@ -76,5 +76,20 @@ export const getMyLeaveBalanceController = async (req, res) => {
             success: false,
             message: err.message,
         });
+    }
+};
+// 5 =========================all company leave balance (admin view)===============
+export const getAllLeaveBalancesController = async (req, res) => {
+    try {
+        const companyId = req.companyId;
+        if (!companyId)
+            throw new Error("Company not found");
+        const year = Number(req.query.year) || new Date().getFullYear();
+        const search = req.query.search;
+        const data = await getAllCompanyLeaveBalances(companyId, year, search);
+        res.json({ success: true, data });
+    }
+    catch (err) {
+        res.status(400).json({ success: false, message: err.message });
     }
 };

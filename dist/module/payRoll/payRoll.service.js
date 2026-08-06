@@ -1,4 +1,7 @@
 import { prisma } from "../../lib/prisma.js";
+import getStartEndOfDay from "../../utils/getStartEndOfDay.js";
+import { findApplicableSlab } from "../professionalTaxSlab/professionalTaxSlab.service.js";
+import { clampAmount, resolveStructureStandard, } from "../../utils/salaryStructureResolver.js";
 // ============================================
 // CREATE PAYROLL RUN
 // ============================================
@@ -372,8 +375,11 @@ export const generatePayroll = async (companyId, payrollRunId) => {
     if (payrollRun.status === "FINALIZED") {
         throw new Error("Payroll already finalized");
     }
+    // TIMEZONE-AWARE PERIOD DATES
+    const { start: periodStartTz } = getStartEndOfDay("Asia/Kolkata", payrollRun.periodStart);
+    const { end: periodEndTz } = getStartEndOfDay("Asia/Kolkata", payrollRun.periodEnd);
     // TOTAL DAYS
-    const totalDays = Math.ceil((payrollRun.periodEnd.getTime() - payrollRun.periodStart.getTime()) /
+    const totalDays = Math.floor((payrollRun.periodEnd.getTime() - payrollRun.periodStart.getTime()) /
         (1000 * 60 * 60 * 24)) + 1;
     // GET EMPLOYEES---------------
     const employees = await prisma.employee.findMany({
@@ -416,8 +422,8 @@ export const generatePayroll = async (companyId, payrollRunId) => {
             where: {
                 companyId,
                 date: {
-                    gte: payrollRun.periodStart,
-                    lte: payrollRun.periodEnd,
+                    gte: periodStartTz,
+                    lte: periodEndTz,
                 },
             },
             _count: {
@@ -435,8 +441,8 @@ export const generatePayroll = async (companyId, payrollRunId) => {
             where: {
                 companyId,
                 date: {
-                    gte: payrollRun.periodStart,
-                    lte: payrollRun.periodEnd,
+                    gte: periodStartTz,
+                    lte: periodEndTz,
                 },
             },
             _sum: {
@@ -453,6 +459,21 @@ export const generatePayroll = async (companyId, payrollRunId) => {
                 workMinutes: row._sum.total_work_minutes || 0,
             });
         });
+        const halfDayLeaveDetails = await tx.attendance.findMany({
+            where: {
+                companyId,
+                status: "HALF_DAY_LEAVE",
+                date: { gte: periodStartTz, lte: periodEndTz },
+            },
+            select: { employeeId: true, total_work_minutes: true },
+        });
+        const halfDayLeaveMap = new Map();
+        for (const r of halfDayLeaveDetails) {
+            const existing = halfDayLeaveMap.get(r.employeeId) || { count: 0, payable: 0 };
+            existing.count += 1;
+            existing.payable += r.total_work_minutes > 0 ? 1.0 : 0.5;
+            halfDayLeaveMap.set(r.employeeId, existing);
+        }
         for (const employee of employees) {
             const presentDays = attendanceMap.get(`${employee.id}_PRESENT`)?.count || 0;
             const weeklyOffDays = attendanceMap.get(`${employee.id}_WEEKLY_OFF`)?.count || 0;
@@ -460,6 +481,9 @@ export const generatePayroll = async (companyId, payrollRunId) => {
             const paidLeaveDays = attendanceMap.get(`${employee.id}_PAID_LEAVE`)?.count || 0;
             const unpaidLeaveDays = attendanceMap.get(`${employee.id}_UNPAID_LEAVE`)?.count || 0;
             const halfDays = attendanceMap.get(`${employee.id}_HALF_DAY`)?.count || 0;
+            const halfDayLeaveData = halfDayLeaveMap.get(employee.id);
+            const halfDayLeavePayable = halfDayLeaveData?.payable || 0;
+            const halfDayLeavePortion = (halfDayLeaveData?.count || 0) * 0.5;
             const absentDays = attendanceMap.get(`${employee.id}_ABSENT`)?.count || 0;
             const overtimeMinutes = aggregateMap.get(employee.id)?.overtime || 0;
             const lateMinutes = aggregateMap.get(employee.id)?.late || 0;
@@ -468,7 +492,8 @@ export const generatePayroll = async (companyId, payrollRunId) => {
                 weeklyOffDays +
                 holidayDays +
                 paidLeaveDays +
-                halfDays * 0.5;
+                halfDays * 0.5 +
+                halfDayLeavePayable;
             const lopDays = unpaidLeaveDays + absentDays + halfDays * 0.5;
             // ==================================
             // SALARY STRUCTURE
@@ -487,48 +512,66 @@ export const generatePayroll = async (companyId, payrollRunId) => {
             // ==================================
             let grossSalary = 0;
             let totalDeduction = 0;
+            let employerContribution = 0;
             let overtimeAmount = 0;
             const calculatedComponents = [];
-            for (const item of salaryComponents) {
+            const resolvedComponents = resolveStructureStandard(salaryComponents);
+            const componentMeta = new Map(salaryComponents.map((item) => [
+                item.salaryComponentId,
+                item.salaryComponent,
+            ]));
+            for (const component of resolvedComponents) {
                 // ================================
                 // PER DAY
                 // ================================
-                const perDayAmount = item.amount / totalDays;
+                const perDayAmount = component.standardAmount / totalDays;
                 // ================================
                 // PAYABLE
-                let payableAmount = perDayAmount * payableDays;
                 // ================================
-                // DEDUCTION
-                // ================================
-                if (item.salaryComponent.type === "DEDUCTION") {
-                    payableAmount = item.amount;
+                let payableAmount;
+                if (component.prorated) {
+                    payableAmount = perDayAmount * payableDays;
                 }
-                payableAmount = Number(payableAmount.toFixed(2));
+                else {
+                    payableAmount = component.standardAmount;
+                }
+                payableAmount = clampAmount(Math.round(payableAmount), component.floorAmount, component.capAmount);
                 // ================================
                 // TOTALS
                 // ================================
-                if (item.salaryComponent.type === "EARNING") {
+                if (component.type === "EARNING") {
                     grossSalary += payableAmount;
                 }
-                if (item.salaryComponent.type === "DEDUCTION") {
+                if (component.type === "DEDUCTION") {
                     totalDeduction += payableAmount;
+                }
+                if (component.type === "EMPLOYER_CONTRIBUTION") {
+                    employerContribution += payableAmount;
                 }
                 // ================================
                 // SNAPSHOT
                 // ================================
+                const meta = componentMeta.get(component.componentId);
                 calculatedComponents.push({
-                    componentName: item.salaryComponent.name,
-                    componentCode: item.salaryComponent.code,
-                    type: item.salaryComponent.type,
-                    standardAmount: item.amount,
+                    componentName: meta?.name ?? "",
+                    componentCode: meta?.code ?? "",
+                    type: component.type,
+                    standardAmount: component.standardAmount,
                     amount: payableAmount,
                 });
             }
             if (overtimeMinutes > 0 && totalDays > 0) {
                 const perDaySalary = grossSalary / totalDays;
                 const perHourSalary = perDaySalary / 8;
-                overtimeAmount = Number(((overtimeMinutes / 60) * perHourSalary).toFixed(2));
+                overtimeAmount = Math.round((overtimeMinutes / 60) * perHourSalary);
                 grossSalary += overtimeAmount;
+                calculatedComponents.push({
+                    componentName: "Overtime",
+                    componentCode: "OVERTIME",
+                    type: "EARNING",
+                    standardAmount: 0,
+                    amount: overtimeAmount,
+                });
             }
             // ==================================
             // PAYROLL ADJUSTMENTS
@@ -546,7 +589,7 @@ export const generatePayroll = async (companyId, payrollRunId) => {
             // MERGE ADJUSTMENTS
             // ==================================
             for (const adj of adjustments) {
-                const adjustmentAmount = Number(adj.amount.toFixed(2));
+                const adjustmentAmount = Math.round(adj.amount);
                 // ================================
                 // TOTALS
                 // ================================
@@ -555,6 +598,9 @@ export const generatePayroll = async (companyId, payrollRunId) => {
                 }
                 if (adj.salaryComponent.type === "DEDUCTION") {
                     totalDeduction += adjustmentAmount;
+                }
+                if (adj.salaryComponent.type === "EMPLOYER_CONTRIBUTION") {
+                    employerContribution += adjustmentAmount;
                 }
                 // ================================
                 // SNAPSHOT
@@ -568,10 +614,49 @@ export const generatePayroll = async (companyId, payrollRunId) => {
                 });
             }
             // ==================================
-            // NET SALARY
+            // NET SALARY (before professional tax)
             // ==================================
-            const calculatedNetSalary = grossSalary - totalDeduction;
-            const netSalary = Math.max(0, Number(calculatedNetSalary.toFixed(2)));
+            let calculatedNetSalary = grossSalary - totalDeduction;
+            // ==================================
+            // PROFESSIONAL TAX
+            // ==================================
+            const ptSlab = await findApplicableSlab(payrollRun.companyId, Math.max(0, calculatedNetSalary));
+            if (ptSlab && ptSlab.taxAmount > 0) {
+                totalDeduction += ptSlab.taxAmount;
+                calculatedNetSalary = grossSalary - totalDeduction;
+                calculatedComponents.push({
+                    componentName: "Professional Tax",
+                    componentCode: "PROF_TAX",
+                    type: "DEDUCTION",
+                    standardAmount: ptSlab.taxAmount,
+                    amount: ptSlab.taxAmount,
+                });
+            }
+            // ==================================
+            // GOAL INCENTIVES
+            // ==================================
+            const payrollPeriodMonth = payrollRun.periodStart.getMonth() + 1;
+            const payrollPeriodYear = payrollRun.periodStart.getFullYear();
+            const approvedGoals = await tx.goal.findMany({
+                where: {
+                    employeeId: employee.id,
+                    status: "APPROVED",
+                    incentiveMonth: payrollPeriodMonth,
+                    incentiveYear: payrollPeriodYear,
+                    payrollSnapComponentId: null,
+                },
+            });
+            for (const goal of approvedGoals) {
+                calculatedNetSalary += goal.calculatedAmount;
+                calculatedComponents.push({
+                    componentName: `Goal: ${goal.title}`,
+                    componentCode: `GOAL_${goal.id}`,
+                    type: "EARNING",
+                    standardAmount: 0,
+                    amount: goal.calculatedAmount,
+                });
+            }
+            const netSalary = Math.max(0, Math.round(calculatedNetSalary));
             // ==================================
             // CREATE PAYROLL
             // ==================================
@@ -581,13 +666,14 @@ export const generatePayroll = async (companyId, payrollRunId) => {
                     employeeId: employee.id,
                     total_days: totalDays,
                     present_days: presentDays,
-                    paid_leave_days: paidLeaveDays,
+                    paid_leave_days: paidLeaveDays + halfDayLeavePortion,
                     lop_days: lopDays,
                     payable_days: payableDays,
                     // overtime_minutes: overtimeMinutes,
                     overtime_amount: overtimeAmount,
-                    gross_salary: Number(grossSalary.toFixed(2)),
-                    total_deduction: Number(totalDeduction.toFixed(2)),
+                    gross_salary: Math.round(grossSalary),
+                    total_deduction: Math.round(totalDeduction),
+                    employer_contribution: Math.round(employerContribution),
                     net_salary: netSalary,
                 },
             });
@@ -605,6 +691,25 @@ export const generatePayroll = async (companyId, payrollRunId) => {
                         amount: item.amount,
                     })),
                 });
+            }
+            // ==================================
+            // LINK GOALS TO SNAP COMPONENTS
+            // ==================================
+            if (approvedGoals.length) {
+                const goalComponents = await tx.payrollSnapComponent.findMany({
+                    where: {
+                        payrollId: payroll.id,
+                        componentCode: { startsWith: "GOAL_" },
+                    },
+                    select: { id: true, componentCode: true },
+                });
+                for (const gc of goalComponents) {
+                    const goalId = Number(gc.componentCode.replace("GOAL_", ""));
+                    await tx.goal.update({
+                        where: { id: goalId },
+                        data: { payrollSnapComponentId: gc.id },
+                    });
+                }
             }
         }
         return true;
@@ -680,6 +785,16 @@ export const getSinglePayroll = async (companyId, payrollId) => {
                     name: true,
                     email: true,
                     employeeCode: true,
+                    joiningDate: true,
+                    pfNumber: true,
+                    esiNumber: true,
+                    uan: true,
+                    designation: {
+                        select: { title: true },
+                    },
+                    department: {
+                        select: { title: true },
+                    },
                 },
             },
             payrollRun: {
@@ -692,7 +807,7 @@ export const getSinglePayroll = async (companyId, payrollId) => {
                         select: {
                             id: true,
                             slug: true,
-                            // logo: true,
+                            logo: true,
                             email: true,
                             address: true,
                             phone: true,
@@ -718,14 +833,16 @@ export const getSinglePayroll = async (companyId, payrollId) => {
     if (!payroll) {
         throw new Error("Payroll not found");
     }
+    const { start: periodStartTz } = getStartEndOfDay("Asia/Kolkata", payroll.payrollRun.periodStart);
+    const { end: periodEndTz } = getStartEndOfDay("Asia/Kolkata", payroll.payrollRun.periodEnd);
     const attendanceSummary = await prisma.attendance.groupBy({
         by: ["status"],
         where: {
             employeeId: payroll.employee.id,
             companyId,
             date: {
-                gte: payroll.payrollRun.periodStart,
-                lte: payroll.payrollRun.periodEnd,
+                gte: periodStartTz,
+                lte: periodEndTz,
             },
         },
         _count: {
@@ -736,6 +853,7 @@ export const getSinglePayroll = async (companyId, payrollId) => {
         PRESENT: 0,
         ABSENT: 0,
         HALF_DAY: 0,
+        HALF_DAY_LEAVE: 0,
         WEEKLY_OFF: 0,
         HOLIDAY: 0,
         PAID_LEAVE: 0,
@@ -752,10 +870,10 @@ export const getSinglePayroll = async (companyId, payrollId) => {
             companyId,
             status: "APPROVED",
             fromDate: {
-                gte: payroll.payrollRun.periodStart,
+                gte: periodStartTz,
             },
             toDate: {
-                lte: payroll.payrollRun.periodEnd,
+                lte: periodEndTz,
             },
         },
         select: {
@@ -998,6 +1116,7 @@ export const getEmployeePayrollHistory = async (companyId, employeeId) => {
     const totalNetSalary = payrolls.reduce((acc, item) => acc + item.net_salary, 0);
     const totalGrossSalary = payrolls.reduce((acc, item) => acc + item.gross_salary, 0);
     const totalDeduction = payrolls.reduce((acc, item) => acc + item.total_deduction, 0);
+    const totalEmployerContribution = payrolls.reduce((acc, item) => acc + item.employer_contribution, 0);
     return {
         payrolls,
         summary: {
@@ -1005,6 +1124,7 @@ export const getEmployeePayrollHistory = async (companyId, employeeId) => {
             totalNetSalary,
             totalGrossSalary,
             totalDeduction,
+            totalEmployerContribution,
         },
     };
 };

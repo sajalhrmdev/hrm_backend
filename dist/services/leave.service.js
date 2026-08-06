@@ -1,4 +1,5 @@
 import { prisma } from "../lib/prisma.js";
+import getStartEndOfDay from "../utils/getStartEndOfDay.js";
 const normalizeDate = (date) => {
     const d = new Date(date);
     d.setHours(0, 0, 0, 0);
@@ -116,37 +117,61 @@ export const applyLeave = async (input) => {
     return leave;
 };
 export const getAllLeaves = async (input) => {
-    const { companyId, status } = input;
-    const where = {
-        companyId,
-    };
-    // 🔥 optional filter
+    const { companyId, status, appliedFrom, appliedTo, leaveFrom, leaveTo, search, page = 1, limit = 10 } = input;
+    const where = { companyId };
     if (status) {
         where.status = status;
     }
-    const leaves = await prisma.leaveApplication.findMany({
-        where,
-        orderBy: {
-            applied_at: "desc",
-        },
-        include: {
-            employee: {
-                select: {
-                    id: true,
-                    name: true,
-                    employeeCode: true,
+    if (appliedFrom || appliedTo) {
+        where.applied_at = {};
+        if (appliedFrom) {
+            const { start } = getStartEndOfDay("Asia/Kolkata", new Date(appliedFrom));
+            where.applied_at.gte = start;
+        }
+        if (appliedTo) {
+            const { end } = getStartEndOfDay("Asia/Kolkata", new Date(appliedTo));
+            where.applied_at.lte = end;
+        }
+    }
+    if (leaveFrom || leaveTo) {
+        where.fromDate = {};
+        if (leaveFrom) {
+            where.fromDate.gte = new Date(leaveFrom);
+        }
+        if (leaveTo) {
+            where.fromDate.lte = new Date(leaveTo);
+        }
+    }
+    if (search) {
+        where.employee = {
+            name: { contains: search, mode: "insensitive" },
+        };
+    }
+    const skip = (page - 1) * limit;
+    const [leaves, total] = await Promise.all([
+        prisma.leaveApplication.findMany({
+            where,
+            orderBy: { applied_at: "desc" },
+            skip,
+            take: limit,
+            include: {
+                employee: {
+                    select: { id: true, name: true, employeeCode: true },
+                },
+                leaveType: {
+                    select: { id: true, name: true, code: true },
                 },
             },
-            leaveType: {
-                select: {
-                    id: true,
-                    name: true,
-                    code: true,
-                },
-            },
-        },
-    });
-    return leaves;
+        }),
+        prisma.leaveApplication.count({ where }),
+    ]);
+    return {
+        data: leaves,
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit),
+    };
 };
 export const getEmployeeAllLeaves = async (input) => {
     const { employeeId, companyId, year, } = input;

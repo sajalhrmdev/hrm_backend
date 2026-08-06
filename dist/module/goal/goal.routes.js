@@ -1,0 +1,13 @@
+import express from "express";
+import { listGoals, getGoal, createGoalHandler, updateGoalHandler, submitProgressHandler, approveGoalHandler, listEmployeeGoals, listMyGoals, } from "./goal.controller.js";
+import requirePermission from "../../middlewares/requirePermission.js";
+const router = express.Router();
+router.get("/", listGoals);
+router.get("/my-goal", listMyGoals);
+router.get("/employee/:employeeId", listEmployeeGoals);
+router.get("/:id", getGoal);
+router.post("/", requirePermission("goal.create"), createGoalHandler);
+router.patch("/:id", requirePermission("goal.create"), updateGoalHandler);
+router.patch("/:id/progress", submitProgressHandler);
+router.patch("/:id/approve", requirePermission("goal.approve"), approveGoalHandler);
+export default router;

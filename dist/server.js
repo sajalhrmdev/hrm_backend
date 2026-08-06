@@ -42,22 +42,34 @@ import noticeRoutes from "./module/notice/notice.route.js";
 import userRoute from "./module/user/user.routes.js";
 import superAdminRoutes from "./module/superAdmin/superAdmin.routes.js";
 import officeLocationRoutes from "./module/officeLocation/officeLocation.routes.js";
+import professionalTaxSlabRoutes from "./module/professionalTaxSlab/professionalTaxSlab.routes.js";
 import employeeFaceRoutes from "./module/employeeFace/employeeFace.route.js";
 import performanceReviewRoutes from "./module/performanceReview/performanceReview.route.js";
 import rewardRoutes from "./module/reward/reward.route.js";
 import chatRoutes from "./module/chat/chat.routes.js";
 import emailSettingsRoutes from "./module/emailSettings/emailSettings.routes.js";
 import emailTemplateRoutes from "./module/emailTemplate/emailTemplate.routes.js";
+import resignationRoutes from "./module/resignation/resignation.routes.js";
+import importRoutes from "./module/import/import.routes.js";
+import documentTemplateRoutes from "./module/documentTemplate/documentTemplate.routes.js";
+import documentRoutes from "./module/document/document.routes.js";
+import goalRoutes from "./module/goal/goal.routes.js";
+import clientRoutes from "./module/client/client.routes.js";
+import appointmentRoutes from "./module/appointment/appointment.routes.js";
+import visitRoutes from "./module/visit/visit.routes.js";
+import meetingRoutes from "./module/meeting/meeting.routes.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { authMiddleware } from "./middlewares/auth.middleware.js";
 import { companyAccessMiddleware } from "./middlewares/companyAccess.middleware.js";
 import { employeeMiddleware } from "./middlewares/employee.middlewear.js";
 import { getCurrentUser } from "./controllers/auth.controller.js";
+import { getMobileThemeByCompanySlug } from "./module/company/company.controller.js";
 const app = express();
 app.use(cors({
     origin: [
         "http://localhost:3000",
+        "http://localhost:5001",
         "http://localhost:8081",
         "https://hrm-frontend-ashy.vercel.app",
         "https://2gvbh86w-3000.inc1.devtunnels.ms",
@@ -71,7 +83,7 @@ app.get("/", (req, res) => {
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/me", authMiddleware, companyAccessMiddleware, getCurrentUser);
+app.use("/api/v1/me", authMiddleware, companyAccessMiddleware, employeeMiddleware, getCurrentUser);
 app.use("/api/v1/membership", membershipRoutes);
 app.use("/api/v1/global-roles", globalRoleRoutes);
 app.use("/api/v1/users", userRoutes);
@@ -102,9 +114,11 @@ app.use("/api/v1/salary-component", authMiddleware, companyAccessMiddleware, sal
 app.use("/api/v1/employee-salary", authMiddleware, companyAccessMiddleware, employeeSalaryRoutes);
 app.use("/api/v1/payroll", authMiddleware, companyAccessMiddleware, payrollRoutes);
 app.use("/api/v1/payroll-adjustment", authMiddleware, companyAccessMiddleware, payrollAdjustmentRoutes);
+app.use("/api/v1/professional-tax-slab", authMiddleware, companyAccessMiddleware, professionalTaxSlabRoutes);
 app.use("/api/v1/holiday", authMiddleware, companyAccessMiddleware, holidayRoutes);
 app.use("/api/v1/weekly-off", authMiddleware, companyAccessMiddleware, weeklyOffRoutes);
 app.use("/api/v1/company", authMiddleware, companyRoutes);
+app.get("/api/v1/public/mobile-theme/:slug", getMobileThemeByCompanySlug);
 app.use("/api/v1/office-location", officeLocationRoutes);
 app.use("/api/v1/employee", authMiddleware, companyAccessMiddleware, employeeRoutes);
 app.use("/api/v1/employee-personal-info", authMiddleware, companyAccessMiddleware, employeePersonalInfoRoutes);
@@ -127,6 +141,15 @@ app.use("/api/v1/rewards", authMiddleware, companyAccessMiddleware, rewardRoutes
 app.use("/api/v1/chat", authMiddleware, companyAccessMiddleware, chatRoutes);
 app.use("/api/v1/email-settings", authMiddleware, companyAccessMiddleware, emailSettingsRoutes);
 app.use("/api/v1/email-template", authMiddleware, companyAccessMiddleware, emailTemplateRoutes);
+app.use("/api/v1/resignation", authMiddleware, companyAccessMiddleware, resignationRoutes);
+app.use("/api/v1/import", authMiddleware, companyAccessMiddleware, importRoutes);
+app.use("/api/v1/document-template", authMiddleware, companyAccessMiddleware, documentTemplateRoutes);
+app.use("/api/v1/document", authMiddleware, companyAccessMiddleware, documentRoutes);
+app.use("/api/v1/goal", authMiddleware, companyAccessMiddleware, employeeMiddleware, goalRoutes);
+app.use("/api/v1/client", authMiddleware, companyAccessMiddleware, clientRoutes);
+app.use("/api/v1/appointment", authMiddleware, companyAccessMiddleware, appointmentRoutes);
+app.use("/api/v1/visit", authMiddleware, companyAccessMiddleware, visitRoutes);
+app.use("/api/v1/meeting", authMiddleware, companyAccessMiddleware, meetingRoutes);
 // app.use("/api/v1/salary-structure", salaryStructureRoutes);
 // app.use("/api/v1/payroll", payrollRoutes);
 // app.use("/api/v1/attendance",attendanceRoutes)

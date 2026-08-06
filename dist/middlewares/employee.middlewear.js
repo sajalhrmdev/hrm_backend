@@ -1,5 +1,7 @@
 import { prisma } from "../lib/prisma.js";
 export const employeeMiddleware = async (req, res, next) => {
+    if (!req.companyId)
+        return next();
     const employee = await prisma.employee.findFirst({
         where: {
             userId: req.user.userId,

@@ -1,4 +1,5 @@
 import { prisma } from "../lib/prisma.js";
+import getStartEndOfDay from "../utils/getStartEndOfDay.js";
 // 1==============approval=========================
 export const approveLeave = async (input) => {
     const { leaveId, approverId, companyId } = input;
@@ -121,7 +122,9 @@ export const cancelLeaveApproval = async (input) => {
         if (!leave) {
             throw new Error("Leave not found");
         }
-        if (leave.toDate < new Date()) {
+        const { start: todayStart } = getStartEndOfDay("Asia/Kolkata");
+        const toDateEnd = getStartEndOfDay("Asia/Kolkata", leave.toDate).end;
+        if (toDateEnd < todayStart) {
             throw new Error("Past leave cannot be cancelled");
         }
         if (leave.status !== "APPROVED") {

@@ -40,6 +40,11 @@ export const JsonNull = runtime.JsonNull;
 export const AnyNull = runtime.AnyNull;
 export const ModelName = {
     Company: 'Company',
+    Client: 'Client',
+    Appointment: 'Appointment',
+    Visit: 'Visit',
+    Meeting: 'Meeting',
+    MeetingAttendee: 'MeetingAttendee',
     OfficeLocation: 'OfficeLocation',
     Department: 'Department',
     Designation: 'Designation',
@@ -70,6 +75,7 @@ export const ModelName = {
     PayRoll: 'PayRoll',
     PayrollSnapComponent: 'PayrollSnapComponent',
     PayRollRun: 'PayRollRun',
+    ProfessionalTaxSlab: 'ProfessionalTaxSlab',
     LeaveType: 'LeaveType',
     LeaveBalance: 'LeaveBalance',
     LeaveIncrementPolicy: 'LeaveIncrementPolicy',
@@ -80,8 +86,13 @@ export const ModelName = {
     Notice: 'Notice',
     PerformanceReview: 'PerformanceReview',
     EmployeeReward: 'EmployeeReward',
+    Goal: 'Goal',
     EmailSettings: 'EmailSettings',
-    EmailTemplate: 'EmailTemplate'
+    EmailTemplate: 'EmailTemplate',
+    DocumentTemplate: 'DocumentTemplate',
+    GeneratedDocument: 'GeneratedDocument',
+    Resignation: 'Resignation',
+    MobileTheme: 'MobileTheme'
 };
 /*
  * Enums
@@ -104,9 +115,77 @@ export const CompanyScalarFieldEnum = {
     website: 'website',
     faviconPublicId: 'faviconPublicId',
     logoPublicId: 'logoPublicId',
+    mobileThemeId: 'mobileThemeId',
     status: 'status',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
+};
+export const ClientScalarFieldEnum = {
+    id: 'id',
+    companyId: 'companyId',
+    name: 'name',
+    companyName: 'companyName',
+    email: 'email',
+    phone: 'phone',
+    address: 'address',
+    contactPerson: 'contactPerson',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    deletedAt: 'deletedAt'
+};
+export const AppointmentScalarFieldEnum = {
+    id: 'id',
+    companyId: 'companyId',
+    title: 'title',
+    description: 'description',
+    location: 'location',
+    date: 'date',
+    employeeId: 'employeeId',
+    startTime: 'startTime',
+    endTime: 'endTime',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    deletedAt: 'deletedAt'
+};
+export const VisitScalarFieldEnum = {
+    id: 'id',
+    companyId: 'companyId',
+    title: 'title',
+    description: 'description',
+    location: 'location',
+    date: 'date',
+    employeeId: 'employeeId',
+    clientId: 'clientId',
+    startTime: 'startTime',
+    endTime: 'endTime',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    deletedAt: 'deletedAt'
+};
+export const MeetingScalarFieldEnum = {
+    id: 'id',
+    companyId: 'companyId',
+    title: 'title',
+    description: 'description',
+    location: 'location',
+    meetingType: 'meetingType',
+    date: 'date',
+    organizerId: 'organizerId',
+    startTime: 'startTime',
+    endTime: 'endTime',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    deletedAt: 'deletedAt'
+};
+export const MeetingAttendeeScalarFieldEnum = {
+    id: 'id',
+    meetingId: 'meetingId',
+    employeeId: 'employeeId',
+    createdAt: 'createdAt'
 };
 export const OfficeLocationScalarFieldEnum = {
     id: 'id',
@@ -207,6 +286,9 @@ export const EmployeeScalarFieldEnum = {
     shiftId: 'shiftId',
     joiningDate: 'joiningDate',
     workSchedulePolicyId: 'workSchedulePolicyId',
+    pfNumber: 'pfNumber',
+    esiNumber: 'esiNumber',
+    uan: 'uan',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
 };
@@ -346,6 +428,7 @@ export const AttendanceLogScalarFieldEnum = {
     shiftName: 'shiftName',
     shiftStartTime: 'shiftStartTime',
     shiftEndTime: 'shiftEndTime',
+    method: 'method',
     createdAt: 'createdAt'
 };
 export const WorkPolicyScalarFieldEnum = {
@@ -399,6 +482,7 @@ export const WorkSchedulePolicyScalarFieldEnum = {
     overtimeAfterMinutes: 'overtimeAfterMinutes',
     shiftId: 'shiftId',
     weeklyOffPattern: 'weeklyOffPattern',
+    allowedMethods: 'allowedMethods',
     isActive: 'isActive',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -409,6 +493,15 @@ export const SalaryComponentScalarFieldEnum = {
     name: 'name',
     code: 'code',
     type: 'type',
+    prorated: 'prorated',
+    calculationType: 'calculationType',
+    baseType: 'baseType',
+    baseComponentId: 'baseComponentId',
+    baseComponentIds: 'baseComponentIds',
+    percentageValue: 'percentageValue',
+    capAmount: 'capAmount',
+    floorAmount: 'floorAmount',
+    baseCapAmount: 'baseCapAmount',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
 };
@@ -418,6 +511,14 @@ export const EmployeeSalaryComponentScalarFieldEnum = {
     employeeId: 'employeeId',
     salaryComponentId: 'salaryComponentId',
     amount: 'amount',
+    calculationType: 'calculationType',
+    baseType: 'baseType',
+    baseComponentId: 'baseComponentId',
+    baseComponentIds: 'baseComponentIds',
+    percentageValue: 'percentageValue',
+    capAmount: 'capAmount',
+    floorAmount: 'floorAmount',
+    baseCapAmount: 'baseCapAmount',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
 };
@@ -444,6 +545,7 @@ export const PayRollScalarFieldEnum = {
     gross_salary: 'gross_salary',
     overtime_amount: 'overtime_amount',
     total_deduction: 'total_deduction',
+    employer_contribution: 'employer_contribution',
     net_salary: 'net_salary',
     status: 'status',
     createdAt: 'createdAt'
@@ -467,6 +569,15 @@ export const PayRollRunScalarFieldEnum = {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     status: 'status'
+};
+export const ProfessionalTaxSlabScalarFieldEnum = {
+    id: 'id',
+    companyId: 'companyId',
+    minSalary: 'minSalary',
+    maxSalary: 'maxSalary',
+    taxAmount: 'taxAmount',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
 };
 export const LeaveTypeScalarFieldEnum = {
     id: 'id',
@@ -598,6 +709,28 @@ export const EmployeeRewardScalarFieldEnum = {
     rewardDate: 'rewardDate',
     createdAt: 'createdAt'
 };
+export const GoalScalarFieldEnum = {
+    id: 'id',
+    companyId: 'companyId',
+    employeeId: 'employeeId',
+    title: 'title',
+    description: 'description',
+    targetValue: 'targetValue',
+    targetUnit: 'targetUnit',
+    achievedValue: 'achievedValue',
+    rating: 'rating',
+    startDate: 'startDate',
+    endDate: 'endDate',
+    status: 'status',
+    incentiveType: 'incentiveType',
+    incentiveValue: 'incentiveValue',
+    calculatedAmount: 'calculatedAmount',
+    incentiveMonth: 'incentiveMonth',
+    incentiveYear: 'incentiveYear',
+    payrollSnapComponentId: 'payrollSnapComponentId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+};
 export const EmailSettingsScalarFieldEnum = {
     id: 'id',
     companyId: 'companyId',
@@ -623,6 +756,60 @@ export const EmailTemplateScalarFieldEnum = {
     htmlContent: 'htmlContent',
     description: 'description',
     isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+};
+export const DocumentTemplateScalarFieldEnum = {
+    id: 'id',
+    companyId: 'companyId',
+    name: 'name',
+    slug: 'slug',
+    category: 'category',
+    subject: 'subject',
+    htmlContent: 'htmlContent',
+    description: 'description',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+};
+export const GeneratedDocumentScalarFieldEnum = {
+    id: 'id',
+    companyId: 'companyId',
+    employeeId: 'employeeId',
+    documentTemplateId: 'documentTemplateId',
+    recipientEmail: 'recipientEmail',
+    subject: 'subject',
+    renderedHtml: 'renderedHtml',
+    sentViaEmail: 'sentViaEmail',
+    sentAt: 'sentAt',
+    createdAt: 'createdAt'
+};
+export const ResignationScalarFieldEnum = {
+    id: 'id',
+    companyId: 'companyId',
+    employeeId: 'employeeId',
+    resignationDate: 'resignationDate',
+    lastWorkingDay: 'lastWorkingDay',
+    noticePeriodDays: 'noticePeriodDays',
+    reason: 'reason',
+    handoverTo: 'handoverTo',
+    status: 'status',
+    approvedBy: 'approvedBy',
+    approvedAt: 'approvedAt',
+    rejectionReason: 'rejectionReason',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+};
+export const MobileThemeScalarFieldEnum = {
+    id: 'id',
+    name: 'name',
+    slug: 'slug',
+    primaryColor: 'primaryColor',
+    secondaryColor: 'secondaryColor',
+    backgroundColor: 'backgroundColor',
+    surfaceColor: 'surfaceColor',
+    textColor: 'textColor',
+    isDefault: 'isDefault',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
 };

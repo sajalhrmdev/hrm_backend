@@ -138,6 +138,9 @@ export const createEmployeeService = async (companyId, data) => {
                 shiftId: data.shiftId || null,
                 employeeCode,
                 joiningDate: data.joiningDate ? new Date(data.joiningDate) : null,
+                pfNumber: data.pfNumber || null,
+                esiNumber: data.esiNumber || null,
+                uan: data.uan || null,
             },
             include: {
                 role: true,
@@ -175,13 +178,27 @@ export const bulkCreateEmployeesService = async (companyId, employees) => {
 // ============================================
 // GET ALL EMPLOYEES
 // ============================================
-export const getAllEmployeesService = async (companyId, page = 1, limit = 10, search = "") => {
+export const getAllEmployeesService = async (companyId, page = 1, limit = 10, search = "", departmentId, policyId, unassigned = false) => {
     const skip = (page - 1) * limit;
     const where = {
         companyId,
         status: {
             not: "INACTIVE",
         },
+        ...(departmentId
+            ? {
+                departmentId,
+            }
+            : {}),
+        ...(unassigned
+            ? {
+                workSchedulePolicyId: null,
+            }
+            : policyId
+                ? {
+                    workSchedulePolicyId: policyId,
+                }
+                : {}),
         ...(search
             ? {
                 OR: [
@@ -319,28 +336,97 @@ export const updateEmployeeService = async (companyId, id, data) => {
             throw new Error("Email already exists");
         }
     }
-    return await prisma.employee.update({
-        where: {
-            id,
-        },
-        data: {
-            name: data.name,
-            email: data.email,
-            phone: data.phone,
-            roleId: data.roleId,
-            departmentId: data.departmentId,
-            designationId: data.designationId,
-            shiftId: data.shiftId || null,
-            employeeCode: data.employeeCode,
-            status: data.status,
-            joiningDate: data.joiningDate ? new Date(data.joiningDate) : null,
-        },
-        include: {
-            role: true,
-            department: true,
-            designation: true,
-            shift: true,
-        },
+    return await prisma.$transaction(async (tx) => {
+        // ========================================
+        // CREATE USER (OPTIONAL, EDIT FLOW)
+        // ========================================
+        let finalUserId = existing.userId || null;
+        if (data.createUser) {
+            if (!finalUserId) {
+                if (!data.password) {
+                    throw new Error("Password required");
+                }
+                if (!data.roleId) {
+                    throw new Error("Role required");
+                }
+                const existingUser = await tx.user.findUnique({
+                    where: {
+                        email: data.email || existing.email,
+                    },
+                });
+                if (existingUser) {
+                    throw new Error("User email already exists");
+                }
+                const role = await tx.role.findFirst({
+                    where: {
+                        id: Number(data.roleId),
+                        companyId,
+                    },
+                });
+                if (!role) {
+                    throw new Error("Role not found");
+                }
+                const hashedPassword = await bcrypt.hash(data.password, 10);
+                const createdUser = await tx.user.create({
+                    data: {
+                        name: data.name || existing.name,
+                        email: data.email || existing.email,
+                        phone: data.phone || existing.phone,
+                        password: hashedPassword,
+                    },
+                });
+                finalUserId = createdUser.id;
+                await tx.membership.create({
+                    data: {
+                        userId: createdUser.id,
+                        companyId,
+                        roleId: Number(data.roleId),
+                        status: "ACTIVE",
+                    },
+                });
+            }
+            else if (data.password) {
+                const hashedPassword = await bcrypt.hash(data.password, 10);
+                await tx.user.update({
+                    where: {
+                        id: finalUserId,
+                    },
+                    data: {
+                        password: hashedPassword,
+                    },
+                });
+            }
+        }
+        // ========================================
+        // UPDATE EMPLOYEE
+        // ========================================
+        return await tx.employee.update({
+            where: {
+                id,
+            },
+            data: {
+                userId: finalUserId,
+                name: data.name,
+                email: data.email,
+                phone: data.phone,
+                roleId: data.roleId,
+                departmentId: data.departmentId,
+                designationId: data.designationId,
+                shiftId: data.shiftId || null,
+                employeeCode: data.employeeCode,
+                status: data.status,
+                joiningDate: data.joiningDate ? new Date(data.joiningDate) : null,
+                pfNumber: data.pfNumber || null,
+                esiNumber: data.esiNumber || null,
+                uan: data.uan || null,
+            },
+            include: {
+                role: true,
+                department: true,
+                designation: true,
+                shift: true,
+            },
+        });
     });
 };
 // ============================================

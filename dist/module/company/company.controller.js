@@ -1,7 +1,7 @@
 // ============================================
 // controllers/company.controller.ts
 // ============================================
-import { createCompanyService, deleteCompanyService, getAllCompaniesService, getCompanyByIdService, getMyCompanyService, updateCompanyService, updateMyCompanyService, updateBrandingService, } from "./company.service.js";
+import { createCompanyService, deleteCompanyService, getAllCompaniesService, getCompanyByIdService, getMyCompanyService, updateCompanyService, updateMyCompanyService, updateBrandingService, getAllMobileThemesService, updateCompanyMobileThemeService, getCompanyMobileThemeBySlugService, } from "./company.service.js";
 import { uploadToCloudinary } from "../../utils/cloudinaryUpload.js";
 import { deleteImageFromCloudinary } from "../../utils/cloudinaryDelete.js";
 // ============================================
@@ -122,6 +122,48 @@ export const updateBranding = async (req, res) => {
         }
         const updated = await updateBrandingService(companyId, data);
         return res.json({ success: true, data: updated });
+    }
+    catch (error) {
+        return res.status(500).json({ success: false, message: error.message });
+    }
+};
+// ============================================
+// MOBILE THEME - GET ALL (for company admin)
+// ============================================
+export const getAllMobileThemes = async (req, res) => {
+    try {
+        const data = await getAllMobileThemesService();
+        return res.json({ success: true, data });
+    }
+    catch (error) {
+        return res.status(500).json({ success: false, message: error.message });
+    }
+};
+// ============================================
+// MOBILE THEME - UPDATE COMPANY SELECTION
+// ============================================
+export const updateCompanyMobileTheme = async (req, res) => {
+    try {
+        const companyId = Number(req.companyId);
+        const { themeId } = req.body;
+        if (!themeId) {
+            return res.status(400).json({ success: false, message: "themeId is required" });
+        }
+        const data = await updateCompanyMobileThemeService(companyId, themeId);
+        return res.json({ success: true, data });
+    }
+    catch (error) {
+        return res.status(500).json({ success: false, message: error.message });
+    }
+};
+// ============================================
+// MOBILE THEME - GET BY COMPANY SLUG (public)
+// ============================================
+export const getMobileThemeByCompanySlug = async (req, res) => {
+    try {
+        const slug = req.params.slug;
+        const data = await getCompanyMobileThemeBySlugService(slug);
+        return res.json({ success: true, data });
     }
     catch (error) {
         return res.status(500).json({ success: false, message: error.message });

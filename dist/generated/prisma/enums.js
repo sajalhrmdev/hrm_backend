@@ -12,6 +12,30 @@ export const CompanyStatus = {
     INACTIVE: 'INACTIVE',
     SUSPENDED: 'SUSPENDED'
 };
+export const ClientStatus = {
+    ACTIVE: 'ACTIVE',
+    INACTIVE: 'INACTIVE'
+};
+export const AppointmentStatus = {
+    SCHEDULED: 'SCHEDULED',
+    COMPLETED: 'COMPLETED',
+    CANCELLED: 'CANCELLED'
+};
+export const VisitStatus = {
+    SCHEDULED: 'SCHEDULED',
+    COMPLETED: 'COMPLETED',
+    CANCELLED: 'CANCELLED'
+};
+export const MeetingStatus = {
+    SCHEDULED: 'SCHEDULED',
+    COMPLETED: 'COMPLETED',
+    CANCELLED: 'CANCELLED'
+};
+export const MeetingType = {
+    INTERNAL: 'INTERNAL',
+    EXTERNAL: 'EXTERNAL',
+    VIRTUAL: 'VIRTUAL'
+};
 export const OfficeLocationStatus = {
     ACTIVE: 'ACTIVE',
     INACTIVE: 'INACTIVE'
@@ -43,6 +67,7 @@ export const AttendanceStatus = {
     PRESENT: 'PRESENT',
     ABSENT: 'ABSENT',
     HALF_DAY: 'HALF_DAY',
+    HALF_DAY_LEAVE: 'HALF_DAY_LEAVE',
     WEEKLY_OFF: 'WEEKLY_OFF',
     HOLIDAY: 'HOLIDAY',
     PAID_LEAVE: 'PAID_LEAVE',
@@ -77,9 +102,23 @@ export const AttendanceFrom = {
     OFFICE: 'OFFICE',
     REMOTE: 'REMOTE'
 };
+export const AttendanceMethod = {
+    FACE: 'FACE',
+    NORMAL: 'NORMAL'
+};
 export const SalaryComponentType = {
     EARNING: 'EARNING',
-    DEDUCTION: 'DEDUCTION'
+    DEDUCTION: 'DEDUCTION',
+    EMPLOYER_CONTRIBUTION: 'EMPLOYER_CONTRIBUTION'
+};
+export const SalaryComponentCalculationType = {
+    FIXED: 'FIXED',
+    PERCENTAGE: 'PERCENTAGE'
+};
+export const SalaryComponentBaseType = {
+    COMPONENT: 'COMPONENT',
+    COMPONENTS: 'COMPONENTS',
+    GROSS: 'GROSS'
 };
 export const PayrollStatus = {
     DRAFT: 'DRAFT',
@@ -118,4 +157,19 @@ export const NoticePriority = {
     NORMAL: 'NORMAL',
     HIGH: 'HIGH',
     URGENT: 'URGENT'
+};
+export const DocumentCategory = {
+    APPOINTMENT: 'APPOINTMENT',
+    OFFER: 'OFFER',
+    INTERNSHIP: 'INTERNSHIP',
+    EXPERIENCE: 'EXPERIENCE',
+    RELIEVING: 'RELIEVING',
+    SALARY_SLIP: 'SALARY_SLIP',
+    CUSTOM: 'CUSTOM'
+};
+export const ResignationStatus = {
+    PENDING: 'PENDING',
+    APPROVED: 'APPROVED',
+    REJECTED: 'REJECTED',
+    CANCELLED: 'CANCELLED'
 };

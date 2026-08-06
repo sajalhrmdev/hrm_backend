@@ -262,7 +262,7 @@ import { AttendanceType } from "../../generated/prisma/enums.js";
 import { prisma } from "../../lib/prisma.js";
 // ======================================================
 export const createWorkSchedulePolicy = async (input) => {
-    let { companyId, title, description, attendanceType, attendanceFrom, requiredWorkMinutes, halfDayMinutes, enableOvertime, overtimeAfterMinutes, shiftId, weeklyOffPattern, } = input;
+    let { companyId, title, description, attendanceType, attendanceFrom, requiredWorkMinutes, halfDayMinutes, enableOvertime, overtimeAfterMinutes, shiftId, weeklyOffPattern, allowedMethods, } = input;
     // ======================================================
     // EXIST CHECK
     // ======================================================
@@ -321,6 +321,7 @@ export const createWorkSchedulePolicy = async (input) => {
             overtimeAfterMinutes,
             shiftId,
             weeklyOffPattern,
+            allowedMethods: (allowedMethods || ["FACE"]),
         },
         include: {
             shift: true,
@@ -369,7 +370,7 @@ export const getSingleWorkSchedulePolicy = async (companyId, id) => {
 };
 // ======================================================
 export const updateWorkSchedulePolicy = async (input) => {
-    let { id, companyId, title, description, attendanceType, attendanceFrom, requiredWorkMinutes, halfDayMinutes, enableOvertime, overtimeAfterMinutes, shiftId, weeklyOffPattern, isActive, } = input;
+    let { id, companyId, title, description, attendanceType, attendanceFrom, requiredWorkMinutes, halfDayMinutes, enableOvertime, overtimeAfterMinutes, shiftId, weeklyOffPattern, isActive, allowedMethods, } = input;
     const existing = await prisma.workSchedulePolicy.findFirst({
         where: {
             id,
@@ -428,6 +429,7 @@ export const updateWorkSchedulePolicy = async (input) => {
             shiftId,
             weeklyOffPattern,
             isActive,
+            ...(allowedMethods ? { allowedMethods: allowedMethods } : {}),
         },
         include: {
             shift: true,
@@ -457,7 +459,7 @@ export const deleteWorkSchedulePolicy = async (companyId, id) => {
 };
 // ======================================================
 export const assignWorkSchedulePolicy = async (input) => {
-    const { companyId, employeeIds, workSchedulePolicyId, } = input;
+    const { companyId, employeeIds, workSchedulePolicyId, assignAll, } = input;
     const policy = await prisma.workSchedulePolicy.findFirst({
         where: {
             id: workSchedulePolicyId,
@@ -466,6 +468,27 @@ export const assignWorkSchedulePolicy = async (input) => {
     });
     if (!policy) {
         throw new Error("Work schedule policy not found");
+    }
+    // ======================================================
+    // ASSIGN TO ALL ACTIVE EMPLOYEES
+    // ======================================================
+    if (assignAll) {
+        const result = await prisma.employee.updateMany({
+            where: {
+                companyId,
+                status: {
+                    not: "INACTIVE",
+                },
+            },
+            data: {
+                workSchedulePolicyId,
+            },
+        });
+        return {
+            totalAssigned: result.count,
+            workSchedulePolicyId,
+            assignAll: true,
+        };
     }
     const employees = await prisma.employee.findMany({
         where: {
@@ -495,5 +518,26 @@ export const assignWorkSchedulePolicy = async (input) => {
     return {
         totalAssigned: employees.length,
         workSchedulePolicyId,
+    };
+};
+// ======================================================
+export const unassignWorkSchedulePolicy = async (input) => {
+    const { companyId, employeeIds } = input;
+    if (!employeeIds.length) {
+        throw new Error("No employees selected");
+    }
+    const result = await prisma.employee.updateMany({
+        where: {
+            id: {
+                in: employeeIds,
+            },
+            companyId,
+        },
+        data: {
+            workSchedulePolicyId: null,
+        },
+    });
+    return {
+        totalUnassigned: result.count,
     };
 };

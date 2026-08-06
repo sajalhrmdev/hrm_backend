@@ -449,10 +449,6 @@ export type DepartmentNullableScalarRelationFilter = {
   isNot?: Prisma.DepartmentWhereInput | null
 }
 
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
-}
-
 export type DepartmentCreateNestedOneWithoutDesignationsInput = {
   create?: Prisma.XOR<Prisma.DepartmentCreateWithoutDesignationsInput, Prisma.DepartmentUncheckedCreateWithoutDesignationsInput>
   connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutDesignationsInput

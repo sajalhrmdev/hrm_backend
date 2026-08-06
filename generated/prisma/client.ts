@@ -47,6 +47,41 @@ export { Prisma }
  */
 export type Company = Prisma.CompanyModel
 /**
+ * Model Client
+ * 
+ */
+export type Client = Prisma.ClientModel
+/**
+ * Model Appointment
+ * 
+ */
+export type Appointment = Prisma.AppointmentModel
+/**
+ * Model Visit
+ * 
+ */
+export type Visit = Prisma.VisitModel
+/**
+ * Model Meeting
+ * 
+ */
+export type Meeting = Prisma.MeetingModel
+/**
+ * Model MeetingAttendee
+ * 
+ */
+export type MeetingAttendee = Prisma.MeetingAttendeeModel
+/**
+ * Model Project
+ * 
+ */
+export type Project = Prisma.ProjectModel
+/**
+ * Model ProjectMember
+ * 
+ */
+export type ProjectMember = Prisma.ProjectMemberModel
+/**
  * Model OfficeLocation
  * 
  */

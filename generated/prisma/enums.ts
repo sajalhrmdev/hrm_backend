@@ -18,6 +18,70 @@ export const CompanyStatus = {
 export type CompanyStatus = (typeof CompanyStatus)[keyof typeof CompanyStatus]
 
 
+export const ClientStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type ClientStatus = (typeof ClientStatus)[keyof typeof ClientStatus]
+
+
+export const AppointmentStatus = {
+  SCHEDULED: 'SCHEDULED',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type AppointmentStatus = (typeof AppointmentStatus)[keyof typeof AppointmentStatus]
+
+
+export const VisitStatus = {
+  SCHEDULED: 'SCHEDULED',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type VisitStatus = (typeof VisitStatus)[keyof typeof VisitStatus]
+
+
+export const MeetingStatus = {
+  SCHEDULED: 'SCHEDULED',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type MeetingStatus = (typeof MeetingStatus)[keyof typeof MeetingStatus]
+
+
+export const MeetingType = {
+  INTERNAL: 'INTERNAL',
+  EXTERNAL: 'EXTERNAL',
+  VIRTUAL: 'VIRTUAL'
+} as const
+
+export type MeetingType = (typeof MeetingType)[keyof typeof MeetingType]
+
+
+export const ProjectStatus = {
+  NOT_STARTED: 'NOT_STARTED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  ON_HOLD: 'ON_HOLD',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type ProjectStatus = (typeof ProjectStatus)[keyof typeof ProjectStatus]
+
+
+export const ProjectPriority = {
+  LOW: 'LOW',
+  MEDIUM: 'MEDIUM',
+  HIGH: 'HIGH'
+} as const
+
+export type ProjectPriority = (typeof ProjectPriority)[keyof typeof ProjectPriority]
+
+
 export const OfficeLocationStatus = {
   ACTIVE: 'ACTIVE',
   INACTIVE: 'INACTIVE'

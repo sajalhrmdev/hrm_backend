@@ -1,5 +1,27 @@
 import { prisma } from "../../lib/prisma.js";
 // ======================================================
+// BULK CREATE
+// ======================================================
+export const bulkCreatePermissionService = async (permissions) => {
+    const existingRecords = await prisma.permission.findMany({
+        select: { name: true },
+    });
+    const existingNames = new Set(existingRecords.map((r) => r.name));
+    const toCreate = permissions
+        .filter((p) => p.name && !existingNames.has(p.name))
+        .map((p) => ({ name: p.name, label: p.label || null }));
+    if (toCreate.length > 0) {
+        await prisma.permission.createMany({ data: toCreate });
+    }
+    return {
+        created: toCreate.length,
+        skipped: permissions.length - toCreate.length,
+        skippedNames: permissions
+            .filter((p) => !p.name || existingNames.has(p.name))
+            .map((p) => p.name),
+    };
+};
+// ======================================================
 // CREATE
 // ======================================================
 export const createPermissionService = async (body) => {

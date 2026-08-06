@@ -164,7 +164,11 @@ export const processAttendance = async (input) => {
             }
             else if (leaveMap.has(employee.id)) {
                 const leave = leaveMap.get(employee.id);
-                if (leave?.leaveType
+                if (leave?.leaveMode === "HALF") {
+                    status =
+                        AttendanceStatus.HALF_DAY_LEAVE;
+                }
+                else if (leave?.leaveType
                     ?.is_paid) {
                     status =
                         AttendanceStatus.PAID_LEAVE;

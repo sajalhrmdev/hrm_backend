@@ -13,6 +13,18 @@ export const allocateLeaveBalance = async (input) => {
         throw new Error("Employee not found in this company");
     if (!lt)
         throw new Error("Leave type not found in this company");
+    // 🔥 check existing usage before overwriting
+    const existing = await prisma.leaveBalance.findUnique({
+        where: {
+            employeeId_leaveTypeId_year_companyId: {
+                employeeId, leaveTypeId, year, companyId,
+            },
+        },
+        select: { used: true },
+    });
+    if (existing && total_allocated < existing.used) {
+        throw new Error(`Cannot allocate ${total_allocated} days. Employee has already used ${existing.used} days. Reduce used leaves first.`);
+    }
     // 🔥 upsert (create or update)
     const balance = await prisma.leaveBalance.upsert({
         where: {
@@ -137,6 +149,36 @@ export const getEmployeeLeaveBalance = async (input) => {
         used: b.used,
         remaining: b.total_allocated - b.used,
         year: b.year,
+        leaveType: b.leaveType,
+    }));
+};
+// ====================ALL leave balance (admin view)===============
+export const getAllCompanyLeaveBalances = async (companyId, year, search) => {
+    const where = { companyId, year };
+    if (search) {
+        where.employee = {
+            name: { contains: search, mode: "insensitive" },
+        };
+    }
+    const balances = await prisma.leaveBalance.findMany({
+        where,
+        include: {
+            employee: {
+                select: { id: true, name: true, employeeCode: true },
+            },
+            leaveType: {
+                select: { id: true, name: true, code: true, is_paid: true },
+            },
+        },
+        orderBy: { employee: { name: "asc" } },
+    });
+    return balances.map((b) => ({
+        id: b.id,
+        total_allocated: b.total_allocated,
+        used: b.used,
+        remaining: b.total_allocated - b.used,
+        year: b.year,
+        employee: b.employee,
         leaveType: b.leaveType,
     }));
 };

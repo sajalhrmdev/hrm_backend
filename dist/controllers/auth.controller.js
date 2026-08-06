@@ -64,14 +64,60 @@ export const logout = (req, res) => {
     // res.clearCookie("token");
     res.json({ message: "Logged out" });
 };
+export const changePassword = async (req, res) => {
+    try {
+        const { currentPassword, newPassword } = req.body;
+        if (!currentPassword || !newPassword) {
+            return res.status(400).json({ message: "Current password and new password are required" });
+        }
+        if (newPassword.length < 6) {
+            return res.status(400).json({ message: "New password must be at least 6 characters" });
+        }
+        const user = await prisma.user.findUnique({
+            where: { id: req.user.userId },
+        });
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        const isMatch = await bcrypt.compare(currentPassword, user.password);
+        if (!isMatch) {
+            return res.status(401).json({ message: "Current password is incorrect" });
+        }
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        await prisma.user.update({
+            where: { id: user.id },
+            data: { password: hashedPassword },
+        });
+        return res.json({ success: true, message: "Password changed successfully" });
+    }
+    catch (error) {
+        return res.status(500).json({ success: false, message: error.message });
+    }
+};
 export const getCurrentUser = async (req, res) => {
     try {
+        const company = req.companyId
+            ? await prisma.company.findUnique({
+                where: { id: req.companyId },
+                select: {
+                    logo: true,
+                    favicon: true,
+                    website: true,
+                    logoPublicId: true,
+                    faviconPublicId: true,
+                    mobileThemeId: true,
+                    mobileTheme: true,
+                },
+            })
+            : null;
         return res.json({
             success: true,
             user: req.user,
             companyId: req.companyId,
             membership: req.membership,
             permissions: req.permissions,
+            company,
+            employee: req.employee,
         });
     }
     catch (error) {

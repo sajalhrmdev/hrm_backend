@@ -15,6 +15,7 @@ export const loginUser = async (req, res) => {
             where: { email },
             include: {
                 globalRole: true,
+                memberships: { take: 1 },
             },
         });
         if (!user) {
@@ -43,6 +44,7 @@ export const loginUser = async (req, res) => {
             userId: user.id,
             email: user.email,
             role: user.globalRole?.name || null,
+            companyId: user.memberships?.[0]?.companyId || null,
         }, process.env.JWT_SECRET, {
             expiresIn,
         });

@@ -1,9 +1,10 @@
 import express from "express";
-import { createPermission, deletePermission, getAllPermissions, getPermissionById, updatePermission, } from "./permission.controller.js";
+import { bulkCreatePermission, createPermission, deletePermission, getAllPermissions, getPermissionById, updatePermission, } from "./permission.controller.js";
 const router = express.Router();
 // ======================================================
 // ROUTES
 // ======================================================
+router.post("/bulk", bulkCreatePermission);
 router.post("/", createPermission);
 router.get("/", getAllPermissions);
 router.get("/:id", getPermissionById);

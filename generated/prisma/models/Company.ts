@@ -337,6 +337,11 @@ export type CompanyWhereInput = {
   generatedDocuments?: Prisma.GeneratedDocumentListRelationFilter
   resignations?: Prisma.ResignationListRelationFilter
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabListRelationFilter
+  clients?: Prisma.ClientListRelationFilter
+  appointments?: Prisma.AppointmentListRelationFilter
+  visits?: Prisma.VisitListRelationFilter
+  meetings?: Prisma.MeetingListRelationFilter
+  projects?: Prisma.ProjectListRelationFilter
 }
 
 export type CompanyOrderByWithRelationInput = {
@@ -392,6 +397,11 @@ export type CompanyOrderByWithRelationInput = {
   generatedDocuments?: Prisma.GeneratedDocumentOrderByRelationAggregateInput
   resignations?: Prisma.ResignationOrderByRelationAggregateInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabOrderByRelationAggregateInput
+  clients?: Prisma.ClientOrderByRelationAggregateInput
+  appointments?: Prisma.AppointmentOrderByRelationAggregateInput
+  visits?: Prisma.VisitOrderByRelationAggregateInput
+  meetings?: Prisma.MeetingOrderByRelationAggregateInput
+  projects?: Prisma.ProjectOrderByRelationAggregateInput
 }
 
 export type CompanyWhereUniqueInput = Prisma.AtLeast<{
@@ -450,6 +460,11 @@ export type CompanyWhereUniqueInput = Prisma.AtLeast<{
   generatedDocuments?: Prisma.GeneratedDocumentListRelationFilter
   resignations?: Prisma.ResignationListRelationFilter
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabListRelationFilter
+  clients?: Prisma.ClientListRelationFilter
+  appointments?: Prisma.AppointmentListRelationFilter
+  visits?: Prisma.VisitListRelationFilter
+  meetings?: Prisma.MeetingListRelationFilter
+  projects?: Prisma.ProjectListRelationFilter
 }, "id" | "slug">
 
 export type CompanyOrderByWithAggregationInput = {
@@ -547,6 +562,11 @@ export type CompanyCreateInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateInput = {
@@ -601,6 +621,11 @@ export type CompanyUncheckedCreateInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUpdateInput = {
@@ -654,6 +679,11 @@ export type CompanyUpdateInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateInput = {
@@ -708,6 +738,11 @@ export type CompanyUncheckedUpdateInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateManyInput = {
@@ -871,6 +906,76 @@ export type NullableIntFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type CompanyCreateNestedOneWithoutClientsInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutClientsInput, Prisma.CompanyUncheckedCreateWithoutClientsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutClientsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutClientsNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutClientsInput, Prisma.CompanyUncheckedCreateWithoutClientsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutClientsInput
+  upsert?: Prisma.CompanyUpsertWithoutClientsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutClientsInput, Prisma.CompanyUpdateWithoutClientsInput>, Prisma.CompanyUncheckedUpdateWithoutClientsInput>
+}
+
+export type CompanyCreateNestedOneWithoutAppointmentsInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutAppointmentsInput, Prisma.CompanyUncheckedCreateWithoutAppointmentsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutAppointmentsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutAppointmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutAppointmentsInput, Prisma.CompanyUncheckedCreateWithoutAppointmentsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutAppointmentsInput
+  upsert?: Prisma.CompanyUpsertWithoutAppointmentsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutAppointmentsInput, Prisma.CompanyUpdateWithoutAppointmentsInput>, Prisma.CompanyUncheckedUpdateWithoutAppointmentsInput>
+}
+
+export type CompanyCreateNestedOneWithoutVisitsInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutVisitsInput, Prisma.CompanyUncheckedCreateWithoutVisitsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutVisitsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutVisitsNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutVisitsInput, Prisma.CompanyUncheckedCreateWithoutVisitsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutVisitsInput
+  upsert?: Prisma.CompanyUpsertWithoutVisitsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutVisitsInput, Prisma.CompanyUpdateWithoutVisitsInput>, Prisma.CompanyUncheckedUpdateWithoutVisitsInput>
+}
+
+export type CompanyCreateNestedOneWithoutMeetingsInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutMeetingsInput, Prisma.CompanyUncheckedCreateWithoutMeetingsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutMeetingsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutMeetingsNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutMeetingsInput, Prisma.CompanyUncheckedCreateWithoutMeetingsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutMeetingsInput
+  upsert?: Prisma.CompanyUpsertWithoutMeetingsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutMeetingsInput, Prisma.CompanyUpdateWithoutMeetingsInput>, Prisma.CompanyUncheckedUpdateWithoutMeetingsInput>
+}
+
+export type CompanyCreateNestedOneWithoutProjectsInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutProjectsInput, Prisma.CompanyUncheckedCreateWithoutProjectsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutProjectsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutProjectsNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutProjectsInput, Prisma.CompanyUncheckedCreateWithoutProjectsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutProjectsInput
+  upsert?: Prisma.CompanyUpsertWithoutProjectsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutProjectsInput, Prisma.CompanyUpdateWithoutProjectsInput>, Prisma.CompanyUncheckedUpdateWithoutProjectsInput>
 }
 
 export type CompanyCreateNestedOneWithoutOfficeLocationsInput = {
@@ -1419,6 +1524,1236 @@ export type CompanyUncheckedUpdateManyWithoutMobileThemeNestedInput = {
   deleteMany?: Prisma.CompanyScalarWhereInput | Prisma.CompanyScalarWhereInput[]
 }
 
+export type CompanyCreateWithoutClientsInput = {
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  mobileTheme?: Prisma.MobileThemeCreateNestedOneWithoutCompaniesInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentCreateNestedManyWithoutCompanyInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailCreateNestedManyWithoutCompanyInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactCreateNestedManyWithoutCompanyInput
+  employeeExperiences?: Prisma.EmployeeExperienceCreateNestedManyWithoutCompanyInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentCreateNestedManyWithoutCompanyInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyCreateNestedManyWithoutCompanyInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyCreateNestedManyWithoutCompanyInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogCreateNestedManyWithoutCompanyInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutCompanyInput
+  officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
+  performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
+  employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  goals?: Prisma.GoalCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
+  resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutClientsInput = {
+  id?: number
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
+  mobileThemeId?: number | null
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUncheckedCreateNestedManyWithoutCompanyInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUncheckedCreateNestedManyWithoutCompanyInput
+  employeeExperiences?: Prisma.EmployeeExperienceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedCreateNestedManyWithoutCompanyInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUncheckedCreateNestedManyWithoutCompanyInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedCreateNestedManyWithoutCompanyInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutCompanyInput
+  officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
+  performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
+  employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
+  resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutClientsInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutClientsInput, Prisma.CompanyUncheckedCreateWithoutClientsInput>
+}
+
+export type CompanyUpsertWithoutClientsInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutClientsInput, Prisma.CompanyUncheckedUpdateWithoutClientsInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutClientsInput, Prisma.CompanyUncheckedCreateWithoutClientsInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutClientsInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutClientsInput, Prisma.CompanyUncheckedUpdateWithoutClientsInput>
+}
+
+export type CompanyUpdateWithoutClientsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mobileTheme?: Prisma.MobileThemeUpdateOneWithoutCompaniesNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUpdateManyWithoutCompanyNestedInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUpdateManyWithoutCompanyNestedInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUpdateManyWithoutCompanyNestedInput
+  employeeExperiences?: Prisma.EmployeeExperienceUpdateManyWithoutCompanyNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUpdateManyWithoutCompanyNestedInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUpdateManyWithoutCompanyNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUpdateManyWithoutCompanyNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUpdateManyWithoutCompanyNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutCompanyNestedInput
+  officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
+  performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
+  employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
+  resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutClientsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobileThemeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeExperiences?: Prisma.EmployeeExperienceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedUpdateManyWithoutCompanyNestedInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedUpdateManyWithoutCompanyNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutCompanyNestedInput
+  officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
+  performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
+  resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutAppointmentsInput = {
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  mobileTheme?: Prisma.MobileThemeCreateNestedOneWithoutCompaniesInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentCreateNestedManyWithoutCompanyInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailCreateNestedManyWithoutCompanyInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactCreateNestedManyWithoutCompanyInput
+  employeeExperiences?: Prisma.EmployeeExperienceCreateNestedManyWithoutCompanyInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentCreateNestedManyWithoutCompanyInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyCreateNestedManyWithoutCompanyInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyCreateNestedManyWithoutCompanyInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogCreateNestedManyWithoutCompanyInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutCompanyInput
+  officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
+  performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
+  employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  goals?: Prisma.GoalCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
+  resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutAppointmentsInput = {
+  id?: number
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
+  mobileThemeId?: number | null
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUncheckedCreateNestedManyWithoutCompanyInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUncheckedCreateNestedManyWithoutCompanyInput
+  employeeExperiences?: Prisma.EmployeeExperienceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedCreateNestedManyWithoutCompanyInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUncheckedCreateNestedManyWithoutCompanyInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedCreateNestedManyWithoutCompanyInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutCompanyInput
+  officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
+  performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
+  employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
+  resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutAppointmentsInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutAppointmentsInput, Prisma.CompanyUncheckedCreateWithoutAppointmentsInput>
+}
+
+export type CompanyUpsertWithoutAppointmentsInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutAppointmentsInput, Prisma.CompanyUncheckedUpdateWithoutAppointmentsInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutAppointmentsInput, Prisma.CompanyUncheckedCreateWithoutAppointmentsInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutAppointmentsInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutAppointmentsInput, Prisma.CompanyUncheckedUpdateWithoutAppointmentsInput>
+}
+
+export type CompanyUpdateWithoutAppointmentsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mobileTheme?: Prisma.MobileThemeUpdateOneWithoutCompaniesNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUpdateManyWithoutCompanyNestedInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUpdateManyWithoutCompanyNestedInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUpdateManyWithoutCompanyNestedInput
+  employeeExperiences?: Prisma.EmployeeExperienceUpdateManyWithoutCompanyNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUpdateManyWithoutCompanyNestedInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUpdateManyWithoutCompanyNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUpdateManyWithoutCompanyNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUpdateManyWithoutCompanyNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutCompanyNestedInput
+  officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
+  performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
+  employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
+  resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutAppointmentsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobileThemeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeExperiences?: Prisma.EmployeeExperienceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedUpdateManyWithoutCompanyNestedInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedUpdateManyWithoutCompanyNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutCompanyNestedInput
+  officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
+  performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
+  resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutVisitsInput = {
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  mobileTheme?: Prisma.MobileThemeCreateNestedOneWithoutCompaniesInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentCreateNestedManyWithoutCompanyInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailCreateNestedManyWithoutCompanyInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactCreateNestedManyWithoutCompanyInput
+  employeeExperiences?: Prisma.EmployeeExperienceCreateNestedManyWithoutCompanyInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentCreateNestedManyWithoutCompanyInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyCreateNestedManyWithoutCompanyInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyCreateNestedManyWithoutCompanyInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogCreateNestedManyWithoutCompanyInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutCompanyInput
+  officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
+  performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
+  employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  goals?: Prisma.GoalCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
+  resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutVisitsInput = {
+  id?: number
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
+  mobileThemeId?: number | null
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUncheckedCreateNestedManyWithoutCompanyInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUncheckedCreateNestedManyWithoutCompanyInput
+  employeeExperiences?: Prisma.EmployeeExperienceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedCreateNestedManyWithoutCompanyInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUncheckedCreateNestedManyWithoutCompanyInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedCreateNestedManyWithoutCompanyInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutCompanyInput
+  officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
+  performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
+  employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
+  resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutVisitsInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutVisitsInput, Prisma.CompanyUncheckedCreateWithoutVisitsInput>
+}
+
+export type CompanyUpsertWithoutVisitsInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutVisitsInput, Prisma.CompanyUncheckedUpdateWithoutVisitsInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutVisitsInput, Prisma.CompanyUncheckedCreateWithoutVisitsInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutVisitsInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutVisitsInput, Prisma.CompanyUncheckedUpdateWithoutVisitsInput>
+}
+
+export type CompanyUpdateWithoutVisitsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mobileTheme?: Prisma.MobileThemeUpdateOneWithoutCompaniesNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUpdateManyWithoutCompanyNestedInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUpdateManyWithoutCompanyNestedInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUpdateManyWithoutCompanyNestedInput
+  employeeExperiences?: Prisma.EmployeeExperienceUpdateManyWithoutCompanyNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUpdateManyWithoutCompanyNestedInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUpdateManyWithoutCompanyNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUpdateManyWithoutCompanyNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUpdateManyWithoutCompanyNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutCompanyNestedInput
+  officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
+  performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
+  employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
+  resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutVisitsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobileThemeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeExperiences?: Prisma.EmployeeExperienceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedUpdateManyWithoutCompanyNestedInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedUpdateManyWithoutCompanyNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutCompanyNestedInput
+  officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
+  performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
+  resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutMeetingsInput = {
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  mobileTheme?: Prisma.MobileThemeCreateNestedOneWithoutCompaniesInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentCreateNestedManyWithoutCompanyInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailCreateNestedManyWithoutCompanyInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactCreateNestedManyWithoutCompanyInput
+  employeeExperiences?: Prisma.EmployeeExperienceCreateNestedManyWithoutCompanyInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentCreateNestedManyWithoutCompanyInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyCreateNestedManyWithoutCompanyInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyCreateNestedManyWithoutCompanyInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogCreateNestedManyWithoutCompanyInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutCompanyInput
+  officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
+  performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
+  employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  goals?: Prisma.GoalCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
+  resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutMeetingsInput = {
+  id?: number
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
+  mobileThemeId?: number | null
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUncheckedCreateNestedManyWithoutCompanyInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUncheckedCreateNestedManyWithoutCompanyInput
+  employeeExperiences?: Prisma.EmployeeExperienceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedCreateNestedManyWithoutCompanyInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUncheckedCreateNestedManyWithoutCompanyInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedCreateNestedManyWithoutCompanyInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutCompanyInput
+  officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
+  performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
+  employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
+  resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutMeetingsInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutMeetingsInput, Prisma.CompanyUncheckedCreateWithoutMeetingsInput>
+}
+
+export type CompanyUpsertWithoutMeetingsInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutMeetingsInput, Prisma.CompanyUncheckedUpdateWithoutMeetingsInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutMeetingsInput, Prisma.CompanyUncheckedCreateWithoutMeetingsInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutMeetingsInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutMeetingsInput, Prisma.CompanyUncheckedUpdateWithoutMeetingsInput>
+}
+
+export type CompanyUpdateWithoutMeetingsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mobileTheme?: Prisma.MobileThemeUpdateOneWithoutCompaniesNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUpdateManyWithoutCompanyNestedInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUpdateManyWithoutCompanyNestedInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUpdateManyWithoutCompanyNestedInput
+  employeeExperiences?: Prisma.EmployeeExperienceUpdateManyWithoutCompanyNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUpdateManyWithoutCompanyNestedInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUpdateManyWithoutCompanyNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUpdateManyWithoutCompanyNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUpdateManyWithoutCompanyNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutCompanyNestedInput
+  officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
+  performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
+  employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
+  resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutMeetingsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobileThemeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeExperiences?: Prisma.EmployeeExperienceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedUpdateManyWithoutCompanyNestedInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedUpdateManyWithoutCompanyNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutCompanyNestedInput
+  officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
+  performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
+  resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutProjectsInput = {
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  mobileTheme?: Prisma.MobileThemeCreateNestedOneWithoutCompaniesInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationCreateNestedManyWithoutCompanyInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentCreateNestedManyWithoutCompanyInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailCreateNestedManyWithoutCompanyInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactCreateNestedManyWithoutCompanyInput
+  employeeExperiences?: Prisma.EmployeeExperienceCreateNestedManyWithoutCompanyInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentCreateNestedManyWithoutCompanyInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyCreateNestedManyWithoutCompanyInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyCreateNestedManyWithoutCompanyInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogCreateNestedManyWithoutCompanyInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutCompanyInput
+  officeLocations?: Prisma.OfficeLocationCreateNestedManyWithoutCompanyInput
+  performanceReviews?: Prisma.PerformanceReviewCreateNestedManyWithoutCompanyInput
+  employeeRewards?: Prisma.EmployeeRewardCreateNestedManyWithoutCompanyInput
+  goals?: Prisma.GoalCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
+  resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutProjectsInput = {
+  id?: number
+  name: string
+  slug: string
+  email: string
+  phone: string
+  address: string
+  logo?: string | null
+  favicon?: string | null
+  website?: string | null
+  faviconPublicId?: string | null
+  logoPublicId?: string | null
+  mobileThemeId?: number | null
+  status?: $Enums.CompanyStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutCompanyInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutCompanyInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedCreateNestedManyWithoutCompanyInput
+  workPolicies?: Prisma.WorkPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  CompanySettings?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutCompanyInput
+  Shifts?: Prisma.ShiftUncheckedCreateNestedManyWithoutCompanyInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedCreateNestedManyWithoutCompanyInput
+  payRollRuns?: Prisma.PayRollRunUncheckedCreateNestedManyWithoutCompanyInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutCompanyInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedCreateNestedManyWithoutCompanyInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutCompanyInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedCreateNestedManyWithoutCompanyInput
+  holidays?: Prisma.HolidayUncheckedCreateNestedManyWithoutCompanyInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedCreateNestedManyWithoutCompanyInput
+  designations?: Prisma.DesignationUncheckedCreateNestedManyWithoutCompanyInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUncheckedCreateNestedManyWithoutCompanyInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUncheckedCreateNestedManyWithoutCompanyInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUncheckedCreateNestedManyWithoutCompanyInput
+  employeeExperiences?: Prisma.EmployeeExperienceUncheckedCreateNestedManyWithoutCompanyInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedCreateNestedManyWithoutCompanyInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUncheckedCreateNestedManyWithoutCompanyInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedCreateNestedManyWithoutCompanyInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedCreateNestedManyWithoutCompanyInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutCompanyInput
+  officeLocations?: Prisma.OfficeLocationUncheckedCreateNestedManyWithoutCompanyInput
+  performanceReviews?: Prisma.PerformanceReviewUncheckedCreateNestedManyWithoutCompanyInput
+  employeeRewards?: Prisma.EmployeeRewardUncheckedCreateNestedManyWithoutCompanyInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutCompanyInput
+  emailSettings?: Prisma.EmailSettingsUncheckedCreateNestedOneWithoutCompanyInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
+  resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutProjectsInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutProjectsInput, Prisma.CompanyUncheckedCreateWithoutProjectsInput>
+}
+
+export type CompanyUpsertWithoutProjectsInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutProjectsInput, Prisma.CompanyUncheckedUpdateWithoutProjectsInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutProjectsInput, Prisma.CompanyUncheckedCreateWithoutProjectsInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutProjectsInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutProjectsInput, Prisma.CompanyUncheckedUpdateWithoutProjectsInput>
+}
+
+export type CompanyUpdateWithoutProjectsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mobileTheme?: Prisma.MobileThemeUpdateOneWithoutCompaniesNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUpdateManyWithoutCompanyNestedInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUpdateManyWithoutCompanyNestedInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUpdateManyWithoutCompanyNestedInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUpdateManyWithoutCompanyNestedInput
+  employeeExperiences?: Prisma.EmployeeExperienceUpdateManyWithoutCompanyNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUpdateManyWithoutCompanyNestedInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUpdateManyWithoutCompanyNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUpdateManyWithoutCompanyNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUpdateManyWithoutCompanyNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutCompanyNestedInput
+  officeLocations?: Prisma.OfficeLocationUpdateManyWithoutCompanyNestedInput
+  performanceReviews?: Prisma.PerformanceReviewUpdateManyWithoutCompanyNestedInput
+  employeeRewards?: Prisma.EmployeeRewardUpdateManyWithoutCompanyNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
+  resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutProjectsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  favicon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  faviconPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoPublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobileThemeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  status?: Prisma.EnumCompanyStatusFieldUpdateOperationsInput | $Enums.CompanyStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutCompanyNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutCompanyNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceLogs?: Prisma.AttendanceLogUncheckedUpdateManyWithoutCompanyNestedInput
+  workPolicies?: Prisma.WorkPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  CompanySettings?: Prisma.CompanySettingUncheckedUpdateManyWithoutCompanyNestedInput
+  Shifts?: Prisma.ShiftUncheckedUpdateManyWithoutCompanyNestedInput
+  salaryComponents?: Prisma.SalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeSalaryComponents?: Prisma.EmployeeSalaryComponentUncheckedUpdateManyWithoutCompanyNestedInput
+  payRollRuns?: Prisma.PayRollRunUncheckedUpdateManyWithoutCompanyNestedInput
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveTypes?: Prisma.LeaveTypeUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveApplications?: Prisma.LeaveApplicationUncheckedUpdateManyWithoutCompanyNestedInput
+  holidays?: Prisma.HolidayUncheckedUpdateManyWithoutCompanyNestedInput
+  weeklyOffConfigs?: Prisma.WeeklyOffConfigUncheckedUpdateManyWithoutCompanyNestedInput
+  designations?: Prisma.DesignationUncheckedUpdateManyWithoutCompanyNestedInput
+  payrollAdjustments?: Prisma.PayrollAdjustmentUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeBankDetails?: Prisma.EmployeeBankDetailUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeEmergencyContacts?: Prisma.EmployeeEmergencyContactUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeExperiences?: Prisma.EmployeeExperienceUncheckedUpdateManyWithoutCompanyNestedInput
+  attendanceAdjustments?: Prisma.AttendanceAdjustmentUncheckedUpdateManyWithoutCompanyNestedInput
+  workSchedulePolicies?: Prisma.WorkSchedulePolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveIncrementPolicies?: Prisma.LeaveIncrementPolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  leaveIncrementLogs?: Prisma.LeaveIncrementLogUncheckedUpdateManyWithoutCompanyNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutCompanyNestedInput
+  officeLocations?: Prisma.OfficeLocationUncheckedUpdateManyWithoutCompanyNestedInput
+  performanceReviews?: Prisma.PerformanceReviewUncheckedUpdateManyWithoutCompanyNestedInput
+  employeeRewards?: Prisma.EmployeeRewardUncheckedUpdateManyWithoutCompanyNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutCompanyNestedInput
+  emailSettings?: Prisma.EmailSettingsUncheckedUpdateOneWithoutCompanyNestedInput
+  emailTemplates?: Prisma.EmailTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
+  generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
+  resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
 export type CompanyCreateWithoutOfficeLocationsInput = {
   name: string
   slug: string
@@ -1469,6 +2804,11 @@ export type CompanyCreateWithoutOfficeLocationsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutOfficeLocationsInput = {
@@ -1522,6 +2862,11 @@ export type CompanyUncheckedCreateWithoutOfficeLocationsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutOfficeLocationsInput = {
@@ -1590,6 +2935,11 @@ export type CompanyUpdateWithoutOfficeLocationsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutOfficeLocationsInput = {
@@ -1643,6 +2993,11 @@ export type CompanyUncheckedUpdateWithoutOfficeLocationsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutDesignationsInput = {
@@ -1695,6 +3050,11 @@ export type CompanyCreateWithoutDesignationsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutDesignationsInput = {
@@ -1748,6 +3108,11 @@ export type CompanyUncheckedCreateWithoutDesignationsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutDesignationsInput = {
@@ -1816,6 +3181,11 @@ export type CompanyUpdateWithoutDesignationsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutDesignationsInput = {
@@ -1869,6 +3239,11 @@ export type CompanyUncheckedUpdateWithoutDesignationsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutRolesInput = {
@@ -1921,6 +3296,11 @@ export type CompanyCreateWithoutRolesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutRolesInput = {
@@ -1974,6 +3354,11 @@ export type CompanyUncheckedCreateWithoutRolesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutRolesInput = {
@@ -2042,6 +3427,11 @@ export type CompanyUpdateWithoutRolesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutRolesInput = {
@@ -2095,6 +3485,11 @@ export type CompanyUncheckedUpdateWithoutRolesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutMembershipsInput = {
@@ -2147,6 +3542,11 @@ export type CompanyCreateWithoutMembershipsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutMembershipsInput = {
@@ -2200,6 +3600,11 @@ export type CompanyUncheckedCreateWithoutMembershipsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutMembershipsInput = {
@@ -2268,6 +3673,11 @@ export type CompanyUpdateWithoutMembershipsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutMembershipsInput = {
@@ -2321,6 +3731,11 @@ export type CompanyUncheckedUpdateWithoutMembershipsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmployeesInput = {
@@ -2373,6 +3788,11 @@ export type CompanyCreateWithoutEmployeesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmployeesInput = {
@@ -2426,6 +3846,11 @@ export type CompanyUncheckedCreateWithoutEmployeesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmployeesInput = {
@@ -2494,6 +3919,11 @@ export type CompanyUpdateWithoutEmployeesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmployeesInput = {
@@ -2547,6 +3977,11 @@ export type CompanyUncheckedUpdateWithoutEmployeesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmployeeEmergencyContactsInput = {
@@ -2599,6 +4034,11 @@ export type CompanyCreateWithoutEmployeeEmergencyContactsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmployeeEmergencyContactsInput = {
@@ -2652,6 +4092,11 @@ export type CompanyUncheckedCreateWithoutEmployeeEmergencyContactsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmployeeEmergencyContactsInput = {
@@ -2720,6 +4165,11 @@ export type CompanyUpdateWithoutEmployeeEmergencyContactsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmployeeEmergencyContactsInput = {
@@ -2773,6 +4223,11 @@ export type CompanyUncheckedUpdateWithoutEmployeeEmergencyContactsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmployeeBankDetailsInput = {
@@ -2825,6 +4280,11 @@ export type CompanyCreateWithoutEmployeeBankDetailsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmployeeBankDetailsInput = {
@@ -2878,6 +4338,11 @@ export type CompanyUncheckedCreateWithoutEmployeeBankDetailsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmployeeBankDetailsInput = {
@@ -2946,6 +4411,11 @@ export type CompanyUpdateWithoutEmployeeBankDetailsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmployeeBankDetailsInput = {
@@ -2999,6 +4469,11 @@ export type CompanyUncheckedUpdateWithoutEmployeeBankDetailsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmployeeExperiencesInput = {
@@ -3051,6 +4526,11 @@ export type CompanyCreateWithoutEmployeeExperiencesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmployeeExperiencesInput = {
@@ -3104,6 +4584,11 @@ export type CompanyUncheckedCreateWithoutEmployeeExperiencesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmployeeExperiencesInput = {
@@ -3172,6 +4657,11 @@ export type CompanyUpdateWithoutEmployeeExperiencesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmployeeExperiencesInput = {
@@ -3225,6 +4715,11 @@ export type CompanyUncheckedUpdateWithoutEmployeeExperiencesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutAttendancesInput = {
@@ -3277,6 +4772,11 @@ export type CompanyCreateWithoutAttendancesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutAttendancesInput = {
@@ -3330,6 +4830,11 @@ export type CompanyUncheckedCreateWithoutAttendancesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutAttendancesInput = {
@@ -3398,6 +4903,11 @@ export type CompanyUpdateWithoutAttendancesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutAttendancesInput = {
@@ -3451,6 +4961,11 @@ export type CompanyUncheckedUpdateWithoutAttendancesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutAttendanceAdjustmentsInput = {
@@ -3503,6 +5018,11 @@ export type CompanyCreateWithoutAttendanceAdjustmentsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutAttendanceAdjustmentsInput = {
@@ -3556,6 +5076,11 @@ export type CompanyUncheckedCreateWithoutAttendanceAdjustmentsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutAttendanceAdjustmentsInput = {
@@ -3624,6 +5149,11 @@ export type CompanyUpdateWithoutAttendanceAdjustmentsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutAttendanceAdjustmentsInput = {
@@ -3677,6 +5207,11 @@ export type CompanyUncheckedUpdateWithoutAttendanceAdjustmentsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutAttendanceLogsInput = {
@@ -3729,6 +5264,11 @@ export type CompanyCreateWithoutAttendanceLogsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutAttendanceLogsInput = {
@@ -3782,6 +5322,11 @@ export type CompanyUncheckedCreateWithoutAttendanceLogsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutAttendanceLogsInput = {
@@ -3850,6 +5395,11 @@ export type CompanyUpdateWithoutAttendanceLogsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutAttendanceLogsInput = {
@@ -3903,6 +5453,11 @@ export type CompanyUncheckedUpdateWithoutAttendanceLogsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutWorkPoliciesInput = {
@@ -3955,6 +5510,11 @@ export type CompanyCreateWithoutWorkPoliciesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutWorkPoliciesInput = {
@@ -4008,6 +5568,11 @@ export type CompanyUncheckedCreateWithoutWorkPoliciesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutWorkPoliciesInput = {
@@ -4076,6 +5641,11 @@ export type CompanyUpdateWithoutWorkPoliciesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutWorkPoliciesInput = {
@@ -4129,6 +5699,11 @@ export type CompanyUncheckedUpdateWithoutWorkPoliciesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutCompanySettingsInput = {
@@ -4181,6 +5756,11 @@ export type CompanyCreateWithoutCompanySettingsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutCompanySettingsInput = {
@@ -4234,6 +5814,11 @@ export type CompanyUncheckedCreateWithoutCompanySettingsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutCompanySettingsInput = {
@@ -4302,6 +5887,11 @@ export type CompanyUpdateWithoutCompanySettingsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutCompanySettingsInput = {
@@ -4355,6 +5945,11 @@ export type CompanyUncheckedUpdateWithoutCompanySettingsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutShiftsInput = {
@@ -4407,6 +6002,11 @@ export type CompanyCreateWithoutShiftsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutShiftsInput = {
@@ -4460,6 +6060,11 @@ export type CompanyUncheckedCreateWithoutShiftsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutShiftsInput = {
@@ -4528,6 +6133,11 @@ export type CompanyUpdateWithoutShiftsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutShiftsInput = {
@@ -4581,6 +6191,11 @@ export type CompanyUncheckedUpdateWithoutShiftsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutWorkSchedulePoliciesInput = {
@@ -4633,6 +6248,11 @@ export type CompanyCreateWithoutWorkSchedulePoliciesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutWorkSchedulePoliciesInput = {
@@ -4686,6 +6306,11 @@ export type CompanyUncheckedCreateWithoutWorkSchedulePoliciesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutWorkSchedulePoliciesInput = {
@@ -4754,6 +6379,11 @@ export type CompanyUpdateWithoutWorkSchedulePoliciesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutWorkSchedulePoliciesInput = {
@@ -4807,6 +6437,11 @@ export type CompanyUncheckedUpdateWithoutWorkSchedulePoliciesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutSalaryComponentsInput = {
@@ -4859,6 +6494,11 @@ export type CompanyCreateWithoutSalaryComponentsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutSalaryComponentsInput = {
@@ -4912,6 +6552,11 @@ export type CompanyUncheckedCreateWithoutSalaryComponentsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutSalaryComponentsInput = {
@@ -4980,6 +6625,11 @@ export type CompanyUpdateWithoutSalaryComponentsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutSalaryComponentsInput = {
@@ -5033,6 +6683,11 @@ export type CompanyUncheckedUpdateWithoutSalaryComponentsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmployeeSalaryComponentsInput = {
@@ -5085,6 +6740,11 @@ export type CompanyCreateWithoutEmployeeSalaryComponentsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmployeeSalaryComponentsInput = {
@@ -5138,6 +6798,11 @@ export type CompanyUncheckedCreateWithoutEmployeeSalaryComponentsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmployeeSalaryComponentsInput = {
@@ -5206,6 +6871,11 @@ export type CompanyUpdateWithoutEmployeeSalaryComponentsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmployeeSalaryComponentsInput = {
@@ -5259,6 +6929,11 @@ export type CompanyUncheckedUpdateWithoutEmployeeSalaryComponentsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutPayrollAdjustmentsInput = {
@@ -5311,6 +6986,11 @@ export type CompanyCreateWithoutPayrollAdjustmentsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutPayrollAdjustmentsInput = {
@@ -5364,6 +7044,11 @@ export type CompanyUncheckedCreateWithoutPayrollAdjustmentsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutPayrollAdjustmentsInput = {
@@ -5432,6 +7117,11 @@ export type CompanyUpdateWithoutPayrollAdjustmentsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutPayrollAdjustmentsInput = {
@@ -5485,6 +7175,11 @@ export type CompanyUncheckedUpdateWithoutPayrollAdjustmentsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutPayRollRunsInput = {
@@ -5537,6 +7232,11 @@ export type CompanyCreateWithoutPayRollRunsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutPayRollRunsInput = {
@@ -5590,6 +7290,11 @@ export type CompanyUncheckedCreateWithoutPayRollRunsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutPayRollRunsInput = {
@@ -5658,6 +7363,11 @@ export type CompanyUpdateWithoutPayRollRunsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutPayRollRunsInput = {
@@ -5711,6 +7421,11 @@ export type CompanyUncheckedUpdateWithoutPayRollRunsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutProfessionalTaxSlabsInput = {
@@ -5763,6 +7478,11 @@ export type CompanyCreateWithoutProfessionalTaxSlabsInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutProfessionalTaxSlabsInput = {
@@ -5816,6 +7536,11 @@ export type CompanyUncheckedCreateWithoutProfessionalTaxSlabsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutProfessionalTaxSlabsInput = {
@@ -5884,6 +7609,11 @@ export type CompanyUpdateWithoutProfessionalTaxSlabsInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutProfessionalTaxSlabsInput = {
@@ -5937,6 +7667,11 @@ export type CompanyUncheckedUpdateWithoutProfessionalTaxSlabsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutLeaveTypesInput = {
@@ -5989,6 +7724,11 @@ export type CompanyCreateWithoutLeaveTypesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutLeaveTypesInput = {
@@ -6042,6 +7782,11 @@ export type CompanyUncheckedCreateWithoutLeaveTypesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutLeaveTypesInput = {
@@ -6110,6 +7855,11 @@ export type CompanyUpdateWithoutLeaveTypesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutLeaveTypesInput = {
@@ -6163,6 +7913,11 @@ export type CompanyUncheckedUpdateWithoutLeaveTypesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutLeaveBalancesInput = {
@@ -6215,6 +7970,11 @@ export type CompanyCreateWithoutLeaveBalancesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutLeaveBalancesInput = {
@@ -6268,6 +8028,11 @@ export type CompanyUncheckedCreateWithoutLeaveBalancesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutLeaveBalancesInput = {
@@ -6336,6 +8101,11 @@ export type CompanyUpdateWithoutLeaveBalancesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutLeaveBalancesInput = {
@@ -6389,6 +8159,11 @@ export type CompanyUncheckedUpdateWithoutLeaveBalancesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutLeaveIncrementPoliciesInput = {
@@ -6441,6 +8216,11 @@ export type CompanyCreateWithoutLeaveIncrementPoliciesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutLeaveIncrementPoliciesInput = {
@@ -6494,6 +8274,11 @@ export type CompanyUncheckedCreateWithoutLeaveIncrementPoliciesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutLeaveIncrementPoliciesInput = {
@@ -6562,6 +8347,11 @@ export type CompanyUpdateWithoutLeaveIncrementPoliciesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutLeaveIncrementPoliciesInput = {
@@ -6615,6 +8405,11 @@ export type CompanyUncheckedUpdateWithoutLeaveIncrementPoliciesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutLeaveIncrementLogsInput = {
@@ -6667,6 +8462,11 @@ export type CompanyCreateWithoutLeaveIncrementLogsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutLeaveIncrementLogsInput = {
@@ -6720,6 +8520,11 @@ export type CompanyUncheckedCreateWithoutLeaveIncrementLogsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutLeaveIncrementLogsInput = {
@@ -6788,6 +8593,11 @@ export type CompanyUpdateWithoutLeaveIncrementLogsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutLeaveIncrementLogsInput = {
@@ -6841,6 +8651,11 @@ export type CompanyUncheckedUpdateWithoutLeaveIncrementLogsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutLeaveApplicationsInput = {
@@ -6893,6 +8708,11 @@ export type CompanyCreateWithoutLeaveApplicationsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutLeaveApplicationsInput = {
@@ -6946,6 +8766,11 @@ export type CompanyUncheckedCreateWithoutLeaveApplicationsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutLeaveApplicationsInput = {
@@ -7014,6 +8839,11 @@ export type CompanyUpdateWithoutLeaveApplicationsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutLeaveApplicationsInput = {
@@ -7067,6 +8897,11 @@ export type CompanyUncheckedUpdateWithoutLeaveApplicationsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutHolidaysInput = {
@@ -7119,6 +8954,11 @@ export type CompanyCreateWithoutHolidaysInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutHolidaysInput = {
@@ -7172,6 +9012,11 @@ export type CompanyUncheckedCreateWithoutHolidaysInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutHolidaysInput = {
@@ -7240,6 +9085,11 @@ export type CompanyUpdateWithoutHolidaysInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutHolidaysInput = {
@@ -7293,6 +9143,11 @@ export type CompanyUncheckedUpdateWithoutHolidaysInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutWeeklyOffConfigsInput = {
@@ -7345,6 +9200,11 @@ export type CompanyCreateWithoutWeeklyOffConfigsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutWeeklyOffConfigsInput = {
@@ -7398,6 +9258,11 @@ export type CompanyUncheckedCreateWithoutWeeklyOffConfigsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutWeeklyOffConfigsInput = {
@@ -7466,6 +9331,11 @@ export type CompanyUpdateWithoutWeeklyOffConfigsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutWeeklyOffConfigsInput = {
@@ -7519,6 +9389,11 @@ export type CompanyUncheckedUpdateWithoutWeeklyOffConfigsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutNoticesInput = {
@@ -7571,6 +9446,11 @@ export type CompanyCreateWithoutNoticesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutNoticesInput = {
@@ -7624,6 +9504,11 @@ export type CompanyUncheckedCreateWithoutNoticesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutNoticesInput = {
@@ -7692,6 +9577,11 @@ export type CompanyUpdateWithoutNoticesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutNoticesInput = {
@@ -7745,6 +9635,11 @@ export type CompanyUncheckedUpdateWithoutNoticesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutPerformanceReviewsInput = {
@@ -7797,6 +9692,11 @@ export type CompanyCreateWithoutPerformanceReviewsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutPerformanceReviewsInput = {
@@ -7850,6 +9750,11 @@ export type CompanyUncheckedCreateWithoutPerformanceReviewsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutPerformanceReviewsInput = {
@@ -7918,6 +9823,11 @@ export type CompanyUpdateWithoutPerformanceReviewsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutPerformanceReviewsInput = {
@@ -7971,6 +9881,11 @@ export type CompanyUncheckedUpdateWithoutPerformanceReviewsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmployeeRewardsInput = {
@@ -8023,6 +9938,11 @@ export type CompanyCreateWithoutEmployeeRewardsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmployeeRewardsInput = {
@@ -8076,6 +9996,11 @@ export type CompanyUncheckedCreateWithoutEmployeeRewardsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmployeeRewardsInput = {
@@ -8144,6 +10069,11 @@ export type CompanyUpdateWithoutEmployeeRewardsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmployeeRewardsInput = {
@@ -8197,6 +10127,11 @@ export type CompanyUncheckedUpdateWithoutEmployeeRewardsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutGoalsInput = {
@@ -8249,6 +10184,11 @@ export type CompanyCreateWithoutGoalsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutGoalsInput = {
@@ -8302,6 +10242,11 @@ export type CompanyUncheckedCreateWithoutGoalsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutGoalsInput = {
@@ -8370,6 +10315,11 @@ export type CompanyUpdateWithoutGoalsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutGoalsInput = {
@@ -8423,6 +10373,11 @@ export type CompanyUncheckedUpdateWithoutGoalsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmailSettingsInput = {
@@ -8475,6 +10430,11 @@ export type CompanyCreateWithoutEmailSettingsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmailSettingsInput = {
@@ -8528,6 +10488,11 @@ export type CompanyUncheckedCreateWithoutEmailSettingsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmailSettingsInput = {
@@ -8596,6 +10561,11 @@ export type CompanyUpdateWithoutEmailSettingsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmailSettingsInput = {
@@ -8649,6 +10619,11 @@ export type CompanyUncheckedUpdateWithoutEmailSettingsInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmailTemplatesInput = {
@@ -8701,6 +10676,11 @@ export type CompanyCreateWithoutEmailTemplatesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmailTemplatesInput = {
@@ -8754,6 +10734,11 @@ export type CompanyUncheckedCreateWithoutEmailTemplatesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmailTemplatesInput = {
@@ -8822,6 +10807,11 @@ export type CompanyUpdateWithoutEmailTemplatesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmailTemplatesInput = {
@@ -8875,6 +10865,11 @@ export type CompanyUncheckedUpdateWithoutEmailTemplatesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutDocumentTemplatesInput = {
@@ -8927,6 +10922,11 @@ export type CompanyCreateWithoutDocumentTemplatesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutDocumentTemplatesInput = {
@@ -8980,6 +10980,11 @@ export type CompanyUncheckedCreateWithoutDocumentTemplatesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutDocumentTemplatesInput = {
@@ -9048,6 +11053,11 @@ export type CompanyUpdateWithoutDocumentTemplatesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutDocumentTemplatesInput = {
@@ -9101,6 +11111,11 @@ export type CompanyUncheckedUpdateWithoutDocumentTemplatesInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutGeneratedDocumentsInput = {
@@ -9153,6 +11168,11 @@ export type CompanyCreateWithoutGeneratedDocumentsInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutGeneratedDocumentsInput = {
@@ -9206,6 +11226,11 @@ export type CompanyUncheckedCreateWithoutGeneratedDocumentsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutGeneratedDocumentsInput = {
@@ -9274,6 +11299,11 @@ export type CompanyUpdateWithoutGeneratedDocumentsInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutGeneratedDocumentsInput = {
@@ -9327,6 +11357,11 @@ export type CompanyUncheckedUpdateWithoutGeneratedDocumentsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutResignationsInput = {
@@ -9379,6 +11414,11 @@ export type CompanyCreateWithoutResignationsInput = {
   documentTemplates?: Prisma.DocumentTemplateCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutResignationsInput = {
@@ -9432,6 +11472,11 @@ export type CompanyUncheckedCreateWithoutResignationsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedCreateNestedManyWithoutCompanyInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutResignationsInput = {
@@ -9500,6 +11545,11 @@ export type CompanyUpdateWithoutResignationsInput = {
   documentTemplates?: Prisma.DocumentTemplateUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutResignationsInput = {
@@ -9553,6 +11603,11 @@ export type CompanyUncheckedUpdateWithoutResignationsInput = {
   documentTemplates?: Prisma.DocumentTemplateUncheckedUpdateManyWithoutCompanyNestedInput
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutMobileThemeInput = {
@@ -9605,6 +11660,11 @@ export type CompanyCreateWithoutMobileThemeInput = {
   generatedDocuments?: Prisma.GeneratedDocumentCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutMobileThemeInput = {
@@ -9658,6 +11718,11 @@ export type CompanyUncheckedCreateWithoutMobileThemeInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedCreateNestedManyWithoutCompanyInput
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutCompanyInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedCreateNestedManyWithoutCompanyInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutCompanyInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutCompanyInput
+  visits?: Prisma.VisitUncheckedCreateNestedManyWithoutCompanyInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutCompanyInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutMobileThemeInput = {
@@ -9774,6 +11839,11 @@ export type CompanyUpdateWithoutMobileThemeInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutMobileThemeInput = {
@@ -9827,6 +11897,11 @@ export type CompanyUncheckedUpdateWithoutMobileThemeInput = {
   generatedDocuments?: Prisma.GeneratedDocumentUncheckedUpdateManyWithoutCompanyNestedInput
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutCompanyNestedInput
   professionalTaxSlabs?: Prisma.ProfessionalTaxSlabUncheckedUpdateManyWithoutCompanyNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutCompanyNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutCompanyNestedInput
+  visits?: Prisma.VisitUncheckedUpdateManyWithoutCompanyNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutCompanyNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateManyWithoutMobileThemeInput = {
@@ -9887,6 +11962,11 @@ export type CompanyCountOutputType = {
   generatedDocuments: number
   resignations: number
   professionalTaxSlabs: number
+  clients: number
+  appointments: number
+  visits: number
+  meetings: number
+  projects: number
 }
 
 export type CompanyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -9925,6 +12005,11 @@ export type CompanyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   generatedDocuments?: boolean | CompanyCountOutputTypeCountGeneratedDocumentsArgs
   resignations?: boolean | CompanyCountOutputTypeCountResignationsArgs
   professionalTaxSlabs?: boolean | CompanyCountOutputTypeCountProfessionalTaxSlabsArgs
+  clients?: boolean | CompanyCountOutputTypeCountClientsArgs
+  appointments?: boolean | CompanyCountOutputTypeCountAppointmentsArgs
+  visits?: boolean | CompanyCountOutputTypeCountVisitsArgs
+  meetings?: boolean | CompanyCountOutputTypeCountMeetingsArgs
+  projects?: boolean | CompanyCountOutputTypeCountProjectsArgs
 }
 
 /**
@@ -10182,6 +12267,41 @@ export type CompanyCountOutputTypeCountProfessionalTaxSlabsArgs<ExtArgs extends 
   where?: Prisma.ProfessionalTaxSlabWhereInput
 }
 
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountClientsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ClientWhereInput
+}
+
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountAppointmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AppointmentWhereInput
+}
+
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountVisitsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.VisitWhereInput
+}
+
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountMeetingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MeetingWhereInput
+}
+
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountProjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProjectWhereInput
+}
+
 
 export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -10236,6 +12356,11 @@ export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   generatedDocuments?: boolean | Prisma.Company$generatedDocumentsArgs<ExtArgs>
   resignations?: boolean | Prisma.Company$resignationsArgs<ExtArgs>
   professionalTaxSlabs?: boolean | Prisma.Company$professionalTaxSlabsArgs<ExtArgs>
+  clients?: boolean | Prisma.Company$clientsArgs<ExtArgs>
+  appointments?: boolean | Prisma.Company$appointmentsArgs<ExtArgs>
+  visits?: boolean | Prisma.Company$visitsArgs<ExtArgs>
+  meetings?: boolean | Prisma.Company$meetingsArgs<ExtArgs>
+  projects?: boolean | Prisma.Company$projectsArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["company"]>
 
@@ -10334,6 +12459,11 @@ export type CompanyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   generatedDocuments?: boolean | Prisma.Company$generatedDocumentsArgs<ExtArgs>
   resignations?: boolean | Prisma.Company$resignationsArgs<ExtArgs>
   professionalTaxSlabs?: boolean | Prisma.Company$professionalTaxSlabsArgs<ExtArgs>
+  clients?: boolean | Prisma.Company$clientsArgs<ExtArgs>
+  appointments?: boolean | Prisma.Company$appointmentsArgs<ExtArgs>
+  visits?: boolean | Prisma.Company$visitsArgs<ExtArgs>
+  meetings?: boolean | Prisma.Company$meetingsArgs<ExtArgs>
+  projects?: boolean | Prisma.Company$projectsArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CompanyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -10383,6 +12513,11 @@ export type $CompanyPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     generatedDocuments: Prisma.$GeneratedDocumentPayload<ExtArgs>[]
     resignations: Prisma.$ResignationPayload<ExtArgs>[]
     professionalTaxSlabs: Prisma.$ProfessionalTaxSlabPayload<ExtArgs>[]
+    clients: Prisma.$ClientPayload<ExtArgs>[]
+    appointments: Prisma.$AppointmentPayload<ExtArgs>[]
+    visits: Prisma.$VisitPayload<ExtArgs>[]
+    meetings: Prisma.$MeetingPayload<ExtArgs>[]
+    projects: Prisma.$ProjectPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -10831,6 +12966,11 @@ export interface Prisma__CompanyClient<T, Null = never, ExtArgs extends runtime.
   generatedDocuments<T extends Prisma.Company$generatedDocumentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$generatedDocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GeneratedDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   resignations<T extends Prisma.Company$resignationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$resignationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ResignationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   professionalTaxSlabs<T extends Prisma.Company$professionalTaxSlabsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$professionalTaxSlabsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProfessionalTaxSlabPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  clients<T extends Prisma.Company$clientsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$clientsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  appointments<T extends Prisma.Company$appointmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$appointmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  visits<T extends Prisma.Company$visitsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$visitsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VisitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  meetings<T extends Prisma.Company$meetingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$meetingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MeetingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  projects<T extends Prisma.Company$projectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12151,6 +14291,126 @@ export type Company$professionalTaxSlabsArgs<ExtArgs extends runtime.Types.Exten
   take?: number
   skip?: number
   distinct?: Prisma.ProfessionalTaxSlabScalarFieldEnum | Prisma.ProfessionalTaxSlabScalarFieldEnum[]
+}
+
+/**
+ * Company.clients
+ */
+export type Company$clientsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Client
+   */
+  select?: Prisma.ClientSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Client
+   */
+  omit?: Prisma.ClientOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClientInclude<ExtArgs> | null
+  where?: Prisma.ClientWhereInput
+  orderBy?: Prisma.ClientOrderByWithRelationInput | Prisma.ClientOrderByWithRelationInput[]
+  cursor?: Prisma.ClientWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ClientScalarFieldEnum | Prisma.ClientScalarFieldEnum[]
+}
+
+/**
+ * Company.appointments
+ */
+export type Company$appointmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Appointment
+   */
+  select?: Prisma.AppointmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Appointment
+   */
+  omit?: Prisma.AppointmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AppointmentInclude<ExtArgs> | null
+  where?: Prisma.AppointmentWhereInput
+  orderBy?: Prisma.AppointmentOrderByWithRelationInput | Prisma.AppointmentOrderByWithRelationInput[]
+  cursor?: Prisma.AppointmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AppointmentScalarFieldEnum | Prisma.AppointmentScalarFieldEnum[]
+}
+
+/**
+ * Company.visits
+ */
+export type Company$visitsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Visit
+   */
+  select?: Prisma.VisitSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Visit
+   */
+  omit?: Prisma.VisitOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VisitInclude<ExtArgs> | null
+  where?: Prisma.VisitWhereInput
+  orderBy?: Prisma.VisitOrderByWithRelationInput | Prisma.VisitOrderByWithRelationInput[]
+  cursor?: Prisma.VisitWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.VisitScalarFieldEnum | Prisma.VisitScalarFieldEnum[]
+}
+
+/**
+ * Company.meetings
+ */
+export type Company$meetingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Meeting
+   */
+  select?: Prisma.MeetingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Meeting
+   */
+  omit?: Prisma.MeetingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MeetingInclude<ExtArgs> | null
+  where?: Prisma.MeetingWhereInput
+  orderBy?: Prisma.MeetingOrderByWithRelationInput | Prisma.MeetingOrderByWithRelationInput[]
+  cursor?: Prisma.MeetingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MeetingScalarFieldEnum | Prisma.MeetingScalarFieldEnum[]
+}
+
+/**
+ * Company.projects
+ */
+export type Company$projectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Project
+   */
+  select?: Prisma.ProjectSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Project
+   */
+  omit?: Prisma.ProjectOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProjectInclude<ExtArgs> | null
+  where?: Prisma.ProjectWhereInput
+  orderBy?: Prisma.ProjectOrderByWithRelationInput | Prisma.ProjectOrderByWithRelationInput[]
+  cursor?: Prisma.ProjectWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProjectScalarFieldEnum | Prisma.ProjectScalarFieldEnum[]
 }
 
 /**

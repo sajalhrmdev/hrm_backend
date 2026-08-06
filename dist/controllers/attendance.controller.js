@@ -6,15 +6,12 @@ import getStartEndOfDay from "../utils/getStartEndOfDay.js";
 // import { getTodayAttendance, handleAttendance } from "../services/attendance.service.js";
 export const checkIn = async (req, res) => {
     try {
-        const { latitude, longitude, accuracy } = req.body;
+        const { latitude, longitude, accuracy, method } = req.body;
         const employee = req.employee;
         if (!employee) {
             throw new Error("Employee not found");
         }
-        if (!req.file) {
-            throw new Error("Face image required");
-        }
-        const data = await handleAttendance(employee.id, "IN", Number(latitude), Number(longitude), Number(accuracy), req.file.buffer);
+        const data = await handleAttendance(employee.id, "IN", Number(latitude), Number(longitude), Number(accuracy), req.file?.buffer, method || "FACE");
         res.json({
             success: true,
             data,
@@ -29,15 +26,12 @@ export const checkIn = async (req, res) => {
 };
 export const checkOut = async (req, res) => {
     try {
-        const { latitude, longitude, accuracy } = req.body;
+        const { latitude, longitude, accuracy, method } = req.body;
         const employee = req.employee;
         if (!employee) {
             throw new Error("Employee not found");
         }
-        if (!req.file) {
-            throw new Error("Face image required");
-        }
-        const data = await handleAttendance(employee.id, "OUT", Number(latitude), Number(longitude), Number(accuracy), req.file.buffer);
+        const data = await handleAttendance(employee.id, "OUT", Number(latitude), Number(longitude), Number(accuracy), req.file?.buffer, method || "FACE");
         res.json({
             success: true,
             data,
@@ -236,7 +230,6 @@ export const getTodayAttendanceByEmployee = async (req, res) => {
                         time: "asc",
                     },
                 },
-                employee: true,
                 company: true,
                 shift: true,
             },
@@ -263,10 +256,18 @@ export const getTodayAttendanceByEmployee = async (req, res) => {
         // ======================================
         // RESPONSE
         // ======================================
+        let allowedMethods;
+        const emp = await prisma.employee.findUnique({
+            where: { id: Number(req.employee?.id) },
+            include: { workSchedulePolicy: true },
+        });
+        const methods = emp?.workSchedulePolicy?.allowedMethods;
+        allowedMethods = methods?.length ? methods : ["FACE"];
         res.json({
             success: true,
             data: attendance,
             nextAction,
+            allowedMethods,
         });
     }
     catch (err) {

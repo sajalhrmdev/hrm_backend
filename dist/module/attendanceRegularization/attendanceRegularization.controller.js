@@ -1,7 +1,7 @@
 // ======================================================
 // CONTROLLER
 // ======================================================
-import { getAttendanceAdjustments, getCompanyAdjustmentByDay, regularizeAttendance, } from "./attendanceRegularization.service.js";
+import { getAttendanceAdjustments, getAdjustmentsByAuthorized, getCompanyAdjustmentByDay, regularizeAttendance, } from "./attendanceRegularization.service.js";
 // ======================================================
 export const regularizeAttendanceController = async (req, res) => {
     try {
@@ -86,5 +86,32 @@ export const getCompanyAdjustmentByDayController = async (req, res) => {
             success: false,
             message: err.message,
         });
+    }
+};
+// ======================================================
+export const getAdjustmentsByAuthorizedController = async (req, res) => {
+    try {
+        const companyId = req.companyId;
+        if (!companyId) {
+            throw new Error("Company not found");
+        }
+        const userId = Number(req.query.userId);
+        if (!userId) {
+            throw new Error("userId is required");
+        }
+        const date = req.query.date;
+        const page = Number(req.query.page) || 1;
+        const limit = Number(req.query.limit) || 10;
+        const data = await getAdjustmentsByAuthorized({
+            companyId,
+            userId,
+            date,
+            page,
+            limit,
+        });
+        res.json({ success: true, data: data.data, pagination: data.pagination });
+    }
+    catch (err) {
+        res.status(400).json({ success: false, message: err.message });
     }
 };

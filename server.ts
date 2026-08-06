@@ -54,6 +54,10 @@ import importRoutes from "./module/import/import.routes.js";
 import documentTemplateRoutes from "./module/documentTemplate/documentTemplate.routes.js";
 import documentRoutes from "./module/document/document.routes.js";
 import goalRoutes from "./module/goal/goal.routes.js";
+import clientRoutes from "./module/client/client.routes.js";
+import appointmentRoutes from "./module/appointment/appointment.routes.js";
+import visitRoutes from "./module/visit/visit.routes.js";
+import meetingRoutes from "./module/meeting/meeting.routes.js";
 
 import { verifyToken } from "./controllers/middlewares/auth.middleware.js";
 import cookieParser from "cookie-parser";
@@ -340,6 +344,34 @@ app.use(
   companyAccessMiddleware,
   employeeMiddleware,
   goalRoutes,
+);
+
+app.use(
+  "/api/v1/client",
+  authMiddleware,
+  companyAccessMiddleware,
+  clientRoutes,
+);
+
+app.use(
+  "/api/v1/appointment",
+  authMiddleware,
+  companyAccessMiddleware,
+  appointmentRoutes,
+);
+
+app.use(
+  "/api/v1/visit",
+  authMiddleware,
+  companyAccessMiddleware,
+  visitRoutes,
+);
+
+app.use(
+  "/api/v1/meeting",
+  authMiddleware,
+  companyAccessMiddleware,
+  meetingRoutes,
 );
 
 // app.use("/api/v1/salary-structure", salaryStructureRoutes);

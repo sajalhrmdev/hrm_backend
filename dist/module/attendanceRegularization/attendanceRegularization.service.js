@@ -273,6 +273,29 @@ import { AttendanceAdjustmentType, AttendanceStatus, } from "../../generated/pri
 import { prisma } from "../../lib/prisma.js";
 import { attendanceStatusFn, overTimeCalculation4Nonshift, overTimeCalculation4Shift, } from "../../services/handleAttendance/attendance.helper.js";
 import getStartEndOfDay from "../../utils/getStartEndOfDay.js";
+const parseAsIST = (dateStr) => {
+    if (/[+-]\d{2}:\d{2}$/.test(dateStr) || dateStr.endsWith("Z")) {
+        return new Date(dateStr);
+    }
+    const naive = new Date(dateStr);
+    const dtf = new Intl.DateTimeFormat("en-CA", {
+        timeZone: "Asia/Kolkata",
+        hour12: false,
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+    });
+    const parts = dtf.formatToParts(naive);
+    const m = {};
+    for (const p of parts)
+        if (p.type !== "literal")
+            m[p.type] = p.value;
+    const localUTC = Date.UTC(+m.year, +m.month - 1, +m.day, +m.hour, +m.minute, +m.second);
+    return new Date(naive.getTime() - (localUTC - naive.getTime()));
+};
 // ======================================================
 export const regularizeAttendance = async (input) => {
     const { attendanceId, companyId, adjustedBy, check_in_time, check_out_time, status, lateGraceMinutes = 0, workGraceMinutes = 0, reason, remarks, } = input;
@@ -305,11 +328,11 @@ export const regularizeAttendance = async (input) => {
     // UPDATED TIME
     // ======================================================
     const updatedCheckIn = check_in_time
-        ? new Date(check_in_time)
+        ? parseAsIST(check_in_time)
         : attendance.check_in_time;
     // ======================================================
     const updatedCheckOut = check_out_time
-        ? new Date(check_out_time)
+        ? parseAsIST(check_out_time)
         : attendance.check_out_time;
     // ======================================================
     // TOTAL WORK MINUTES
@@ -504,4 +527,53 @@ export const getAttendanceAdjustments = async (input) => {
         },
     });
     return adjustments;
+};
+export const getAdjustmentsByAuthorized = async (input) => {
+    const { companyId, userId, date, page = 1, limit = 10 } = input;
+    const skip = (page - 1) * limit;
+    const where = {
+        companyId,
+        adjustedBy: userId,
+    };
+    if (date) {
+        const { start, end } = getStartEndOfDay("Asia/Kolkata", new Date(date));
+        where.createdAt = { gte: start, lte: end };
+    }
+    const [adjustments, total] = await Promise.all([
+        prisma.attendanceAdjustment.findMany({
+            where,
+            include: {
+                employee: {
+                    select: { id: true, name: true, employeeCode: true },
+                },
+                attendanceAdjustedBy: {
+                    select: { id: true, name: true, email: true },
+                },
+                attendance: {
+                    select: {
+                        id: true,
+                        date: true,
+                        check_in_time: true,
+                        check_out_time: true,
+                        status: true,
+                        total_work_minutes: true,
+                        late_minutes: true,
+                    },
+                },
+            },
+            orderBy: { createdAt: "desc" },
+            skip,
+            take: limit,
+        }),
+        prisma.attendanceAdjustment.count({ where }),
+    ]);
+    return {
+        data: adjustments,
+        pagination: {
+            page,
+            limit,
+            total,
+            totalPages: Math.ceil(total / limit),
+        },
+    };
 };

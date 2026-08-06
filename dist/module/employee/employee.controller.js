@@ -1,6 +1,3 @@
-// ============================================
-// controllers/employee.controller.ts
-// ============================================
 import { assignShiftService, bulkCreateEmployeesService, createEmployeeService, deleteEmployeeService, getAllEmployeesService, getEmployeeByIdService, updateEmployeeService, } from "./employee.service.js";
 // ============================================
 // CREATE
@@ -58,7 +55,14 @@ export const getAllEmployees = async (req, res) => {
         const page = Number(req.query.page) || 1;
         const limit = Number(req.query.limit) || 10;
         const search = String(req.query.search || "");
-        const data = await getAllEmployeesService(companyId, page, limit, search);
+        const departmentId = req.query.departmentId
+            ? Number(req.query.departmentId)
+            : undefined;
+        const policyId = req.query.policyId
+            ? Number(req.query.policyId)
+            : undefined;
+        const unassigned = req.query.unassigned === "true";
+        const data = await getAllEmployeesService(companyId, page, limit, search, departmentId, policyId, unassigned);
         return res.json({
             success: true,
             data,

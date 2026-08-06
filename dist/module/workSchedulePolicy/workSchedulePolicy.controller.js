@@ -1,4 +1,4 @@
-import { createWorkSchedulePolicy, updateWorkSchedulePolicy, getWorkSchedulePolicies, getSingleWorkSchedulePolicy, deleteWorkSchedulePolicy, assignWorkSchedulePolicy, } from "./workSchedulePolicy.service.js";
+import { createWorkSchedulePolicy, updateWorkSchedulePolicy, getWorkSchedulePolicies, getSingleWorkSchedulePolicy, deleteWorkSchedulePolicy, assignWorkSchedulePolicy, unassignWorkSchedulePolicy, } from "./workSchedulePolicy.service.js";
 // ======================================================
 // CREATE
 // ======================================================
@@ -8,7 +8,7 @@ export const createWorkSchedulePolicyController = async (req, res) => {
         if (!companyId) {
             throw new Error("Company not found");
         }
-        const { title, description, attendanceType, attendanceFrom, requiredWorkMinutes, halfDayMinutes, enableOvertime, overtimeAfterMinutes, shiftId, weeklyOffPattern, } = req.body;
+        const { title, description, attendanceType, attendanceFrom, requiredWorkMinutes, halfDayMinutes, enableOvertime, overtimeAfterMinutes, shiftId, weeklyOffPattern, allowedMethods, } = req.body;
         const data = await createWorkSchedulePolicy({
             companyId,
             title,
@@ -25,6 +25,7 @@ export const createWorkSchedulePolicyController = async (req, res) => {
                 : undefined,
             shiftId: shiftId ? Number(shiftId) : undefined,
             weeklyOffPattern,
+            allowedMethods: allowedMethods || ["FACE"],
         });
         res.json({
             success: true,
@@ -94,7 +95,7 @@ export const updateWorkSchedulePolicyController = async (req, res) => {
         if (!companyId) {
             throw new Error("Company not found");
         }
-        const { title, description, attendanceType, attendanceFrom, requiredWorkMinutes, halfDayMinutes, enableOvertime, overtimeAfterMinutes, shiftId, weeklyOffPattern, isActive, } = req.body;
+        const { title, description, attendanceType, attendanceFrom, requiredWorkMinutes, halfDayMinutes, enableOvertime, overtimeAfterMinutes, shiftId, weeklyOffPattern, isActive, allowedMethods, } = req.body;
         const data = await updateWorkSchedulePolicy({
             id,
             companyId,
@@ -113,6 +114,7 @@ export const updateWorkSchedulePolicyController = async (req, res) => {
             shiftId: shiftId ? Number(shiftId) : undefined,
             weeklyOffPattern,
             isActive,
+            allowedMethods,
         });
         res.json({
             success: true,
@@ -159,8 +161,8 @@ export const assignWorkSchedulePolicyController = async (req, res) => {
         if (!companyId) {
             throw new Error("Company not found");
         }
-        const { employeeIds, workSchedulePolicyId, } = req.body;
-        if (!Array.isArray(employeeIds) || !employeeIds.length) {
+        const { employeeIds, workSchedulePolicyId, assignAll, } = req.body;
+        if (!assignAll && (!Array.isArray(employeeIds) || !employeeIds.length)) {
             throw new Error("Employee list required");
         }
         if (!workSchedulePolicyId) {
@@ -168,12 +170,43 @@ export const assignWorkSchedulePolicyController = async (req, res) => {
         }
         const data = await assignWorkSchedulePolicy({
             companyId,
-            employeeIds,
+            employeeIds: Array.isArray(employeeIds) ? employeeIds : [],
             workSchedulePolicyId: Number(workSchedulePolicyId),
+            assignAll: !!assignAll,
         });
         res.json({
             success: true,
             message: "Policy assigned successfully",
+            data,
+        });
+    }
+    catch (err) {
+        res.status(400).json({
+            success: false,
+            message: err.message,
+        });
+    }
+};
+// ======================================================
+// UNASSIGN POLICY
+// ======================================================
+export const unassignWorkSchedulePolicyController = async (req, res) => {
+    try {
+        const companyId = req.companyId;
+        if (!companyId) {
+            throw new Error("Company not found");
+        }
+        const { employeeIds } = req.body;
+        if (!Array.isArray(employeeIds) || !employeeIds.length) {
+            throw new Error("Employee list required");
+        }
+        const data = await unassignWorkSchedulePolicy({
+            companyId,
+            employeeIds,
+        });
+        res.json({
+            success: true,
+            message: "Policy removed successfully",
             data,
         });
     }

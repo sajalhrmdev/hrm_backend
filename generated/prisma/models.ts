@@ -9,6 +9,13 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/Company.js'
+export type * from './models/Client.js'
+export type * from './models/Appointment.js'
+export type * from './models/Visit.js'
+export type * from './models/Meeting.js'
+export type * from './models/MeetingAttendee.js'
+export type * from './models/Project.js'
+export type * from './models/ProjectMember.js'
 export type * from './models/OfficeLocation.js'
 export type * from './models/Department.js'
 export type * from './models/Designation.js'

@@ -47,11 +47,13 @@ const verifyFace = async (employeeId, imageBuffer) => {
     }
     return true;
 };
-export const handleAttendance = async (employeeId, type, latitude, longitude, accuracy, imageBuffer) => {
-    if (!imageBuffer) {
-        throw new Error("Face image required");
+export const handleAttendance = async (employeeId, type, latitude, longitude, accuracy, imageBuffer, method = "FACE") => {
+    if (method === "FACE") {
+        if (!imageBuffer) {
+            throw new Error("Face image required");
+        }
+        await verifyFace(employeeId, imageBuffer);
     }
-    await verifyFace(employeeId, imageBuffer);
     const now = new Date();
     const timezone = "Asia/Kolkata";
     const { start, end } = getStartEndOfDay(timezone);
@@ -68,6 +70,12 @@ export const handleAttendance = async (employeeId, type, latitude, longitude, ac
     if (!employee)
         throw new Error("Employee not found");
     const workSchedulePolicy = employee?.workSchedulePolicy;
+    const allowedMethods = workSchedulePolicy?.allowedMethods?.length
+        ? workSchedulePolicy.allowedMethods
+        : ["FACE"];
+    if (!allowedMethods.includes(method)) {
+        throw new Error(`Attendance method "${method}" is not allowed`);
+    }
     const attendanceType = workSchedulePolicy?.attendanceType;
     const isFlexible = attendanceType === "FLEXIBLE";
     const shift = workSchedulePolicy?.shift;
@@ -168,6 +176,7 @@ export const handleAttendance = async (employeeId, type, latitude, longitude, ac
                 where: {
                     employeeId,
                     check_out_time: null,
+                    date: attendanceDate,
                 },
                 orderBy: {
                     createdAt: "desc",
@@ -197,6 +206,7 @@ export const handleAttendance = async (employeeId, type, latitude, longitude, ac
             time: now,
             latitude,
             longitude,
+            method: (method === "NORMAL" ? "NORMAL" : "FACE"),
             shiftName: isFlexible ? "Flexible Shift" : shift?.title,
             shiftStartTime: isFlexible ? null : shift?.startTime,
             shiftEndTime: isFlexible ? null : shift?.endTime,
@@ -213,7 +223,35 @@ export const handleAttendance = async (employeeId, type, latitude, longitude, ac
         else {
             overtime = overTimeCalculation4Shift(totalMinutes, shift, overtime).overtime;
         }
-        const { status } = attendanceStatusFn(totalMinutes, shift, workSchedulePolicy);
+        console.log("[OVERTIME DEBUG]", JSON.stringify({
+            employeeId,
+            attendanceType: workSchedulePolicy?.attendanceType,
+            enableOvertime: workSchedulePolicy?.enableOvertime,
+            requiredWorkMinutes: workSchedulePolicy?.requiredWorkMinutes,
+            overtimeAfterMinutes: workSchedulePolicy?.overtimeAfterMinutes,
+            totalMinutes,
+            overtime,
+            attendanceId: attendance?.id,
+        }));
+        // Check if employee has approved HALF leave for this day
+        const halfLeave = await prisma.leaveApplication.findFirst({
+            where: {
+                employeeId,
+                companyId,
+                status: "APPROVED",
+                leaveMode: "HALF",
+                fromDate: { lte: attendanceDate },
+                toDate: { gte: attendanceDate },
+            },
+        });
+        let status;
+        if (halfLeave) {
+            status = AttendanceStatus.HALF_DAY_LEAVE;
+        }
+        else {
+            const result = attendanceStatusFn(totalMinutes, shift, workSchedulePolicy);
+            status = result.status;
+        }
         await prisma.attendance.update({
             where: {
                 id: attendance.id,
@@ -250,11 +288,7 @@ export const handleAttendance = async (employeeId, type, latitude, longitude, ac
 export const getUserlessAttendanceService = async (companyId, date) => {
     const targetDate = date ? new Date(date) : new Date();
     const { start, end } = getStartEndOfDay("Asia/Kolkata", targetDate);
-    // const start = new Date(targetDate);
-    // start.setHours(0, 0, 0, 0);
-    // const end = new Date(targetDate);
-    // end.setHours(23, 59, 59, 999);
-    return prisma.employee.findMany({
+    const employees = await prisma.employee.findMany({
         where: {
             companyId,
             userId: null,
@@ -279,6 +313,15 @@ export const getUserlessAttendanceService = async (companyId, date) => {
             employeeCode: "asc",
         },
     });
+    const present = employees.filter((employee) => employee.attendances?.[0]?.status === "PRESENT").length;
+    return {
+        employees,
+        summary: {
+            total: employees.length,
+            present,
+            absent: employees.length - present,
+        },
+    };
 };
 export const adminMarkAttendanceService = async (companyId, employeeIds, date) => {
     const { start } = getStartEndOfDay("Asia/Kolkata", date);
@@ -294,15 +337,8 @@ export const adminMarkAttendanceService = async (companyId, employeeIds, date) =
     if (!employees.length) {
         throw new Error("Employees not found");
     }
-    await prisma.$transaction(employees.map((employee) => prisma.attendance.upsert({
-        where: {
-            employeeId_date: {
-                employeeId: employee.id,
-                date: start,
-            },
-        },
-        update: {},
-        create: {
+    const result = await prisma.attendance.createMany({
+        data: employees.map((employee) => ({
             employeeId: employee.id,
             companyId: employee.companyId,
             date: start,
@@ -310,10 +346,12 @@ export const adminMarkAttendanceService = async (companyId, employeeIds, date) =
             total_work_minutes: 0,
             overtime_minutes: 0,
             late_minutes: 0,
-        },
-    })));
+        })),
+        skipDuplicates: true,
+    });
     return {
-        totalMarked: employees.length,
+        totalMarked: result.count,
+        skipped: employees.length - result.count,
     };
 };
 export const getTodayAttendance = async (employeeId) => {

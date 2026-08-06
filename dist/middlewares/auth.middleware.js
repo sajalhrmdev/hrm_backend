@@ -1,7 +1,6 @@
 import { verifyToken } from "../utils/jwt.js";
 export const authMiddleware = (req, res, next) => {
     try {
-        // 🔥 Authorization header থেকে token নাও
         const authHeader = req.headers.authorization;
         if (!authHeader || !authHeader.startsWith("Bearer ")) {
             return res.status(401).json({ message: "No token provided" });

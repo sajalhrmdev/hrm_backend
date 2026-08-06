@@ -54,11 +54,33 @@ export const updateEmployeeSalaryComponentController = async (req, res) => {
             throw new Error("Company not found");
         }
         const id = Number(req.params.id);
-        const { amount } = req.body;
+        const { amount, calculationType, baseType, baseComponentId, baseComponentIds, percentageValue, capAmount, floorAmount, baseCapAmount, } = req.body;
+        const toNumberOrNull = (v) => v === "" || v === null || v === undefined ? null : Number(v);
+        const toNumberArray = (v) => Array.isArray(v) ? v.map((x) => Number(x)).filter((n) => !Number.isNaN(n)) : undefined;
         const data = await updateEmployeeSalaryComponent({
             companyId,
             id,
-            amount,
+            amount: toNumberOrNull(amount),
+            calculationType: calculationType || undefined,
+            baseType: baseType === undefined ? undefined : baseType || null,
+            baseComponentId: baseComponentId === undefined
+                ? undefined
+                : toNumberOrNull(baseComponentId),
+            baseComponentIds: baseComponentIds === undefined
+                ? undefined
+                : toNumberArray(baseComponentIds),
+            percentageValue: percentageValue === undefined
+                ? undefined
+                : toNumberOrNull(percentageValue),
+            capAmount: capAmount === undefined
+                ? undefined
+                : toNumberOrNull(capAmount),
+            floorAmount: floorAmount === undefined
+                ? undefined
+                : toNumberOrNull(floorAmount),
+            baseCapAmount: baseCapAmount === undefined
+                ? undefined
+                : toNumberOrNull(baseCapAmount),
         });
         res.json({
             success: true,

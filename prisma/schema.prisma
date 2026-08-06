@@ -73,11 +73,189 @@ model Company{
   generatedDocuments GeneratedDocument[]
   resignations Resignation[]
   professionalTaxSlabs ProfessionalTaxSlab[]
+  clients Client[]
+  appointments Appointment[]
+  visits Visit[]
+  meetings Meeting[]
+  projects Project[]
 
 
 
 
+}
+enum ClientStatus {
+  ACTIVE
+  INACTIVE
+}
+model Client {
+  id            Int          @id @default(autoincrement())
+  companyId     Int
+  name          String
+  companyName   String?
+  email         String?
+  phone         String?
+  address       String?
+  contactPerson String?
+  status        ClientStatus @default(ACTIVE)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  deletedAt     DateTime?
+  company       Company      @relation(fields: [companyId], references: [id])
+  visits        Visit[]
+  projects      Project[]
 
+  @@index([companyId])
+  @@map("clients")
+}
+enum AppointmentStatus {
+  SCHEDULED
+  COMPLETED
+  CANCELLED
+}
+model Appointment {
+  id          Int               @id @default(autoincrement())
+  companyId   Int
+  title       String
+  description String
+  location    String
+  date        DateTime
+  employeeId  Int?
+  employee    Employee?         @relation(fields: [employeeId], references: [id])
+  startTime   String
+  endTime     String
+  status      AppointmentStatus @default(SCHEDULED)
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  deletedAt   DateTime?
+  company     Company           @relation(fields: [companyId], references: [id])
+
+  @@index([companyId])
+  @@index([employeeId])
+  @@map("appointments")
+}
+enum VisitStatus {
+  SCHEDULED
+  COMPLETED
+  CANCELLED
+}
+model Visit {
+  id          Int         @id @default(autoincrement())
+  companyId   Int
+  title       String
+  description String
+  location    String
+  date        DateTime
+  employeeId  Int
+  employee    Employee    @relation(fields: [employeeId], references: [id])
+  clientId    Int?
+  client      Client?     @relation(fields: [clientId], references: [id])
+  startTime   String
+  endTime     String
+  status      VisitStatus @default(SCHEDULED)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  deletedAt   DateTime?
+  company     Company     @relation(fields: [companyId], references: [id])
+
+  @@index([companyId])
+  @@index([employeeId])
+  @@index([clientId])
+  @@map("visits")
+}
+enum MeetingStatus {
+  SCHEDULED
+  COMPLETED
+  CANCELLED
+}
+enum MeetingType {
+  INTERNAL
+  EXTERNAL
+  VIRTUAL
+}
+model Meeting {
+  id          Int           @id @default(autoincrement())
+  companyId   Int
+  title       String
+  description String
+  location    String
+  meetingType MeetingType   @default(INTERNAL)
+  date        DateTime
+  organizerId Int
+  organizer   Employee      @relation("MeetingOrganizer", fields: [organizerId], references: [id])
+  startTime   String
+  endTime     String
+  status      MeetingStatus @default(SCHEDULED)
+  attendees   MeetingAttendee[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  deletedAt   DateTime?
+  company     Company       @relation(fields: [companyId], references: [id])
+
+  @@index([companyId])
+  @@index([organizerId])
+  @@map("meetings")
+}
+model MeetingAttendee {
+  id         Int      @id @default(autoincrement())
+  meetingId  Int
+  meeting    Meeting  @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  employeeId Int
+  employee   Employee @relation(fields: [employeeId], references: [id])
+  createdAt  DateTime @default(now())
+
+  @@unique([meetingId, employeeId])
+  @@index([meetingId])
+  @@index([employeeId])
+  @@map("meeting_attendees")
+}
+enum ProjectStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  ON_HOLD
+  COMPLETED
+  CANCELLED
+}
+enum ProjectPriority {
+  LOW
+  MEDIUM
+  HIGH
+}
+model Project {
+  id          Int             @id @default(autoincrement())
+  companyId   Int
+  name        String
+  description String
+  clientId    Int?
+  client      Client?         @relation(fields: [clientId], references: [id])
+  managerId   Int
+  manager     Employee        @relation("ProjectManager", fields: [managerId], references: [id])
+  startDate   DateTime
+  endDate     DateTime?
+  status      ProjectStatus   @default(NOT_STARTED)
+  priority    ProjectPriority @default(MEDIUM)
+  teamMembers ProjectMember[]
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  deletedAt   DateTime?
+  company     Company         @relation(fields: [companyId], references: [id])
+
+  @@index([companyId])
+  @@index([managerId])
+  @@index([clientId])
+  @@map("projects")
+}
+model ProjectMember {
+  id         Int      @id @default(autoincrement())
+  projectId  Int
+  project    Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  employeeId Int
+  employee   Employee @relation(fields: [employeeId], references: [id])
+  createdAt  DateTime @default(now())
+
+  @@unique([projectId, employeeId])
+  @@index([projectId])
+  @@index([employeeId])
+  @@map("project_members")
 }
 enum OfficeLocationStatus {
   ACTIVE
@@ -306,6 +484,12 @@ workSchedulePolicy WorkSchedulePolicy? @relation( fields:[workSchedulePolicyId],
     resignations Resignation[]
     approvedResignations Resignation[] @relation("ApprovedResignations")
     generatedDocuments GeneratedDocument[]
+    appointments Appointment[]
+    visits Visit[]
+    meetingsOrganized Meeting[] @relation("MeetingOrganizer")
+    meetingAttendees MeetingAttendee[]
+    projectsManaged Project[] @relation("ProjectManager")
+    projectMemberships ProjectMember[]
   
 @@index([companyId])
  

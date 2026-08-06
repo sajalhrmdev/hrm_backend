@@ -139,6 +139,9 @@ export const getMyCompanyService = async (companyId) => {
         where: {
             id: companyId,
         },
+        include: {
+            mobileTheme: true,
+        },
     });
     if (!company) {
         throw new Error("Company not found");
@@ -171,6 +174,39 @@ export const updateBrandingService = async (companyId, data) => {
             ...(data.website !== undefined && { website: data.website }),
         },
     });
+};
+// ============================================
+// MOBILE THEME - GET ALL (for company admin)
+// ============================================
+export const getAllMobileThemesService = async () => {
+    return await prisma.mobileTheme.findMany({ orderBy: { name: "asc" } });
+};
+// ============================================
+// MOBILE THEME - UPDATE COMPANY SELECTION
+// ============================================
+export const updateCompanyMobileThemeService = async (companyId, themeId) => {
+    const theme = await prisma.mobileTheme.findUnique({ where: { id: themeId } });
+    if (!theme)
+        throw new Error("Mobile theme not found");
+    return await prisma.company.update({
+        where: { id: companyId },
+        data: { mobileThemeId: themeId },
+        include: { mobileTheme: true },
+    });
+};
+// ============================================
+// MOBILE THEME - GET BY COMPANY SLUG (public)
+// ============================================
+export const getCompanyMobileThemeBySlugService = async (slug) => {
+    const company = await prisma.company.findUnique({
+        where: { slug },
+        include: { mobileTheme: true },
+    });
+    if (!company)
+        throw new Error("Company not found");
+    if (!company.mobileTheme)
+        throw new Error("No mobile theme configured");
+    return company.mobileTheme;
 };
 // ============================================
 // UPDATE COMPANY
