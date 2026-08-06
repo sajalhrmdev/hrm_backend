@@ -38,6 +38,7 @@ export type PayRollAvgAggregateOutputType = {
   gross_salary: number | null
   overtime_amount: number | null
   total_deduction: number | null
+  employer_contribution: number | null
   net_salary: number | null
 }
 
@@ -53,6 +54,7 @@ export type PayRollSumAggregateOutputType = {
   gross_salary: number | null
   overtime_amount: number | null
   total_deduction: number | null
+  employer_contribution: number | null
   net_salary: number | null
 }
 
@@ -68,6 +70,7 @@ export type PayRollMinAggregateOutputType = {
   gross_salary: number | null
   overtime_amount: number | null
   total_deduction: number | null
+  employer_contribution: number | null
   net_salary: number | null
   status: $Enums.PayrollStatus | null
   createdAt: Date | null
@@ -85,6 +88,7 @@ export type PayRollMaxAggregateOutputType = {
   gross_salary: number | null
   overtime_amount: number | null
   total_deduction: number | null
+  employer_contribution: number | null
   net_salary: number | null
   status: $Enums.PayrollStatus | null
   createdAt: Date | null
@@ -102,6 +106,7 @@ export type PayRollCountAggregateOutputType = {
   gross_salary: number
   overtime_amount: number
   total_deduction: number
+  employer_contribution: number
   net_salary: number
   status: number
   createdAt: number
@@ -121,6 +126,7 @@ export type PayRollAvgAggregateInputType = {
   gross_salary?: true
   overtime_amount?: true
   total_deduction?: true
+  employer_contribution?: true
   net_salary?: true
 }
 
@@ -136,6 +142,7 @@ export type PayRollSumAggregateInputType = {
   gross_salary?: true
   overtime_amount?: true
   total_deduction?: true
+  employer_contribution?: true
   net_salary?: true
 }
 
@@ -151,6 +158,7 @@ export type PayRollMinAggregateInputType = {
   gross_salary?: true
   overtime_amount?: true
   total_deduction?: true
+  employer_contribution?: true
   net_salary?: true
   status?: true
   createdAt?: true
@@ -168,6 +176,7 @@ export type PayRollMaxAggregateInputType = {
   gross_salary?: true
   overtime_amount?: true
   total_deduction?: true
+  employer_contribution?: true
   net_salary?: true
   status?: true
   createdAt?: true
@@ -185,6 +194,7 @@ export type PayRollCountAggregateInputType = {
   gross_salary?: true
   overtime_amount?: true
   total_deduction?: true
+  employer_contribution?: true
   net_salary?: true
   status?: true
   createdAt?: true
@@ -289,6 +299,7 @@ export type PayRollGroupByOutputType = {
   gross_salary: number
   overtime_amount: number
   total_deduction: number
+  employer_contribution: number
   net_salary: number
   status: $Enums.PayrollStatus
   createdAt: Date
@@ -329,6 +340,7 @@ export type PayRollWhereInput = {
   gross_salary?: Prisma.FloatFilter<"PayRoll"> | number
   overtime_amount?: Prisma.FloatFilter<"PayRoll"> | number
   total_deduction?: Prisma.FloatFilter<"PayRoll"> | number
+  employer_contribution?: Prisma.FloatFilter<"PayRoll"> | number
   net_salary?: Prisma.FloatFilter<"PayRoll"> | number
   status?: Prisma.EnumPayrollStatusFilter<"PayRoll"> | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFilter<"PayRoll"> | Date | string
@@ -349,6 +361,7 @@ export type PayRollOrderByWithRelationInput = {
   gross_salary?: Prisma.SortOrder
   overtime_amount?: Prisma.SortOrder
   total_deduction?: Prisma.SortOrder
+  employer_contribution?: Prisma.SortOrder
   net_salary?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -373,6 +386,7 @@ export type PayRollWhereUniqueInput = Prisma.AtLeast<{
   gross_salary?: Prisma.FloatFilter<"PayRoll"> | number
   overtime_amount?: Prisma.FloatFilter<"PayRoll"> | number
   total_deduction?: Prisma.FloatFilter<"PayRoll"> | number
+  employer_contribution?: Prisma.FloatFilter<"PayRoll"> | number
   net_salary?: Prisma.FloatFilter<"PayRoll"> | number
   status?: Prisma.EnumPayrollStatusFilter<"PayRoll"> | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFilter<"PayRoll"> | Date | string
@@ -393,6 +407,7 @@ export type PayRollOrderByWithAggregationInput = {
   gross_salary?: Prisma.SortOrder
   overtime_amount?: Prisma.SortOrder
   total_deduction?: Prisma.SortOrder
+  employer_contribution?: Prisma.SortOrder
   net_salary?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -418,6 +433,7 @@ export type PayRollScalarWhereWithAggregatesInput = {
   gross_salary?: Prisma.FloatWithAggregatesFilter<"PayRoll"> | number
   overtime_amount?: Prisma.FloatWithAggregatesFilter<"PayRoll"> | number
   total_deduction?: Prisma.FloatWithAggregatesFilter<"PayRoll"> | number
+  employer_contribution?: Prisma.FloatWithAggregatesFilter<"PayRoll"> | number
   net_salary?: Prisma.FloatWithAggregatesFilter<"PayRoll"> | number
   status?: Prisma.EnumPayrollStatusWithAggregatesFilter<"PayRoll"> | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"PayRoll"> | Date | string
@@ -432,6 +448,7 @@ export type PayRollCreateInput = {
   gross_salary: number
   overtime_amount?: number
   total_deduction: number
+  employer_contribution?: number
   net_salary: number
   status?: $Enums.PayrollStatus
   createdAt?: Date | string
@@ -452,6 +469,7 @@ export type PayRollUncheckedCreateInput = {
   gross_salary: number
   overtime_amount?: number
   total_deduction: number
+  employer_contribution?: number
   net_salary: number
   status?: $Enums.PayrollStatus
   createdAt?: Date | string
@@ -467,6 +485,7 @@ export type PayRollUpdateInput = {
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  employer_contribution?: Prisma.FloatFieldUpdateOperationsInput | number
   net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -487,6 +506,7 @@ export type PayRollUncheckedUpdateInput = {
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  employer_contribution?: Prisma.FloatFieldUpdateOperationsInput | number
   net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -505,6 +525,7 @@ export type PayRollCreateManyInput = {
   gross_salary: number
   overtime_amount?: number
   total_deduction: number
+  employer_contribution?: number
   net_salary: number
   status?: $Enums.PayrollStatus
   createdAt?: Date | string
@@ -519,6 +540,7 @@ export type PayRollUpdateManyMutationInput = {
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  employer_contribution?: Prisma.FloatFieldUpdateOperationsInput | number
   net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -536,6 +558,7 @@ export type PayRollUncheckedUpdateManyInput = {
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  employer_contribution?: Prisma.FloatFieldUpdateOperationsInput | number
   net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -568,6 +591,7 @@ export type PayRollCountOrderByAggregateInput = {
   gross_salary?: Prisma.SortOrder
   overtime_amount?: Prisma.SortOrder
   total_deduction?: Prisma.SortOrder
+  employer_contribution?: Prisma.SortOrder
   net_salary?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -585,6 +609,7 @@ export type PayRollAvgOrderByAggregateInput = {
   gross_salary?: Prisma.SortOrder
   overtime_amount?: Prisma.SortOrder
   total_deduction?: Prisma.SortOrder
+  employer_contribution?: Prisma.SortOrder
   net_salary?: Prisma.SortOrder
 }
 
@@ -600,6 +625,7 @@ export type PayRollMaxOrderByAggregateInput = {
   gross_salary?: Prisma.SortOrder
   overtime_amount?: Prisma.SortOrder
   total_deduction?: Prisma.SortOrder
+  employer_contribution?: Prisma.SortOrder
   net_salary?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -617,6 +643,7 @@ export type PayRollMinOrderByAggregateInput = {
   gross_salary?: Prisma.SortOrder
   overtime_amount?: Prisma.SortOrder
   total_deduction?: Prisma.SortOrder
+  employer_contribution?: Prisma.SortOrder
   net_salary?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -634,6 +661,7 @@ export type PayRollSumOrderByAggregateInput = {
   gross_salary?: Prisma.SortOrder
   overtime_amount?: Prisma.SortOrder
   total_deduction?: Prisma.SortOrder
+  employer_contribution?: Prisma.SortOrder
   net_salary?: Prisma.SortOrder
 }
 
@@ -753,6 +781,7 @@ export type PayRollCreateWithoutEmployeeInput = {
   gross_salary: number
   overtime_amount?: number
   total_deduction: number
+  employer_contribution?: number
   net_salary: number
   status?: $Enums.PayrollStatus
   createdAt?: Date | string
@@ -771,6 +800,7 @@ export type PayRollUncheckedCreateWithoutEmployeeInput = {
   gross_salary: number
   overtime_amount?: number
   total_deduction: number
+  employer_contribution?: number
   net_salary: number
   status?: $Enums.PayrollStatus
   createdAt?: Date | string
@@ -818,6 +848,7 @@ export type PayRollScalarWhereInput = {
   gross_salary?: Prisma.FloatFilter<"PayRoll"> | number
   overtime_amount?: Prisma.FloatFilter<"PayRoll"> | number
   total_deduction?: Prisma.FloatFilter<"PayRoll"> | number
+  employer_contribution?: Prisma.FloatFilter<"PayRoll"> | number
   net_salary?: Prisma.FloatFilter<"PayRoll"> | number
   status?: Prisma.EnumPayrollStatusFilter<"PayRoll"> | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFilter<"PayRoll"> | Date | string
@@ -832,6 +863,7 @@ export type PayRollCreateWithoutPayrollSnapComponentsInput = {
   gross_salary: number
   overtime_amount?: number
   total_deduction: number
+  employer_contribution?: number
   net_salary: number
   status?: $Enums.PayrollStatus
   createdAt?: Date | string
@@ -851,6 +883,7 @@ export type PayRollUncheckedCreateWithoutPayrollSnapComponentsInput = {
   gross_salary: number
   overtime_amount?: number
   total_deduction: number
+  employer_contribution?: number
   net_salary: number
   status?: $Enums.PayrollStatus
   createdAt?: Date | string
@@ -881,6 +914,7 @@ export type PayRollUpdateWithoutPayrollSnapComponentsInput = {
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  employer_contribution?: Prisma.FloatFieldUpdateOperationsInput | number
   net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -900,6 +934,7 @@ export type PayRollUncheckedUpdateWithoutPayrollSnapComponentsInput = {
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  employer_contribution?: Prisma.FloatFieldUpdateOperationsInput | number
   net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -914,6 +949,7 @@ export type PayRollCreateWithoutPayrollRunInput = {
   gross_salary: number
   overtime_amount?: number
   total_deduction: number
+  employer_contribution?: number
   net_salary: number
   status?: $Enums.PayrollStatus
   createdAt?: Date | string
@@ -932,6 +968,7 @@ export type PayRollUncheckedCreateWithoutPayrollRunInput = {
   gross_salary: number
   overtime_amount?: number
   total_deduction: number
+  employer_contribution?: number
   net_salary: number
   status?: $Enums.PayrollStatus
   createdAt?: Date | string
@@ -975,6 +1012,7 @@ export type PayRollCreateManyEmployeeInput = {
   gross_salary: number
   overtime_amount?: number
   total_deduction: number
+  employer_contribution?: number
   net_salary: number
   status?: $Enums.PayrollStatus
   createdAt?: Date | string
@@ -989,6 +1027,7 @@ export type PayRollUpdateWithoutEmployeeInput = {
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  employer_contribution?: Prisma.FloatFieldUpdateOperationsInput | number
   net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1007,6 +1046,7 @@ export type PayRollUncheckedUpdateWithoutEmployeeInput = {
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  employer_contribution?: Prisma.FloatFieldUpdateOperationsInput | number
   net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1024,6 +1064,7 @@ export type PayRollUncheckedUpdateManyWithoutEmployeeInput = {
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  employer_contribution?: Prisma.FloatFieldUpdateOperationsInput | number
   net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1040,6 +1081,7 @@ export type PayRollCreateManyPayrollRunInput = {
   gross_salary: number
   overtime_amount?: number
   total_deduction: number
+  employer_contribution?: number
   net_salary: number
   status?: $Enums.PayrollStatus
   createdAt?: Date | string
@@ -1054,6 +1096,7 @@ export type PayRollUpdateWithoutPayrollRunInput = {
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  employer_contribution?: Prisma.FloatFieldUpdateOperationsInput | number
   net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1072,6 +1115,7 @@ export type PayRollUncheckedUpdateWithoutPayrollRunInput = {
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  employer_contribution?: Prisma.FloatFieldUpdateOperationsInput | number
   net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1089,6 +1133,7 @@ export type PayRollUncheckedUpdateManyWithoutPayrollRunInput = {
   gross_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   overtime_amount?: Prisma.FloatFieldUpdateOperationsInput | number
   total_deduction?: Prisma.FloatFieldUpdateOperationsInput | number
+  employer_contribution?: Prisma.FloatFieldUpdateOperationsInput | number
   net_salary?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumPayrollStatusFieldUpdateOperationsInput | $Enums.PayrollStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1137,6 +1182,7 @@ export type PayRollSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   gross_salary?: boolean
   overtime_amount?: boolean
   total_deduction?: boolean
+  employer_contribution?: boolean
   net_salary?: boolean
   status?: boolean
   createdAt?: boolean
@@ -1158,6 +1204,7 @@ export type PayRollSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   gross_salary?: boolean
   overtime_amount?: boolean
   total_deduction?: boolean
+  employer_contribution?: boolean
   net_salary?: boolean
   status?: boolean
   createdAt?: boolean
@@ -1177,6 +1224,7 @@ export type PayRollSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   gross_salary?: boolean
   overtime_amount?: boolean
   total_deduction?: boolean
+  employer_contribution?: boolean
   net_salary?: boolean
   status?: boolean
   createdAt?: boolean
@@ -1196,12 +1244,13 @@ export type PayRollSelectScalar = {
   gross_salary?: boolean
   overtime_amount?: boolean
   total_deduction?: boolean
+  employer_contribution?: boolean
   net_salary?: boolean
   status?: boolean
   createdAt?: boolean
 }
 
-export type PayRollOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "payroll_run_id" | "employeeId" | "total_days" | "present_days" | "paid_leave_days" | "lop_days" | "payable_days" | "gross_salary" | "overtime_amount" | "total_deduction" | "net_salary" | "status" | "createdAt", ExtArgs["result"]["payRoll"]>
+export type PayRollOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "payroll_run_id" | "employeeId" | "total_days" | "present_days" | "paid_leave_days" | "lop_days" | "payable_days" | "gross_salary" | "overtime_amount" | "total_deduction" | "employer_contribution" | "net_salary" | "status" | "createdAt", ExtArgs["result"]["payRoll"]>
 export type PayRollInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   payrollRun?: boolean | Prisma.PayRollRunDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
@@ -1236,6 +1285,7 @@ export type $PayRollPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     gross_salary: number
     overtime_amount: number
     total_deduction: number
+    employer_contribution: number
     net_salary: number
     status: $Enums.PayrollStatus
     createdAt: Date
@@ -1676,6 +1726,7 @@ export interface PayRollFieldRefs {
   readonly gross_salary: Prisma.FieldRef<"PayRoll", 'Float'>
   readonly overtime_amount: Prisma.FieldRef<"PayRoll", 'Float'>
   readonly total_deduction: Prisma.FieldRef<"PayRoll", 'Float'>
+  readonly employer_contribution: Prisma.FieldRef<"PayRoll", 'Float'>
   readonly net_salary: Prisma.FieldRef<"PayRoll", 'Float'>
   readonly status: Prisma.FieldRef<"PayRoll", 'PayrollStatus'>
   readonly createdAt: Prisma.FieldRef<"PayRoll", 'DateTime'>

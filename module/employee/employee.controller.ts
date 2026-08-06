@@ -1,7 +1,3 @@
-// ============================================
-// controllers/employee.controller.ts
-// ============================================
-
 import { Request, Response } from "express";
 
 import {
@@ -91,7 +87,25 @@ export const getAllEmployees = async (req: AuthRequest, res: Response) => {
 
     const search = String(req.query.search || "");
 
-    const data = await getAllEmployeesService(companyId, page, limit, search);
+    const departmentId = req.query.departmentId
+      ? Number(req.query.departmentId)
+      : undefined;
+
+    const policyId = req.query.policyId
+      ? Number(req.query.policyId)
+      : undefined;
+
+    const unassigned = req.query.unassigned === "true";
+
+    const data = await getAllEmployeesService(
+      companyId,
+      page,
+      limit,
+      search,
+      departmentId,
+      policyId,
+      unassigned,
+    );
 
     return res.json({
       success: true,

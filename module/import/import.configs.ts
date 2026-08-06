@@ -1,4 +1,5 @@
 import { ImportConfig } from "./import.types.js";
+import { prisma } from "../../lib/prisma.js";
 
 export const importConfigs: ImportConfig[] = [
   // ============================================
@@ -208,10 +209,37 @@ export const importConfigs: ImportConfig[] = [
         field: "type",
         required: true,
         type: "enum",
-        enumValues: ["EARNING", "DEDUCTION"],
+        enumValues: ["EARNING", "DEDUCTION", "EMPLOYER_CONTRIBUTION"],
       },
+      {
+        header: "Calculation Type",
+        field: "calculationType",
+        required: false,
+        type: "enum",
+        enumValues: ["FIXED", "PERCENTAGE"],
+        defaultValue: "FIXED",
+      },
+      {
+        header: "Base Type",
+        field: "baseType",
+        required: false,
+        type: "enum",
+        enumValues: ["COMPONENT", "COMPONENTS", "GROSS"],
+      },
+      {
+        header: "Base Component",
+        field: "baseComponentId",
+        required: false,
+        type: "lookup",
+        lookup: { model: "salaryComponent", key: "code", value: "id", scopeByCompany: true },
+      },
+      { header: "Percentage Value", field: "percentageValue", required: false, type: "number" },
+      { header: "Cap Amount", field: "capAmount", required: false, type: "number" },
+      { header: "Floor Amount", field: "floorAmount", required: false, type: "number" },
+      { header: "Base Cap Amount", field: "baseCapAmount", required: false, type: "number" },
     ],
     uniqueCheck: [{ fields: ["code"], message: "Salary component code already exists" }],
+    rowValidator: salaryComponentRowValidator,
   },
 
   // ============================================
@@ -460,9 +488,35 @@ export const importConfigs: ImportConfig[] = [
         type: "lookup",
         lookup: { model: "salaryComponent", key: "code", value: "id", scopeByCompany: true },
       },
-      { header: "Amount", field: "amount", required: true, type: "number" },
+      { header: "Amount", field: "amount", required: false, type: "number" },
+      {
+        header: "Calculation Type",
+        field: "calculationType",
+        required: false,
+        type: "enum",
+        enumValues: ["FIXED", "PERCENTAGE"],
+      },
+      {
+        header: "Base Type",
+        field: "baseType",
+        required: false,
+        type: "enum",
+        enumValues: ["COMPONENT", "COMPONENTS", "GROSS"],
+      },
+      {
+        header: "Base Component",
+        field: "baseComponentId",
+        required: false,
+        type: "lookup",
+        lookup: { model: "salaryComponent", key: "code", value: "id", scopeByCompany: true },
+      },
+      { header: "Percentage Value", field: "percentageValue", required: false, type: "number" },
+      { header: "Cap Amount", field: "capAmount", required: false, type: "number" },
+      { header: "Floor Amount", field: "floorAmount", required: false, type: "number" },
+      { header: "Base Cap Amount", field: "baseCapAmount", required: false, type: "number" },
     ],
     uniqueCheck: [{ fields: ["employeeId", "salaryComponentId"], message: "Salary component already assigned to this employee" }],
+    rowValidator: employeeSalaryComponentRowValidator,
   },
 
   // ============================================
@@ -906,7 +960,7 @@ export const importConfigs: ImportConfig[] = [
         field: "type",
         required: true,
         type: "enum",
-        enumValues: ["EARNING", "DEDUCTION"],
+        enumValues: ["EARNING", "DEDUCTION", "EMPLOYER_CONTRIBUTION"],
       },
       { header: "Standard Amount", field: "standardAmount", required: true, type: "number" },
       { header: "Amount", field: "amount", required: true, type: "number" },
@@ -926,19 +980,20 @@ export const importConfigs: ImportConfig[] = [
     dedupeKey: ["employeeId", "month", "year"],
     requiresCompanyId: true,
     isComposite: true,
-    employeeRef: "employeeEmail",
+    employeeRef: "employeeCode",
     instructions:
+      "Resolve each employee by EMPLOYEE CODE (or Employee Email as fallback).\n" +
       "After the fixed columns (Month, Year, Net Salary, etc.), add columns for each salary component.\n" +
       "For each component, use TWO columns:\n" +
       "  \"ComponentName Standard\" - the standard amount (e.g. Basic Standard)\n" +
       "  \"ComponentName\" - the actual amount (e.g. Basic)\n" +
       "If only the actual column is provided, it applies to both.\n" +
       "The column header must match the Salary Component Name exactly (e.g. Basic, HRA, DA, TA, PF, ESI).\n" +
-      "The system will auto-match columns to your Salary Components table. Unmatched columns default to EARNING type.\n\n" +
+      "The system will auto-match columns to your Salary Components table. Unmatched columns default to EARNING type (DEDUCTION inferred for PF/ESI/Tax/Advance names).\n\n" +
       "Example columns:\n" +
-      "Employee Email, Month, Year, Total Days, Present Days, Paid Leave Days, LOP Days, Payable Days, Gross Salary, Total Deduction, Net Salary, Status, Basic Standard, Basic, HRA Standard, HRA, PF Standard, PF",
+      "Employee Code, Month, Year, Total Days, Present Days, Paid Leave Days, LOP Days, Payable Days, Gross Salary, Total Deduction, Net Salary, Status, Basic Standard, Basic, HRA Standard, HRA, PF Standard, PF",
     columns: [
-      { header: "Employee Email", field: "employeeEmail", required: true, type: "string" },
+      { header: "Employee Code", field: "employeeCode", required: true, type: "string" },
       { header: "Month", field: "month", required: true, type: "number" },
       { header: "Year", field: "year", required: true, type: "number" },
       { header: "Total Days", field: "totalDays", required: false, type: "number", defaultValue: 0 },
@@ -961,6 +1016,210 @@ export const importConfigs: ImportConfig[] = [
     uniqueCheck: [{ fields: ["employeeId", "month", "year"], message: "Salary record already exists for this employee in this month" }],
   },
 ];
+
+// ============================================
+// SALARY COMPONENT ROW VALIDATOR
+// ============================================
+
+async function salaryComponentRowValidator(
+  data: Record<string, any>,
+  companyId: number
+): Promise<any[]> {
+  const errors: any[] = [];
+
+  const calculationType = data.calculationType ?? "FIXED";
+  const capAmount = data.capAmount ?? null;
+  const floorAmount = data.floorAmount ?? null;
+  const baseCapAmount = data.baseCapAmount ?? null;
+
+  if (
+    capAmount != null &&
+    floorAmount != null &&
+    capAmount < floorAmount
+  ) {
+    errors.push({
+      row: 0,
+      field: "Cap Amount",
+      message: "Cap amount cannot be lower than floor amount",
+    });
+  }
+
+  if (baseCapAmount != null && baseCapAmount < 0) {
+    errors.push({
+      row: 0,
+      field: "Base Cap Amount",
+      message: "Base cap amount cannot be negative",
+    });
+  }
+
+  if (calculationType === "PERCENTAGE") {
+    const baseType = data.baseType ?? null;
+
+    if (!baseType) {
+      errors.push({
+        row: 0,
+        field: "Base Type",
+        message:
+          "Percentage component requires a base type (COMPONENT, COMPONENTS or GROSS)",
+      });
+    } else if (baseType === "COMPONENT") {
+      if (!data.baseComponentId) {
+        errors.push({
+          row: 0,
+          field: "Base Component",
+          message: "Percentage component requires a base component",
+        });
+      } else {
+        const base = await prisma.salaryComponent.findFirst({
+          where: { id: data.baseComponentId, companyId },
+          select: { code: true },
+        });
+
+        if (!base) {
+          errors.push({
+            row: 0,
+            field: "Base Component",
+            message: "Base component not found in this company",
+          });
+        } else if (
+          String(base.code).toLowerCase().trim() ===
+          String(data.code ?? "").toLowerCase().trim()
+        ) {
+          errors.push({
+            row: 0,
+            field: "Base Component",
+            message: "Component cannot be based on itself",
+          });
+        }
+      }
+    } else if (baseType === "COMPONENTS") {
+      const ids = Array.isArray(data.baseComponentIds)
+        ? data.baseComponentIds.map((n: any) => Number(n)).filter((n: any) => !Number.isNaN(n))
+        : [];
+
+      if (!ids.length) {
+        errors.push({
+          row: 0,
+          field: "Base Components",
+          message: "Percentage component requires at least one base component",
+        });
+      } else {
+        const uniqueIds = [...new Set(ids)];
+        const found = await prisma.salaryComponent.findMany({
+          where: { id: { in: uniqueIds }, companyId },
+          select: { code: true },
+        });
+
+        if (found.length !== uniqueIds.length) {
+          errors.push({
+            row: 0,
+            field: "Base Components",
+            message: "Base component not found in this company",
+          });
+        }
+
+        if (
+          found.some(
+            (b) =>
+              String(b.code).toLowerCase().trim() ===
+              String(data.code ?? "").toLowerCase().trim(),
+          )
+        ) {
+          errors.push({
+            row: 0,
+            field: "Base Components",
+            message: "Component cannot be based on itself",
+          });
+        }
+      }
+    }
+
+    const percentageValue = data.percentageValue ?? null;
+
+    if (percentageValue == null || percentageValue <= 0) {
+      errors.push({
+        row: 0,
+        field: "Percentage Value",
+        message: "Percentage value must be greater than 0",
+      });
+    }
+  }
+
+  return errors;
+};
+
+// ============================================
+// EMPLOYEE SALARY COMPONENT ROW VALIDATOR
+// ============================================
+
+async function employeeSalaryComponentRowValidator(
+  data: Record<string, any>,
+  companyId: number
+): Promise<any[]> {
+  const errors: any[] = [];
+
+  const component = await prisma.salaryComponent.findFirst({
+    where: { id: data.salaryComponentId, companyId },
+  });
+
+  if (!component) {
+    errors.push({
+      row: 0,
+      field: "Salary Component Code",
+      message: "Salary component not found in this company",
+    });
+
+    return errors;
+  }
+
+  const calculationType =
+    data.calculationType ?? component.calculationType ?? "FIXED";
+  const capAmount = data.capAmount ?? component.capAmount ?? null;
+  const floorAmount = data.floorAmount ?? component.floorAmount ?? null;
+
+  if (
+    capAmount != null &&
+    floorAmount != null &&
+    capAmount < floorAmount
+  ) {
+    errors.push({
+      row: 0,
+      field: "Cap Amount",
+      message: "Cap amount cannot be lower than floor amount",
+    });
+  }
+
+  if (calculationType === "PERCENTAGE") {
+    const baseType = data.baseType ?? component.baseType ?? null;
+
+    if (!baseType) {
+      errors.push({
+        row: 0,
+        field: "Base Type",
+        message: `Percentage component ${component.name} requires a base type (COMPONENT or GROSS)`,
+      });
+    }
+
+    const percentageValue =
+      data.percentageValue ?? component.percentageValue ?? null;
+
+    if (percentageValue == null || percentageValue <= 0) {
+      errors.push({
+        row: 0,
+        field: "Percentage Value",
+        message: `Percentage value must be greater than 0 for ${component.name}`,
+      });
+    }
+  } else if (data.amount == null) {
+    errors.push({
+      row: 0,
+      field: "Amount",
+      message: `Amount is required for ${component.name}`,
+    });
+  }
+
+  return errors;
+};
 
 export function getImportConfig(entity: string): ImportConfig | undefined {
   return importConfigs.find((c) => c.entity === entity);

@@ -23,7 +23,26 @@ export const createSalaryComponentController = async (
       throw new Error("Company not found");
     }
 
-    const { name, code, type, prorated } = req.body;
+    const {
+      name,
+      code,
+      type,
+      prorated,
+      calculationType,
+      baseType,
+      baseComponentId,
+      baseComponentIds,
+      percentageValue,
+      capAmount,
+      floorAmount,
+      baseCapAmount,
+    } = req.body;
+
+    const toNumberOrNull = (v: any) =>
+      v === "" || v === null || v === undefined ? null : Number(v);
+
+    const toNumberArray = (v: any) =>
+      Array.isArray(v) ? v.map((x) => Number(x)).filter((n) => !Number.isNaN(n)) : null;
 
     const data = await createSalaryComponent({
       companyId,
@@ -31,6 +50,14 @@ export const createSalaryComponentController = async (
       code,
       type,
       prorated,
+      calculationType: calculationType || undefined,
+      baseType: baseType || null,
+      baseComponentId: toNumberOrNull(baseComponentId),
+      baseComponentIds: toNumberArray(baseComponentIds),
+      percentageValue: toNumberOrNull(percentageValue),
+      capAmount: toNumberOrNull(capAmount),
+      floorAmount: toNumberOrNull(floorAmount),
+      baseCapAmount: toNumberOrNull(baseCapAmount),
     });
 
     res.status(201).json({
@@ -85,7 +112,26 @@ export const updateSalaryComponentController = async (
 
     const id = Number(req.params.id);
 
-    const { name, code, type, prorated } = req.body;
+    const {
+      name,
+      code,
+      type,
+      prorated,
+      calculationType,
+      baseType,
+      baseComponentId,
+      baseComponentIds,
+      percentageValue,
+      capAmount,
+      floorAmount,
+      baseCapAmount,
+    } = req.body;
+
+    const toNumberOrNull = (v: any) =>
+      v === "" || v === null || v === undefined ? null : Number(v);
+
+    const toNumberArray = (v: any) =>
+      Array.isArray(v) ? v.map((x) => Number(x)).filter((n) => !Number.isNaN(n)) : undefined;
 
     const data = await updateSalaryComponent({
       id,
@@ -94,6 +140,19 @@ export const updateSalaryComponentController = async (
       code,
       type,
       prorated,
+      calculationType: calculationType || undefined,
+      baseType: baseType === undefined ? undefined : baseType || null,
+      baseComponentId:
+        baseComponentId === undefined ? undefined : toNumberOrNull(baseComponentId),
+      baseComponentIds:
+        baseComponentIds === undefined ? undefined : toNumberArray(baseComponentIds),
+      percentageValue:
+        percentageValue === undefined ? undefined : toNumberOrNull(percentageValue),
+      capAmount: capAmount === undefined ? undefined : toNumberOrNull(capAmount),
+      floorAmount:
+        floorAmount === undefined ? undefined : toNumberOrNull(floorAmount),
+      baseCapAmount:
+        baseCapAmount === undefined ? undefined : toNumberOrNull(baseCapAmount),
     });
 
     res.json({

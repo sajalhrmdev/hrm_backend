@@ -695,7 +695,20 @@ model WorkSchedulePolicy {
 enum SalaryComponentType {
   EARNING
   DEDUCTION
+  EMPLOYER_CONTRIBUTION
 }
+
+enum SalaryComponentCalculationType {
+  FIXED
+  PERCENTAGE
+}
+
+enum SalaryComponentBaseType {
+  COMPONENT
+  COMPONENTS
+  GROSS
+}
+
 model SalaryComponent {
   id Int @id @default(autoincrement())
 
@@ -707,6 +720,26 @@ model SalaryComponent {
   type SalaryComponentType
 
   prorated Boolean @default(false)
+
+  calculationType SalaryComponentCalculationType @default(FIXED)
+
+  baseType SalaryComponentBaseType?
+
+  baseComponentId Int?
+
+  baseComponentIds Int[] @default([])
+
+  baseComponent SalaryComponent? @relation("ComponentBase", fields: [baseComponentId], references: [id])
+
+  basedOnThis SalaryComponent[] @relation("ComponentBase")
+
+  percentageValue Float?
+
+  capAmount Float?
+
+  floorAmount Float?
+
+  baseCapAmount Float?
 
   company Company @relation(fields: [companyId], references: [id])
 
@@ -726,7 +759,23 @@ companyId Int
 
   salaryComponentId Int
 
-  amount Float
+  amount Float?
+
+  calculationType SalaryComponentCalculationType?
+
+  baseType SalaryComponentBaseType?
+
+  baseComponentId Int?
+
+  baseComponentIds Int[] @default([])
+
+  percentageValue Float?
+
+  capAmount Float?
+
+  floorAmount Float?
+
+  baseCapAmount Float?
  company Company @relation(fields: [companyId], references: [id])
   employee Employee @relation(fields: [employeeId], references: [id])
 
@@ -787,6 +836,7 @@ model PayRoll{
   gross_salary Float
 overtime_amount Float @default(0)
   total_deduction Float
+  employer_contribution Float @default(0)
   net_salary Float
   status PayrollStatus @default(DRAFT)
   payrollSnapComponents PayrollSnapComponent[]

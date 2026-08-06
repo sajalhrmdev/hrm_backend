@@ -78,7 +78,9 @@ export const previewImport = async (req: MulterRequest, res: Response) => {
       return res.status(400).json({ success: false, message: "No file uploaded" });
     }
 
-    const result = await processImport(companyId, entity, req.file.buffer, true);
+    const { periodStart, periodEnd } = req.body;
+
+    const result = await processImport(companyId, entity, req.file.buffer, true, undefined, { periodStart, periodEnd });
     return res.status(200).json({ success: true, data: result });
   } catch (error: any) {
     return res.status(500).json({ success: false, message: error.message });
@@ -97,7 +99,7 @@ export const executeImport = async (req: MulterRequest, res: Response) => {
     }
 
     const entity = String(req.params.entity);
-    const { duplicateStrategy } = req.body;
+    const { duplicateStrategy, periodStart, periodEnd } = req.body;
 
     if (!req.file) {
       return res.status(400).json({ success: false, message: "No file uploaded" });
@@ -108,7 +110,8 @@ export const executeImport = async (req: MulterRequest, res: Response) => {
       entity,
       req.file.buffer,
       false,
-      duplicateStrategy
+      duplicateStrategy,
+      { periodStart, periodEnd }
     );
     return res.status(200).json({ success: true, data: result });
   } catch (error: any) {

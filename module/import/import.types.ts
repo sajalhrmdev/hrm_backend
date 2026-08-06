@@ -39,6 +39,10 @@ export interface ImportConfig {
   employeeRef?: string;
   isComposite?: boolean;
   instructions?: string;
+  rowValidator?: (
+    data: Record<string, any>,
+    companyId: number
+  ) => Promise<ImportError[]>;
 }
 
 export interface ImportError {

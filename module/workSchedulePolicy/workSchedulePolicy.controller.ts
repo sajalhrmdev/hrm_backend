@@ -7,6 +7,7 @@ import {
   getSingleWorkSchedulePolicy,
   deleteWorkSchedulePolicy,
   assignWorkSchedulePolicy,
+  unassignWorkSchedulePolicy,
 } from "./workSchedulePolicy.service.js";
 
 // ======================================================
@@ -295,9 +296,11 @@ export const assignWorkSchedulePolicyController = async (
       employeeIds,
 
       workSchedulePolicyId,
+
+      assignAll,
     } = req.body;
 
-    if (!Array.isArray(employeeIds) || !employeeIds.length) {
+    if (!assignAll && (!Array.isArray(employeeIds) || !employeeIds.length)) {
       throw new Error("Employee list required");
     }
 
@@ -308,15 +311,60 @@ export const assignWorkSchedulePolicyController = async (
     const data = await assignWorkSchedulePolicy({
       companyId,
 
-      employeeIds,
+      employeeIds: Array.isArray(employeeIds) ? employeeIds : [],
 
       workSchedulePolicyId: Number(workSchedulePolicyId),
+
+      assignAll: !!assignAll,
     });
 
     res.json({
       success: true,
 
       message: "Policy assigned successfully",
+
+      data,
+    });
+  } catch (err: any) {
+    res.status(400).json({
+      success: false,
+
+      message: err.message,
+    });
+  }
+};
+
+// ======================================================
+// UNASSIGN POLICY
+// ======================================================
+
+export const unassignWorkSchedulePolicyController = async (
+  req: AuthRequest,
+  res: Response,
+) => {
+  try {
+    const companyId = req.companyId;
+
+    if (!companyId) {
+      throw new Error("Company not found");
+    }
+
+    const { employeeIds } = req.body;
+
+    if (!Array.isArray(employeeIds) || !employeeIds.length) {
+      throw new Error("Employee list required");
+    }
+
+    const data = await unassignWorkSchedulePolicy({
+      companyId,
+
+      employeeIds,
+    });
+
+    res.json({
+      success: true,
+
+      message: "Policy removed successfully",
 
       data,
     });

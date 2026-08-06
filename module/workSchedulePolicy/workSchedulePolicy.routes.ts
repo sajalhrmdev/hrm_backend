@@ -13,6 +13,7 @@ import {
   updateWorkSchedulePolicyController,
   deleteWorkSchedulePolicyController,
   assignWorkSchedulePolicyController,
+  unassignWorkSchedulePolicyController,
 } from "./workSchedulePolicy.controller.js";
 
 // ======================================================
@@ -26,6 +27,8 @@ router.post("/", createWorkSchedulePolicyController);
 router.get("/", getWorkSchedulePoliciesController);
 
 router.post("/assign", assignWorkSchedulePolicyController);
+
+router.post("/unassign", unassignWorkSchedulePolicyController);
 
 router.get("/:id", getSingleWorkSchedulePolicyController);
 

@@ -1,6 +1,10 @@
 import { prisma } from "../../lib/prisma.js";
 import getStartEndOfDay from "../../utils/getStartEndOfDay.js";
 import { findApplicableSlab } from "../professionalTaxSlab/professionalTaxSlab.service.js";
+import {
+  clampAmount,
+  resolveStructureStandard,
+} from "../../utils/salaryStructureResolver.js";
 
 
 
@@ -611,7 +615,7 @@ export const generatePayroll = async (
 
   // TOTAL DAYS
   const totalDays =
-    Math.ceil(
+    Math.floor(
       (payrollRun.periodEnd.getTime() - payrollRun.periodStart.getTime()) /
         (1000 * 60 * 60 * 24),
     ) + 1;
@@ -801,16 +805,27 @@ export const generatePayroll = async (
 
         let totalDeduction = 0;
 
+        let employerContribution = 0;
+
         let overtimeAmount = 0;
 
         const calculatedComponents = [];
 
-        for (const item of salaryComponents) {
+        const resolvedComponents = resolveStructureStandard(salaryComponents);
+
+        const componentMeta = new Map(
+          salaryComponents.map((item) => [
+            item.salaryComponentId,
+            item.salaryComponent,
+          ]),
+        );
+
+        for (const component of resolvedComponents) {
           // ================================
           // PER DAY
           // ================================
 
-          const perDayAmount = item.amount / totalDays;
+          const perDayAmount = component.standardAmount / totalDays;
 
           // ================================
           // PAYABLE
@@ -818,38 +833,48 @@ export const generatePayroll = async (
 
           let payableAmount;
 
-          if (item.salaryComponent.prorated) {
+          if (component.prorated) {
             payableAmount = perDayAmount * payableDays;
           } else {
-            payableAmount = item.amount;
+            payableAmount = component.standardAmount;
           }
 
-          payableAmount = Math.round(payableAmount);
+          payableAmount = clampAmount(
+            Math.round(payableAmount),
+            component.floorAmount,
+            component.capAmount,
+          );
 
           // ================================
           // TOTALS
           // ================================
 
-          if (item.salaryComponent.type === "EARNING") {
+          if (component.type === "EARNING") {
             grossSalary += payableAmount;
           }
 
-          if (item.salaryComponent.type === "DEDUCTION") {
+          if (component.type === "DEDUCTION") {
             totalDeduction += payableAmount;
+          }
+
+          if (component.type === "EMPLOYER_CONTRIBUTION") {
+            employerContribution += payableAmount;
           }
 
           // ================================
           // SNAPSHOT
           // ================================
 
+          const meta = componentMeta.get(component.componentId);
+
           calculatedComponents.push({
-            componentName: item.salaryComponent.name,
+            componentName: meta?.name ?? "",
 
-            componentCode: item.salaryComponent.code,
+            componentCode: meta?.code ?? "",
 
-            type: item.salaryComponent.type,
+            type: component.type,
 
-            standardAmount: item.amount,
+            standardAmount: component.standardAmount,
 
             amount: payableAmount,
           });
@@ -906,6 +931,10 @@ export const generatePayroll = async (
 
           if (adj.salaryComponent.type === "DEDUCTION") {
             totalDeduction += adjustmentAmount;
+          }
+
+          if (adj.salaryComponent.type === "EMPLOYER_CONTRIBUTION") {
+            employerContribution += adjustmentAmount;
           }
 
           // ================================
@@ -1012,6 +1041,8 @@ export const generatePayroll = async (
             gross_salary: Math.round(grossSalary),
 
             total_deduction: Math.round(totalDeduction),
+
+            employer_contribution: Math.round(employerContribution),
 
             net_salary: netSalary,
           },
@@ -1610,6 +1641,12 @@ export const getEmployeePayrollHistory = async (
     0,
   );
 
+  const totalEmployerContribution = payrolls.reduce(
+    (acc, item) => acc + item.employer_contribution,
+
+    0,
+  );
+
   return {
     payrolls,
 
@@ -1621,6 +1658,8 @@ export const getEmployeePayrollHistory = async (
       totalGrossSalary,
 
       totalDeduction,
+
+      totalEmployerContribution,
     },
   };
 };

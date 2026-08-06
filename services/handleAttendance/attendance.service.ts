@@ -376,13 +376,7 @@ export const getUserlessAttendanceService = async (
 
   const { start, end } = getStartEndOfDay("Asia/Kolkata", targetDate);
 
-  // const start = new Date(targetDate);
-  // start.setHours(0, 0, 0, 0);
-
-  // const end = new Date(targetDate);
-  // end.setHours(23, 59, 59, 999);
-
-  return prisma.employee.findMany({
+  const employees = await prisma.employee.findMany({
     where: {
       companyId,
       userId: null,
@@ -411,6 +405,19 @@ export const getUserlessAttendanceService = async (
       employeeCode: "asc",
     },
   });
+
+  const present = employees.filter(
+    (employee) => employee.attendances?.[0]?.status === "PRESENT",
+  ).length;
+
+  return {
+    employees,
+    summary: {
+      total: employees.length,
+      present,
+      absent: employees.length - present,
+    },
+  };
 };
 
 export const adminMarkAttendanceService = async (
@@ -434,39 +441,30 @@ export const adminMarkAttendanceService = async (
     throw new Error("Employees not found");
   }
 
-  await prisma.$transaction(
-    employees.map((employee) =>
-      prisma.attendance.upsert({
-        where: {
-          employeeId_date: {
-            employeeId: employee.id,
-            date: start,
-          },
-        },
+  const result = await prisma.attendance.createMany({
+    data: employees.map((employee) => ({
+      employeeId: employee.id,
 
-        update: {},
+      companyId: employee.companyId,
 
-        create: {
-          employeeId: employee.id,
+      date: start,
 
-          companyId: employee.companyId,
+      status: "PRESENT",
 
-          date: start,
+      total_work_minutes: 0,
 
-          status: "PRESENT",
+      overtime_minutes: 0,
 
-          total_work_minutes: 0,
+      late_minutes: 0,
+    })),
 
-          overtime_minutes: 0,
-
-          late_minutes: 0,
-        },
-      }),
-    ),
-  );
+    skipDuplicates: true,
+  });
 
   return {
-    totalMarked: employees.length,
+    totalMarked: result.count,
+
+    skipped: employees.length - result.count,
   };
 };
 

@@ -615,6 +615,14 @@ export type PayrollAdjustmentUncheckedUpdateManyWithoutSalaryComponentNestedInpu
   deleteMany?: Prisma.PayrollAdjustmentScalarWhereInput | Prisma.PayrollAdjustmentScalarWhereInput[]
 }
 
+export type FloatFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type PayrollAdjustmentCreateNestedManyWithoutPayrollRunInput = {
   create?: Prisma.XOR<Prisma.PayrollAdjustmentCreateWithoutPayrollRunInput, Prisma.PayrollAdjustmentUncheckedCreateWithoutPayrollRunInput> | Prisma.PayrollAdjustmentCreateWithoutPayrollRunInput[] | Prisma.PayrollAdjustmentUncheckedCreateWithoutPayrollRunInput[]
   connectOrCreate?: Prisma.PayrollAdjustmentCreateOrConnectWithoutPayrollRunInput | Prisma.PayrollAdjustmentCreateOrConnectWithoutPayrollRunInput[]

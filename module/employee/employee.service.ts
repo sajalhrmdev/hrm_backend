@@ -273,6 +273,9 @@ export const getAllEmployeesService = async (
   page = 1,
   limit = 10,
   search = "",
+  departmentId?: number,
+  policyId?: number,
+  unassigned = false,
 ) => {
   const skip = (page - 1) * limit;
 
@@ -282,6 +285,22 @@ export const getAllEmployeesService = async (
     status: {
       not: "INACTIVE",
     },
+
+    ...(departmentId
+      ? {
+          departmentId,
+        }
+      : {}),
+
+    ...(unassigned
+      ? {
+          workSchedulePolicyId: null,
+        }
+      : policyId
+        ? {
+            workSchedulePolicyId: policyId,
+          }
+        : {}),
 
     ...(search
       ? {
@@ -467,46 +486,134 @@ export const updateEmployeeService = async (
     }
   }
 
-  return await prisma.employee.update({
-    where: {
-      id,
-    },
+  return await prisma.$transaction(async (tx) => {
+    // ========================================
+    // CREATE USER (OPTIONAL, EDIT FLOW)
+    // ========================================
 
-    data: {
-      name: data.name,
+    let finalUserId = existing.userId || null;
 
-      email: data.email,
+    if (data.createUser) {
+      if (!finalUserId) {
+        if (!data.password) {
+          throw new Error("Password required");
+        }
 
-      phone: data.phone,
+        if (!data.roleId) {
+          throw new Error("Role required");
+        }
 
-      roleId: data.roleId,
+        const existingUser = await tx.user.findUnique({
+          where: {
+            email: data.email || existing.email,
+          },
+        });
 
-      departmentId: data.departmentId,
+        if (existingUser) {
+          throw new Error("User email already exists");
+        }
 
-      designationId: data.designationId,
-      shiftId: data.shiftId || null,
+        const role = await tx.role.findFirst({
+          where: {
+            id: Number(data.roleId),
 
-      employeeCode: data.employeeCode,
+            companyId,
+          },
+        });
 
-      status: data.status,
+        if (!role) {
+          throw new Error("Role not found");
+        }
 
-      joiningDate: data.joiningDate ? new Date(data.joiningDate) : null,
+        const hashedPassword = await bcrypt.hash(data.password, 10);
 
-      pfNumber: data.pfNumber || null,
+        const createdUser = await tx.user.create({
+          data: {
+            name: data.name || existing.name,
 
-      esiNumber: data.esiNumber || null,
+            email: data.email || existing.email,
 
-      uan: data.uan || null,
-    },
+            phone: data.phone || existing.phone,
 
-    include: {
-      role: true,
+            password: hashedPassword,
+          },
+        });
 
-      department: true,
+        finalUserId = createdUser.id;
 
-      designation: true,
-      shift: true,
-    },
+        await tx.membership.create({
+          data: {
+            userId: createdUser.id,
+
+            companyId,
+
+            roleId: Number(data.roleId),
+
+            status: "ACTIVE",
+          },
+        });
+      } else if (data.password) {
+        const hashedPassword = await bcrypt.hash(data.password, 10);
+
+        await tx.user.update({
+          where: {
+            id: finalUserId,
+          },
+
+          data: {
+            password: hashedPassword,
+          },
+        });
+      }
+    }
+
+    // ========================================
+    // UPDATE EMPLOYEE
+    // ========================================
+
+    return await tx.employee.update({
+      where: {
+        id,
+      },
+
+      data: {
+        userId: finalUserId,
+
+        name: data.name,
+
+        email: data.email,
+
+        phone: data.phone,
+
+        roleId: data.roleId,
+
+        departmentId: data.departmentId,
+
+        designationId: data.designationId,
+        shiftId: data.shiftId || null,
+
+        employeeCode: data.employeeCode,
+
+        status: data.status,
+
+        joiningDate: data.joiningDate ? new Date(data.joiningDate) : null,
+
+        pfNumber: data.pfNumber || null,
+
+        esiNumber: data.esiNumber || null,
+
+        uan: data.uan || null,
+      },
+
+      include: {
+        role: true,
+
+        department: true,
+
+        designation: true,
+        shift: true,
+      },
+    });
   });
 };
 

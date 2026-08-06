@@ -1,4 +1,5 @@
 import { prisma } from "../../lib/prisma.js";
+import { resolveStructureStandard } from "../../utils/salaryStructureResolver.js";
 
 export async function getGoals(
   companyId: number,
@@ -181,9 +182,13 @@ export async function approveGoal(
   if (!goal) throw new Error("Goal not found");
   if (goal.status !== "SUBMITTED") throw new Error("Only SUBMITTED goals can be approved");
 
-  const monthlyCtc = goal.employee.employeeSalaryComponents
-    .filter((esc) => esc.salaryComponent.type === "EARNING")
-    .reduce((sum, esc) => sum + esc.amount, 0);
+  const resolved = resolveStructureStandard(
+    goal.employee.employeeSalaryComponents,
+  );
+
+  const monthlyCtc = resolved
+    .filter((r) => r.type === "EARNING")
+    .reduce((sum, r) => sum + r.standardAmount, 0);
 
   const baseIncentive = calculateIncentive({
     incentiveType: goal.incentiveType,

@@ -4541,6 +4541,14 @@ export const SalaryComponentScalarFieldEnum = {
   code: 'code',
   type: 'type',
   prorated: 'prorated',
+  calculationType: 'calculationType',
+  baseType: 'baseType',
+  baseComponentId: 'baseComponentId',
+  baseComponentIds: 'baseComponentIds',
+  percentageValue: 'percentageValue',
+  capAmount: 'capAmount',
+  floorAmount: 'floorAmount',
+  baseCapAmount: 'baseCapAmount',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -4554,6 +4562,14 @@ export const EmployeeSalaryComponentScalarFieldEnum = {
   employeeId: 'employeeId',
   salaryComponentId: 'salaryComponentId',
   amount: 'amount',
+  calculationType: 'calculationType',
+  baseType: 'baseType',
+  baseComponentId: 'baseComponentId',
+  baseComponentIds: 'baseComponentIds',
+  percentageValue: 'percentageValue',
+  capAmount: 'capAmount',
+  floorAmount: 'floorAmount',
+  baseCapAmount: 'baseCapAmount',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -4588,6 +4604,7 @@ export const PayRollScalarFieldEnum = {
   gross_salary: 'gross_salary',
   overtime_amount: 'overtime_amount',
   total_deduction: 'total_deduction',
+  employer_contribution: 'employer_contribution',
   net_salary: 'net_salary',
   status: 'status',
   createdAt: 'createdAt'
@@ -5291,6 +5308,34 @@ export type EnumSalaryComponentTypeFieldRefInput<$PrismaModel> = FieldRefInputTy
  * Reference to a field of type 'SalaryComponentType[]'
  */
 export type ListEnumSalaryComponentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SalaryComponentType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'SalaryComponentCalculationType'
+ */
+export type EnumSalaryComponentCalculationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SalaryComponentCalculationType'>
+    
+
+
+/**
+ * Reference to a field of type 'SalaryComponentCalculationType[]'
+ */
+export type ListEnumSalaryComponentCalculationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SalaryComponentCalculationType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'SalaryComponentBaseType'
+ */
+export type EnumSalaryComponentBaseTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SalaryComponentBaseType'>
+    
+
+
+/**
+ * Reference to a field of type 'SalaryComponentBaseType[]'
+ */
+export type ListEnumSalaryComponentBaseTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SalaryComponentBaseType[]'>
     
 
 

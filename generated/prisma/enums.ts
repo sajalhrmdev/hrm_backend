@@ -146,10 +146,28 @@ export type AttendanceMethod = (typeof AttendanceMethod)[keyof typeof Attendance
 
 export const SalaryComponentType = {
   EARNING: 'EARNING',
-  DEDUCTION: 'DEDUCTION'
+  DEDUCTION: 'DEDUCTION',
+  EMPLOYER_CONTRIBUTION: 'EMPLOYER_CONTRIBUTION'
 } as const
 
 export type SalaryComponentType = (typeof SalaryComponentType)[keyof typeof SalaryComponentType]
+
+
+export const SalaryComponentCalculationType = {
+  FIXED: 'FIXED',
+  PERCENTAGE: 'PERCENTAGE'
+} as const
+
+export type SalaryComponentCalculationType = (typeof SalaryComponentCalculationType)[keyof typeof SalaryComponentCalculationType]
+
+
+export const SalaryComponentBaseType = {
+  COMPONENT: 'COMPONENT',
+  COMPONENTS: 'COMPONENTS',
+  GROSS: 'GROSS'
+} as const
+
+export type SalaryComponentBaseType = (typeof SalaryComponentBaseType)[keyof typeof SalaryComponentBaseType]
 
 
 export const PayrollStatus = {

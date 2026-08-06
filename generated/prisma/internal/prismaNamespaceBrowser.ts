@@ -542,6 +542,14 @@ export const SalaryComponentScalarFieldEnum = {
   code: 'code',
   type: 'type',
   prorated: 'prorated',
+  calculationType: 'calculationType',
+  baseType: 'baseType',
+  baseComponentId: 'baseComponentId',
+  baseComponentIds: 'baseComponentIds',
+  percentageValue: 'percentageValue',
+  capAmount: 'capAmount',
+  floorAmount: 'floorAmount',
+  baseCapAmount: 'baseCapAmount',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -555,6 +563,14 @@ export const EmployeeSalaryComponentScalarFieldEnum = {
   employeeId: 'employeeId',
   salaryComponentId: 'salaryComponentId',
   amount: 'amount',
+  calculationType: 'calculationType',
+  baseType: 'baseType',
+  baseComponentId: 'baseComponentId',
+  baseComponentIds: 'baseComponentIds',
+  percentageValue: 'percentageValue',
+  capAmount: 'capAmount',
+  floorAmount: 'floorAmount',
+  baseCapAmount: 'baseCapAmount',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -589,6 +605,7 @@ export const PayRollScalarFieldEnum = {
   gross_salary: 'gross_salary',
   overtime_amount: 'overtime_amount',
   total_deduction: 'total_deduction',
+  employer_contribution: 'employer_contribution',
   net_salary: 'net_salary',
   status: 'status',
   createdAt: 'createdAt'

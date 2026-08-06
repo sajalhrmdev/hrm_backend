@@ -116,7 +116,16 @@ async function resolveEmployeeRef(
   const emails = [
     ...new Set(
       rows
-        .map((r) => String(r[config.employeeRef!] || "").trim().toLowerCase())
+        .map((r) => {
+          const rm: Record<string, any> = {};
+          for (const k of Object.keys(r)) {
+            const nk = k.toLowerCase().trim();
+            rm[nk] = r[k];
+            rm[nk.replace(/[\s_]+/g, "")] = r[k];
+          }
+          const ref = String(config.employeeRef!).toLowerCase().trim();
+          return String(rm[ref] ?? rm[ref.replace(/[\s_]+/g, "")] ?? "").trim().toLowerCase();
+        })
         .filter(Boolean)
     ),
   ];
@@ -139,13 +148,13 @@ async function resolveEmployeeRef(
 // VALIDATE ROWS
 // ============================================
 
-function validateRows(
+async function validateRows(
   rows: Record<string, any>[],
   config: ImportConfig,
   lookupMap: Map<string, Map<string, any>>,
   employeeMap: Map<string, number>,
   companyId: number
-): PreviewRow[] {
+): Promise<PreviewRow[]> {
   const previewRows: PreviewRow[] = [];
   const seenEmails = new Set<string>();
   const seenUniqueKeys = new Set<string>();
@@ -158,11 +167,14 @@ function validateRows(
 
     const rowMap: Record<string, any> = {};
     for (const key of Object.keys(row)) {
-      rowMap[key.toLowerCase().trim()] = row[key];
+      const nk = key.toLowerCase().trim();
+      rowMap[nk] = row[key];
+      rowMap[nk.replace(/[\s_]+/g, "")] = row[key];
     }
 
     for (const col of config.columns) {
-      const rawValue = rowMap[col.header.toLowerCase().trim()] ?? rowMap[col.header.replace(/\s*\*$/, "").trim().toLowerCase()];
+      const lk = col.header.toLowerCase().trim();
+      const rawValue = rowMap[lk] ?? rowMap[lk.replace(/[\s_]+/g, "")] ?? rowMap[lk.replace(/\s*\*$/, "").trim().toLowerCase()];
       const parsed = parseCellValue(rawValue, col);
 
       if (col.required && (parsed === null || parsed === undefined || parsed === "")) {
@@ -254,6 +266,16 @@ function validateRows(
         });
       }
       seenUniqueKeys.add(dedupeKeyStr);
+    }
+
+    if (config.rowValidator) {
+      const customErrors = await config.rowValidator(processedData, companyId);
+      for (const error of customErrors) {
+        errors.push({
+          ...error,
+          row: rowNum,
+        });
+      }
     }
 
     previewRows.push({
@@ -353,6 +375,7 @@ async function checkDbDuplicates(
 // ============================================
 
 const SALARY_HISTORY_FIXED_COLUMNS = new Set([
+  "Employee Code",
   "Employee Email",
   "Month",
   "Year",
@@ -367,11 +390,47 @@ const SALARY_HISTORY_FIXED_COLUMNS = new Set([
   "Status",
 ]);
 
+function inferComponentType(
+  name: string,
+): "EARNING" | "DEDUCTION" | "EMPLOYER_CONTRIBUTION" {
+  const n = name.toUpperCase();
+  if (n.includes("EMPR") || n.includes("EMPLOYER")) {
+    return "EMPLOYER_CONTRIBUTION";
+  }
+  const deductionKeywords = [
+    "PF", "ESIC", "ESI", "TAX", "DEDUCTION", "ADVANCE",
+    "REPAYMENT", "LOAN", "LOSS", "FINE", "PENALTY", "RECOVERY",
+  ];
+  return deductionKeywords.some((kw) => n.includes(kw)) ? "DEDUCTION" : "EARNING";
+}
+
 async function processSalaryHistoryImport(
   companyId: number,
   fileBuffer: Buffer,
-  dryRun: boolean
+  dryRun: boolean,
+  options?: { periodStart?: string; periodEnd?: string }
 ): Promise<ImportResult> {
+  const periodStartOverride = options?.periodStart ? new Date(options.periodStart) : null;
+  const periodEndOverride = options?.periodEnd ? new Date(options.periodEnd) : null;
+
+  if ((periodStartOverride && !periodEndOverride) || (!periodStartOverride && periodEndOverride)) {
+    return {
+      success: false,
+      total: 0,
+      imported: 0,
+      failed: 0,
+      errors: [{ row: 0, field: "Period", message: "Both Payroll Period Start and Period End must be provided together" }],
+    };
+  }
+  if (periodStartOverride && periodEndOverride && periodStartOverride > periodEndOverride) {
+    return {
+      success: false,
+      total: 0,
+      imported: 0,
+      failed: 0,
+      errors: [{ row: 0, field: "Period", message: "Payroll Period Start cannot be after Period End" }],
+    };
+  }
   const { headers, rows } = parseExcelBuffer(fileBuffer);
   if (rows.length === 0) {
     return { success: false, total: 0, imported: 0, failed: 0, errors: [{ row: 0, field: "file", message: "Excel file is empty" }] };
@@ -381,11 +440,17 @@ async function processSalaryHistoryImport(
   const previewRows: PreviewRow[] = [];
   const allErrors: ImportError[] = [];
 
-  const emails = [...new Set(rows.map((r) => { const k = Object.keys(r).find(k => k.toLowerCase().trim() === "employee email"); return String(k ? r[k] : "").trim().toLowerCase(); }).filter(Boolean))];
-  const employeeMap = new Map<string, number>();
+  const codes = [...new Set(rows.map((r) => { const rm: Record<string, any> = {}; for (const key of Object.keys(r)) { const nk = key.toLowerCase().trim(); rm[nk] = r[key]; rm[nk.replace(/[\s_]+/g, "")] = r[key]; } const k = Object.keys(rm).find(kk => kk === "employee code" || kk === "employeecode"); return String(k ? rm[k] : "").trim().toLowerCase(); }).filter(Boolean))];
+  const emails = [...new Set(rows.map((r) => { const rm: Record<string, any> = {}; for (const key of Object.keys(r)) { const nk = key.toLowerCase().trim(); rm[nk] = r[key]; rm[nk.replace(/[\s_]+/g, "")] = r[key]; } const k = Object.keys(rm).find(kk => kk === "employee email" || kk === "employeeemail"); return String(k ? rm[k] : "").trim().toLowerCase(); }).filter(Boolean))];
+  const employeeMapByCode = new Map<string, number>();
+  const employeeMapByEmail = new Map<string, number>();
+  if (codes.length > 0) {
+    const employees = await prisma.employee.findMany({ where: { companyId, employeeCode: { in: codes, mode: "insensitive" } }, select: { id: true, employeeCode: true } });
+    for (const emp of employees) if (emp.employeeCode) employeeMapByCode.set(emp.employeeCode.toLowerCase(), emp.id);
+  }
   if (emails.length > 0) {
-    const employees = await prisma.employee.findMany({ where: { companyId, email: { in: emails } }, select: { id: true, email: true } });
-    for (const emp of employees) employeeMap.set(emp.email.toLowerCase(), emp.id);
+    const employees = await prisma.employee.findMany({ where: { companyId, email: { in: emails, mode: "insensitive" } }, select: { id: true, email: true } });
+    for (const emp of employees) employeeMapByEmail.set(emp.email.toLowerCase(), emp.id);
   }
 
   let salaryComponentCache: Map<string, { id: number; name: string; code: string; type: string }> | null = null;
@@ -411,13 +476,23 @@ async function processSalaryHistoryImport(
       rowMap[key.toLowerCase().trim()] = row[key];
     }
 
+    const empCode = String(rowMap["employee code"] || "").trim().toLowerCase();
     const empEmail = String(rowMap["employee email"] || "").trim().toLowerCase();
-    if (!empEmail) {
-      errors.push({ row: rowNum, field: "Employee Email", message: "Employee Email is required", value: "" });
-    } else if (!employeeMap.has(empEmail)) {
-      errors.push({ row: rowNum, field: "Employee Email", message: `Employee with email "${empEmail}" not found`, value: empEmail });
+    const empId = employeeMapByCode.get(empCode) || employeeMapByEmail.get(empEmail);
+    if (empCode) {
+      if (!employeeMapByCode.has(empCode)) {
+        errors.push({ row: rowNum, field: "Employee Code", message: `Employee with code "${empCode}" not found`, value: empCode });
+      } else {
+        data.employeeId = employeeMapByCode.get(empCode);
+      }
+    } else if (empEmail) {
+      if (!employeeMapByEmail.has(empEmail)) {
+        errors.push({ row: rowNum, field: "Employee Email", message: `Employee with email "${empEmail}" not found`, value: empEmail });
+      } else {
+        data.employeeId = employeeMapByEmail.get(empEmail);
+      }
     } else {
-      data.employeeId = employeeMap.get(empEmail);
+      errors.push({ row: rowNum, field: "Employee Code", message: "Employee Code or Employee Email is required", value: "" });
     }
 
     const month = Number(rowMap["month"]);
@@ -476,7 +551,7 @@ async function processSalaryHistoryImport(
       snapComponents.push({
         componentName: lookup ? lookup.name : name,
         componentCode: lookup ? lookup.code : name.toUpperCase().replace(/\s+/g, "_"),
-        type: lookup ? lookup.type : "EARNING",
+        type: lookup ? lookup.type : inferComponentType(name),
         standardAmount: vals.standard ?? vals.actual ?? 0,
         amount: vals.actual ?? vals.standard ?? 0,
       });
@@ -509,18 +584,19 @@ async function processSalaryHistoryImport(
   }
 
   try {
-    const result = await prisma.$transaction(async (tx) => {
+    const result = await prisma.$transaction(
+      async (tx) => {
       const runCache = new Map<string, number>();
       let importedCount = 0;
 
       for (const row of validRows) {
         const d = row.data;
-        const runKey = `${d.year}-${String(d.month).padStart(2, "0")}`;
+        const periodStart = periodStartOverride || new Date(Date.UTC(d.year, d.month - 1, 1));
+        const periodEnd = periodEndOverride || new Date(Date.UTC(d.year, d.month, 0, 23, 59, 59));
+        const runKey = `${periodStart.toISOString()}|${periodEnd.toISOString()}`;
         let runId = runCache.get(runKey);
 
         if (!runId) {
-          const periodStart = new Date(Date.UTC(d.year, d.month - 1, 1));
-          const periodEnd = new Date(Date.UTC(d.year, d.month, 0, 23, 59, 59));
           const existingRun = await tx.payRollRun.findFirst({ where: { companyId, periodStart, periodEnd } });
           if (existingRun) {
             runId = existingRun.id;
@@ -564,7 +640,9 @@ async function processSalaryHistoryImport(
       }
 
       return importedCount;
-    });
+      },
+      { maxWait: 20000, timeout: 120000 },
+    );
 
     return { success: true, total: rows.length, imported: result, failed: rows.length - result, errors: allErrors, previewRows };
   } catch (error: any) {
@@ -581,7 +659,8 @@ export async function processImport(
   entity: string,
   fileBuffer: Buffer,
   dryRun: boolean = false,
-  duplicateStrategy?: string
+  duplicateStrategy?: string,
+  options?: { periodStart?: string; periodEnd?: string }
 ): Promise<ImportResult> {
   const config = getImportConfig(entity);
   if (!config) {
@@ -595,7 +674,7 @@ export async function processImport(
   }
 
   if (config.isComposite && entity === "salaryHistory") {
-    return processSalaryHistoryImport(companyId, fileBuffer, dryRun);
+    return processSalaryHistoryImport(companyId, fileBuffer, dryRun, options);
   }
 
   const { headers, rows } = parseExcelBuffer(fileBuffer);
@@ -623,7 +702,7 @@ export async function processImport(
   const lookupMap = await preloadLookups(companyId, config);
   const employeeMap = await resolveEmployeeRef(companyId, config, rows);
 
-  const previewRows = validateRows(rows, config, lookupMap, employeeMap, companyId);
+  const previewRows = await validateRows(rows, config, lookupMap, employeeMap, companyId);
 
   const validRows = previewRows.filter((r) => r.status === "valid");
   const invalidRows = previewRows.filter((r) => r.status === "invalid");

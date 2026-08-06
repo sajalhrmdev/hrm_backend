@@ -1,5 +1,6 @@
 import { prisma } from "../../lib/prisma.js";
 import Handlebars from "handlebars";
+import { resolveStructureStandard } from "../../utils/salaryStructureResolver.js";
 
 export const getCompanyDataForDocumentService = async (companyId: number) => {
   const company = await prisma.company.findFirst({ where: { id: companyId } });
@@ -30,13 +31,27 @@ export const getEmployeeForDocumentService = async (companyId: number, employeeI
   });
   if (!employee) throw new Error("Employee not found");
 
+  const resolved = resolveStructureStandard(
+    employee.employeeSalaryComponents,
+  );
+
+  const resolvedById = new Map(
+    resolved.map((r) => [r.componentId, r.standardAmount]),
+  );
+
   const earnings = employee.employeeSalaryComponents
     .filter((esc) => esc.salaryComponent.type === "EARNING")
-    .map((esc) => ({ name: esc.salaryComponent.name, amount: esc.amount }));
+    .map((esc) => ({
+      name: esc.salaryComponent.name,
+      amount: resolvedById.get(esc.salaryComponentId) ?? 0,
+    }));
 
   const deductions = employee.employeeSalaryComponents
     .filter((esc) => esc.salaryComponent.type === "DEDUCTION")
-    .map((esc) => ({ name: esc.salaryComponent.name, amount: esc.amount }));
+    .map((esc) => ({
+      name: esc.salaryComponent.name,
+      amount: resolvedById.get(esc.salaryComponentId) ?? 0,
+    }));
 
   const totalEarnings = earnings.reduce((sum, e) => sum + e.amount, 0);
   const totalDeductions = deductions.reduce((sum, d) => sum + d.amount, 0);

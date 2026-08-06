@@ -743,6 +743,8 @@ type AssignInput = {
   employeeIds: number[];
 
   workSchedulePolicyId: number;
+
+  assignAll?: boolean;
 };
 
 // ======================================================
@@ -752,6 +754,7 @@ export const assignWorkSchedulePolicy = async (input: AssignInput) => {
     companyId,
     employeeIds,
     workSchedulePolicyId,
+    assignAll,
   } = input;
 
   const policy = await prisma.workSchedulePolicy.findFirst({
@@ -763,6 +766,32 @@ export const assignWorkSchedulePolicy = async (input: AssignInput) => {
 
   if (!policy) {
     throw new Error("Work schedule policy not found");
+  }
+
+  // ======================================================
+  // ASSIGN TO ALL ACTIVE EMPLOYEES
+  // ======================================================
+
+  if (assignAll) {
+    const result = await prisma.employee.updateMany({
+      where: {
+        companyId,
+
+        status: {
+          not: "INACTIVE",
+        },
+      },
+
+      data: {
+        workSchedulePolicyId,
+      },
+    });
+
+    return {
+      totalAssigned: result.count,
+      workSchedulePolicyId,
+      assignAll: true,
+    };
   }
 
   const employees = await prisma.employee.findMany({
@@ -798,5 +827,42 @@ export const assignWorkSchedulePolicy = async (input: AssignInput) => {
   return {
     totalAssigned: employees.length,
     workSchedulePolicyId,
+  };
+};
+
+// ======================================================
+// UNASSIGN
+// ======================================================
+
+type UnassignInput = {
+  companyId: number;
+
+  employeeIds: number[];
+};
+
+// ======================================================
+
+export const unassignWorkSchedulePolicy = async (input: UnassignInput) => {
+  const { companyId, employeeIds } = input;
+
+  if (!employeeIds.length) {
+    throw new Error("No employees selected");
+  }
+
+  const result = await prisma.employee.updateMany({
+    where: {
+      id: {
+        in: employeeIds,
+      },
+      companyId,
+    },
+
+    data: {
+      workSchedulePolicyId: null,
+    },
+  });
+
+  return {
+    totalUnassigned: result.count,
   };
 };
