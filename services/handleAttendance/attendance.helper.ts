@@ -10,7 +10,7 @@ export const calculateAttendance = (logs: any[]) => {
           new Date(logs[i].time).getTime()) /
         (1000 * 60);
 
-      totalMinutes += diff;
+      totalMinutes += Math.max(0, diff);
     }
   }
 

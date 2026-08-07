@@ -58,6 +58,7 @@ import clientRoutes from "./module/client/client.routes.js";
 import appointmentRoutes from "./module/appointment/appointment.routes.js";
 import visitRoutes from "./module/visit/visit.routes.js";
 import meetingRoutes from "./module/meeting/meeting.routes.js";
+import projectRoutes from "./module/project/project.routes.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { authMiddleware } from "./middlewares/auth.middleware.js";
@@ -150,6 +151,8 @@ app.use("/api/v1/client", authMiddleware, companyAccessMiddleware, clientRoutes)
 app.use("/api/v1/appointment", authMiddleware, companyAccessMiddleware, appointmentRoutes);
 app.use("/api/v1/visit", authMiddleware, companyAccessMiddleware, visitRoutes);
 app.use("/api/v1/meeting", authMiddleware, companyAccessMiddleware, meetingRoutes);
+app.use("/api/v1/project", authMiddleware, companyAccessMiddleware, projectRoutes);
+app.use("/api/v1/project", authMiddleware, companyAccessMiddleware, projectRoutes);
 // app.use("/api/v1/salary-structure", salaryStructureRoutes);
 // app.use("/api/v1/payroll", payrollRoutes);
 // app.use("/api/v1/attendance",attendanceRoutes)

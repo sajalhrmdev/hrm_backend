@@ -6,7 +6,7 @@ export const calculateAttendance = (logs) => {
             const diff = (new Date(logs[i + 1].time).getTime() -
                 new Date(logs[i].time).getTime()) /
                 (1000 * 60);
-            totalMinutes += diff;
+            totalMinutes += Math.max(0, diff);
         }
     }
     return Math.floor(totalMinutes);

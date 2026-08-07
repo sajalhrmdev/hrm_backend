@@ -156,8 +156,39 @@ export const handleAttendance = async (
     orderBy: { time: "asc" },
   });
 
+  // ======================================
+  // OPEN SESSION DETECTION (prev day + today)
+  // ======================================
+
+  const prevDayStart = new Date(start.getTime() - 24 * 60 * 60 * 1000);
+
+  const [prevDayOpen, todayOpen] = await Promise.all([
+    prisma.attendance.findFirst({
+      where: {
+        employeeId,
+        check_in_time: { not: null },
+        check_out_time: null,
+        date: { gte: prevDayStart, lt: start },
+      },
+      orderBy: { createdAt: "asc" },
+    }),
+    prisma.attendance.findFirst({
+      where: {
+        employeeId,
+        check_in_time: { not: null },
+        check_out_time: null,
+        date: { gte: start, lte: end },
+      },
+      orderBy: { createdAt: "desc" },
+    }),
+  ]);
+
+  const targetOpen = prevDayOpen ?? todayOpen;
+
   // 🔥 validation  function
-  singleMultivalidatation(logs, type, mode);
+  if (!(type === "OUT" && targetOpen)) {
+    singleMultivalidatation(logs, type, mode);
+  }
   let attendance: any;
 
   if (latitude == null || longitude == null) {
@@ -207,6 +238,12 @@ export const handleAttendance = async (
     }
   }
   if (type === "IN") {
+    if (prevDayOpen) {
+      throw new Error(
+        "Previous day's check-in not checked out yet. Please check out first.",
+      );
+    }
+
     attendance = await prisma.attendance.upsert({
       where: {
         employeeId_date: {
@@ -231,26 +268,19 @@ export const handleAttendance = async (
     });
   } else {
     if (isFlexible) {
-      attendance = await prisma.attendance.findFirst({
-        where: {
-          employeeId,
-          check_out_time: null,
-          date: attendanceDate,
-        },
-        orderBy: {
-          createdAt: "desc",
-        },
-      });
+      attendance = targetOpen;
     } else {
-      attendance = await prisma.attendance.findUnique({
-        where: {
-          employeeId_date: {
-            employeeId,
+      attendance =
+        targetOpen ??
+        (await prisma.attendance.findUnique({
+          where: {
+            employeeId_date: {
+              employeeId,
 
-            date: attendanceDate,
+              date: attendanceDate,
+            },
           },
-        },
-      });
+        }));
     }
 
     if (!attendance) {
@@ -278,7 +308,28 @@ export const handleAttendance = async (
 
   // calculation
   if (type === "OUT") {
-    const allLogs = [...logs, { type, time: now }];
+    const recordLogs = await prisma.attendanceLog.findMany({
+      where: { attendanceId: attendance.id },
+      orderBy: { time: "asc" },
+    });
+
+    let effectiveOut = now;
+
+    const isSameDay =
+      attendance.date >= start && attendance.date <= end;
+
+    if (!isSameDay && !isFlexible && shift) {
+      const recRange = getShiftRange({
+        startTime: shift.startTime,
+        endTime: shift.endTime,
+        inputDate: attendance.check_in_time || attendance.date,
+      });
+      effectiveOut = new Date(
+        Math.min(now.getTime(), recRange.shiftEnd.getTime()),
+      );
+    }
+
+    const allLogs = [...recordLogs, { type, time: effectiveOut }];
 
     const totalMinutes = calculateAttendance(allLogs);
 
@@ -316,8 +367,8 @@ export const handleAttendance = async (
         companyId,
         status: "APPROVED",
         leaveMode: "HALF",
-        fromDate: { lte: attendanceDate },
-        toDate: { gte: attendanceDate },
+        fromDate: { lte: attendance.date },
+        toDate: { gte: attendance.date },
       },
     });
 
@@ -342,7 +393,7 @@ export const handleAttendance = async (
         total_work_minutes: totalMinutes,
         overtime_minutes: overtime,
         status,
-        check_out_time: now,
+        check_out_time: effectiveOut,
       },
     });
   }

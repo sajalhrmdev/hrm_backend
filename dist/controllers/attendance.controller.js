@@ -235,24 +235,50 @@ export const getTodayAttendanceByEmployee = async (req, res) => {
             },
         });
         // ======================================
+        // OPEN SESSION DETECTION (prev day + today)
+        // ======================================
+        const prevDayStart = new Date(start.getTime() - 24 * 60 * 60 * 1000);
+        const [prevDayOpen, todayOpen] = await Promise.all([
+            prisma.attendance.findFirst({
+                where: {
+                    companyId: Number(req.companyId),
+                    employeeId: Number(req.employee?.id),
+                    check_in_time: { not: null },
+                    check_out_time: null,
+                    date: { gte: prevDayStart, lt: start },
+                },
+                include: {
+                    attendanceLogs: {
+                        orderBy: { time: "asc" },
+                    },
+                    company: true,
+                    shift: true,
+                },
+                orderBy: { createdAt: "asc" },
+            }),
+            prisma.attendance.findFirst({
+                where: {
+                    companyId: Number(req.companyId),
+                    employeeId: Number(req.employee?.id),
+                    check_in_time: { not: null },
+                    check_out_time: null,
+                    date: { gte: start, lte: end },
+                },
+                include: {
+                    attendanceLogs: {
+                        orderBy: { time: "asc" },
+                    },
+                    company: true,
+                    shift: true,
+                },
+                orderBy: { createdAt: "desc" },
+            }),
+        ]);
+        const targetOpen = prevDayOpen ?? todayOpen;
+        // ======================================
         // NEXT ACTION
         // ======================================
-        let nextAction = "CHECK_IN";
-        if (attendance?.attendanceLogs?.length) {
-            const lastLog = attendance.attendanceLogs[attendance.attendanceLogs.length - 1];
-            // ==============================
-            // IF LAST LOG IS IN
-            // ==============================
-            if (lastLog.type === "IN") {
-                nextAction = "CHECK_OUT";
-            }
-            // ==============================
-            // IF LAST LOG IS OUT
-            // ==============================
-            if (lastLog.type === "OUT") {
-                nextAction = "CHECK_IN";
-            }
-        }
+        const nextAction = targetOpen ? "CHECK_OUT" : "CHECK_IN";
         // ======================================
         // RESPONSE
         // ======================================
@@ -265,7 +291,7 @@ export const getTodayAttendanceByEmployee = async (req, res) => {
         allowedMethods = methods?.length ? methods : ["FACE"];
         res.json({
             success: true,
-            data: attendance,
+            data: targetOpen ?? attendance,
             nextAction,
             allowedMethods,
         });

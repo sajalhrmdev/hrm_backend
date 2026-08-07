@@ -73,6 +73,8 @@ export const ModelName = {
     Visit: 'Visit',
     Meeting: 'Meeting',
     MeetingAttendee: 'MeetingAttendee',
+    Project: 'Project',
+    ProjectMember: 'ProjectMember',
     OfficeLocation: 'OfficeLocation',
     Department: 'Department',
     Designation: 'Designation',
@@ -212,6 +214,27 @@ export const MeetingScalarFieldEnum = {
 export const MeetingAttendeeScalarFieldEnum = {
     id: 'id',
     meetingId: 'meetingId',
+    employeeId: 'employeeId',
+    createdAt: 'createdAt'
+};
+export const ProjectScalarFieldEnum = {
+    id: 'id',
+    companyId: 'companyId',
+    name: 'name',
+    description: 'description',
+    clientId: 'clientId',
+    managerId: 'managerId',
+    startDate: 'startDate',
+    endDate: 'endDate',
+    status: 'status',
+    priority: 'priority',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    deletedAt: 'deletedAt'
+};
+export const ProjectMemberScalarFieldEnum = {
+    id: 'id',
+    projectId: 'projectId',
     employeeId: 'employeeId',
     createdAt: 'createdAt'
 };

@@ -58,6 +58,7 @@ import clientRoutes from "./module/client/client.routes.js";
 import appointmentRoutes from "./module/appointment/appointment.routes.js";
 import visitRoutes from "./module/visit/visit.routes.js";
 import meetingRoutes from "./module/meeting/meeting.routes.js";
+import projectRoutes from "./module/project/project.routes.js";
 
 import { verifyToken } from "./controllers/middlewares/auth.middleware.js";
 import cookieParser from "cookie-parser";
@@ -372,6 +373,20 @@ app.use(
   authMiddleware,
   companyAccessMiddleware,
   meetingRoutes,
+);
+
+app.use(
+  "/api/v1/project",
+  authMiddleware,
+  companyAccessMiddleware,
+  projectRoutes,
+);
+
+app.use(
+  "/api/v1/project",
+  authMiddleware,
+  companyAccessMiddleware,
+  projectRoutes,
 );
 
 // app.use("/api/v1/salary-structure", salaryStructureRoutes);
