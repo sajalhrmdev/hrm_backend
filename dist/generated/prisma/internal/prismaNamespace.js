@@ -122,6 +122,7 @@ export const ModelName = {
     DocumentTemplate: 'DocumentTemplate',
     GeneratedDocument: 'GeneratedDocument',
     Resignation: 'Resignation',
+    Issue: 'Issue',
     MobileTheme: 'MobileTheme'
 };
 /**
@@ -848,6 +849,20 @@ export const ResignationScalarFieldEnum = {
     approvedBy: 'approvedBy',
     approvedAt: 'approvedAt',
     rejectionReason: 'rejectionReason',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+};
+export const IssueScalarFieldEnum = {
+    id: 'id',
+    companyId: 'companyId',
+    employeeId: 'employeeId',
+    title: 'title',
+    description: 'description',
+    status: 'status',
+    resolutionNote: 'resolutionNote',
+    rejectedReason: 'rejectedReason',
+    resolvedBy: 'resolvedBy',
+    resolvedAt: 'resolvedAt',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
 };

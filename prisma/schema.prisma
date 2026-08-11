@@ -72,6 +72,7 @@ model Company{
   documentTemplates DocumentTemplate[]
   generatedDocuments GeneratedDocument[]
   resignations Resignation[]
+  issues Issue[]
   professionalTaxSlabs ProfessionalTaxSlab[]
   clients Client[]
   appointments Appointment[]
@@ -483,6 +484,8 @@ workSchedulePolicy WorkSchedulePolicy? @relation( fields:[workSchedulePolicyId],
     goals Goal[]
     resignations Resignation[]
     approvedResignations Resignation[] @relation("ApprovedResignations")
+    issues Issue[]
+    resolvedIssues Issue[] @relation("ResolvedIssues")
     generatedDocuments GeneratedDocument[]
     appointments Appointment[]
     visits Visit[]
@@ -490,6 +493,7 @@ workSchedulePolicy WorkSchedulePolicy? @relation( fields:[workSchedulePolicyId],
     meetingAttendees MeetingAttendee[]
     projectsManaged Project[] @relation("ProjectManager")
     projectMemberships ProjectMember[]
+    notices Notice[]
   
 @@index([companyId])
  
@@ -1298,6 +1302,8 @@ model Holiday {
 
   isPaid Boolean @default(true)
 
+  isObserved Boolean @default(true)
+
   description String?
 
   createdAt DateTime @default(now())
@@ -1379,6 +1385,8 @@ model Notice {
 
   attachmentUrl String?
 
+  employeeId Int?
+
   createdBy Int?
 
   createdAt DateTime  @default(now())
@@ -1387,7 +1395,13 @@ model Notice {
 
   company Company  @relation(    fields:[companyId],    references:[id]  )
 
+  employee Employee?  @relation(    fields:[employeeId],    references:[id]  )
+
   @@index([companyId])
+
+  @@index([employeeId])
+
+  @@index([companyId, employeeId])
 
   @@index([noticeDate])
 
@@ -1606,6 +1620,37 @@ model Resignation {
   company  Company  @relation(fields: [companyId], references: [id])
   employee Employee @relation(fields: [employeeId], references: [id])
   approver Employee? @relation("ApprovedResignations", fields: [approvedBy], references: [id])
+
+  @@index([companyId])
+  @@index([employeeId])
+}
+
+// =======================================ISSUE=====================================
+enum IssueStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+  REJECTED
+  CANCELLED
+}
+
+model Issue {
+  id             Int         @id @default(autoincrement())
+  companyId      Int
+  employeeId     Int
+  title          String
+  description    String      @db.Text
+  status         IssueStatus @default(OPEN)
+  resolutionNote String?     @db.Text
+  rejectedReason String?     @db.Text
+  resolvedBy     Int?
+  resolvedAt     DateTime?
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  company  Company  @relation(fields: [companyId], references: [id])
+  employee Employee @relation(fields: [employeeId], references: [id])
+  resolver Employee? @relation("ResolvedIssues", fields: [resolvedBy], references: [id])
 
   @@index([companyId])
   @@index([employeeId])

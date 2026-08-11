@@ -43,6 +43,7 @@ export type HolidayMinAggregateOutputType = {
   date: Date | null
   type: $Enums.HolidayType | null
   isPaid: boolean | null
+  isObserved: boolean | null
   description: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -55,6 +56,7 @@ export type HolidayMaxAggregateOutputType = {
   date: Date | null
   type: $Enums.HolidayType | null
   isPaid: boolean | null
+  isObserved: boolean | null
   description: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -67,6 +69,7 @@ export type HolidayCountAggregateOutputType = {
   date: number
   type: number
   isPaid: number
+  isObserved: number
   description: number
   createdAt: number
   updatedAt: number
@@ -91,6 +94,7 @@ export type HolidayMinAggregateInputType = {
   date?: true
   type?: true
   isPaid?: true
+  isObserved?: true
   description?: true
   createdAt?: true
   updatedAt?: true
@@ -103,6 +107,7 @@ export type HolidayMaxAggregateInputType = {
   date?: true
   type?: true
   isPaid?: true
+  isObserved?: true
   description?: true
   createdAt?: true
   updatedAt?: true
@@ -115,6 +120,7 @@ export type HolidayCountAggregateInputType = {
   date?: true
   type?: true
   isPaid?: true
+  isObserved?: true
   description?: true
   createdAt?: true
   updatedAt?: true
@@ -214,6 +220,7 @@ export type HolidayGroupByOutputType = {
   date: Date
   type: $Enums.HolidayType
   isPaid: boolean
+  isObserved: boolean
   description: string | null
   createdAt: Date
   updatedAt: Date
@@ -249,6 +256,7 @@ export type HolidayWhereInput = {
   date?: Prisma.DateTimeFilter<"Holiday"> | Date | string
   type?: Prisma.EnumHolidayTypeFilter<"Holiday"> | $Enums.HolidayType
   isPaid?: Prisma.BoolFilter<"Holiday"> | boolean
+  isObserved?: Prisma.BoolFilter<"Holiday"> | boolean
   description?: Prisma.StringNullableFilter<"Holiday"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Holiday"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Holiday"> | Date | string
@@ -262,6 +270,7 @@ export type HolidayOrderByWithRelationInput = {
   date?: Prisma.SortOrder
   type?: Prisma.SortOrder
   isPaid?: Prisma.SortOrder
+  isObserved?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -278,6 +287,7 @@ export type HolidayWhereUniqueInput = Prisma.AtLeast<{
   date?: Prisma.DateTimeFilter<"Holiday"> | Date | string
   type?: Prisma.EnumHolidayTypeFilter<"Holiday"> | $Enums.HolidayType
   isPaid?: Prisma.BoolFilter<"Holiday"> | boolean
+  isObserved?: Prisma.BoolFilter<"Holiday"> | boolean
   description?: Prisma.StringNullableFilter<"Holiday"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Holiday"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Holiday"> | Date | string
@@ -291,6 +301,7 @@ export type HolidayOrderByWithAggregationInput = {
   date?: Prisma.SortOrder
   type?: Prisma.SortOrder
   isPaid?: Prisma.SortOrder
+  isObserved?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -311,6 +322,7 @@ export type HolidayScalarWhereWithAggregatesInput = {
   date?: Prisma.DateTimeWithAggregatesFilter<"Holiday"> | Date | string
   type?: Prisma.EnumHolidayTypeWithAggregatesFilter<"Holiday"> | $Enums.HolidayType
   isPaid?: Prisma.BoolWithAggregatesFilter<"Holiday"> | boolean
+  isObserved?: Prisma.BoolWithAggregatesFilter<"Holiday"> | boolean
   description?: Prisma.StringNullableWithAggregatesFilter<"Holiday"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Holiday"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Holiday"> | Date | string
@@ -321,6 +333,7 @@ export type HolidayCreateInput = {
   date: Date | string
   type: $Enums.HolidayType
   isPaid?: boolean
+  isObserved?: boolean
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -334,6 +347,7 @@ export type HolidayUncheckedCreateInput = {
   date: Date | string
   type: $Enums.HolidayType
   isPaid?: boolean
+  isObserved?: boolean
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -344,6 +358,7 @@ export type HolidayUpdateInput = {
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   type?: Prisma.EnumHolidayTypeFieldUpdateOperationsInput | $Enums.HolidayType
   isPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isObserved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -357,6 +372,7 @@ export type HolidayUncheckedUpdateInput = {
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   type?: Prisma.EnumHolidayTypeFieldUpdateOperationsInput | $Enums.HolidayType
   isPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isObserved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -369,6 +385,7 @@ export type HolidayCreateManyInput = {
   date: Date | string
   type: $Enums.HolidayType
   isPaid?: boolean
+  isObserved?: boolean
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -379,6 +396,7 @@ export type HolidayUpdateManyMutationInput = {
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   type?: Prisma.EnumHolidayTypeFieldUpdateOperationsInput | $Enums.HolidayType
   isPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isObserved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -391,6 +409,7 @@ export type HolidayUncheckedUpdateManyInput = {
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   type?: Prisma.EnumHolidayTypeFieldUpdateOperationsInput | $Enums.HolidayType
   isPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isObserved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -413,6 +432,7 @@ export type HolidayCountOrderByAggregateInput = {
   date?: Prisma.SortOrder
   type?: Prisma.SortOrder
   isPaid?: Prisma.SortOrder
+  isObserved?: Prisma.SortOrder
   description?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -430,6 +450,7 @@ export type HolidayMaxOrderByAggregateInput = {
   date?: Prisma.SortOrder
   type?: Prisma.SortOrder
   isPaid?: Prisma.SortOrder
+  isObserved?: Prisma.SortOrder
   description?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -442,6 +463,7 @@ export type HolidayMinOrderByAggregateInput = {
   date?: Prisma.SortOrder
   type?: Prisma.SortOrder
   isPaid?: Prisma.SortOrder
+  isObserved?: Prisma.SortOrder
   description?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -503,6 +525,7 @@ export type HolidayCreateWithoutCompanyInput = {
   date: Date | string
   type: $Enums.HolidayType
   isPaid?: boolean
+  isObserved?: boolean
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -514,6 +537,7 @@ export type HolidayUncheckedCreateWithoutCompanyInput = {
   date: Date | string
   type: $Enums.HolidayType
   isPaid?: boolean
+  isObserved?: boolean
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -555,6 +579,7 @@ export type HolidayScalarWhereInput = {
   date?: Prisma.DateTimeFilter<"Holiday"> | Date | string
   type?: Prisma.EnumHolidayTypeFilter<"Holiday"> | $Enums.HolidayType
   isPaid?: Prisma.BoolFilter<"Holiday"> | boolean
+  isObserved?: Prisma.BoolFilter<"Holiday"> | boolean
   description?: Prisma.StringNullableFilter<"Holiday"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Holiday"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Holiday"> | Date | string
@@ -566,6 +591,7 @@ export type HolidayCreateManyCompanyInput = {
   date: Date | string
   type: $Enums.HolidayType
   isPaid?: boolean
+  isObserved?: boolean
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -576,6 +602,7 @@ export type HolidayUpdateWithoutCompanyInput = {
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   type?: Prisma.EnumHolidayTypeFieldUpdateOperationsInput | $Enums.HolidayType
   isPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isObserved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -587,6 +614,7 @@ export type HolidayUncheckedUpdateWithoutCompanyInput = {
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   type?: Prisma.EnumHolidayTypeFieldUpdateOperationsInput | $Enums.HolidayType
   isPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isObserved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -598,6 +626,7 @@ export type HolidayUncheckedUpdateManyWithoutCompanyInput = {
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   type?: Prisma.EnumHolidayTypeFieldUpdateOperationsInput | $Enums.HolidayType
   isPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isObserved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -612,6 +641,7 @@ export type HolidaySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   date?: boolean
   type?: boolean
   isPaid?: boolean
+  isObserved?: boolean
   description?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -625,6 +655,7 @@ export type HolidaySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   date?: boolean
   type?: boolean
   isPaid?: boolean
+  isObserved?: boolean
   description?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -638,6 +669,7 @@ export type HolidaySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   date?: boolean
   type?: boolean
   isPaid?: boolean
+  isObserved?: boolean
   description?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -651,12 +683,13 @@ export type HolidaySelectScalar = {
   date?: boolean
   type?: boolean
   isPaid?: boolean
+  isObserved?: boolean
   description?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type HolidayOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "title" | "date" | "type" | "isPaid" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["holiday"]>
+export type HolidayOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "title" | "date" | "type" | "isPaid" | "isObserved" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["holiday"]>
 export type HolidayInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
 }
@@ -679,6 +712,7 @@ export type $HolidayPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     date: Date
     type: $Enums.HolidayType
     isPaid: boolean
+    isObserved: boolean
     description: string | null
     createdAt: Date
     updatedAt: Date
@@ -1112,6 +1146,7 @@ export interface HolidayFieldRefs {
   readonly date: Prisma.FieldRef<"Holiday", 'DateTime'>
   readonly type: Prisma.FieldRef<"Holiday", 'HolidayType'>
   readonly isPaid: Prisma.FieldRef<"Holiday", 'Boolean'>
+  readonly isObserved: Prisma.FieldRef<"Holiday", 'Boolean'>
   readonly description: Prisma.FieldRef<"Holiday", 'String'>
   readonly createdAt: Prisma.FieldRef<"Holiday", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Holiday", 'DateTime'>

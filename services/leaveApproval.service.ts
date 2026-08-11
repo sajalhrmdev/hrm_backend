@@ -1,6 +1,10 @@
 import { prisma } from "../lib/prisma.js";
 import { markAttendanceAsLeave } from "./attendanceLeave.helper.js";
 import getStartEndOfDay from "../utils/getStartEndOfDay.js";
+import {
+  createNoticeForEmployee,
+  pruneOldPersonalNotices,
+} from "../module/notice/notice.service.js";
 
 type ApproveInput = {
   leaveId: number;
@@ -90,6 +94,19 @@ export const approveLeave = async (input: ApproveInput) => {
     // 6) (Optional 🔥) Attendance sync
     // TODO: mark attendance as LEAVE for each day
 
+    // 7) Notify the employee
+    await createNoticeForEmployee(tx, {
+      companyId,
+      employeeId: leave.employeeId,
+      title: "Leave Approved",
+      description:
+        `Your leave request (${new Date(leave.fromDate).toLocaleDateString()} – ${new Date(leave.toDate).toLocaleDateString()}) has been approved.`,
+      priority: "NORMAL",
+      createdBy: approverId,
+    });
+
+    await pruneOldPersonalNotices(tx, companyId, leave.employeeId);
+
     return updatedLeave;
   });
 };
@@ -103,7 +120,7 @@ type RejectInput = {
 };
 
 export const rejectLeave = async (input: RejectInput) => {
-  const { leaveId, approverId, companyId } = input;
+  const { leaveId, approverId, companyId, remark } = input;
 
   const leave = await prisma.leaveApplication.findFirst({
     where: { id: leaveId, companyId },
@@ -119,7 +136,7 @@ export const rejectLeave = async (input: RejectInput) => {
     return leave;
   }
 
-  return prisma.leaveApplication.update({
+  const updatedLeave = await prisma.leaveApplication.update({
     where: { id: leaveId },
     data: {
       status: "REJECTED",
@@ -132,6 +149,21 @@ export const rejectLeave = async (input: RejectInput) => {
       approvedAt: true,
     },
   });
+
+  await createNoticeForEmployee(prisma, {
+    companyId,
+    employeeId: leave.employeeId,
+    title: "Leave Rejected",
+    description:
+      `Your leave request (${new Date(leave.fromDate).toLocaleDateString()} – ${new Date(leave.toDate).toLocaleDateString()}) has been rejected.` +
+      (remark ? ` Reason: ${remark}` : ""),
+    priority: "HIGH",
+    createdBy: approverId,
+  });
+
+  await pruneOldPersonalNotices(prisma, companyId, leave.employeeId);
+
+  return updatedLeave;
 };
 
 type CancelApprovalInput = {

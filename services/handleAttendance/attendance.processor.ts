@@ -492,6 +492,8 @@ export const processAttendance = async (
       where: {
         companyId,
 
+        isObserved: true,
+
         date: {
           gte: start,
           lte: end,

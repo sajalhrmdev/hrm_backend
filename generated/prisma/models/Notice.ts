@@ -29,12 +29,14 @@ export type AggregateNotice = {
 export type NoticeAvgAggregateOutputType = {
   id: number | null
   companyId: number | null
+  employeeId: number | null
   createdBy: number | null
 }
 
 export type NoticeSumAggregateOutputType = {
   id: number | null
   companyId: number | null
+  employeeId: number | null
   createdBy: number | null
 }
 
@@ -48,6 +50,7 @@ export type NoticeMinAggregateOutputType = {
   priority: $Enums.NoticePriority | null
   isPublished: boolean | null
   attachmentUrl: string | null
+  employeeId: number | null
   createdBy: number | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -63,6 +66,7 @@ export type NoticeMaxAggregateOutputType = {
   priority: $Enums.NoticePriority | null
   isPublished: boolean | null
   attachmentUrl: string | null
+  employeeId: number | null
   createdBy: number | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -78,6 +82,7 @@ export type NoticeCountAggregateOutputType = {
   priority: number
   isPublished: number
   attachmentUrl: number
+  employeeId: number
   createdBy: number
   createdAt: number
   updatedAt: number
@@ -88,12 +93,14 @@ export type NoticeCountAggregateOutputType = {
 export type NoticeAvgAggregateInputType = {
   id?: true
   companyId?: true
+  employeeId?: true
   createdBy?: true
 }
 
 export type NoticeSumAggregateInputType = {
   id?: true
   companyId?: true
+  employeeId?: true
   createdBy?: true
 }
 
@@ -107,6 +114,7 @@ export type NoticeMinAggregateInputType = {
   priority?: true
   isPublished?: true
   attachmentUrl?: true
+  employeeId?: true
   createdBy?: true
   createdAt?: true
   updatedAt?: true
@@ -122,6 +130,7 @@ export type NoticeMaxAggregateInputType = {
   priority?: true
   isPublished?: true
   attachmentUrl?: true
+  employeeId?: true
   createdBy?: true
   createdAt?: true
   updatedAt?: true
@@ -137,6 +146,7 @@ export type NoticeCountAggregateInputType = {
   priority?: true
   isPublished?: true
   attachmentUrl?: true
+  employeeId?: true
   createdBy?: true
   createdAt?: true
   updatedAt?: true
@@ -239,6 +249,7 @@ export type NoticeGroupByOutputType = {
   priority: $Enums.NoticePriority
   isPublished: boolean
   attachmentUrl: string | null
+  employeeId: number | null
   createdBy: number | null
   createdAt: Date
   updatedAt: Date
@@ -277,10 +288,12 @@ export type NoticeWhereInput = {
   priority?: Prisma.EnumNoticePriorityFilter<"Notice"> | $Enums.NoticePriority
   isPublished?: Prisma.BoolFilter<"Notice"> | boolean
   attachmentUrl?: Prisma.StringNullableFilter<"Notice"> | string | null
+  employeeId?: Prisma.IntNullableFilter<"Notice"> | number | null
   createdBy?: Prisma.IntNullableFilter<"Notice"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Notice"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Notice"> | Date | string
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
+  employee?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
 }
 
 export type NoticeOrderByWithRelationInput = {
@@ -293,10 +306,12 @@ export type NoticeOrderByWithRelationInput = {
   priority?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
   attachmentUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  employeeId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdBy?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   company?: Prisma.CompanyOrderByWithRelationInput
+  employee?: Prisma.EmployeeOrderByWithRelationInput
 }
 
 export type NoticeWhereUniqueInput = Prisma.AtLeast<{
@@ -312,10 +327,12 @@ export type NoticeWhereUniqueInput = Prisma.AtLeast<{
   priority?: Prisma.EnumNoticePriorityFilter<"Notice"> | $Enums.NoticePriority
   isPublished?: Prisma.BoolFilter<"Notice"> | boolean
   attachmentUrl?: Prisma.StringNullableFilter<"Notice"> | string | null
+  employeeId?: Prisma.IntNullableFilter<"Notice"> | number | null
   createdBy?: Prisma.IntNullableFilter<"Notice"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Notice"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Notice"> | Date | string
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
+  employee?: Prisma.XOR<Prisma.EmployeeNullableScalarRelationFilter, Prisma.EmployeeWhereInput> | null
 }, "id">
 
 export type NoticeOrderByWithAggregationInput = {
@@ -328,6 +345,7 @@ export type NoticeOrderByWithAggregationInput = {
   priority?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
   attachmentUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  employeeId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdBy?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -351,6 +369,7 @@ export type NoticeScalarWhereWithAggregatesInput = {
   priority?: Prisma.EnumNoticePriorityWithAggregatesFilter<"Notice"> | $Enums.NoticePriority
   isPublished?: Prisma.BoolWithAggregatesFilter<"Notice"> | boolean
   attachmentUrl?: Prisma.StringNullableWithAggregatesFilter<"Notice"> | string | null
+  employeeId?: Prisma.IntNullableWithAggregatesFilter<"Notice"> | number | null
   createdBy?: Prisma.IntNullableWithAggregatesFilter<"Notice"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Notice"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Notice"> | Date | string
@@ -368,6 +387,7 @@ export type NoticeCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutNoticesInput
+  employee?: Prisma.EmployeeCreateNestedOneWithoutNoticesInput
 }
 
 export type NoticeUncheckedCreateInput = {
@@ -380,6 +400,7 @@ export type NoticeUncheckedCreateInput = {
   priority?: $Enums.NoticePriority
   isPublished?: boolean
   attachmentUrl?: string | null
+  employeeId?: number | null
   createdBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -397,6 +418,7 @@ export type NoticeUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company?: Prisma.CompanyUpdateOneRequiredWithoutNoticesNestedInput
+  employee?: Prisma.EmployeeUpdateOneWithoutNoticesNestedInput
 }
 
 export type NoticeUncheckedUpdateInput = {
@@ -409,6 +431,7 @@ export type NoticeUncheckedUpdateInput = {
   priority?: Prisma.EnumNoticePriorityFieldUpdateOperationsInput | $Enums.NoticePriority
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   attachmentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -424,6 +447,7 @@ export type NoticeCreateManyInput = {
   priority?: $Enums.NoticePriority
   isPublished?: boolean
   attachmentUrl?: string | null
+  employeeId?: number | null
   createdBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -452,6 +476,7 @@ export type NoticeUncheckedUpdateManyInput = {
   priority?: Prisma.EnumNoticePriorityFieldUpdateOperationsInput | $Enums.NoticePriority
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   attachmentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -477,6 +502,7 @@ export type NoticeCountOrderByAggregateInput = {
   priority?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
   attachmentUrl?: Prisma.SortOrder
+  employeeId?: Prisma.SortOrder
   createdBy?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -485,6 +511,7 @@ export type NoticeCountOrderByAggregateInput = {
 export type NoticeAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
+  employeeId?: Prisma.SortOrder
   createdBy?: Prisma.SortOrder
 }
 
@@ -498,6 +525,7 @@ export type NoticeMaxOrderByAggregateInput = {
   priority?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
   attachmentUrl?: Prisma.SortOrder
+  employeeId?: Prisma.SortOrder
   createdBy?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -513,6 +541,7 @@ export type NoticeMinOrderByAggregateInput = {
   priority?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
   attachmentUrl?: Prisma.SortOrder
+  employeeId?: Prisma.SortOrder
   createdBy?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -521,6 +550,7 @@ export type NoticeMinOrderByAggregateInput = {
 export type NoticeSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
+  employeeId?: Prisma.SortOrder
   createdBy?: Prisma.SortOrder
 }
 
@@ -566,6 +596,48 @@ export type NoticeUncheckedUpdateManyWithoutCompanyNestedInput = {
   deleteMany?: Prisma.NoticeScalarWhereInput | Prisma.NoticeScalarWhereInput[]
 }
 
+export type NoticeCreateNestedManyWithoutEmployeeInput = {
+  create?: Prisma.XOR<Prisma.NoticeCreateWithoutEmployeeInput, Prisma.NoticeUncheckedCreateWithoutEmployeeInput> | Prisma.NoticeCreateWithoutEmployeeInput[] | Prisma.NoticeUncheckedCreateWithoutEmployeeInput[]
+  connectOrCreate?: Prisma.NoticeCreateOrConnectWithoutEmployeeInput | Prisma.NoticeCreateOrConnectWithoutEmployeeInput[]
+  createMany?: Prisma.NoticeCreateManyEmployeeInputEnvelope
+  connect?: Prisma.NoticeWhereUniqueInput | Prisma.NoticeWhereUniqueInput[]
+}
+
+export type NoticeUncheckedCreateNestedManyWithoutEmployeeInput = {
+  create?: Prisma.XOR<Prisma.NoticeCreateWithoutEmployeeInput, Prisma.NoticeUncheckedCreateWithoutEmployeeInput> | Prisma.NoticeCreateWithoutEmployeeInput[] | Prisma.NoticeUncheckedCreateWithoutEmployeeInput[]
+  connectOrCreate?: Prisma.NoticeCreateOrConnectWithoutEmployeeInput | Prisma.NoticeCreateOrConnectWithoutEmployeeInput[]
+  createMany?: Prisma.NoticeCreateManyEmployeeInputEnvelope
+  connect?: Prisma.NoticeWhereUniqueInput | Prisma.NoticeWhereUniqueInput[]
+}
+
+export type NoticeUpdateManyWithoutEmployeeNestedInput = {
+  create?: Prisma.XOR<Prisma.NoticeCreateWithoutEmployeeInput, Prisma.NoticeUncheckedCreateWithoutEmployeeInput> | Prisma.NoticeCreateWithoutEmployeeInput[] | Prisma.NoticeUncheckedCreateWithoutEmployeeInput[]
+  connectOrCreate?: Prisma.NoticeCreateOrConnectWithoutEmployeeInput | Prisma.NoticeCreateOrConnectWithoutEmployeeInput[]
+  upsert?: Prisma.NoticeUpsertWithWhereUniqueWithoutEmployeeInput | Prisma.NoticeUpsertWithWhereUniqueWithoutEmployeeInput[]
+  createMany?: Prisma.NoticeCreateManyEmployeeInputEnvelope
+  set?: Prisma.NoticeWhereUniqueInput | Prisma.NoticeWhereUniqueInput[]
+  disconnect?: Prisma.NoticeWhereUniqueInput | Prisma.NoticeWhereUniqueInput[]
+  delete?: Prisma.NoticeWhereUniqueInput | Prisma.NoticeWhereUniqueInput[]
+  connect?: Prisma.NoticeWhereUniqueInput | Prisma.NoticeWhereUniqueInput[]
+  update?: Prisma.NoticeUpdateWithWhereUniqueWithoutEmployeeInput | Prisma.NoticeUpdateWithWhereUniqueWithoutEmployeeInput[]
+  updateMany?: Prisma.NoticeUpdateManyWithWhereWithoutEmployeeInput | Prisma.NoticeUpdateManyWithWhereWithoutEmployeeInput[]
+  deleteMany?: Prisma.NoticeScalarWhereInput | Prisma.NoticeScalarWhereInput[]
+}
+
+export type NoticeUncheckedUpdateManyWithoutEmployeeNestedInput = {
+  create?: Prisma.XOR<Prisma.NoticeCreateWithoutEmployeeInput, Prisma.NoticeUncheckedCreateWithoutEmployeeInput> | Prisma.NoticeCreateWithoutEmployeeInput[] | Prisma.NoticeUncheckedCreateWithoutEmployeeInput[]
+  connectOrCreate?: Prisma.NoticeCreateOrConnectWithoutEmployeeInput | Prisma.NoticeCreateOrConnectWithoutEmployeeInput[]
+  upsert?: Prisma.NoticeUpsertWithWhereUniqueWithoutEmployeeInput | Prisma.NoticeUpsertWithWhereUniqueWithoutEmployeeInput[]
+  createMany?: Prisma.NoticeCreateManyEmployeeInputEnvelope
+  set?: Prisma.NoticeWhereUniqueInput | Prisma.NoticeWhereUniqueInput[]
+  disconnect?: Prisma.NoticeWhereUniqueInput | Prisma.NoticeWhereUniqueInput[]
+  delete?: Prisma.NoticeWhereUniqueInput | Prisma.NoticeWhereUniqueInput[]
+  connect?: Prisma.NoticeWhereUniqueInput | Prisma.NoticeWhereUniqueInput[]
+  update?: Prisma.NoticeUpdateWithWhereUniqueWithoutEmployeeInput | Prisma.NoticeUpdateWithWhereUniqueWithoutEmployeeInput[]
+  updateMany?: Prisma.NoticeUpdateManyWithWhereWithoutEmployeeInput | Prisma.NoticeUpdateManyWithWhereWithoutEmployeeInput[]
+  deleteMany?: Prisma.NoticeScalarWhereInput | Prisma.NoticeScalarWhereInput[]
+}
+
 export type EnumNoticePriorityFieldUpdateOperationsInput = {
   set?: $Enums.NoticePriority
 }
@@ -581,6 +653,7 @@ export type NoticeCreateWithoutCompanyInput = {
   createdBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  employee?: Prisma.EmployeeCreateNestedOneWithoutNoticesInput
 }
 
 export type NoticeUncheckedCreateWithoutCompanyInput = {
@@ -592,6 +665,7 @@ export type NoticeUncheckedCreateWithoutCompanyInput = {
   priority?: $Enums.NoticePriority
   isPublished?: boolean
   attachmentUrl?: string | null
+  employeeId?: number | null
   createdBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -636,9 +710,65 @@ export type NoticeScalarWhereInput = {
   priority?: Prisma.EnumNoticePriorityFilter<"Notice"> | $Enums.NoticePriority
   isPublished?: Prisma.BoolFilter<"Notice"> | boolean
   attachmentUrl?: Prisma.StringNullableFilter<"Notice"> | string | null
+  employeeId?: Prisma.IntNullableFilter<"Notice"> | number | null
   createdBy?: Prisma.IntNullableFilter<"Notice"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Notice"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Notice"> | Date | string
+}
+
+export type NoticeCreateWithoutEmployeeInput = {
+  title: string
+  description: string
+  noticeDate: Date | string
+  expiryDate?: Date | string | null
+  priority?: $Enums.NoticePriority
+  isPublished?: boolean
+  attachmentUrl?: string | null
+  createdBy?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  company: Prisma.CompanyCreateNestedOneWithoutNoticesInput
+}
+
+export type NoticeUncheckedCreateWithoutEmployeeInput = {
+  id?: number
+  companyId: number
+  title: string
+  description: string
+  noticeDate: Date | string
+  expiryDate?: Date | string | null
+  priority?: $Enums.NoticePriority
+  isPublished?: boolean
+  attachmentUrl?: string | null
+  createdBy?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type NoticeCreateOrConnectWithoutEmployeeInput = {
+  where: Prisma.NoticeWhereUniqueInput
+  create: Prisma.XOR<Prisma.NoticeCreateWithoutEmployeeInput, Prisma.NoticeUncheckedCreateWithoutEmployeeInput>
+}
+
+export type NoticeCreateManyEmployeeInputEnvelope = {
+  data: Prisma.NoticeCreateManyEmployeeInput | Prisma.NoticeCreateManyEmployeeInput[]
+  skipDuplicates?: boolean
+}
+
+export type NoticeUpsertWithWhereUniqueWithoutEmployeeInput = {
+  where: Prisma.NoticeWhereUniqueInput
+  update: Prisma.XOR<Prisma.NoticeUpdateWithoutEmployeeInput, Prisma.NoticeUncheckedUpdateWithoutEmployeeInput>
+  create: Prisma.XOR<Prisma.NoticeCreateWithoutEmployeeInput, Prisma.NoticeUncheckedCreateWithoutEmployeeInput>
+}
+
+export type NoticeUpdateWithWhereUniqueWithoutEmployeeInput = {
+  where: Prisma.NoticeWhereUniqueInput
+  data: Prisma.XOR<Prisma.NoticeUpdateWithoutEmployeeInput, Prisma.NoticeUncheckedUpdateWithoutEmployeeInput>
+}
+
+export type NoticeUpdateManyWithWhereWithoutEmployeeInput = {
+  where: Prisma.NoticeScalarWhereInput
+  data: Prisma.XOR<Prisma.NoticeUpdateManyMutationInput, Prisma.NoticeUncheckedUpdateManyWithoutEmployeeInput>
 }
 
 export type NoticeCreateManyCompanyInput = {
@@ -650,6 +780,7 @@ export type NoticeCreateManyCompanyInput = {
   priority?: $Enums.NoticePriority
   isPublished?: boolean
   attachmentUrl?: string | null
+  employeeId?: number | null
   createdBy?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -666,10 +797,71 @@ export type NoticeUpdateWithoutCompanyInput = {
   createdBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employee?: Prisma.EmployeeUpdateOneWithoutNoticesNestedInput
 }
 
 export type NoticeUncheckedUpdateWithoutCompanyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  noticeDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  priority?: Prisma.EnumNoticePriorityFieldUpdateOperationsInput | $Enums.NoticePriority
+  isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  attachmentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type NoticeUncheckedUpdateManyWithoutCompanyInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  noticeDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  priority?: Prisma.EnumNoticePriorityFieldUpdateOperationsInput | $Enums.NoticePriority
+  isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  attachmentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type NoticeCreateManyEmployeeInput = {
+  id?: number
+  companyId: number
+  title: string
+  description: string
+  noticeDate: Date | string
+  expiryDate?: Date | string | null
+  priority?: $Enums.NoticePriority
+  isPublished?: boolean
+  attachmentUrl?: string | null
+  createdBy?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type NoticeUpdateWithoutEmployeeInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  noticeDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  priority?: Prisma.EnumNoticePriorityFieldUpdateOperationsInput | $Enums.NoticePriority
+  isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  attachmentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company?: Prisma.CompanyUpdateOneRequiredWithoutNoticesNestedInput
+}
+
+export type NoticeUncheckedUpdateWithoutEmployeeInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  companyId?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   noticeDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -682,8 +874,9 @@ export type NoticeUncheckedUpdateWithoutCompanyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type NoticeUncheckedUpdateManyWithoutCompanyInput = {
+export type NoticeUncheckedUpdateManyWithoutEmployeeInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  companyId?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   noticeDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -708,10 +901,12 @@ export type NoticeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   priority?: boolean
   isPublished?: boolean
   attachmentUrl?: boolean
+  employeeId?: boolean
   createdBy?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  employee?: boolean | Prisma.Notice$employeeArgs<ExtArgs>
 }, ExtArgs["result"]["notice"]>
 
 export type NoticeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -724,10 +919,12 @@ export type NoticeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   priority?: boolean
   isPublished?: boolean
   attachmentUrl?: boolean
+  employeeId?: boolean
   createdBy?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  employee?: boolean | Prisma.Notice$employeeArgs<ExtArgs>
 }, ExtArgs["result"]["notice"]>
 
 export type NoticeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -740,10 +937,12 @@ export type NoticeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   priority?: boolean
   isPublished?: boolean
   attachmentUrl?: boolean
+  employeeId?: boolean
   createdBy?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  employee?: boolean | Prisma.Notice$employeeArgs<ExtArgs>
 }, ExtArgs["result"]["notice"]>
 
 export type NoticeSelectScalar = {
@@ -756,26 +955,31 @@ export type NoticeSelectScalar = {
   priority?: boolean
   isPublished?: boolean
   attachmentUrl?: boolean
+  employeeId?: boolean
   createdBy?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type NoticeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "title" | "description" | "noticeDate" | "expiryDate" | "priority" | "isPublished" | "attachmentUrl" | "createdBy" | "createdAt" | "updatedAt", ExtArgs["result"]["notice"]>
+export type NoticeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "title" | "description" | "noticeDate" | "expiryDate" | "priority" | "isPublished" | "attachmentUrl" | "employeeId" | "createdBy" | "createdAt" | "updatedAt", ExtArgs["result"]["notice"]>
 export type NoticeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  employee?: boolean | Prisma.Notice$employeeArgs<ExtArgs>
 }
 export type NoticeIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  employee?: boolean | Prisma.Notice$employeeArgs<ExtArgs>
 }
 export type NoticeIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  employee?: boolean | Prisma.Notice$employeeArgs<ExtArgs>
 }
 
 export type $NoticePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Notice"
   objects: {
     company: Prisma.$CompanyPayload<ExtArgs>
+    employee: Prisma.$EmployeePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -787,6 +991,7 @@ export type $NoticePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     priority: $Enums.NoticePriority
     isPublished: boolean
     attachmentUrl: string | null
+    employeeId: number | null
     createdBy: number | null
     createdAt: Date
     updatedAt: Date
@@ -1185,6 +1390,7 @@ readonly fields: NoticeFieldRefs;
 export interface Prisma__NoticeClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   company<T extends Prisma.CompanyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CompanyDefaultArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  employee<T extends Prisma.Notice$employeeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Notice$employeeArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1223,6 +1429,7 @@ export interface NoticeFieldRefs {
   readonly priority: Prisma.FieldRef<"Notice", 'NoticePriority'>
   readonly isPublished: Prisma.FieldRef<"Notice", 'Boolean'>
   readonly attachmentUrl: Prisma.FieldRef<"Notice", 'String'>
+  readonly employeeId: Prisma.FieldRef<"Notice", 'Int'>
   readonly createdBy: Prisma.FieldRef<"Notice", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Notice", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Notice", 'DateTime'>
@@ -1624,6 +1831,25 @@ export type NoticeDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Limit how many Notices to delete.
    */
   limit?: number
+}
+
+/**
+ * Notice.employee
+ */
+export type Notice$employeeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Employee
+   */
+  select?: Prisma.EmployeeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Employee
+   */
+  omit?: Prisma.EmployeeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmployeeInclude<ExtArgs> | null
+  where?: Prisma.EmployeeWhereInput
 }
 
 /**

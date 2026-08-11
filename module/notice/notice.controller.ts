@@ -1,6 +1,7 @@
 import {
   createNotice,
   getNotices,
+  getActiveNotices,
   getSingleNotice,
   updateNotice,
   deleteNotice,
@@ -46,6 +47,8 @@ export const createNoticeController = async (
       isPublished,
 
       attachmentUrl,
+
+      employeeId,
     } = req.body;
 
     const data = await createNotice({
@@ -64,6 +67,8 @@ export const createNoticeController = async (
       isPublished,
 
       attachmentUrl,
+
+      employeeId: employeeId ? Number(employeeId) : null,
 
       createdBy: req.user?.id,
     });
@@ -99,6 +104,38 @@ export const getNoticesController = async (
     }
 
     const data = await getNotices(companyId);
+
+    res.json({
+      success: true,
+
+      data,
+    });
+  } catch (err: any) {
+    res.status(400).json({
+      success: false,
+
+      message: err.message,
+    });
+  }
+};
+
+// ======================================================
+// GET ACTIVE (published + not expired)
+// ======================================================
+
+export const getActiveNoticesController = async (
+  req: AuthRequest,
+
+  res: Response,
+) => {
+  try {
+    const companyId = req.companyId;
+
+    if (!companyId) {
+      throw new Error("Company not found");
+    }
+
+    const data = await getActiveNotices(companyId, req.employee?.id);
 
     res.json({
       success: true,
@@ -180,6 +217,8 @@ export const updateNoticeController = async (
       isPublished,
 
       attachmentUrl,
+
+      employeeId,
     } = req.body;
 
     const data = await updateNotice({
@@ -200,6 +239,9 @@ export const updateNoticeController = async (
       isPublished,
 
       attachmentUrl,
+
+      employeeId:
+        employeeId === undefined ? undefined : employeeId ? Number(employeeId) : null,
     });
 
     res.json({

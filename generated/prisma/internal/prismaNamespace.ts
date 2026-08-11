@@ -439,6 +439,7 @@ export const ModelName = {
   DocumentTemplate: 'DocumentTemplate',
   GeneratedDocument: 'GeneratedDocument',
   Resignation: 'Resignation',
+  Issue: 'Issue',
   MobileTheme: 'MobileTheme'
 } as const
 
@@ -455,7 +456,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "company" | "client" | "appointment" | "visit" | "meeting" | "meetingAttendee" | "project" | "projectMember" | "officeLocation" | "department" | "designation" | "user" | "globalRole" | "role" | "permission" | "rolePermission" | "membership" | "employee" | "employeePersonalInfo" | "employeeAddress" | "employeeEmergencyContact" | "employeeDocument" | "employeeBankDetail" | "employeeExperience" | "attendance" | "employeeFace" | "attendanceAdjustment" | "attendanceLog" | "workPolicy" | "companySetting" | "shift" | "workSchedulePolicy" | "salaryComponent" | "employeeSalaryComponent" | "payrollAdjustment" | "payRoll" | "payrollSnapComponent" | "payRollRun" | "professionalTaxSlab" | "leaveType" | "leaveBalance" | "leaveIncrementPolicy" | "leaveIncrementLog" | "leaveApplication" | "holiday" | "weeklyOffConfig" | "notice" | "performanceReview" | "employeeReward" | "goal" | "emailSettings" | "emailTemplate" | "documentTemplate" | "generatedDocument" | "resignation" | "mobileTheme"
+    modelProps: "company" | "client" | "appointment" | "visit" | "meeting" | "meetingAttendee" | "project" | "projectMember" | "officeLocation" | "department" | "designation" | "user" | "globalRole" | "role" | "permission" | "rolePermission" | "membership" | "employee" | "employeePersonalInfo" | "employeeAddress" | "employeeEmergencyContact" | "employeeDocument" | "employeeBankDetail" | "employeeExperience" | "attendance" | "employeeFace" | "attendanceAdjustment" | "attendanceLog" | "workPolicy" | "companySetting" | "shift" | "workSchedulePolicy" | "salaryComponent" | "employeeSalaryComponent" | "payrollAdjustment" | "payRoll" | "payrollSnapComponent" | "payRollRun" | "professionalTaxSlab" | "leaveType" | "leaveBalance" | "leaveIncrementPolicy" | "leaveIncrementLog" | "leaveApplication" | "holiday" | "weeklyOffConfig" | "notice" | "performanceReview" | "employeeReward" | "goal" | "emailSettings" | "emailTemplate" | "documentTemplate" | "generatedDocument" | "resignation" | "issue" | "mobileTheme"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -4529,6 +4530,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Issue: {
+      payload: Prisma.$IssuePayload<ExtArgs>
+      fields: Prisma.IssueFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.IssueFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IssuePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.IssueFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IssuePayload>
+        }
+        findFirst: {
+          args: Prisma.IssueFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IssuePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.IssueFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IssuePayload>
+        }
+        findMany: {
+          args: Prisma.IssueFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IssuePayload>[]
+        }
+        create: {
+          args: Prisma.IssueCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IssuePayload>
+        }
+        createMany: {
+          args: Prisma.IssueCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.IssueCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IssuePayload>[]
+        }
+        delete: {
+          args: Prisma.IssueDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IssuePayload>
+        }
+        update: {
+          args: Prisma.IssueUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IssuePayload>
+        }
+        deleteMany: {
+          args: Prisma.IssueDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.IssueUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.IssueUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IssuePayload>[]
+        }
+        upsert: {
+          args: Prisma.IssueUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IssuePayload>
+        }
+        aggregate: {
+          args: Prisma.IssueAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateIssue>
+        }
+        groupBy: {
+          args: Prisma.IssueGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.IssueGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.IssueCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.IssueCountAggregateOutputType> | number
+        }
+      }
+    }
     MobileTheme: {
       payload: Prisma.$MobileThemePayload<ExtArgs>
       fields: Prisma.MobileThemeFieldRefs
@@ -5394,6 +5469,7 @@ export const HolidayScalarFieldEnum = {
   date: 'date',
   type: 'type',
   isPaid: 'isPaid',
+  isObserved: 'isObserved',
   description: 'description',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -5425,6 +5501,7 @@ export const NoticeScalarFieldEnum = {
   priority: 'priority',
   isPublished: 'isPublished',
   attachmentUrl: 'attachmentUrl',
+  employeeId: 'employeeId',
   createdBy: 'createdBy',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -5578,6 +5655,24 @@ export const ResignationScalarFieldEnum = {
 } as const
 
 export type ResignationScalarFieldEnum = (typeof ResignationScalarFieldEnum)[keyof typeof ResignationScalarFieldEnum]
+
+
+export const IssueScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  employeeId: 'employeeId',
+  title: 'title',
+  description: 'description',
+  status: 'status',
+  resolutionNote: 'resolutionNote',
+  rejectedReason: 'rejectedReason',
+  resolvedBy: 'resolvedBy',
+  resolvedAt: 'resolvedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type IssueScalarFieldEnum = (typeof IssueScalarFieldEnum)[keyof typeof IssueScalarFieldEnum]
 
 
 export const MobileThemeScalarFieldEnum = {
@@ -6203,6 +6298,20 @@ export type EnumResignationStatusFieldRefInput<$PrismaModel> = FieldRefInputType
 export type ListEnumResignationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ResignationStatus[]'>
     
 
+
+/**
+ * Reference to a field of type 'IssueStatus'
+ */
+export type EnumIssueStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'IssueStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'IssueStatus[]'
+ */
+export type ListEnumIssueStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'IssueStatus[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -6353,6 +6462,7 @@ export type GlobalOmitConfig = {
   documentTemplate?: Prisma.DocumentTemplateOmit
   generatedDocument?: Prisma.GeneratedDocumentOmit
   resignation?: Prisma.ResignationOmit
+  issue?: Prisma.IssueOmit
   mobileTheme?: Prisma.MobileThemeOmit
 }
 

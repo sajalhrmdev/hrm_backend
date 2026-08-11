@@ -1,4 +1,8 @@
 import { prisma } from "../../lib/prisma.js";
+import {
+  createNoticeForEmployee,
+  pruneOldPersonalNotices,
+} from "../notice/notice.service.js";
 
 interface CreateEmployeeRewardData {
   employeeId: number;
@@ -39,7 +43,7 @@ export const createEmployeeReward = async (
     throw new Error("Employee not found");
   }
 
-  return prisma.employeeReward.create({
+  const reward = await prisma.employeeReward.create({
     data: {
       companyId,
       employeeId,
@@ -53,6 +57,22 @@ export const createEmployeeReward = async (
       employee: true,
     },
   });
+
+  await createNoticeForEmployee(prisma, {
+    companyId,
+    employeeId,
+    title: "Reward Received",
+    description:
+      `Congratulations! You have received "${title}" (${rewardType}).` +
+      (rewardAmount
+        ? ` Reward amount: ${rewardAmount}.`
+        : ""),
+    priority: "HIGH",
+  });
+
+  await pruneOldPersonalNotices(prisma, companyId, employeeId);
+
+  return reward;
 };
 
 export const getAllEmployeeRewards = async (

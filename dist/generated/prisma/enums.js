@@ -185,3 +185,10 @@ export const ResignationStatus = {
     REJECTED: 'REJECTED',
     CANCELLED: 'CANCELLED'
 };
+export const IssueStatus = {
+    OPEN: 'OPEN',
+    IN_PROGRESS: 'IN_PROGRESS',
+    RESOLVED: 'RESOLVED',
+    REJECTED: 'REJECTED',
+    CANCELLED: 'CANCELLED'
+};

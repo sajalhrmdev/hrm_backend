@@ -1,5 +1,7 @@
 import { prisma } from "../../lib/prisma.js";
 
+import { Prisma } from "../../generated/prisma/client.js";
+
 // ======================================================
 // CREATE NOTICE
 // ======================================================
@@ -20,6 +22,8 @@ type CreateNoticeInput = {
   isPublished?: boolean;
 
   attachmentUrl?: string;
+
+  employeeId?: number | null;
 
   createdBy?: number;
 };
@@ -43,6 +47,8 @@ export const createNotice = async (input: CreateNoticeInput) => {
 
       attachmentUrl: input.attachmentUrl,
 
+      employeeId: input.employeeId ?? null,
+
       createdBy: input.createdBy,
     },
   });
@@ -58,8 +64,145 @@ export const getNotices = async (companyId: number) => {
       companyId,
     },
 
+    include: {
+      employee: {
+        select: {
+          id: true,
+
+          name: true,
+        },
+      },
+    },
+
     orderBy: {
       noticeDate: "desc",
+    },
+  });
+};
+
+// ======================================================
+// GET ACTIVE NOTICES (published + not expired)
+// (employeeId = null → company-wide, all employees see)
+// ======================================================
+
+export const getActiveNotices = async (
+  companyId: number,
+
+  employeeId?: number,
+) => {
+  const startOfToday = new Date();
+
+  startOfToday.setHours(0, 0, 0, 0);
+
+  return prisma.notice.findMany({
+    where: {
+      companyId,
+
+      isPublished: true,
+
+      OR: [
+        { employeeId: null },
+        ...(employeeId ? [{ employeeId }] : []),
+      ],
+
+      AND: [
+        {
+          OR: [
+            { expiryDate: null },
+            { expiryDate: { gte: startOfToday } },
+          ],
+        },
+      ],
+    },
+
+    orderBy: {
+      noticeDate: "desc",
+    },
+  });
+};
+
+// ======================================================
+// CREATE PERSONAL NOTICE (event-driven helper)
+// ======================================================
+
+type PersonalNoticeInput = {
+  companyId: number;
+
+  employeeId: number;
+
+  title: string;
+
+  description: string;
+
+  priority?: "LOW" | "NORMAL" | "HIGH" | "URGENT";
+
+  createdBy?: number;
+};
+
+export const createNoticeForEmployee = async (
+  db: Prisma.TransactionClient | typeof prisma,
+
+  input: PersonalNoticeInput,
+) => {
+  await db.notice.create({
+    data: {
+      companyId: input.companyId,
+
+      employeeId: input.employeeId,
+
+      title: input.title,
+
+      description: input.description,
+
+      noticeDate: new Date(),
+
+      priority: input.priority || "NORMAL",
+
+      isPublished: true,
+
+      createdBy: input.createdBy,
+    },
+  });
+};
+
+// ======================================================
+// PRUNE OLD PERSONAL NOTICES (keep latest `keep` per employee)
+// ======================================================
+
+export const pruneOldPersonalNotices = async (
+  db: Prisma.TransactionClient | typeof prisma,
+
+  companyId: number,
+
+  employeeId: number,
+
+  keep = 20,
+) => {
+  const oldOnes = await db.notice.findMany({
+    where: {
+      companyId,
+
+      employeeId,
+    },
+
+    orderBy: {
+      createdAt: "desc",
+    },
+
+    select: {
+      id: true,
+    },
+
+    skip: keep,
+  });
+
+  if (oldOnes.length === 0) return;
+
+  await db.notice.deleteMany({
+    where: {
+      id: {
+        in: oldOnes.map((n) => n.id),
+      },
     },
   });
 };
@@ -109,6 +252,8 @@ type UpdateNoticeInput = {
   isPublished?: boolean;
 
   attachmentUrl?: string;
+
+  employeeId?: number | null;
 };
 
 export const updateNotice = async (input: UpdateNoticeInput) => {
@@ -142,6 +287,8 @@ export const updateNotice = async (input: UpdateNoticeInput) => {
       isPublished: input.isPublished,
 
       attachmentUrl: input.attachmentUrl,
+
+      employeeId: input.employeeId === undefined ? undefined : input.employeeId,
     },
   });
 };

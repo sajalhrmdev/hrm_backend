@@ -1,5 +1,9 @@
 import { prisma } from "../../lib/prisma.js";
 import { resolveStructureStandard } from "../../utils/salaryStructureResolver.js";
+import {
+  createNoticeForEmployee,
+  pruneOldPersonalNotices,
+} from "../notice/notice.service.js";
 
 export async function getGoals(
   companyId: number,
@@ -117,10 +121,27 @@ export async function updateGoalStatus(
     throw new Error(`Cannot transition from ${goal.status} to ${status}`);
   }
 
-  return prisma.goal.update({
+  const updated = await prisma.goal.update({
     where: { id },
     data: { status },
   });
+
+  if (status === "APPROVED" || status === "CANCELLED") {
+    await createNoticeForEmployee(prisma, {
+      companyId,
+      employeeId: goal.employeeId,
+      title: status === "APPROVED" ? "Goal Approved" : "Goal Cancelled",
+      description:
+        status === "APPROVED"
+          ? `Your goal "${goal.title}" has been approved.`
+          : `Your goal "${goal.title}" has been cancelled.`,
+      priority: status === "APPROVED" ? "NORMAL" : "HIGH",
+    });
+
+    await pruneOldPersonalNotices(prisma, companyId, goal.employeeId);
+  }
+
+  return updated;
 }
 
 function calculateIncentive(goal: {
@@ -200,7 +221,7 @@ export async function approveGoal(
   const effectiveRating = ratingOverride ?? goal.rating ?? 0;
   const calculatedAmount = Math.round(baseIncentive * (effectiveRating / 100));
 
-  return prisma.goal.update({
+  const updated = await prisma.goal.update({
     where: { id },
     data: {
       status: "APPROVED",
@@ -210,6 +231,20 @@ export async function approveGoal(
       incentiveYear: year,
     },
   });
+
+  await createNoticeForEmployee(prisma, {
+    companyId,
+    employeeId: goal.employeeId,
+    title: "Goal Approved",
+    description:
+      `Your goal "${goal.title}" has been approved.` +
+      (calculatedAmount > 0 ? ` Incentive amount: ${calculatedAmount}.` : ""),
+    priority: "NORMAL",
+  });
+
+  await pruneOldPersonalNotices(prisma, companyId, goal.employeeId);
+
+  return updated;
 }
 
 export async function getEmployeeGoals(companyId: number, employeeId: number) {

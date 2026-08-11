@@ -410,6 +410,10 @@ import {
   overTimeCalculation4Shift,
 } from "../../services/handleAttendance/attendance.helper.js";
 import getStartEndOfDay from "../../utils/getStartEndOfDay.js";
+import {
+  createNoticeForEmployee,
+  pruneOldPersonalNotices,
+} from "../notice/notice.service.js";
 
 const parseAsIST = (dateStr: string): Date => {
   if (/[+-]\d{2}:\d{2}$/.test(dateStr) || dateStr.endsWith("Z")) {
@@ -730,6 +734,19 @@ export const regularizeAttendance = async (input: RegularizeInput) => {
       actionType: AttendanceAdjustmentType.REGULARIZATION,
     },
   });
+
+  await createNoticeForEmployee(prisma, {
+    companyId,
+    employeeId: attendance.employeeId,
+    title: "Attendance Corrected",
+    description:
+      `Your attendance for ${new Date(attendance.date).toLocaleDateString()} has been corrected to ${finalStatus}.` +
+      (remarks ? ` Note: ${remarks}` : ""),
+    priority: "NORMAL",
+    createdBy: adjustedBy,
+  });
+
+  await pruneOldPersonalNotices(prisma, companyId, attendance.employeeId);
 
   return updatedAttendance;
 };

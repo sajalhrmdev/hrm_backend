@@ -321,3 +321,14 @@ export const ResignationStatus = {
 } as const
 
 export type ResignationStatus = (typeof ResignationStatus)[keyof typeof ResignationStatus]
+
+
+export const IssueStatus = {
+  OPEN: 'OPEN',
+  IN_PROGRESS: 'IN_PROGRESS',
+  RESOLVED: 'RESOLVED',
+  REJECTED: 'REJECTED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type IssueStatus = (typeof IssueStatus)[keyof typeof IssueStatus]

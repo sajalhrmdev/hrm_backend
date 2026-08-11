@@ -285,6 +285,8 @@ type UpdateUserInput = {
 
   globalRoleId?: number;
 
+  roleId?: number;
+
   currentUserId: number;
 
   companyId?: number;
@@ -299,6 +301,7 @@ export const updateUser = async (input: UpdateUserInput) => {
     password,
     status,
     globalRoleId,
+    roleId,
     currentUserId,
     companyId,
   } = input;
@@ -355,31 +358,93 @@ export const updateUser = async (input: UpdateUserInput) => {
     throw new Error("Only super admin can update global role");
   }
 
-  let hashedPassword;
+  let role: { id: number } | null = null;
+
+  if (roleId && companyId) {
+    role = await prisma.role.findFirst({
+      where: {
+        id: Number(roleId),
+
+        companyId,
+      },
+    });
+
+    if (!role) {
+      throw new Error("Role not found");
+    }
+  }
+
+  let hashedPassword: string | undefined;
 
   if (password) {
     hashedPassword = await bcrypt.hash(password, 10);
   }
 
-  return prisma.user.update({
-    where: {
-      id,
-    },
+  return prisma.$transaction(async (tx) => {
+    const updated = await tx.user.update({
+      where: {
+        id,
+      },
 
-    data: {
-      name,
-      email,
-      phone,
-      status,
+      data: {
+        name,
+        email,
+        phone,
+        status,
 
-      password: hashedPassword,
+        password: hashedPassword,
 
-      globalRoleId: isSuperAdmin ? globalRoleId : undefined,
-    },
+        globalRoleId: isSuperAdmin ? globalRoleId : undefined,
+      },
 
-    include: {
-      globalRole: true,
-    },
+      include: {
+        globalRole: true,
+      },
+    });
+
+    // ========================================
+    // SYNC MEMBERSHIP ROLE
+    // ========================================
+    // The middleware builds permissions from the Membership role,
+    // so a role change on the user must propagate to the membership.
+
+    if (role && companyId) {
+      const membership = await tx.membership.findUnique({
+        where: {
+          userId_companyId: {
+            userId: id,
+
+            companyId,
+          },
+        },
+      });
+
+      if (membership) {
+        await tx.membership.update({
+          where: {
+            id: membership.id,
+          },
+
+          data: {
+            roleId: role.id,
+          },
+        });
+      } else {
+        await tx.membership.create({
+          data: {
+            userId: id,
+
+            companyId,
+
+            roleId: role.id,
+
+            status: "ACTIVE",
+          },
+        });
+      }
+    }
+
+    return updated;
   });
 };
 

@@ -1,4 +1,8 @@
 import { prisma } from "../../lib/prisma.js";
+import {
+  createNoticeForEmployee,
+  pruneOldPersonalNotices,
+} from "../notice/notice.service.js";
 
 // ======================================================
 // SUBMIT RESIGNATION (Employee self-service)
@@ -177,6 +181,18 @@ export const approveResignation = async (input: ApproveResignationInput) => {
     }),
   ]);
 
+  await createNoticeForEmployee(prisma, {
+    companyId,
+    employeeId: updated.employee.id,
+    title: "Resignation Approved",
+    description:
+      `Your resignation has been approved. Your last working day is ${finalLastWorkingDay.toLocaleDateString()}.`,
+    priority: "NORMAL",
+    createdBy: approverId,
+  });
+
+  await pruneOldPersonalNotices(prisma, companyId, updated.employee.id);
+
   return updated;
 };
 
@@ -202,7 +218,7 @@ export const rejectResignation = async (input: RejectResignationInput) => {
     throw new Error("Resignation not found or already processed");
   }
 
-  return prisma.resignation.update({
+  const updated = await prisma.resignation.update({
     where: { id },
     data: {
       status: "REJECTED",
@@ -214,6 +230,21 @@ export const rejectResignation = async (input: RejectResignationInput) => {
       employee: { select: { id: true, name: true } },
     },
   });
+
+  await createNoticeForEmployee(prisma, {
+    companyId,
+    employeeId: updated.employee.id,
+    title: "Resignation Rejected",
+    description:
+      `Your resignation has been rejected.` +
+      (rejectionReason ? ` Reason: ${rejectionReason}` : ""),
+    priority: "HIGH",
+    createdBy: approverId,
+  });
+
+  await pruneOldPersonalNotices(prisma, companyId, updated.employee.id);
+
+  return updated;
 };
 
 // ======================================================
@@ -237,10 +268,22 @@ export const cancelResignation = async (input: CancelResignationInput) => {
     throw new Error("Resignation not found or cannot be cancelled");
   }
 
-  return prisma.resignation.update({
+  const updated = await prisma.resignation.update({
     where: { id },
     data: { status: "CANCELLED" },
   });
+
+  await createNoticeForEmployee(prisma, {
+    companyId,
+    employeeId: resignation.employeeId,
+    title: "Resignation Cancelled",
+    description: "Your resignation request has been cancelled.",
+    priority: "NORMAL",
+  });
+
+  await pruneOldPersonalNotices(prisma, companyId, resignation.employeeId);
+
+  return updated;
 };
 
 // ======================================================

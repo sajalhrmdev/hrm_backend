@@ -35,6 +35,8 @@ export const createHolidayController = async (
 
       isPaid: req.body.isPaid,
 
+      isObserved: req.body.isObserved ?? true,
+
       description: req.body.description,
     });
 

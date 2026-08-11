@@ -106,6 +106,7 @@ export const ModelName = {
   DocumentTemplate: 'DocumentTemplate',
   GeneratedDocument: 'GeneratedDocument',
   Resignation: 'Resignation',
+  Issue: 'Issue',
   MobileTheme: 'MobileTheme'
 } as const
 
@@ -877,6 +878,7 @@ export const HolidayScalarFieldEnum = {
   date: 'date',
   type: 'type',
   isPaid: 'isPaid',
+  isObserved: 'isObserved',
   description: 'description',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -908,6 +910,7 @@ export const NoticeScalarFieldEnum = {
   priority: 'priority',
   isPublished: 'isPublished',
   attachmentUrl: 'attachmentUrl',
+  employeeId: 'employeeId',
   createdBy: 'createdBy',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -1061,6 +1064,24 @@ export const ResignationScalarFieldEnum = {
 } as const
 
 export type ResignationScalarFieldEnum = (typeof ResignationScalarFieldEnum)[keyof typeof ResignationScalarFieldEnum]
+
+
+export const IssueScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  employeeId: 'employeeId',
+  title: 'title',
+  description: 'description',
+  status: 'status',
+  resolutionNote: 'resolutionNote',
+  rejectedReason: 'rejectedReason',
+  resolvedBy: 'resolvedBy',
+  resolvedAt: 'resolvedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type IssueScalarFieldEnum = (typeof IssueScalarFieldEnum)[keyof typeof IssueScalarFieldEnum]
 
 
 export const MobileThemeScalarFieldEnum = {

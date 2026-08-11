@@ -82,8 +82,9 @@ export const rejectLeaveController = async (
 
     const data = await rejectLeave({
       leaveId: Number(id),
-      approverId: user.id,
+      approverId: user.userId,
       companyId,
+      remark: req.body?.remark,
     });
 
     res.json({ success: true, data });

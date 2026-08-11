@@ -101,7 +101,7 @@ export const AI_ALLOWED_MODELS = {
 
     operations: ["findMany", "findFirst", "findUnique", "count"],
 
-    fields: ["id", "title", "date", "type", "isPaid", "description"],
+    fields: ["id", "title", "date", "type", "isPaid", "isObserved", "description"],
 
     relations: {},
   },

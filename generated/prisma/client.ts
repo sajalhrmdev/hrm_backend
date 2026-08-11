@@ -317,6 +317,11 @@ export type GeneratedDocument = Prisma.GeneratedDocumentModel
  */
 export type Resignation = Prisma.ResignationModel
 /**
+ * Model Issue
+ * 
+ */
+export type Issue = Prisma.IssueModel
+/**
  * Model MobileTheme
  * 
  */

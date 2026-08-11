@@ -170,7 +170,7 @@ export const getSingleUser = async (input) => {
     return user;
 };
 export const updateUser = async (input) => {
-    const { id, name, email, phone, password, status, globalRoleId, currentUserId, companyId, } = input;
+    const { id, name, email, phone, password, status, globalRoleId, roleId, currentUserId, companyId, } = input;
     const currentUser = await prisma.user.findUnique({
         where: {
             id: currentUserId,
@@ -213,25 +213,75 @@ export const updateUser = async (input) => {
     if (!isSuperAdmin && globalRoleId) {
         throw new Error("Only super admin can update global role");
     }
+    let role = null;
+    if (roleId && companyId) {
+        role = await prisma.role.findFirst({
+            where: {
+                id: Number(roleId),
+                companyId,
+            },
+        });
+        if (!role) {
+            throw new Error("Role not found");
+        }
+    }
     let hashedPassword;
     if (password) {
         hashedPassword = await bcrypt.hash(password, 10);
     }
-    return prisma.user.update({
-        where: {
-            id,
-        },
-        data: {
-            name,
-            email,
-            phone,
-            status,
-            password: hashedPassword,
-            globalRoleId: isSuperAdmin ? globalRoleId : undefined,
-        },
-        include: {
-            globalRole: true,
-        },
+    return prisma.$transaction(async (tx) => {
+        const updated = await tx.user.update({
+            where: {
+                id,
+            },
+            data: {
+                name,
+                email,
+                phone,
+                status,
+                password: hashedPassword,
+                globalRoleId: isSuperAdmin ? globalRoleId : undefined,
+            },
+            include: {
+                globalRole: true,
+            },
+        });
+        // ========================================
+        // SYNC MEMBERSHIP ROLE
+        // ========================================
+        // The middleware builds permissions from the Membership role,
+        // so a role change on the user must propagate to the membership.
+        if (role && companyId) {
+            const membership = await tx.membership.findUnique({
+                where: {
+                    userId_companyId: {
+                        userId: id,
+                        companyId,
+                    },
+                },
+            });
+            if (membership) {
+                await tx.membership.update({
+                    where: {
+                        id: membership.id,
+                    },
+                    data: {
+                        roleId: role.id,
+                    },
+                });
+            }
+            else {
+                await tx.membership.create({
+                    data: {
+                        userId: id,
+                        companyId,
+                        roleId: role.id,
+                        status: "ACTIVE",
+                    },
+                });
+            }
+        }
+        return updated;
     });
 };
 export const deleteUser = async (input) => {

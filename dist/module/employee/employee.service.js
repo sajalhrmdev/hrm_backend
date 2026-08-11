@@ -398,6 +398,50 @@ export const updateEmployeeService = async (companyId, id, data) => {
             }
         }
         // ========================================
+        // SYNC MEMBERSHIP ROLE (existing user)
+        // ========================================
+        // The middleware builds permissions from the Membership role,
+        // so a role change on the employee must propagate to the membership.
+        if (finalUserId && data.roleId) {
+            const role = await tx.role.findFirst({
+                where: {
+                    id: Number(data.roleId),
+                    companyId,
+                },
+            });
+            if (!role) {
+                throw new Error("Role not found");
+            }
+            const membership = await tx.membership.findUnique({
+                where: {
+                    userId_companyId: {
+                        userId: finalUserId,
+                        companyId,
+                    },
+                },
+            });
+            if (membership) {
+                await tx.membership.update({
+                    where: {
+                        id: membership.id,
+                    },
+                    data: {
+                        roleId: Number(data.roleId),
+                    },
+                });
+            }
+            else {
+                await tx.membership.create({
+                    data: {
+                        userId: finalUserId,
+                        companyId,
+                        roleId: Number(data.roleId),
+                        status: "ACTIVE",
+                    },
+                });
+            }
+        }
+        // ========================================
         // UPDATE EMPLOYEE
         // ========================================
         return await tx.employee.update({

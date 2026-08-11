@@ -1,4 +1,23 @@
 import { prisma } from "../../lib/prisma.js";
+import {
+  createNoticeForEmployee,
+  pruneOldPersonalNotices,
+} from "../notice/notice.service.js";
+
+const MONTH_NAMES = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
 interface CreatePerformanceReviewData {
   companyId: number;
@@ -60,7 +79,7 @@ export const createPerformanceReview = async ({
     ((punctuality + teamwork + productivity) / 3).toFixed(2),
   );
 
-  return prisma.performanceReview.create({
+  const review = await prisma.performanceReview.create({
     data: {
       companyId,
       employeeId,
@@ -76,6 +95,19 @@ export const createPerformanceReview = async ({
       employee: true,
     },
   });
+
+  await createNoticeForEmployee(prisma, {
+    companyId,
+    employeeId,
+    title: "Performance Review",
+    description:
+      `Your performance review for ${MONTH_NAMES[reviewMonth - 1] || reviewMonth} ${reviewYear} has been published. Overall rating: ${overallRating}.`,
+    priority: "NORMAL",
+  });
+
+  await pruneOldPersonalNotices(prisma, companyId, employeeId);
+
+  return review;
 };
 
 export const getAllPerformanceReviews = async (companyId: number) => {

@@ -75,7 +75,7 @@ export const getSingleUserController = async (req, res) => {
 // ======================================================
 export const updateUserController = async (req, res) => {
     try {
-        const { name, email, phone, password, status, globalRoleId } = req.body;
+        const { name, email, phone, password, status, globalRoleId, roleId } = req.body;
         const data = await updateUser({
             id: Number(req.params.id),
             name,
@@ -84,6 +84,7 @@ export const updateUserController = async (req, res) => {
             password,
             status,
             globalRoleId,
+            roleId,
             currentUserId: req.user.userId,
             companyId: req.companyId,
         });
