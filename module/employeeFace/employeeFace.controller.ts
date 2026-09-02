@@ -95,7 +95,7 @@ export const registerEmployeeFace = async (req: Request, res: Response) => {
 
     // Run Python + Cloudinary in parallel
     const [pythonResponse, uploadResult] = await Promise.all([
-      axios.post("http://localhost:8000/embedding", formData, {
+      axios.post("https://faceai.officeerp.org/embedding", formData, {
         headers: formData.getHeaders(),
       }),
 

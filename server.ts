@@ -75,6 +75,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
+      "http://localhost:3001",
       "http://localhost:5001",
       "http://localhost:8081",
       "https://hrm-frontend-ashy.vercel.app",
@@ -83,7 +84,7 @@ app.use(
     credentials: true,
   }),
 );
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 app.get("/", (req: Request, res: Response) => {
   res.send("Server is Live!");
 });

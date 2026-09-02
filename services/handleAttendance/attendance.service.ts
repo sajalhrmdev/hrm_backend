@@ -48,7 +48,7 @@ const verifyFace = async (employeeId: number, imageBuffer: Buffer) => {
   });
 
   const pythonResponse = await axios.post(
-    "http://localhost:8000/embedding",
+    "https://faceai.officeerp.org/embedding",
     formData,
     {
       headers: formData.getHeaders(),
