@@ -129,7 +129,7 @@ export const handleAttendance = async (
       },
       create: {
         employeeId,
-        companyId, // 🔥 ADD THIS ALSO যদি Attendance-এ থাকে
+        companyId, 
         date: today,
         total_work_minutes: Math.floor(totalMinutes),
         overtime_minutes: Math.floor(overtime),

@@ -181,6 +181,9 @@ export const getEmployeeLeaveBalance = async (
         employeeId,
         companyId,
         year,
+        leaveType: {
+          is_active: true,
+        },
       },
 
       include: {
@@ -190,6 +193,7 @@ export const getEmployeeLeaveBalance = async (
             name: true,
             code: true,
             is_paid: true,
+            is_active: true,
           },
         },
       },
@@ -225,7 +229,11 @@ export const getAllCompanyLeaveBalances = async (
   year: number,
   search?: string
 ) => {
-  const where: any = { companyId, year };
+  const where: any = {
+    companyId,
+    year,
+    leaveType: { is_active: true },
+  };
 
   if (search) {
     where.employee = {
@@ -240,7 +248,7 @@ export const getAllCompanyLeaveBalances = async (
         select: { id: true, name: true, employeeCode: true },
       },
       leaveType: {
-        select: { id: true, name: true, code: true, is_paid: true },
+        select: { id: true, name: true, code: true, is_paid: true, is_active: true },
       },
     },
     orderBy: { employee: { name: "asc" } },

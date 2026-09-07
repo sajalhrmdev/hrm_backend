@@ -170,7 +170,11 @@ export const processLeaveIncrement = async (input: Input) => {
 
           frequency,
 
-          month: frequency === LeaveIncrementFrequency.MONTHLY ? month : null,
+          month:
+            frequency === LeaveIncrementFrequency.MONTHLY ||
+            frequency === LeaveIncrementFrequency.WEEKLY
+              ? month
+              : null,
 
           week: frequency === LeaveIncrementFrequency.WEEKLY ? week : null,
 
@@ -193,6 +197,53 @@ export const processLeaveIncrement = async (input: Input) => {
       // ==============================================
 
       await prisma.$transaction(async (tx) => {
+        // ==========================================
+        // CREATE LOG FIRST
+        // (unique key blocks concurrent double-runs)
+        // ==========================================
+
+        try {
+          await tx.leaveIncrementLog.create({
+            data: {
+              companyId,
+
+              employeeId: employee.id,
+
+              leaveTypeId: policy.leaveTypeId,
+
+              leaveIncrementPolicyId: policy.id,
+
+              amount: policy.incrementAmount,
+
+              frequency,
+
+              incrementDate: now,
+
+              month:
+                frequency === LeaveIncrementFrequency.MONTHLY ||
+                frequency === LeaveIncrementFrequency.WEEKLY
+                  ? month
+                  : null,
+
+              week:
+                frequency === LeaveIncrementFrequency.WEEKLY ? week : null,
+
+              year,
+
+              status: LeaveIncrementStatus.COMPLETED,
+            },
+          });
+        } catch (e: any) {
+          // Another concurrent run already processed this slot
+          if (e?.code === "P2002") {
+            skipped++;
+
+            return;
+          }
+
+          throw e;
+        }
+
         // ==========================================
         // BALANCE
         // ==========================================
@@ -244,6 +295,8 @@ export const processLeaveIncrement = async (input: Input) => {
           // ========================================
 
           if (policy.maxLimit && balance.total_allocated >= policy.maxLimit) {
+            skipped++;
+
             return;
           }
 
@@ -267,36 +320,6 @@ export const processLeaveIncrement = async (input: Input) => {
             },
           });
         }
-
-        // ==========================================
-        // CREATE LOG
-        // ==========================================
-
-        await tx.leaveIncrementLog.create({
-          data: {
-            companyId,
-
-            employeeId: employee.id,
-
-            leaveTypeId: policy.leaveTypeId,
-
-            leaveIncrementPolicyId: policy.id,
-
-            amount: policy.incrementAmount,
-
-            frequency,
-
-            incrementDate: now,
-
-            month: frequency === LeaveIncrementFrequency.MONTHLY ? month : null,
-
-            week: frequency === LeaveIncrementFrequency.WEEKLY ? week : null,
-
-            year,
-
-            status: LeaveIncrementStatus.COMPLETED,
-          },
-        });
 
         processed++;
       });
