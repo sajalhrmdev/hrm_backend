@@ -680,6 +680,7 @@ export const getMonthlyAttendanceAll = async (
         select: {
           id: true,
           name: true,
+          status: true,
         },
       },
     },

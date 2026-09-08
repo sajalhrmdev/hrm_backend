@@ -198,7 +198,7 @@ interface AuthRequest
       throw new Error("Invalid date");
     }
 
-    // Future date validation (IST)
+    // 2-day minimum cutoff validation (IST)
     const attendanceStart = getStartEndOfDay(
       "Asia/Kolkata",
       attendanceDate
@@ -209,9 +209,13 @@ interface AuthRequest
       new Date()
     ).start;
 
-    if (attendanceStart > todayStart) {
+    const cutoffStart = new Date(
+      todayStart.getTime() - 2 * 24 * 60 * 60 * 1000
+    );
+
+    if (attendanceStart > cutoffStart) {
       throw new Error(
-        "Attendance cannot be processed for a future date"
+        "Attendance can only be processed for dates at least 2 days in the past"
       );
     }
 

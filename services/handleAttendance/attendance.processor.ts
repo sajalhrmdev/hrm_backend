@@ -415,6 +415,12 @@ export const processAttendance = async (
         shift: true,
 
         employees: {
+          where: {
+            status: {
+              not: "INACTIVE",
+            },
+          },
+
           select: {
             id: true,
           },
