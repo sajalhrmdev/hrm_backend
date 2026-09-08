@@ -276,15 +276,24 @@ export const getAllEmployeesService = async (
   departmentId?: number,
   policyId?: number,
   unassigned = false,
+  statusFilter?: string,
 ) => {
   const skip = (page - 1) * limit;
 
   const where: Prisma.EmployeeWhereInput = {
     companyId,
 
-    status: {
-      not: "INACTIVE",
-    },
+    // Default preserves legacy behavior (active + suspended, no inactive).
+    // Explicit "INACTIVE" / "ALL" overrides it — nothing else does.
+    ...(statusFilter === "INACTIVE"
+      ? { status: "INACTIVE" as const }
+      : statusFilter === "ALL"
+        ? {}
+        : {
+            status: {
+              not: "INACTIVE",
+            },
+          }),
 
     ...(departmentId
       ? {
@@ -450,15 +459,13 @@ export const updateEmployeeService = async (
   id: number,
   data: any,
 ) => {
+  // NOTE: no status filter here — inactive employees must stay editable
+  // so they can be reactivated (status is written by the update below)
   const existing = await prisma.employee.findFirst({
     where: {
       id,
 
       companyId,
-
-      status: {
-        not: "INACTIVE",
-      },
     },
   });
 

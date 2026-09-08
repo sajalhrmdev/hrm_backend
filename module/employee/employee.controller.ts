@@ -97,6 +97,9 @@ export const getAllEmployees = async (req: AuthRequest, res: Response) => {
 
     const unassigned = req.query.unassigned === "true";
 
+    const statusFilter =
+      typeof req.query.status === "string" ? req.query.status : undefined;
+
     const data = await getAllEmployeesService(
       companyId,
       page,
@@ -105,6 +108,7 @@ export const getAllEmployees = async (req: AuthRequest, res: Response) => {
       departmentId,
       policyId,
       unassigned,
+      statusFilter,
     );
 
     return res.json({
