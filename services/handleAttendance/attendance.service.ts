@@ -266,6 +266,15 @@ export const handleAttendance = async (
         status: AttendanceStatus.PRESENT,
       },
     });
+
+    // Row may pre-exist (processor/admin-mark) with NULL check_in_time —
+    // stamp it so open-session detection keeps working
+    if (!attendance.check_in_time) {
+      attendance = await prisma.attendance.update({
+        where: { id: attendance.id },
+        data: { check_in_time: now },
+      });
+    }
   } else {
     if (isFlexible) {
       attendance = targetOpen;
@@ -285,6 +294,21 @@ export const handleAttendance = async (
 
     if (!attendance) {
       throw new Error("Check-in not found");
+    }
+
+    // Self-heal: stamp check_in_time from earliest IN log if missing
+    if (!attendance.check_in_time) {
+      const firstIn = await prisma.attendanceLog.findFirst({
+        where: { attendanceId: attendance.id, type: "IN" },
+        orderBy: { time: "asc" },
+      });
+
+      if (firstIn) {
+        attendance = await prisma.attendance.update({
+          where: { id: attendance.id },
+          data: { check_in_time: firstIn.time },
+        });
+      }
     }
   }
 

@@ -139,6 +139,19 @@ export const processLeaveIncrement = async (input: Input) => {
   }
 
   // ==================================================
+  // SLOT KEY (same dedupe key as before)
+  // ==================================================
+
+  const slotMonth =
+    frequency === LeaveIncrementFrequency.MONTHLY ||
+    frequency === LeaveIncrementFrequency.WEEKLY
+      ? month
+      : null;
+
+  const slotWeek =
+    frequency === LeaveIncrementFrequency.WEEKLY ? week : null;
+
+  // ==================================================
   // STATS
   // ==================================================
 
@@ -146,185 +159,276 @@ export const processLeaveIncrement = async (input: Input) => {
 
   let skipped = 0;
 
+  const policyIds = policies.map((p) => p.id);
+
+  const employeeIds = employees.map((e) => e.id);
+
   // ==================================================
-  // LOOP POLICIES
+  // EXISTING LOGS (1 query for all pairs)
   // ==================================================
+
+  const existingLogs = await prisma.leaveIncrementLog.findMany({
+    where: {
+      companyId,
+
+      frequency,
+
+      leaveIncrementPolicyId: { in: policyIds },
+
+      employeeId: { in: employeeIds },
+
+      month: slotMonth,
+
+      week: slotWeek,
+
+      year,
+    },
+
+    select: {
+      employeeId: true,
+
+      leaveIncrementPolicyId: true,
+    },
+  });
+
+  const loggedSet = new Set(
+    existingLogs.map((l) => `${l.employeeId}:${l.leaveIncrementPolicyId}`),
+  );
+
+  // ==================================================
+  // BALANCES (1 query for all pairs)
+  // ==================================================
+
+  const leaveTypeIds = [...new Set(policies.map((p) => p.leaveTypeId))];
+
+  const foundBalances = await prisma.leaveBalance.findMany({
+    where: {
+      companyId,
+
+      year,
+
+      employeeId: { in: employeeIds },
+
+      leaveTypeId: { in: leaveTypeIds },
+    },
+  });
+
+  const balanceMap = new Map(
+    foundBalances.map((b) => [`${b.employeeId}:${b.leaveTypeId}`, b]),
+  );
+
+  // ==================================================
+  // PLAN IN MEMORY (no DB calls)
+  // ==================================================
+
+  type PlannedPair = {
+    employeeId: number;
+
+    policy: (typeof policies)[number];
+  };
+
+  const planned: PlannedPair[] = [];
 
   for (const policy of policies) {
-    // ================================================
-    // LOOP EMPLOYEES
-    // ================================================
-
     for (const employee of employees) {
-      // ==============================================
-      // CHECK EXISTING LOG
-      // ==============================================
-
-      const existingLog = await prisma.leaveIncrementLog.findFirst({
-        where: {
-          companyId,
-
-          employeeId: employee.id,
-
-          leaveIncrementPolicyId: policy.id,
-
-          frequency,
-
-          month:
-            frequency === LeaveIncrementFrequency.MONTHLY ||
-            frequency === LeaveIncrementFrequency.WEEKLY
-              ? month
-              : null,
-
-          week: frequency === LeaveIncrementFrequency.WEEKLY ? week : null,
-
-          year,
-        },
-      });
+      const key = `${employee.id}:${policy.id}`;
 
       // ==============================================
       // ALREADY PROCESSED
       // ==============================================
 
-      if (existingLog) {
+      if (loggedSet.has(key)) {
         skipped++;
 
         continue;
       }
 
       // ==============================================
-      // TRANSACTION
+      // MAX LIMIT CHECK
       // ==============================================
 
-      await prisma.$transaction(async (tx) => {
-        // ==========================================
-        // CREATE LOG FIRST
-        // (unique key blocks concurrent double-runs)
-        // ==========================================
+      const bal = balanceMap.get(`${employee.id}:${policy.leaveTypeId}`);
 
-        try {
-          await tx.leaveIncrementLog.create({
-            data: {
-              companyId,
+      if (bal && policy.maxLimit && bal.total_allocated >= policy.maxLimit) {
+        skipped++;
 
-              employeeId: employee.id,
+        continue;
+      }
 
-              leaveTypeId: policy.leaveTypeId,
-
-              leaveIncrementPolicyId: policy.id,
-
-              amount: policy.incrementAmount,
-
-              frequency,
-
-              incrementDate: now,
-
-              month:
-                frequency === LeaveIncrementFrequency.MONTHLY ||
-                frequency === LeaveIncrementFrequency.WEEKLY
-                  ? month
-                  : null,
-
-              week:
-                frequency === LeaveIncrementFrequency.WEEKLY ? week : null,
-
-              year,
-
-              status: LeaveIncrementStatus.COMPLETED,
-            },
-          });
-        } catch (e: any) {
-          // Another concurrent run already processed this slot
-          if (e?.code === "P2002") {
-            skipped++;
-
-            return;
-          }
-
-          throw e;
-        }
-
-        // ==========================================
-        // BALANCE
-        // ==========================================
-
-        const balance = await tx.leaveBalance.findUnique({
-          where: {
-            employeeId_leaveTypeId_year_companyId: {
-              employeeId: employee.id,
-
-              leaveTypeId: policy.leaveTypeId,
-
-              year,
-
-              companyId,
-            },
-          },
-        });
-
-        // ==========================================
-        // CREATE BALANCE
-        // ==========================================
-
-        if (!balance) {
-          await tx.leaveBalance.create({
-            data: {
-              employeeId: employee.id,
-
-              companyId,
-
-              leaveTypeId: policy.leaveTypeId,
-
-              total_allocated: policy.incrementAmount,
-
-              remaining: policy.incrementAmount,
-
-              used: 0,
-
-              year,
-            },
-          });
-        }
-
-        // ==========================================
-        // UPDATE BALANCE
-        // ==========================================
-        else {
-          // ========================================
-          // MAX LIMIT CHECK
-          // ========================================
-
-          if (policy.maxLimit && balance.total_allocated >= policy.maxLimit) {
-            skipped++;
-
-            return;
-          }
-
-          // ========================================
-          // UPDATE
-          // ========================================
-
-          await tx.leaveBalance.update({
-            where: {
-              id: balance.id,
-            },
-
-            data: {
-              total_allocated: {
-                increment: policy.incrementAmount,
-              },
-
-              remaining: {
-                increment: policy.incrementAmount,
-              },
-            },
-          });
-        }
-
-        processed++;
-      });
+      planned.push({ employeeId: employee.id, policy });
     }
   }
+
+  if (!planned.length) {
+    return {
+      success: true,
+
+      frequency,
+
+      processed,
+
+      skipped,
+    };
+  }
+
+  // ==================================================
+  // WRITE (1 transaction)
+  // ==================================================
+
+  await prisma.$transaction(async (tx) => {
+    // ==========================================
+    // CLAIM SLOTS (unique key skips concurrent runs)
+    // ==========================================
+
+    await tx.leaveIncrementLog.createMany({
+      data: planned.map(({ employeeId, policy }) => ({
+        companyId,
+
+        employeeId,
+
+        leaveTypeId: policy.leaveTypeId,
+
+        leaveIncrementPolicyId: policy.id,
+
+        amount: policy.incrementAmount,
+
+        frequency,
+
+        incrementDate: now,
+
+        month: slotMonth,
+
+        week: slotWeek,
+
+        year,
+
+        status: LeaveIncrementStatus.COMPLETED,
+      })),
+
+      skipDuplicates: true,
+    });
+
+    // ==========================================
+    // WHICH SLOTS DID WE ACTUALLY CLAIM?
+    // ==========================================
+
+    const claimed = await tx.leaveIncrementLog.findMany({
+      where: {
+        companyId,
+
+        frequency,
+
+        leaveIncrementPolicyId: { in: policyIds },
+
+        employeeId: { in: employeeIds },
+
+        month: slotMonth,
+
+        week: slotWeek,
+
+        year,
+      },
+
+      select: {
+        employeeId: true,
+
+        leaveIncrementPolicyId: true,
+      },
+    });
+
+    const claimedSet = new Set(
+      claimed.map((l) => `${l.employeeId}:${l.leaveIncrementPolicyId}`),
+    );
+
+    // Only grant balances for slots claimed in THIS run
+    // (pre-existing rows were granted before,
+    //  concurrent-run rows are granted by that run)
+    const granted = planned.filter(
+      (p) =>
+        claimedSet.has(`${p.employeeId}:${p.policy.id}`) &&
+        !loggedSet.has(`${p.employeeId}:${p.policy.id}`),
+    );
+
+    skipped += planned.length - granted.length;
+
+    // ==========================================
+    // SPLIT BALANCE WRITES
+    // ==========================================
+
+    const balanceCreates: {
+      employeeId: number;
+
+      companyId: number;
+
+      leaveTypeId: number;
+
+      total_allocated: number;
+
+      remaining: number;
+
+      used: number;
+
+      year: number;
+    }[] = [];
+
+    const updateGroups = new Map<number, number[]>();
+
+    for (const { employeeId, policy } of granted) {
+      const bal = balanceMap.get(`${employeeId}:${policy.leaveTypeId}`);
+
+      if (!bal) {
+        balanceCreates.push({
+          employeeId,
+
+          companyId,
+
+          leaveTypeId: policy.leaveTypeId,
+
+          total_allocated: policy.incrementAmount,
+
+          remaining: policy.incrementAmount,
+
+          used: 0,
+
+          year,
+        });
+      } else {
+        const ids = updateGroups.get(policy.id) ?? [];
+
+        ids.push(bal.id);
+
+        updateGroups.set(policy.id, ids);
+      }
+    }
+
+    if (balanceCreates.length) {
+      await tx.leaveBalance.createMany({
+        data: balanceCreates,
+
+        skipDuplicates: true,
+      });
+    }
+
+    for (const [policyId, ids] of updateGroups) {
+      const policy = policies.find((p) => p.id === policyId)!;
+
+      await tx.leaveBalance.updateMany({
+        where: { id: { in: ids } },
+
+        data: {
+          total_allocated: {
+            increment: policy.incrementAmount,
+          },
+
+          remaining: {
+            increment: policy.incrementAmount,
+          },
+        },
+      });
+    }
+
+    processed += granted.length;
+  });
 
   // ==================================================
   // RETURN
