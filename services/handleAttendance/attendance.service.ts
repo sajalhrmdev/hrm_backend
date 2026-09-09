@@ -252,7 +252,7 @@ export const handleAttendance = async (
         },
       },
       update: {
-        // status: "PRESENT" // optional 🔥
+        status: AttendanceStatus.PRESENT,
       },
       create: {
         employeeId,

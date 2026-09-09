@@ -29,7 +29,7 @@ export const companyAccessMiddleware = async (
       return res.status(400).json({ message: "No active company in token" });
     }
 
-    // 🔥 DB verify (very important)
+    //  DB verify (very important)
     const membership = await prisma.membership.findFirst({
       where: {
         userId: req.user.userId,
@@ -58,7 +58,7 @@ export const companyAccessMiddleware = async (
     // console.log("per",permissions);
     console.log("userId:", req.user.userId);
 
-    // 🔥 cache in request
+    //  cache in request
     req.companyId = companyId;
     req.membership = membership;
     req.permissions = permissions;

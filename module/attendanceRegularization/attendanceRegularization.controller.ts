@@ -11,6 +11,7 @@ import {
   getAdjustmentsByAuthorized,
   getCompanyAdjustmentByDay,
   regularizeAttendance,
+  resetAttendance,
 } from "./attendanceRegularization.service.js";
 
 interface AuthRequest extends Request {
@@ -76,6 +77,55 @@ export const regularizeAttendanceController = async (
       success: true,
 
       message: "Attendance regularized successfully",
+
+      data,
+    });
+  } catch (err: any) {
+    res.status(400).json({
+      success: false,
+
+      message: err.message,
+    });
+  }
+};
+
+// ======================================================
+// CONTROLLER
+// ======================================================
+
+// controllers/attendanceAdjustment.controller.ts
+
+// ======================================================
+
+export const resetAttendanceController = async (
+  req: AuthRequest,
+  res: Response,
+) => {
+  try {
+    const companyId = req.companyId;
+
+    const user = req.user;
+
+    if (!companyId || !user) {
+      throw new Error("Unauthorized");
+    }
+
+    const attendanceId = Number(req.params.id);
+
+    const { reason, remarks } = req.body;
+
+    const data = await resetAttendance({
+      attendanceId,
+      companyId,
+      adjustedBy: user.userId,
+      reason,
+      remarks,
+    });
+
+    res.json({
+      success: true,
+
+      message: "Attendance reset successfully. Employee can check in again.",
 
       data,
     });

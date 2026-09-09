@@ -949,3 +949,175 @@ export const getAdjustmentsByAuthorized = async (input: ByAuthorizedInput) => {
     },
   };
 };
+
+// ======================================================
+// RESET ATTENDANCE (mistaken check-in/out)
+// ======================================================
+
+type ResetInput = {
+  attendanceId: number;
+
+  companyId: number;
+
+  adjustedBy: number;
+
+  reason?: string;
+
+  remarks?: string;
+};
+
+export const resetAttendance = async (input: ResetInput) => {
+  const {
+    attendanceId,
+
+    companyId,
+
+    adjustedBy,
+
+    reason,
+
+    remarks,
+  } = input;
+
+  // ======================================================
+  // FIND ATTENDANCE
+  // ======================================================
+
+  const attendance = await prisma.attendance.findFirst({
+    where: {
+      id: attendanceId,
+
+      companyId,
+    },
+
+    include: {
+      employee: true,
+    },
+  });
+
+  if (!attendance) {
+    throw new Error("Attendance not found");
+  }
+
+  // ======================================================
+  // GUARD — approved leave / holiday / weekly-off
+  // ======================================================
+
+  if (
+    attendance.status === AttendanceStatus.HOLIDAY ||
+    attendance.status === AttendanceStatus.WEEKLY_OFF
+  ) {
+    throw new Error("Cannot reset holiday or weekly-off attendance");
+  }
+
+  const leave = await prisma.leaveApplication.findFirst({
+    where: {
+      employeeId: attendance.employeeId,
+
+      companyId,
+
+      status: "APPROVED",
+
+      fromDate: { lte: attendance.date },
+
+      toDate: { gte: attendance.date },
+    },
+  });
+
+  if (leave) {
+    throw new Error("Cannot reset on an approved leave day, please adjust instead");
+  }
+
+  // ======================================================
+  // RESET IN TRANSACTION
+  // ======================================================
+
+  const result = await prisma.$transaction(async (tx) => {
+    await tx.attendanceLog.deleteMany({
+      where: { attendanceId },
+    });
+
+    const updated = await tx.attendance.update({
+      where: { id: attendance.id },
+
+      data: {
+        check_in_time: null,
+
+        check_out_time: null,
+
+        total_work_minutes: 0,
+
+        overtime_minutes: 0,
+
+        late_minutes: 0,
+
+        status: AttendanceStatus.ABSENT,
+      },
+    });
+
+    await tx.attendanceAdjustment.create({
+      data: {
+        companyId,
+
+        attendanceId: attendance.id,
+
+        employeeId: attendance.employeeId,
+
+        adjustedBy,
+
+        oldStatus: attendance.status,
+
+        newStatus: AttendanceStatus.ABSENT,
+
+        reason,
+
+        remarks,
+
+        metadata: {
+          oldCheckIn: attendance.check_in_time,
+
+          newCheckIn: null,
+
+          oldCheckOut: attendance.check_out_time,
+
+          newCheckOut: null,
+
+          oldLateMinutes: attendance.late_minutes,
+
+          newLateMinutes: 0,
+
+          oldTotalWorkMinutes: attendance.total_work_minutes,
+
+          newTotalWorkMinutes: 0,
+
+          oldOvertimeMinutes: attendance.overtime_minutes,
+
+          newOvertimeMinutes: 0,
+        },
+
+        actionType: AttendanceAdjustmentType.MANUAL,
+      },
+    });
+
+    await createNoticeForEmployee(tx, {
+      companyId,
+
+      employeeId: attendance.employeeId,
+
+      title: "Attendance Reset",
+
+      description:
+        `Your attendance for ${new Date(attendance.date).toLocaleDateString()} has been reset. ` +
+        `Please check in again.` +
+        (remarks ? ` Note: ${remarks}` : ""),
+
+      priority: "NORMAL",
+
+      createdBy: adjustedBy,
+    });
+
+    return updated;
+  });
+
+  return result;
+};
