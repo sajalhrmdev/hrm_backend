@@ -312,6 +312,21 @@ export const handleAttendance = async (
     }
   }
 
+  // 🔒 ATOMIC OUT CLAIM (race guard): open-session OUT skips
+  // singleMultivalidatation by design, so two in-flight OUT requests
+  // would both see check_out_time NULL and both write logs.
+  // Claim the row first — loser gets count 0 and is rejected.
+  if (type === "OUT") {
+    const claimed = await prisma.attendance.updateMany({
+      where: { id: attendance.id, check_out_time: null },
+      data: { check_out_time: now },
+    });
+
+    if (claimed.count === 0) {
+      throw new Error("Already checked out");
+    }
+  }
+
   await prisma.attendanceLog.create({
     data: {
       employeeId,

@@ -1,6 +1,7 @@
 import { prisma } from "../lib/prisma.js";
 import { markAttendanceAsLeave } from "./attendanceLeave.helper.js";
 import getStartEndOfDay from "../utils/getStartEndOfDay.js";
+import { safeSendEmailBySlug, EMAIL_LOGIN_URL } from "./email.service.js";
 import {
   createNoticeForEmployee,
   pruneOldPersonalNotices,
@@ -15,7 +16,7 @@ type ApproveInput = {
 export const approveLeave = async (input: ApproveInput) => {
   const { leaveId, approverId, companyId } = input;
 
-  return prisma.$transaction(async (tx) => {
+  const result = await prisma.$transaction(async (tx) => {
     // 1) Fetch leave
     const leave = await tx.leaveApplication.findFirst({
       where: { id: leaveId, companyId },
@@ -109,6 +110,47 @@ export const approveLeave = async (input: ApproveInput) => {
 
     return updatedLeave;
   });
+
+  // 🔔 EMAIL: notify employee after successful transaction
+  try {
+    const fullLeave = await prisma.leaveApplication.findFirst({
+      where: { id: leaveId, companyId },
+      include: {
+        employee: {
+          select: { name: true, employeeCode: true, email: true },
+        },
+        leaveType: { select: { name: true } },
+      },
+    });
+
+    if (fullLeave?.employee?.email) {
+      const company = await prisma.company.findUnique({
+        where: { id: companyId },
+        select: { name: true },
+      });
+
+      await safeSendEmailBySlug({
+        companyId,
+        to: fullLeave.employee.email,
+        slug: "leave-approved",
+        variables: {
+          employeeName: fullLeave.employee.name,
+          leaveType: fullLeave.leaveType?.name || "Leave",
+          fromDate: new Date(fullLeave.fromDate).toLocaleDateString("en-IN"),
+          toDate: new Date(fullLeave.toDate).toLocaleDateString("en-IN"),
+          totalDays: String(fullLeave.totalDays),
+          companyName: company?.name || "",
+        },
+      });
+    }
+  } catch (emailErr: any) {
+    console.error(
+      "[Email] leave-approved hook error:",
+      emailErr?.message || emailErr,
+    );
+  }
+
+  return result;
 };
 
 // 2===============reject leave======================
@@ -162,6 +204,47 @@ export const rejectLeave = async (input: RejectInput) => {
   });
 
   await pruneOldPersonalNotices(prisma, companyId, leave.employeeId);
+
+  // 🔔 EMAIL: notify employee
+  try {
+    if (leave.employeeId) {
+      const employee = await prisma.employee.findUnique({
+        where: { id: leave.employeeId },
+        select: { name: true, employeeCode: true, email: true },
+      });
+
+      const leaveType = await prisma.leaveType.findUnique({
+        where: { id: leave.leaveTypeId },
+        select: { name: true },
+      });
+
+      if (employee?.email) {
+        const company = await prisma.company.findUnique({
+          where: { id: companyId },
+          select: { name: true },
+        });
+
+        await safeSendEmailBySlug({
+          companyId,
+          to: employee.email,
+          slug: "leave-rejected",
+          variables: {
+            employeeName: employee.name,
+            leaveType: leaveType?.name || "Leave",
+            fromDate: new Date(leave.fromDate).toLocaleDateString("en-IN"),
+            toDate: new Date(leave.toDate).toLocaleDateString("en-IN"),
+            totalDays: String(leave.totalDays),
+            companyName: company?.name || "",
+          },
+        });
+      }
+    }
+  } catch (emailErr: any) {
+    console.error(
+      "[Email] leave-rejected hook error:",
+      emailErr?.message || emailErr,
+    );
+  }
 
   return updatedLeave;
 };

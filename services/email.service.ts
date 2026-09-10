@@ -2,6 +2,9 @@ import nodemailer from "nodemailer";
 import Handlebars from "handlebars";
 import { prisma } from "../lib/prisma.js";
 
+// ============ SHARED CONSTANTS ============
+export const EMAIL_LOGIN_URL = "https://hrm-frontend-ashy.vercel.app/";
+
 // ============ TRANSPORTER CACHE (per company) ============
 const transporters = new Map<number, nodemailer.Transporter>();
 
@@ -104,4 +107,49 @@ export const sendEmailBySlug = async (input: SendBySlugInput) => {
     htmlContent: template.htmlContent,
     variables,
   });
+};
+
+// ============ SAFE SEND (never throws, never blocks main flow) ============
+export const safeSendEmailBySlug = async (input: SendBySlugInput) => {
+  try {
+    const settings = await prisma.emailSettings.findUnique({
+      where: { companyId: input.companyId },
+    });
+
+    if (!settings || !settings.isActive) {
+      console.log(
+        `[Email] skip "${input.slug}" -> SMTP not configured (company ${input.companyId})`,
+      );
+      return false;
+    }
+
+    const template = await prisma.emailTemplate.findFirst({
+      where: { slug: input.slug, companyId: input.companyId, isActive: true },
+    });
+
+    if (!template) {
+      console.log(
+        `[Email] skip "${input.slug}" -> template not found or inactive (company ${input.companyId})`,
+      );
+      return false;
+    }
+
+    const info = await sendEmail({
+      companyId: input.companyId,
+      to: input.to,
+      subject: template.subject,
+      htmlContent: template.htmlContent,
+      variables: input.variables,
+    });
+
+    console.log(
+      `[Email] sent "${input.slug}" to ${input.to} (${info.messageId})`,
+    );
+    return true;
+  } catch (err: any) {
+    console.error(
+      `[Email] failed "${input.slug}" to ${input.to}: ${err?.message || err}`,
+    );
+    return false;
+  }
 };

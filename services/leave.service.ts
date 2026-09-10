@@ -1,5 +1,6 @@
 import { prisma } from "../lib/prisma.js";
 import getStartEndOfDay from "../utils/getStartEndOfDay.js";
+import { safeSendEmailBySlug, EMAIL_LOGIN_URL } from "./email.service.js";
 
 type ApplyLeaveInput = {
   employeeId: number;
@@ -150,6 +151,64 @@ export const applyLeave = async (input: ApplyLeaveInput) => {
       applied_at: true,
     },
   });
+
+  // 🔔 EMAIL: notify approvers (never blocks the flow)
+  try {
+    const [employee, company] = await Promise.all([
+      prisma.employee.findUnique({
+        where: { id: employeeId },
+        select: { name: true, employeeCode: true },
+      }),
+      prisma.company.findUnique({
+        where: { id: companyId },
+        select: { name: true },
+      }),
+    ]);
+
+    const approvers = await prisma.user.findMany({
+      where: {
+        memberships: {
+          some: {
+            companyId,
+            status: "ACTIVE",
+            role: {
+              rolePermissions: {
+                some: {
+                  permission: { name: "Sidebar Leave Approval" },
+                },
+              },
+            },
+          },
+        },
+      },
+      select: { email: true },
+    });
+
+    const baseVariables: Record<string, string> = {
+      employeeName: employee?.name || "Employee",
+      employeeCode: employee?.employeeCode || "-",
+      leaveType: leaveType.name,
+      fromDate: new Date(fromDate).toLocaleDateString("en-IN"),
+      toDate: new Date(toDate).toLocaleDateString("en-IN"),
+      totalDays: String(totalDays),
+      leaveReason: reason || "-",
+      companyName: company?.name || "",
+      loginUrl: EMAIL_LOGIN_URL,
+    };
+
+    for (const approver of approvers) {
+      if (approver.email) {
+        await safeSendEmailBySlug({
+          companyId,
+          to: approver.email,
+          slug: "leave-request",
+          variables: baseVariables,
+        });
+      }
+    }
+  } catch (emailErr: any) {
+    console.error("[Email] leave-request hook error:", emailErr?.message || emailErr);
+  }
 
   return leave;
 };
