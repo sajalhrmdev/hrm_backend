@@ -1672,3 +1672,18 @@ model MobileTheme {
 
   companies       Company[] 
 }
+// =====================================PASSWORD RESET OTP===============================
+model PasswordResetOtp {
+  id             Int      @id @default(autoincrement())
+  email          String
+  otpHash        String
+  resetTokenHash String?
+  expiresAt      DateTime
+  resetExpiresAt DateTime?
+  attempts       Int      @default(0)
+  verified       Boolean  @default(false)
+  used           Boolean  @default(false)
+  createdAt      DateTime @default(now())
+
+  @@index([email])
+}

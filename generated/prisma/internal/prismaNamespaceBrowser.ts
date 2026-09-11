@@ -107,7 +107,8 @@ export const ModelName = {
   GeneratedDocument: 'GeneratedDocument',
   Resignation: 'Resignation',
   Issue: 'Issue',
-  MobileTheme: 'MobileTheme'
+  MobileTheme: 'MobileTheme',
+  PasswordResetOtp: 'PasswordResetOtp'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1099,6 +1100,22 @@ export const MobileThemeScalarFieldEnum = {
 } as const
 
 export type MobileThemeScalarFieldEnum = (typeof MobileThemeScalarFieldEnum)[keyof typeof MobileThemeScalarFieldEnum]
+
+
+export const PasswordResetOtpScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  otpHash: 'otpHash',
+  resetTokenHash: 'resetTokenHash',
+  expiresAt: 'expiresAt',
+  resetExpiresAt: 'resetExpiresAt',
+  attempts: 'attempts',
+  verified: 'verified',
+  used: 'used',
+  createdAt: 'createdAt'
+} as const
+
+export type PasswordResetOtpScalarFieldEnum = (typeof PasswordResetOtpScalarFieldEnum)[keyof typeof PasswordResetOtpScalarFieldEnum]
 
 
 export const SortOrder = {

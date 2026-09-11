@@ -629,6 +629,37 @@ export const updateEmployeeService = async (
     }
 
     // ========================================
+    // SYNC LINKED USER EMAIL
+    // ========================================
+    // Employee email edit -> linked User email auto-update (login + OTP stay aligned)
+
+    if (data.email && data.email !== existing.email && finalUserId) {
+      const userEmailTaken = await tx.user.findFirst({
+        where: {
+          email: data.email,
+
+          id: {
+            not: finalUserId,
+          },
+        },
+      });
+
+      if (userEmailTaken) {
+        throw new Error("User email already exists");
+      }
+
+      await tx.user.update({
+        where: {
+          id: finalUserId,
+        },
+
+        data: {
+          email: data.email,
+        },
+      });
+    }
+
+    // ========================================
     // UPDATE EMPLOYEE
     // ========================================
 

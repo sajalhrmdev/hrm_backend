@@ -414,6 +414,10 @@ import {
   createNoticeForEmployee,
   pruneOldPersonalNotices,
 } from "../notice/notice.service.js";
+import {
+  safeSendEmailBySlug,
+  EMAIL_LOGIN_URL,
+} from "../../services/email.service.js";
 
 const parseAsIST = (dateStr: string): Date => {
   if (/[+-]\d{2}:\d{2}$/.test(dateStr) || dateStr.endsWith("Z")) {
@@ -747,6 +751,42 @@ export const regularizeAttendance = async (input: RegularizeInput) => {
   });
 
   await pruneOldPersonalNotices(prisma, companyId, attendance.employeeId);
+
+  // 🔔 EMAIL: notify employee (never blocks the flow)
+  try {
+    if (attendance.employee?.email) {
+      const company = await prisma.company.findUnique({
+        where: { id: companyId },
+        select: { name: true },
+      });
+
+      const fmtTime = (d: Date | null) =>
+        d ? new Date(d).toLocaleString("en-IN") : "-";
+
+      await safeSendEmailBySlug({
+        companyId,
+        to: attendance.employee.email,
+        slug: "attendance-regularized",
+        variables: {
+          employeeName: attendance.employee.name,
+          date: new Date(attendance.date).toLocaleDateString("en-IN"),
+          oldStatus: String(attendance.status),
+          newStatus: String(finalStatus),
+          checkIn: fmtTime(updatedCheckIn),
+          checkOut: fmtTime(updatedCheckOut),
+          totalMinutes: String(totalMinutes),
+          remarks: remarks || "-",
+          companyName: company?.name || "",
+          loginUrl: EMAIL_LOGIN_URL,
+        },
+      });
+    }
+  } catch (emailErr: any) {
+    console.error(
+      "[Email] attendance-regularized hook error:",
+      emailErr?.message || emailErr,
+    );
+  }
 
   return updatedAttendance;
 };
@@ -1118,6 +1158,40 @@ export const resetAttendance = async (input: ResetInput) => {
 
     return updated;
   });
+
+  // 🔔 EMAIL: notify employee after successful transaction
+  try {
+    if (attendance.employee?.email) {
+      const company = await prisma.company.findUnique({
+        where: { id: companyId },
+        select: { name: true },
+      });
+
+      const fmtTime = (d: Date | null) =>
+        d ? new Date(d).toLocaleString("en-IN") : "-";
+
+      await safeSendEmailBySlug({
+        companyId,
+        to: attendance.employee.email,
+        slug: "attendance-reset",
+        variables: {
+          employeeName: attendance.employee.name,
+          date: new Date(attendance.date).toLocaleDateString("en-IN"),
+          oldCheckIn: fmtTime(attendance.check_in_time),
+          oldCheckOut: fmtTime(attendance.check_out_time),
+          reason: reason || "-",
+          remarks: remarks || "-",
+          companyName: company?.name || "",
+          loginUrl: EMAIL_LOGIN_URL,
+        },
+      });
+    }
+  } catch (emailErr: any) {
+    console.error(
+      "[Email] attendance-reset hook error:",
+      emailErr?.message || emailErr,
+    );
+  }
 
   return result;
 };

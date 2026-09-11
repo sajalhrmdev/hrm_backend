@@ -302,3 +302,8 @@ export type Issue = Prisma.IssueModel
  * 
  */
 export type MobileTheme = Prisma.MobileThemeModel
+/**
+ * Model PasswordResetOtp
+ * 
+ */
+export type PasswordResetOtp = Prisma.PasswordResetOtpModel

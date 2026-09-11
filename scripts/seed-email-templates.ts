@@ -170,12 +170,12 @@ const templates = [
 </body></html>`,
   },
 
-  // 5. PASSWORD RESET
+  // 5. PASSWORD RESET (OTP)
   {
     name: "Password Reset",
     slug: "password-reset",
-    subject: "Reset your {{companyName}} password",
-    description: "Sent when employee requests a password reset",
+    subject: "Your {{companyName}} password reset code: {{otp}}",
+    description: "Sent when employee requests a password reset OTP",
     htmlContent: `<!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
@@ -188,11 +188,88 @@ const templates = [
   </td></tr>
   <tr><td style="padding:30px;">
     <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.6;">Hi <strong>{{employeeName}}</strong>,</p>
-    <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.6;">We received a request to reset your password. Click the button below to set a new password:</p>
+    <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.6;">We received a request to reset your password. Use the code below:</p>
     <table width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:20px 0;">
-      <a href="{{loginUrl}}" style="display:inline-block;background-color:#3b82f6;color:#ffffff;text-decoration:none;padding:12px 32px;border-radius:8px;font-size:15px;font-weight:600;">Reset Password</a>
+      <div style="display:inline-block;background-color:#eff6ff;border:2px dashed #3b82f6;color:#1d4ed8;padding:14px 40px;border-radius:12px;font-size:32px;font-weight:800;letter-spacing:8px;">{{otp}}</div>
     </td></tr></table>
-    <p style="margin:16px 0 0;color:#9ca3af;font-size:13px;line-height:1.6;">This link will expire in 30 minutes. If you didn't request this, please ignore this email.</p>
+    <p style="margin:16px 0 0;color:#9ca3af;font-size:13px;line-height:1.6;">This code will expire in {{expiryMinutes}} minutes. If you didn't request this, please ignore this email.</p>
+  </td></tr>
+  <tr><td style="background-color:#f9fafb;padding:20px 30px;text-align:center;border-top:1px solid #e5e7eb;">
+    <p style="margin:0;color:#9ca3af;font-size:12px;">{{companyName}} &bull; HR Management System</p>
+  </td></tr>
+</table>
+</td></tr></table>
+</body></html>`,
+  },
+
+  // 6. ATTENDANCE REGULARIZED
+  {
+    name: "Attendance Regularized",
+    slug: "attendance-regularized",
+    subject: "Your attendance for {{date}} has been corrected",
+    description: "Sent to employee when their attendance is regularized",
+    htmlContent: `<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
+<body style="margin:0;padding:0;background-color:#f4f5f7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f5f7;padding:40px 0;">
+<tr><td align="center">
+<table width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+  <tr><td style="background:linear-gradient(135deg,#4f46e5,#7c3aed);padding:30px;text-align:center;">
+    <h1 style="margin:0;color:#ffffff;font-size:20px;font-weight:700;">📝 Attendance Corrected</h1>
+  </td></tr>
+  <tr><td style="padding:30px;">
+    <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.6;">Hi <strong>{{employeeName}}</strong>,</p>
+    <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.6;">Your attendance for <strong>{{date}}</strong> has been corrected.</p>
+    <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;margin:20px 0;">
+      <tr><td style="padding:16px;">
+        <table width="100%" cellpadding="0" cellspacing="0" style="font-size:14px;color:#374151;line-height:2;">
+          <tr><td style="color:#6b7280;width:130px;"><strong>Status</strong></td><td>{{oldStatus}} → {{newStatus}}</td></tr>
+          <tr><td style="color:#6b7280;"><strong>Check In</strong></td><td>{{checkIn}}</td></tr>
+          <tr><td style="color:#6b7280;"><strong>Check Out</strong></td><td>{{checkOut}}</td></tr>
+          <tr><td style="color:#6b7280;"><strong>Total Minutes</strong></td><td>{{totalMinutes}}</td></tr>
+          <tr><td style="color:#6b7280;"><strong>Remarks</strong></td><td>{{remarks}}</td></tr>
+        </table>
+      </td></tr>
+    </table>
+  </td></tr>
+  <tr><td style="background-color:#f9fafb;padding:20px 30px;text-align:center;border-top:1px solid #e5e7eb;">
+    <p style="margin:0;color:#9ca3af;font-size:12px;">{{companyName}} &bull; HR Management System</p>
+  </td></tr>
+</table>
+</td></tr></table>
+</body></html>`,
+  },
+
+  // 7. ATTENDANCE RESET
+  {
+    name: "Attendance Reset",
+    slug: "attendance-reset",
+    subject: "Your attendance for {{date}} has been reset",
+    description: "Sent to employee when their attendance is reset",
+    htmlContent: `<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
+<body style="margin:0;padding:0;background-color:#f4f5f7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f5f7;padding:40px 0;">
+<tr><td align="center">
+<table width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+  <tr><td style="background:linear-gradient(135deg,#f59e0b,#d97706);padding:30px;text-align:center;">
+    <h1 style="margin:0;color:#ffffff;font-size:20px;font-weight:700;">🔄 Attendance Reset</h1>
+  </td></tr>
+  <tr><td style="padding:30px;">
+    <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.6;">Hi <strong>{{employeeName}}</strong>,</p>
+    <p style="margin:0 0 16px;color:#374151;font-size:15px;line-height:1.6;">Your attendance for <strong>{{date}}</strong> has been reset. Please check in again.</p>
+    <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#fffbeb;border-radius:8px;border:1px solid #fde68a;margin:20px 0;">
+      <tr><td style="padding:16px;">
+        <table width="100%" cellpadding="0" cellspacing="0" style="font-size:14px;color:#374151;line-height:2;">
+          <tr><td style="color:#6b7280;width:130px;"><strong>Cleared Check In</strong></td><td>{{oldCheckIn}}</td></tr>
+          <tr><td style="color:#6b7280;"><strong>Cleared Check Out</strong></td><td>{{oldCheckOut}}</td></tr>
+          <tr><td style="color:#6b7280;"><strong>Reason</strong></td><td>{{reason}}</td></tr>
+          <tr><td style="color:#6b7280;"><strong>Remarks</strong></td><td>{{remarks}}</td></tr>
+        </table>
+      </td></tr>
+    </table>
   </td></tr>
   <tr><td style="background-color:#f9fafb;padding:20px 30px;text-align:center;border-top:1px solid #e5e7eb;">
     <p style="margin:0;color:#9ca3af;font-size:12px;">{{companyName}} &bull; HR Management System</p>
