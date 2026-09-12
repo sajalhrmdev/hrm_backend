@@ -1,6 +1,24 @@
 import { OfficeLocationStatus } from "../../generated/prisma/enums.js";
 import { prisma } from "../../lib/prisma.js";
 
+// form inputs arrive as strings — coerce for Float?/Int? columns.
+// "" / null / undefined -> undefined (field left unchanged)
+const toFloatOrUndef = (v: any, field: string): number | undefined => {
+  if (v === undefined || v === null || v === "") return undefined;
+  const n = Number(v);
+  if (Number.isNaN(n)) throw new Error(`Invalid ${field} — must be a number`);
+  return n;
+};
+
+const toIntOrUndef = (v: any, field: string): number | undefined => {
+  if (v === undefined || v === null || v === "") return undefined;
+  const n = Number(v);
+  if (!Number.isInteger(n)) {
+    throw new Error(`Invalid ${field} — must be a whole number`);
+  }
+  return n;
+};
+
 export const createOfficeLocationService = async (
   companyId: number,
   payload: any,
@@ -98,11 +116,11 @@ export const updateOfficeLocationService = async (
 
       pinCode: payload.pinCode,
 
-      latitude: payload.latitude,
+      latitude: toFloatOrUndef(payload.latitude, "latitude"),
 
-      longitude: payload.longitude,
+      longitude: toFloatOrUndef(payload.longitude, "longitude"),
 
-      radius: payload.radius,
+      radius: toIntOrUndef(payload.radius, "radius"),
 
       status:
         payload.status === OfficeLocationStatus.ACTIVE ||
@@ -207,11 +225,11 @@ export const updateMyOfficeLocationService = async (
 
       pinCode: payload.pinCode,
 
-      latitude: payload.latitude,
+      latitude: toFloatOrUndef(payload.latitude, "latitude"),
 
-      longitude: payload.longitude,
+      longitude: toFloatOrUndef(payload.longitude, "longitude"),
 
-      radius: payload.radius,
+      radius: toIntOrUndef(payload.radius, "radius"),
     },
   });
 };

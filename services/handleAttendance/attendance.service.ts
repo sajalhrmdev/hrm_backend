@@ -202,13 +202,15 @@ export const handleAttendance = async (
   }
   const OFFICE_LAT = location.latitude;
   const OFFICE_LNG = location.longitude;
-  const MAX_DISTANCE_KM = location.radius;
+  // radius is stored in METERS (location page shows "{radius}m"),
+  // getDistance() returns KILOMETERS — compare in the same unit
+  const MAX_DISTANCE_M = location.radius ?? 100;
   if (workSchedulePolicy?.attendanceFrom === "OFFICE") {
-    if (!OFFICE_LAT || !OFFICE_LNG || !MAX_DISTANCE_KM) {
+    if (!OFFICE_LAT || !OFFICE_LNG || !MAX_DISTANCE_M) {
       throw new Error("Office location coordinates are not configured");
     }
-    const distance = getDistance(latitude, longitude, OFFICE_LAT, OFFICE_LNG);
-    if (distance > MAX_DISTANCE_KM) {
+    const distanceKm = getDistance(latitude, longitude, OFFICE_LAT, OFFICE_LNG);
+    if (distanceKm * 1000 > MAX_DISTANCE_M) {
       throw new Error("You are outside office location");
     }
   }
