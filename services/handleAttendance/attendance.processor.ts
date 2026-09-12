@@ -479,15 +479,41 @@ export const processAttendance = async (
 
       select: {
         employeeId: true,
+
+        check_in_time: true,
+
+        status: true,
       },
     });
 
-  const attendanceMap =
-    new Set(
-      existingAttendances.map(
-        (a) => a.employeeId,
-      ),
-    );
+  const attendanceMap = new Map(
+    existingAttendances.map((a) => [
+      a.employeeId,
+      { check_in_time: a.check_in_time, status: a.status },
+    ]),
+  );
+
+  // employees with any log that day (real activity -> never touch)
+  const logRows = await prisma.attendanceLog.findMany({
+    where: {
+      companyId,
+
+      employeeId: {
+        in: employeeIds,
+      },
+
+      time: {
+        gte: start,
+        lte: end,
+      },
+    },
+
+    select: {
+      employeeId: true,
+    },
+  });
+
+  const logSet = new Set(logRows.map((l) => l.employeeId));
 
   // ==========================================
   // HOLIDAY
@@ -588,6 +614,13 @@ export const processAttendance = async (
     Prisma.AttendanceCreateManyInput[] =
       [];
 
+  // rows to re-evaluate (ABSENT shells: no check-in, no logs)
+  const attendanceToUpdate:
+    { employeeId: number; status: AttendanceStatus }[] =
+      [];
+
+  let updated = 0;
+
   // ==========================================
   // LOOP POLICIES
   // ==========================================
@@ -628,13 +661,22 @@ export const processAttendance = async (
 
     for (const employee of policy.employees) {
 
-      if (
-        attendanceMap.has(
-          employee.id,
-        )
-      ) {
-        continue;
+      const existing = attendanceMap.get(employee.id);
+
+      // skip real data (check-in / logs) and non-shell statuses
+      // (admin decisions, already-marked leaves, holidays, etc.)
+      // -> only ABSENT shells (no check-in, no logs) get re-evaluated
+      if (existing) {
+        if (
+          existing.check_in_time ||
+          logSet.has(employee.id) ||
+          existing.status !== AttendanceStatus.ABSENT
+        ) {
+          continue;
+        }
       }
+
+      const isReval = !!existing;
 
       let status:
         AttendanceStatus =
@@ -699,26 +741,35 @@ export const processAttendance = async (
         absent++;
       }
 
-      attendanceToCreate.push({
+      if (isReval) {
+        attendanceToUpdate.push({
+          employeeId: employee.id,
+          status,
+        });
 
-        employeeId:
-          employee.id,
+        updated++;
+      } else {
+        attendanceToCreate.push({
 
-        companyId,
+          employeeId:
+            employee.id,
 
-        shiftId:
-          policy.shiftId,
+          companyId,
 
-        date: start,
+          shiftId:
+            policy.shiftId,
 
-        status,
+          date: start,
 
-        total_work_minutes: 0,
+          status,
 
-        overtime_minutes: 0,
+          total_work_minutes: 0,
 
-        late_minutes: 0,
-      });
+          overtime_minutes: 0,
+
+          late_minutes: 0,
+        });
+      }
     }
   }
 
@@ -740,6 +791,40 @@ export const processAttendance = async (
   }
 
   // ==========================================
+  // UPDATE (re-evaluated ABSENT shells only)
+  // ==========================================
+
+  if (
+    attendanceToUpdate.length
+  ) {
+
+    await prisma.$transaction(
+      attendanceToUpdate.map((u) =>
+        prisma.attendance.updateMany({
+          where: {
+            companyId,
+
+            employeeId: u.employeeId,
+
+            date: {
+              gte: start,
+              lte: end,
+            },
+
+            check_in_time: null,
+
+            status: AttendanceStatus.ABSENT,
+          },
+
+          data: {
+            status: u.status,
+          },
+        }),
+      ),
+    );
+  }
+
+  // ==========================================
   // RETURN
   // ==========================================
 
@@ -749,6 +834,9 @@ export const processAttendance = async (
 
     totalProcessed:
       attendanceToCreate.length,
+
+    updated:
+      attendanceToUpdate.length,
 
     absent,
 
