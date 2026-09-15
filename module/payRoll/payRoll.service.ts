@@ -1,6 +1,5 @@
 import { prisma } from "../../lib/prisma.js";
 import getStartEndOfDay from "../../utils/getStartEndOfDay.js";
-import { findApplicableSlab } from "../professionalTaxSlab/professionalTaxSlab.service.js";
 import {
   clampAmount,
   resolveStructureStandard,
@@ -740,6 +739,89 @@ export const generatePayroll = async (
         halfDayLeaveMap.set(r.employeeId, existing);
       }
 
+      // ==================================
+      // BULK READS (avoid N+1 inside loop)
+      // ==================================
+
+      const employeeIds = employees.map((item) => item.id);
+
+      const payrollPeriodMonth = payrollRun.periodStart.getMonth() + 1;
+      const payrollPeriodYear = payrollRun.periodStart.getFullYear();
+
+      const allSalaryComponents = employeeIds.length
+        ? await tx.employeeSalaryComponent.findMany({
+            where: {
+              employeeId: { in: employeeIds },
+              companyId,
+            },
+            include: {
+              salaryComponent: true,
+            },
+          })
+        : [];
+
+      const allAdjustments = await tx.payrollAdjustment.findMany({
+        where: {
+          payrollRunId,
+        },
+        include: {
+          salaryComponent: true,
+        },
+      });
+
+      const allGoals = employeeIds.length
+        ? await tx.goal.findMany({
+            where: {
+              employeeId: { in: employeeIds },
+              status: "APPROVED",
+              incentiveMonth: payrollPeriodMonth,
+              incentiveYear: payrollPeriodYear,
+              payrollSnapComponentId: null,
+            },
+          })
+        : [];
+
+      const ptSlabs = await tx.professionalTaxSlab.findMany({
+        where: { companyId },
+        orderBy: { minSalary: "asc" },
+      });
+
+      const salaryComponentsByEmployee = new Map<
+        number,
+        typeof allSalaryComponents
+      >();
+      for (const row of allSalaryComponents) {
+        const list = salaryComponentsByEmployee.get(row.employeeId) || [];
+        list.push(row);
+        salaryComponentsByEmployee.set(row.employeeId, list);
+      }
+
+      const adjustmentsByEmployee = new Map<number, typeof allAdjustments>();
+      for (const adj of allAdjustments) {
+        const list = adjustmentsByEmployee.get(adj.employeeId) || [];
+        list.push(adj);
+        adjustmentsByEmployee.set(adj.employeeId, list);
+      }
+
+      const goalsByEmployee = new Map<number, typeof allGoals>();
+      for (const goal of allGoals) {
+        const list = goalsByEmployee.get(goal.employeeId) || [];
+        list.push(goal);
+        goalsByEmployee.set(goal.employeeId, list);
+      }
+
+      const findSlabInMemory = (netSalary: number) => {
+        for (const slab of ptSlabs) {
+          const matchMin = netSalary >= slab.minSalary;
+          const matchMax =
+            slab.maxSalary === null || netSalary <= slab.maxSalary;
+          if (matchMin && matchMax) {
+            return slab;
+          }
+        }
+        return null;
+      };
+
       for (const employee of employees) {
         const presentDays =
           attendanceMap.get(`${employee.id}_PRESENT`)?.count || 0;
@@ -785,17 +867,8 @@ export const generatePayroll = async (
         // SALARY STRUCTURE
         // ==================================
 
-        const salaryComponents = await tx.employeeSalaryComponent.findMany({
-          where: {
-            employeeId: employee.id,
-
-            companyId,
-          },
-
-          include: {
-            salaryComponent: true,
-          },
-        });
+        const salaryComponents =
+          salaryComponentsByEmployee.get(employee.id) || [];
 
         // ==================================
         // TOTALS
@@ -902,17 +975,8 @@ export const generatePayroll = async (
         // PAYROLL ADJUSTMENTS
         // ==================================
 
-        const adjustments = await tx.payrollAdjustment.findMany({
-          where: {
-            payrollRunId,
-
-            employeeId: employee.id,
-          },
-
-          include: {
-            salaryComponent: true,
-          },
-        });
+        const adjustments =
+          adjustmentsByEmployee.get(employee.id) || [];
 
         // ==================================
         // MERGE ADJUSTMENTS
@@ -963,10 +1027,7 @@ export const generatePayroll = async (
         // PROFESSIONAL TAX
         // ==================================
 
-        const ptSlab = await findApplicableSlab(
-          payrollRun.companyId,
-          Math.max(0, calculatedNetSalary),
-        );
+        const ptSlab = findSlabInMemory(Math.max(0, calculatedNetSalary));
 
         if (ptSlab && ptSlab.taxAmount > 0) {
           totalDeduction += ptSlab.taxAmount;
@@ -985,18 +1046,7 @@ export const generatePayroll = async (
         // GOAL INCENTIVES
         // ==================================
 
-        const payrollPeriodMonth = payrollRun.periodStart.getMonth() + 1;
-        const payrollPeriodYear = payrollRun.periodStart.getFullYear();
-
-        const approvedGoals = await tx.goal.findMany({
-          where: {
-            employeeId: employee.id,
-            status: "APPROVED",
-            incentiveMonth: payrollPeriodMonth,
-            incentiveYear: payrollPeriodYear,
-            payrollSnapComponentId: null,
-          },
-        });
+        const approvedGoals = goalsByEmployee.get(employee.id) || [];
 
         for (const goal of approvedGoals) {
           calculatedNetSalary += goal.calculatedAmount!;
@@ -1557,6 +1607,106 @@ export const markPayrollRunPaid = async (
   return {
     totalUpdated: unpaidPayrolls.length,
   };
+};
+
+// ======================================================
+// DELETE PAYROLL RUN (DRAFT ONLY)
+// ======================================================
+
+export const deletePayrollRun = async (
+  companyId: number,
+  payrollRunId: number,
+) => {
+  // ============================================
+  // FIND PAYROLL RUN
+  // ============================================
+
+  const payrollRun = await prisma.payRollRun.findFirst({
+    where: {
+      id: payrollRunId,
+      companyId,
+    },
+
+    include: {
+      payrolls: {
+        select: { id: true, status: true },
+      },
+    },
+  });
+
+  if (!payrollRun) {
+    throw new Error("Payroll run not found");
+  }
+
+  // ============================================
+  // FINALIZED RUNS ARE LOCKED
+  // ============================================
+
+  if (payrollRun.status === "FINALIZED") {
+    throw new Error("Finalized payroll cannot be deleted");
+  }
+
+  // ============================================
+  // PAID MONEY CAN NEVER BE DELETED
+  // ============================================
+
+  const paidCount = payrollRun.payrolls.filter(
+    (item) => item.status === "PAID",
+  ).length;
+
+  if (paidCount > 0) {
+    throw new Error("Payroll with paid entries cannot be deleted");
+  }
+
+  // ============================================
+  // TRANSACTION: FULL CLEANUP
+  // ============================================
+
+  await prisma.$transaction(async (tx) => {
+    const payrollIds = payrollRun.payrolls.map((item) => item.id);
+
+    if (payrollIds.length) {
+      // Unlink goals first (FK to snap components)
+      await tx.goal.updateMany({
+        where: {
+          payrollSnapComponent: {
+            payrollId: { in: payrollIds },
+          },
+        },
+        data: { payrollSnapComponentId: null },
+      });
+
+      // Delete snap components
+      await tx.payrollSnapComponent.deleteMany({
+        where: {
+          payrollId: { in: payrollIds },
+        },
+      });
+
+      // Delete payrolls
+      await tx.payRoll.deleteMany({
+        where: {
+          payroll_run_id: payrollRunId,
+        },
+      });
+    }
+
+    // Delete adjustments
+    await tx.payrollAdjustment.deleteMany({
+      where: {
+        payrollRunId,
+      },
+    });
+
+    // Delete the run
+    await tx.payRollRun.delete({
+      where: {
+        id: payrollRunId,
+      },
+    });
+  });
+
+  return true;
 };
 
 // ======================================================

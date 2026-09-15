@@ -2,6 +2,7 @@ import express from "express";
 
 import {
   createPayrollRunController,
+  deletePayrollRunController,
   finalizePayrollRunController,
   generatePayrollController,
   getAllPayrollRunsController,
@@ -19,6 +20,7 @@ router.get("/run", getAllPayrollRunsController);
 
 router.post("/run/:id/generate", generatePayrollController);
 router.patch("/run/:id/finalize", finalizePayrollRunController);
+router.delete("/run/:id", deletePayrollRunController);
 router.patch("/:id/paid", markPayrollPaidController);
 router.patch("/run/:id/paid", markPayrollRunPaidController);
 router.get("/run/:id", getPayrollsByRunIdController);

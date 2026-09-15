@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 
 import {
   createPayrollRun,
+  deletePayrollRun,
   finalizePayrollRun,
   generatePayroll,
   getAllPayrollRuns,
@@ -381,6 +382,36 @@ export const getEmployeePayrollHistoryController = async (
       success: true,
 
       data,
+    });
+  } catch (err: any) {
+    return res.status(400).json({
+      success: false,
+
+      message: err.message,
+    });
+  }
+};
+
+// 9=================================deletePayrollRun===================
+export const deletePayrollRunController = async (
+  req: AuthRequest,
+  res: Response,
+) => {
+  try {
+    const companyId = req.companyId;
+
+    if (!companyId) {
+      throw new Error("Company not found");
+    }
+
+    const payrollRunId = Number(req.params.id);
+
+    await deletePayrollRun(companyId, payrollRunId);
+
+    return res.json({
+      success: true,
+
+      message: "Payroll run deleted successfully",
     });
   } catch (err: any) {
     return res.status(400).json({
