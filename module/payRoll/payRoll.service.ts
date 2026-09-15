@@ -1097,7 +1097,7 @@ export const generatePayroll = async (
     },
 
     {
-      timeout: 60000,
+      timeout: 120000,
     },
   );
 
