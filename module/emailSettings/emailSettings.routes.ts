@@ -5,12 +5,21 @@ import {
   updateEmailSettings,
   deleteEmailSettings,
 } from "./emailSettings.controller.js";
+import requirePermission from "../../middlewares/requirePermission.js";
 
 const router = Router();
 
-router.post("/", createEmailSettings);
-router.get("/", getEmailSettings);
-router.put("/", updateEmailSettings);
-router.delete("/", deleteEmailSettings);
+router.post(
+  "/",
+  requirePermission("Sidebar EmailSettings"),
+  createEmailSettings,
+);
+router.get("/", requirePermission("Sidebar EmailSettings"), getEmailSettings);
+router.put("/", requirePermission("Sidebar EmailSettings"), updateEmailSettings);
+router.delete(
+  "/",
+  requirePermission("Sidebar EmailSettings"),
+  deleteEmailSettings,
+);
 
 export default router;
