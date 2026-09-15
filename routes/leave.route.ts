@@ -19,6 +19,7 @@ import {
   allocateAllEmployeesController,
   allocateLeaveBalanceController,
   bulkAllocateLeaveBalanceController,
+  getEmployeeBalanceByIdController,
   getMyLeaveBalanceController,
   getAllLeaveBalancesController,
 } from "../controllers/leaveBalance.controller.js";
@@ -44,6 +45,7 @@ router.patch("/cancel-approval/:id", cancelLeaveApprovalController);
 
 router.get("/balance/all", getAllLeaveBalancesController);
 router.get("/balance", employeeMiddleware, getMyLeaveBalanceController);
+router.get("/balance/employee/:employeeId", getEmployeeBalanceByIdController);
 
 router.post("/allocate", allocateLeaveBalanceController);
 router.post("/allocate/bulk", bulkAllocateLeaveBalanceController);

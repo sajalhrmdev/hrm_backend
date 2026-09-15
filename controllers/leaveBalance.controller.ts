@@ -87,10 +87,9 @@ export const allocateAllEmployeesController = async (req: AuthRequest, res: Resp
   }
 };
 
-// 4========================employee wise leave balance===============
+// 4========================own leave balance (logged-in employee)===============
 
-export const getMyLeaveBalanceController =
-  async (
+export const getMyLeaveBalanceController = async (
     req: Request,
     res: Response
   ) => {
@@ -123,6 +122,39 @@ export const getMyLeaveBalanceController =
       });
     }
   };
+
+// 4b======================any employee leave balance (profile view)===============
+
+export const getEmployeeBalanceByIdController = async (
+  req: AuthRequest,
+  res: Response
+) => {
+  try {
+    const companyId = req.companyId;
+    if (!companyId) throw new Error("Company not found");
+
+    const employeeId = Number(req.params.employeeId);
+    if (!employeeId) throw new Error("Employee not found");
+
+    const year = Number(req.query.year) || new Date().getFullYear();
+
+    const data = await getEmployeeLeaveBalance({
+      employeeId,
+      companyId,
+      year,
+    });
+
+    res.json({
+      success: true,
+      data,
+    });
+  } catch (err: any) {
+    res.status(400).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
 
 // 5 =========================all company leave balance (admin view)===============
 
