@@ -16,6 +16,7 @@ import {
   getAllMobileThemesService,
   updateCompanyMobileThemeService,
   getCompanyMobileThemeBySlugService,
+  getCompanyMobileThemeByIdService,
 } from "./company.service.js";
 import { AuthRequest } from "../../middlewares/companyAccess.middleware.js";
 import { log } from "console";
@@ -200,6 +201,20 @@ export const getMobileThemeByCompanySlug = async (req: Request, res: Response) =
   try {
     const slug = req.params.slug as string;
     const data = await getCompanyMobileThemeBySlugService(slug);
+    return res.json({ success: true, data });
+  } catch (error: any) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// ============================================
+// MOBILE THEME - GET BY COMPANY ID (public, rename-proof)
+// ============================================
+export const getMobileThemeByCompanyId = async (req: Request, res: Response) => {
+  try {
+    const id = Number(req.params.id);
+    if (!id) throw new Error("Company not found");
+    const data = await getCompanyMobileThemeByIdService(id);
     return res.json({ success: true, data });
   } catch (error: any) {
     return res.status(500).json({ success: false, message: error.message });

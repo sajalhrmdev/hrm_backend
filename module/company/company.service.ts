@@ -206,6 +206,29 @@ export const updateMyCompanyService = async (
   companyId: number,
   payload: any,
 ) => {
+  let slug: string | undefined;
+
+  if (payload.slug !== undefined) {
+    slug = String(payload.slug).trim().replace(/\s+/g, " ");
+
+    if (!/^[A-Za-z0-9][A-Za-z0-9 -]*$/.test(slug)) {
+      throw new Error(
+        "Slug can only contain letters, numbers, space and hyphen",
+      );
+    }
+
+    const existingSlug = await prisma.company.findFirst({
+      where: {
+        slug: { equals: slug, mode: "insensitive" },
+        id: { not: companyId },
+      },
+    });
+
+    if (existingSlug) {
+      throw new Error("Company slug already exists");
+    }
+  }
+
   const company = await prisma.company.update({
     where: {
       id: companyId,
@@ -221,6 +244,8 @@ export const updateMyCompanyService = async (
       address: payload.address,
 
       status: payload.status,
+
+      ...(slug !== undefined && { slug }),
     },
   });
 
@@ -273,6 +298,19 @@ export const updateCompanyMobileThemeService = async (
 export const getCompanyMobileThemeBySlugService = async (slug: string) => {
   const company = await prisma.company.findUnique({
     where: { slug },
+    include: { mobileTheme: true },
+  });
+  if (!company) throw new Error("Company not found");
+  if (!company.mobileTheme) throw new Error("No mobile theme configured");
+  return company.mobileTheme;
+};
+
+// ============================================
+// MOBILE THEME - GET BY COMPANY ID (public, rename-proof)
+// ============================================
+export const getCompanyMobileThemeByIdService = async (id: number) => {
+  const company = await prisma.company.findUnique({
+    where: { id },
     include: { mobileTheme: true },
   });
   if (!company) throw new Error("Company not found");

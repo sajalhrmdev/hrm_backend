@@ -69,6 +69,7 @@ import { companyAccessMiddleware } from "./middlewares/companyAccess.middleware.
 import { employeeMiddleware } from "./middlewares/employee.middlewear.js";
 import { getCurrentUser } from "./controllers/auth.controller.js";
 import { getMobileThemeByCompanySlug } from "./module/company/company.controller.js";
+import { getMobileThemeByCompanyId } from "./module/company/company.controller.js";
 
 const app = express();
 app.use(
@@ -200,6 +201,8 @@ app.use(
 
   companyRoutes,
 );
+// NOTE: /by-id MUST come before /:slug (else "by-id" matches :slug)
+app.get("/api/v1/public/mobile-theme/by-id/:id", getMobileThemeByCompanyId);
 app.get("/api/v1/public/mobile-theme/:slug", getMobileThemeByCompanySlug);
 app.use("/api/v1/office-location", officeLocationRoutes);
 app.use(
