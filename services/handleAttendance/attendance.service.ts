@@ -472,6 +472,7 @@ export const getUserlessAttendanceService = async (
     where: {
       companyId,
       userId: null,
+      status: "ACTIVE",
     },
 
     include: {
@@ -523,6 +524,7 @@ export const adminMarkAttendanceService = async (
     where: {
       companyId,
       userId: null,
+      status: "ACTIVE",
       id: {
         in: employeeIds,
       },

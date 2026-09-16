@@ -792,3 +792,134 @@ export const assignShiftService = async (
 
   return updated;
 };
+
+// ============================================
+// UNLINK USER (make userless) + deactivate memberships
+// ============================================
+
+export const unlinkEmployeeUserService = async (
+  companyId: number,
+  id: number,
+  actorUserId?: number,
+) => {
+  const existing = await prisma.employee.findFirst({
+    where: { id, companyId },
+  });
+
+  if (!existing) {
+    throw new Error("Employee not found");
+  }
+
+  if (!existing.userId) {
+    throw new Error("Employee is already userless");
+  }
+
+  if (actorUserId && existing.userId === actorUserId) {
+    throw new Error("You cannot remove your own login");
+  }
+
+  return await prisma.$transaction(async (tx) => {
+    await tx.employee.update({
+      where: { id },
+      data: { userId: null },
+    });
+
+    const deactivated = await tx.membership.updateMany({
+      where: {
+        userId: existing.userId as number,
+        companyId,
+        status: "ACTIVE",
+      },
+      data: { status: "INACTIVE" },
+    });
+
+    return {
+      employeeId: id,
+      unlinkedUserId: existing.userId,
+      membershipsDeactivated: deactivated.count,
+    };
+  });
+};
+
+// ============================================
+// LINK USER (reverse userless) + reactivate memberships
+// ============================================
+
+export const linkEmployeeUserService = async (
+  companyId: number,
+  id: number,
+  input: { userId?: number; email?: string },
+) => {
+  const existing = await prisma.employee.findFirst({
+    where: { id, companyId },
+  });
+
+  if (!existing) {
+    throw new Error("Employee not found");
+  }
+
+  if (existing.userId) {
+    throw new Error("Employee already has a user");
+  }
+
+  if (existing.status !== "ACTIVE") {
+    throw new Error("Activate the employee first");
+  }
+
+  let user: { id: number } | null = null;
+
+  if (input.userId) {
+    user = await prisma.user.findUnique({
+      where: { id: Number(input.userId) },
+      select: { id: true },
+    });
+  } else if (input.email) {
+    user = await prisma.user.findUnique({
+      where: { email: String(input.email).trim().toLowerCase() },
+      select: { id: true },
+    });
+  } else {
+    throw new Error("userId or email is required");
+  }
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  const userId = user.id;
+
+  const alreadyLinked = await prisma.employee.findFirst({
+    where: {
+      userId,
+      companyId,
+      id: { not: id },
+    },
+    select: { id: true },
+  });
+
+  if (alreadyLinked) {
+    throw new Error("User is already linked to another employee");
+  }
+
+  return await prisma.$transaction(async (tx) => {
+    await tx.employee.update({
+      where: { id },
+      data: { userId },
+    });
+
+    const reactivated = await tx.membership.updateMany({
+      where: {
+        userId,
+        companyId,
+        status: "INACTIVE",
+      },
+      data: { status: "ACTIVE" },
+    });
+
+    return {
+      employeeId: id,
+      linkedUserId: userId,
+      membershipsReactivated: reactivated.count,
+    };
+  });
+};

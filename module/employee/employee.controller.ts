@@ -7,6 +7,8 @@ import {
   deleteEmployeeService,
   getAllEmployeesService,
   getEmployeeByIdService,
+  linkEmployeeUserService,
+  unlinkEmployeeUserService,
   updateEmployeeService,
 } from "./employee.service.js";
 
@@ -236,6 +238,82 @@ export const assignShiftController = async (req: Request, res: Response) => {
       success: true,
 
       message: "Shift assigned successfully",
+
+      data,
+    });
+  } catch (err: any) {
+    res.status(400).json({
+      success: false,
+
+      message: err.message,
+    });
+  }
+};
+
+// ==================================unlink user (make userless)==============================
+export const unlinkEmployeeUserController = async (
+  req: AuthRequest,
+  res: Response,
+) => {
+  try {
+    const employeeId = Number(req.params.id);
+
+    const companyId = req.companyId;
+    if (!companyId) {
+      throw new Error("Company not found");
+    }
+
+    const actorUserId = (req as any)?.user?.userId;
+
+    const data = await unlinkEmployeeUserService(
+      companyId,
+      employeeId,
+      actorUserId ? Number(actorUserId) : undefined,
+    );
+
+    res.json({
+      success: true,
+
+      message: "Employee is now userless (login disabled)",
+
+      data,
+    });
+  } catch (err: any) {
+    res.status(400).json({
+      success: false,
+
+      message: err.message,
+    });
+  }
+};
+
+// ==================================link user (reverse userless)==============================
+export const linkEmployeeUserController = async (
+  req: AuthRequest,
+  res: Response,
+) => {
+  try {
+    const employeeId = Number(req.params.id);
+
+    const { userId, email } = req.body;
+    if (!userId && !email) {
+      throw new Error("userId or email is required");
+    }
+
+    const companyId = req.companyId;
+    if (!companyId) {
+      throw new Error("Company not found");
+    }
+
+    const data = await linkEmployeeUserService(companyId, employeeId, {
+      userId: userId ? Number(userId) : undefined,
+      email,
+    });
+
+    res.json({
+      success: true,
+
+      message: "User linked successfully (login restored)",
 
       data,
     });

@@ -493,7 +493,9 @@ export const processAttendance = async (
     ]),
   );
 
-  // employees with any log that day (real activity -> never touch)
+  // employees with an IN log that day (started work -> never touch).
+  // OUT-only spillover (prev day's late checkout past midnight) must NOT block
+  // late-approved leave conversion.
   const logRows = await prisma.attendanceLog.findMany({
     where: {
       companyId,
@@ -501,6 +503,8 @@ export const processAttendance = async (
       employeeId: {
         in: employeeIds,
       },
+
+      type: "IN",
 
       time: {
         gte: start,
@@ -663,9 +667,9 @@ export const processAttendance = async (
 
       const existing = attendanceMap.get(employee.id);
 
-      // skip real data (check-in / logs) and non-shell statuses
+      // skip real data (check-in / IN-logs) and non-shell statuses
       // (admin decisions, already-marked leaves, holidays, etc.)
-      // -> only ABSENT shells (no check-in, no logs) get re-evaluated
+      // -> only ABSENT shells (no check-in, no IN-log) get re-evaluated
       if (existing) {
         if (
           existing.check_in_time ||
